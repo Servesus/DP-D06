@@ -1,0 +1,34 @@
+Lo de la navegabilidad de ponerla al revés porque en la base de datos se crea una tabla intermedia, según Muller está
+mal y que es posible que Corchuelo lo diga para ver como se reacciona.
+
+
+Problema 3:
+
+El servicio tiene que ser transactional
+
+La información que va por parámetros vendra de un objeto del controlador, es normal este fallo porque aun no lo hemos
+creado.
+El código que tengamos en el save y en el edit, debería de ser el mismo o parecido. Así que podemos reutilizarlo y
+solo comprobar si tiene id o no para diferenciarlos.
+
+Faltan comprobaciones, porque si no podría hacerlo alguien que no esté registrado (en la parte de handyworker).
+
+Problema 1:
+
+Hay que meter toda la información necesaria en la base de datos al registrar un customer.
+En el create customer tendríamos que crear un user account y este user account con un Authority, al igual que en el
+create handy worker. En handy worker también hay que poner el finder. Tanto en customer y en handy worker hay que crear
+las boxes.
+
+Hacer un método genérico en la clase abstracta porque el create y el save es el mismo, así queda el código con menos
+líneas y mas simple.
+
+Si ponemos el personalData en Actor nos ahorramos código porque sería igual en todos.
+
+No hace falta hacer el delete en el editPersonalData, porque el save ya "elimina" el anterior al modificarlo.
+
+Problema 2: De Juan Palomo, yo me lo guiso yo me lo como. Vaya motivaito el chaval
+
+Mirar bien todos los requisitos para que no se nos quede nada.
+
+Problema 4:

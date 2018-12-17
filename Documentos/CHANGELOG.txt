@@ -1,0 +1,10 @@
+Multiplicidades de FINDER->CATEGORY, FINDER->WARRANTY cambiadas de 0..*->0..* a 0..*->1
+Make de todos los actores a handy Worker solo
+Atributo comments de Application eliminado
+En nota, cambiado los atributos author, hwComment y customerComment
+hwComment pasa de String a Collection (lo mismo con customerComment)
+En nota, añadir el comentario de referee
+
+
+Cambios en NOTE
+Cambios en Finder, solo se guarda el nombre de la categoria y el titulo de la garantia, una configuracion para todos los finders

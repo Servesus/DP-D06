@@ -1,0 +1,52 @@
+P3
+public Collection<Application> showApplication
+
+	final Customer loggedCustomer = this.securityAndCustomer()
+	return this.customerRposository
+
+
+public Application editApplication(Application application, String crediCard)
+	String username;
+	UserAccount userAccount
+	userAccount = LoginService.getPrincipal()
+	username = userAccount.getUsername()
+	final Customer loggedCustomer;
+	
+	Assert.isTrue(userAccount.getAuthorities().contains(CUSTOMER) && this.showApplication().contains(application))
+	
+	application.isStatus(status)
+	
+	if(status==status.ACCEPTED)
+		final List<Integer> comments = new ArrayList<String>()
+		application.setComments(comment)
+		this.applicationService.saveApplication(application)
+
+	else:
+		thi.application.saveApplication(application)
+	return application
+
+
+public Application createApplication(Integer offeredPrice, final List<String> comentarios, final FixUpTask fixUpTask)
+	UserAccount = userAccount;
+	userAccount = loginService
+	...
+	final Application aplication = ApplicationService.createApplicati
+	
+
+
+P1
+public Collection Actor findAll 
+	final Collection Actor actors = 
+
+public HandyWorker create(){
+	HandyWorker hw;
+
+
+`public HW save (hw)
+	LoginService.getPrincipal()
+	Assert.notNull(hw)
+	HW hw;
+	hw = this.hwRepository.save(hw)
+	
+
+	

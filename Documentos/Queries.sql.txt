@@ -1,0 +1,251 @@
+/*Query C/1:  The average, the minimum, the maximum, and the standard deviation of the number of fix-up tasks per user: */
+
+select avg (c.fixUpTasks.size), max (c.fixUpTasks.size), min (c.fixUpTasks.size), stddev(c.fixUpTasks.size) from Customer c;
+
+/*Here we use the operator avg, max, min and stddev to get the average, minimum, maximum and standard deviation
+of the number of fix-up-task per customer.
+*/
+
+/*Result:
+
+1 object selected
+[0.2, 1, 0, 0.4]
+
+*/
+
+
+
+/*Query C/2:  The average, the minimum, the maximum, and the standard deviation of the number of applications per fix-up task:*/
+
+select  avg(f.applications.size), min(f.applications.size), max(f.applications.size), stddev(f.applications.size) from FixUpTask f;
+
+/*Here we use the operator avg, max, min and stddev to get the average, minimum, maximum and standard deviation
+of the number of applications per fix-up-task.
+*/
+
+/*Result: 
+1 object selected
+[1.4, 1, 2, 0.4899]
+
+*/
+
+
+
+/*Query C/3:  The average, the minimum, the maximum, and the standard deviation of the maximum price of the fix-up tasks: */
+
+select avg (f.maxPrice), min (f.maxPrice), max(f.maxPrice), stddev(f.maxPrice) from FixUpTask f;
+
+/*Here we use the operator avg, max, min and stddev to get the average, minimum, maximum and standard deviation
+of the maximum price of fix-up-tasks.
+*/
+
+/*Result: 
+1 object selected
+[2580.0, 1500.0, 3500.0, 778.2030583337488]
+
+*/
+
+
+
+/*Query C/4:  The average, the minimum, the maximum, and the standard deviation of the price offered in the applications:*/
+
+select avg(a.price), min(a.price), max(a.price), stddev(a.price) from Application a;
+
+/*Here we use the operator avg, max, min and stddev to get the average, minimum, maximum and standard deviation
+of the price offered in the applications.
+*/
+
+/*Result:
+1 object selected
+[1453.357142857143, 35.0, 2150.0, 787.3059542645464]
+
+*/
+
+
+
+/*Query C/5:  The ratio of pending applications:*/
+select 100.0*(select count(a) from Application a where a.status = 0)/count(a) 
+from Application a;
+
+/* Here we count the applications that have status=0, which means that is a pending application and we divide the result
+by the number of total applications. The result is multiplied by 100.0 to make it a percentage.
+*/
+
+/*Result:
+1 object selected
+28.57143
+
+*/
+
+
+
+/*Query C/6:  The ratio of accepted applications:*/
+select 100.0*(select count(a) from Application a where a.status = 1)/count(a) 
+from Application a;
+
+
+/* We do the same as the Query C/5, but we are looking for applications with status=1, which means that they are
+accepted applications.
+*/
+
+/*Result:
+1 object selected
+42.85714
+
+*/
+
+
+
+/*Query C/7:  The ratio of rejected applications:*/
+select 100.0*(select count(a) from Application a where a.status = -1)/count(a) 
+from Application a;
+
+/* We do the same as the 2 querys before, but we look for rejected applications, that are the ones with status =-1.
+*/
+
+/*Result:
+1 object selected
+28.57143
+
+*/
+
+
+/*Query C/8: The ratio of pending applications that cannot change its status because their time period’s elapsed.*/
+
+select 100.0*(select count(a) from Application a  where (a.status = 0) and (a.fixUpTasks.startDate < CURRENT_TIMESTAMP()))
+/count(a) from Application a;
+
+/* Here we count how many applications are with status=0 and are related to a fixUpTask that has been started before
+the current date of the system. And we divide them by the total number of applications, and multiply them by 100.0 to
+make the number a ratio.
+*/
+
+/*Result:
+1 object selected
+0
+
+*/
+
+
+
+/*Query C/9:  The listing of customers who have published at least 10% more fix-up tasks than the average, ordered by number of applications:*/
+
+select c.name from Customer c join c.fixUpTasks f where
+(c.fixUpTasks.size >= 1.1*(select avg(c.fixUpTasks.size) from Customer c))
+group by c.id order by f.applications.size DESC;
+
+/* In this query we take the customers that have more fixUpTasks related than a 10% more than the average, that is why
+we multiply by 1.1. Then we order them from more to less by the number of applications
+*/
+
+/*Result:
+2 objects selected
+"customer2"
+"customer1"
+
+*/
+
+
+
+/*Query C/10: The listing of handy workers who have got accepted at least 10% more applications than the average, ordered by number of applications.*/
+
+select h.name from HandyWorker h join h.applications a where 
+((select count(a) from HandyWorker h where a.status=1 and a.handyWorker=h)/
+(h.applications.size)>=(select 1.1*(select count(h2) 
+from HandyWorker h2 join h2.applications a2 where (a2.status=1))
+/count(a) from HandyWorker a)) order by a.size desc;
+
+/*In this query we calculate the avegare ratio of accepted applications that a handy worker has and we take the
+handy workers that have more than a 10% of accepted applications than the average.
+*/
+
+/*Result:
+2 objects selected
+"handyWorker1"
+"handyWorker2"
+*/
+
+
+
+/*Query B/1: The minimum, the maximum, the average, and the standard deviation of the number of complaints per fix-up task.*/
+
+select avg (f.complaints.size), max(f.complaints.size), min(f.complaints.size),
+ stddev(f.complaints.size) from FixUpTask f;
+
+/*Here we use the operator avg, max, min and stddev to get the average, minimum, maximum and standard deviation
+of the number of complaints per fix-up-task.
+*/
+
+/*Result: 
+1 object selected
+[1.0, 2, 0, 0.8944]
+
+*/
+
+
+
+/*Query B/2: The minimum, the maximum, the average, and the standard deviation of the number of notes per referee report.*/
+select avg(r.notes.size), max(r.notes.size), min(r.notes.size), stddev(r.notes.size) from Report r;
+
+/*Here we use the operator avg, max, min and stddev to get the average, minimum, maximum and standard deviation
+of the number of notes per referee report.
+*/
+
+/*Result:
+1 object selected
+[0.4, 1, 0, 0.4899]
+
+*/
+
+
+
+/*Query B/3: The ratio of fix-up tasks with a complaint.*/
+select 100.0*(select count(f) from FixUpTask f where f.complaints.size > 0)/count(f) from FixUpTask f;
+
+/*In this query we select the number of fix-up-task that has a complaint, and we divide it by the total number of
+fix-up-task. We also multiply the result by 100.0 to make it a ratio
+*/
+
+/*Result:
+1 object selected
+60.0
+
+*/
+
+
+
+/*Query B/4:The top-three customers in terms of complaints.*/
+
+select c.name from Customer c join c.complaints com group by c.id order by com.size DESC;
+
+/*In this query, as it was not posible to take the top 3, we took the customers and ordered them by the number of
+complaints they have.
+*/
+
+/*Result:
+2 objects selected
+"customer1"
+"customer2"
+
+*/
+
+
+
+/*Query B/5:The top-three handy workers in terms of complaints.*/
+
+select h.name from HandyWorker h join h.applications a join a.fixUpTasks t group by h.id order by t.complaints.size DESC;
+
+/*In this query, as it was not posible to take the top 3, we took the handy workers and ordered them by the number of
+complaints they have. We need to select the applications too, because Application is an associative entity between
+handy worker and complaint
+*/
+
+/*Result:
+5 objects selected
+"handyWorker2"
+"handyWorker4"
+"handyWorker1"
+"handyWorker3"
+"handyWorker5"
+
+*/
