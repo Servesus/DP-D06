@@ -15,23 +15,13 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
 <tiles-definitions>
-
-	<definition name="customer/action-1" extends="master.page">	
-		<put-attribute name="title" value="Customer: Action 1" />
-		<put-attribute name="body" value="/views/customer/action-1.jsp" />
-	</definition>
 	
-	<definition name="customer/action-2" extends="master.page">	
-		<put-attribute name="title" value="Customer: Action 2" />
-		<put-attribute name="body" value="/views/customer/action-2.jsp" />
-	</definition>
-	
-	<definition name="customer/register" extends="master.page">	
+	<definition name="customer/customer/register" extends="master.page">	
 		<put-attribute name="title" value="Register" />
 		<put-attribute name="body" value="/views/customer/register.jsp" />
 	</definition>
 	
-	<definition name="customer/editPD" extends="master.page">	
+	<definition name="customer/customer/editPD" extends="master.page">	
 		<put-attribute name="title" value="Edit personal data" />
 		<put-attribute name="body" value="/views/customer/editPD.jsp" />
 	</definition>

@@ -16,12 +16,12 @@
       
 <tiles-definitions>
 
-	<definition name="box/list" extends="master.page">	
+	<definition name="box/customer,handyWorker,referee,administrator/list" extends="master.page">	
 		<put-attribute name="title" value="Directorio de mensajes" />
 		<put-attribute name="body" value="/views/boxes/list.jsp" />
 	</definition>
 	
-	<definition name="box/edit" extends="master.page">	
+	<definition name="box/customer,handyWorker,referee,administrator/edit" extends="master.page">	
 		<put-attribute name="title" value="Crear nuevo directorio" />
 		<put-attribute name="body" value="/views/box/edit.jsp" />
 	</definition>

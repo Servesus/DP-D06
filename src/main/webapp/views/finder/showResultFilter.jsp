@@ -9,11 +9,11 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">				   <!-- Esto no se que poner -->
-<display:table pagesize="5" class="Finder" name="fixUpTaksFinder" requestURI="handyWorker/finder/fixUpTask/list.do" id="row">
+<display:table pagesize="5" class="Finder" name="fixUpTaksFinder" requestURI="finder/handyWorker/showResultFinder.do" id="row">
 	
 	<!-- Action links -->
 
-	<display:column> <a href="handyWorker/finder/fixUpTask/list.do?fixUpTaskId=${row.id}">
+	<display:column> <a href="fixUpTask/findOne.do?fixUpTaskId=${row.id}">
 	<spring:message code="fixUpTask.findOne" /></a> </display:column>
 	
 	<!-- Attributes -->
