@@ -26,6 +26,18 @@
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
+		<value>/views/application/messages</value>
+		<value>/views/box/messages</value>
+		<value>/views/educationalRecord/messages</value>
+		<value>/views/endorserRecord/messages</value>
+		<value>/views/finder/messages</value>
+		<value>/views/fixUpTask/messages</value>
+		<value>/views/handyWorker/messages</value>
+		<value>/views/message/messages</value>
+		<value>/views/miscRecord/messages</value>
+		<value>/views/personalRecord/messages</value>
+		<value>/views/professionalRecord/messages</value>
+		<value>/views/referee/messages</value>
 	</util:list>
 
 </beans>

@@ -1,0 +1,1 @@
+Note and Finder have been changed so they work properly

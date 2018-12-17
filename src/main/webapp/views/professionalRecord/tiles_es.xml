@@ -16,11 +16,7 @@
       
 <tiles-definitions>
 
-<<<<<<< HEAD
 	<definition name="handyWorker/professionalRecord/edit" extends="master.page">	
-=======
-	<definition name="handyWorker/professionalRecord" extends="master.page">	
->>>>>>> origin/miguel
 		<put-attribute name="title" value="Historial Profesional" />
 		<put-attribute name="body" value="/views/professionalRecord/edit.jsp" />
 	</definition>
