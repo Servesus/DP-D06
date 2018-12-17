@@ -17,7 +17,7 @@
 
 <body>
 <display:table pagesize="5" class="displaytag" name="messages" 
-	requestURI="box/messages/list.do" id="row">
+	requestURI="message/customer,handyWorker,referee,administrator/list.do" id="row">
 		
 	<spring:message code="message.sender" var="sender" />
 	<display:column property="sender" title="${sender.name}"/>
@@ -47,11 +47,11 @@
 		
 
 	<display:column>
-		<a href="message/view.do">
+		<a href="message/view.do"> <!-- TODO -->
   	 		<spring:message code="message.view" /> </a>
 	</display:column>
 	<display:column>
-		<a href="box/message/delete.do">
+		<a href="box/message/delete.do"> <!-- TODO -->
   	 		<spring:message code="message.delete" /> </a>
 	</display:column>		
 

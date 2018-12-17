@@ -17,7 +17,7 @@
 <body>
 <security:authorize access="hasRole('REFEREE')">
 <spring:message code="referee.firstMessage" />
-<form:form action="referee/edit.do" modelAttribute="referee">
+<form:form action="referee/referee/edit.do" modelAttribute="referee">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -79,7 +79,7 @@
 	
 		<input type="button" name="Back"
 		value="<spring:message code="referee.back" />"
-		onclick="javascript: relativeRedir('master-page');" />
+		onclick="javascript: relativeRedir('master.page');" />
 	<br />
  	
 </form:form>

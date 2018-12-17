@@ -39,7 +39,7 @@
 </jstl:if>
 
 <input type="button" name="Back" value="<spring:message code="message.list" />"
-			onclick="javascript: relativeRedir('message/list.do');" />
+			onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/list.do');" />
 
 
 </body>

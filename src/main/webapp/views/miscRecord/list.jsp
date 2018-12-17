@@ -10,9 +10,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<display:table name="miscRecord" id="row" requestURI="handyWorker/miscRecord/list.do" pagesize="5" class="displaytag">
+<display:table name="miscRecord" id="row" requestURI="miscRecord/handyWorker/list.do" pagesize="5" class="displaytag">
 	<display:column>
-		<a href="handyWorker/miscRecord/edit.do?miscRecordId=${row.id}">
+		<a href="miscRecord/handyWorker/edit.do?miscRecordId=${row.id}">
 			<spring:message code="miscRecord.edit"/>
 		</a>
 	</display:column>
