@@ -10,7 +10,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<form:form action="handyWorker/miscRecord/edit.do" modelAttribute="miscRecord">
+<form:form action="miscRecord/handyWorker/edit.do" modelAttribute="miscRecord">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
