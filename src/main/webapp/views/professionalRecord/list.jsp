@@ -9,11 +9,11 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">				   	<!-- esto habra que cambiarlo -->
-<display:table pagesize="5" class="professionalRecord" name="professionalRecords" requestURI="handyworker/curricula/professionalRecord/list.do" id="row">
+<display:table pagesize="5" class="professionalRecord" name="professionalRecords" requestURI="professionalRecord/handyWorker/list.do" id="row">
 	
 	<!-- Action links -->
 
-	<display:column> <a href="handyworker/curricula/professionalRecord/edit.do?professionalRecordId=${row.id}">
+	<display:column> <a href="professionalRecord/handyWorker/edit.do?professionalRecordId=${row.id}">
 	<spring:message code="prrecord.link" /></a> </display:column>
 	
 	<!-- Attributes -->

@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<form:form action="box/message/create.do" modelAttribute="message">
+<form:form action="message/customer,handyWorker,referee,administrator/create.do" modelAttribute="message">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -53,7 +53,7 @@
 	
 	<input type="button" name="cancel"
 		value="<spring:message code="message.cancel" />"
-		onclick="javascript: relativeRedir('message/edit.do');" />
+		onclick="javascript: relativeRedir('message/edit.do');" /> <!-- TODITOTODO -->
 	<br />
  	
 </form:form>

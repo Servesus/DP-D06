@@ -18,7 +18,6 @@
 
 
 
-<security:authorize access="hasRole('CUSTOMER')">
 
 
 <spring:message code="fixUpTask.startDate" /> ${fixUpTask.startDate} <br/>
@@ -56,5 +55,3 @@
 
 <input type="button" name="Cancel" value="<spring:message code="fixUpTask.cancel" />"
 			onclick="javascript: relativeRedir('fixUpTask/customer/findAll.do');" />
-
-</security:authorize>

@@ -17,12 +17,12 @@
        
 <tiles-definitions>
 
-	<definition name="handyWorker/finder/update" extends="master.page">	
+	<definition name="finder/handyWorker/changeFiltersFinder" extends="master.page">	
 		<put-attribute name="title" value="Changes filters finder" />
 		<put-attribute name="body" value="/views/finder/changesFiltersFinder.jsp" />
 	</definition>
 	
-	<definition name="handyWorker/finder/show" extends="master.page">
+	<definition name="finder/handyWorker/showResultFinder" extends="master.page">
 		<put-attribute name="title" value="Show result finder" />
 		<put-attribute name="body" value="/views/finder/showResultFilter.jsp" />
 	</definition>

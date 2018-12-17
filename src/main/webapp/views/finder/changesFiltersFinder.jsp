@@ -9,7 +9,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<form:form action ="handyworker/finder/edit.do" modelAtribute="finder">
+<form:form action ="finder/handyWorker/edit.do" modelAtribute="finder">
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -74,7 +74,7 @@
 	
 	<input type="button" name="cancel"
 		value="<spring:message code="announcement.cancel" />"
-		onclick="javascript: relativeRedir('');" />    <!-- Aqui va el link del return a pagina de HW -->
+		onclick="javascript: relativeRedir('master.page');" />    <!-- Aqui va el link del return a pagina de HW -->
 	<br />
 	
 </form:form>

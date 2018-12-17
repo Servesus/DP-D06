@@ -16,7 +16,7 @@
 </head>
 <body>
 <security:authorize access="hasRole('HANDYWORKER')">
-<form:form action="handyWorker/edit.do" modelAttribute="handyWorker">
+<form:form action="handyWorker/handyWorker/edit.do" modelAttribute="handyWorker">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -88,7 +88,7 @@
 	
 		<input type="button" name="Back"
 		value="<spring:message code="handyWorker.back" />"
-		onclick="javascript: relativeRedir('master-page');" />
+		onclick="javascript: relativeRedir('master.page');" />
 	<br />
  	
 </form:form>

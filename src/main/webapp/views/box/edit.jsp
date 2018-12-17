@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<form:form action="actor/box/create.do" modelAttribute="box">
+<form:form action="box/customer,handyWorker,referee,administrator/create.do" modelAttribute="box">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -38,7 +38,7 @@
 	
 	<input type="button" name="cancel"
 		value="<spring:message code="box.cancel" />"
-		onclick="javascript: relativeRedir('actor/boxes/list.do');" />
+		onclick="javascript: relativeRedir('box/customer,handyWorker,referee,administrator/list.do');" />
 	<br />
  	
 </form:form>

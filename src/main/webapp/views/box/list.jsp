@@ -19,7 +19,7 @@
 
 
 <display:table pagesize="5" class="displaytag" name="boxes" 
-	requestURI="actor/boxes/list.do" id="row">
+	requestURI="box/customer,handyWorker,referee,administrator/list.do" id="row">
 		
 	<spring:message code="box.name" var="name" />
 	<jstl:set var = "Inbox" value = ${name == "Inbox"}/>
@@ -30,20 +30,20 @@
 
 	<display:column>
 	<jstl:if test="${box.id != 0 && box.isSystem ==false}">
-		<a href="actor/boxes/list.do?boxId=${row.id}">
+		<a href="box/customer,handyWorker,referee,administrator/list.do?boxId=${row.id}">
   	 	<spring:message code="box.edit" /> </a>
   	 </jstl:if>
 	</display:column>	
 
 	<display:column>
-		<a href="actor/message/list.do">
+		<a href="box/customer,handyWorker,referee,administrator/list.do">
   	 		<spring:message code="box.view" /> </a>
 	</display:column>	
 
 </display:table>
 
 <input type="button" name="New Box" value="<spring:message code="box.create" />"
-			onclick="javascript: relativeRedir('actor/box/create.do');" />
+			onclick="javascript: relativeRedir('box/customer,handyWorker,referee,administrator/create.do');" />
 </body>
 
 </html>

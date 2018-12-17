@@ -16,17 +16,13 @@
       
 <tiles-definitions>
 
-	<definition name="handyWorker/educationalRecord/edit" extends="master.page">	
+	<definition name="educationalRecord/handyWorker/edit" extends="master.page">	
 		<put-attribute name="title" value="Historial Académico" />
 		<put-attribute name="body" value="/views/educationalRecord/edit.jsp" />
 	</definition>
-	<definition name="handyWorker/educationalRecord/list" extends="master.page">	
+	<definition name="educationalRecord/handyWorker/list" extends="master.page">	
 		<put-attribute name="title" value="Lista de Historiales Académicos" />
 		<put-attribute name="body" value="/views/educationalRecord/list.jsp" />
 	</definition>
 	
-	<definition name="handyWorker/educationalRecord/list" extends="master.page">	
-		<put-attribute name="title" value="Lista de Historiales Académicos" />
-		<put-attribute name="body" value="/views/educationalRecord/list.jsp" />
-	</definition>
 </tiles-definitions>

@@ -17,7 +17,7 @@
 <body>
 <security:authorize access="hasRole('ADMIN')">
 <spring:message code="administrator.firstMessage" />
-<form:form action="administrator/edit.do" modelAttribute="administrator">
+<form:form action="administrator/administrator/edit.do" modelAttribute="administrator">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
