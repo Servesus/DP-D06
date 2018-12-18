@@ -36,5 +36,15 @@
 		<put-attribute name="title" value="Mostrar las Fix-Up Task" />
 		<put-attribute name="body" value="/views/fixUpTask/findAllHandyWorker.jsp" />
 	</definition>
+	
+	<definition name="fixUpTask/handyWorker/relationshipsHandyWorker" extends="master.page">	
+		<put-attribute name="title" value="Relaciones" />
+		<put-attribute name="body" value="/views/fixUpTask/relationshipsHandyWorker.jsp" />
+	</definition>
+	
+	<definition name="fixUpTask/handyWorker/customersHandyWorker" extends="master.page">	
+		<put-attribute name="title" value="Clientes" />
+		<put-attribute name="body" value="/views/fixUpTask/customersHandyWorker.jsp" />
+	</definition>
 
 </tiles-definitions>

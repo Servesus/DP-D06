@@ -32,34 +32,14 @@
 
 </display:table>
 
-
-<%-- Se ven las fixUpTask por Customer con el metodo CustomerPorFixUpTask en customerService --%>
-<display:table pagesize="5" class="customer" name="fixCustomers" 
-	requestURI="fixUpTask/handyWorker/findAll.do" id="row">
+<input type="button" name="relationships"
+		value="<spring:message code="handyWorker.relationships" />"
+		onclick="javascript: relativeRedir('fixUpTask/handyWorker/relationshipsHandyWorker.do');" />
 		
-		<spring:message code="fixCustomer.assigned" var="assigned" />
-	<display:column property="assigned" title="${assigned}" sortable="false"/>
-	
-</display:table>
-<%-- Se muestran todos los customer con el metodo findAll de customerService --%>
-
-<display:table pagesize="5" class="customer" name="customers" 
-	requestURI="fixUpTask/handyWorker/findAll.do" id="row">
+<input type="button" name="customers"
+		value="<spring:message code="handyWorker.customers" />"
+		onclick="javascript: relativeRedir('fixUpTask/handyWorker/customersHandyWorker.do');" />
 		
-		<spring:message code="fixUpTask.customer.name" var="name" />
-	<display:column property="name" title="${name}" sortable="false" />
-
-	<spring:message code="fixUpTask.customer.id" var="id" />
-	<display:column property="id" title="${id}" sortable="false"/>
-
-	<display:column>
-		<a href="customer/findOne.do?customerId=${row.id}">
-  	 <spring:message code="fixUpTask.customer.customer" /> </a>
-	</display:column>
-
-</display:table>
-
-
 </body>
 </security:authorize>
 </html>
