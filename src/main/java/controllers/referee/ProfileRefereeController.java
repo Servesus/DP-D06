@@ -29,8 +29,8 @@ public class ProfileRefereeController extends AbstractController {
 		ModelAndView result;
 		Referee referee;
 
-		final Collection<Report> reports = new ArrayList<>();
-		Collection<Report> reportsCollection = new ArrayList<>();
+		final Collection<Report> reports = new ArrayList<Report>();
+		Collection<Report> reportsCollection = new ArrayList<Report>();
 
 		referee = this.refereeService.findOne(LoginService.getPrincipal().getId());
 		reportsCollection = referee.getReports();

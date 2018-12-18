@@ -30,10 +30,10 @@ public class ProfileHandyWorkerController extends AbstractController {
 		ModelAndView result;
 		HandyWorker handyWorker;
 
-		final Collection<Application> applications = new ArrayList<>();
-		Collection<Application> applicationsCollection = new ArrayList<>();
-		final Collection<Phase> phases = new ArrayList<>();
-		Collection<Phase> phasesCollection = new ArrayList<>();
+		final Collection<Application> applications = new ArrayList<Application>();
+		Collection<Application> applicationsCollection = new ArrayList<Application>();
+		final Collection<Phase> phases = new ArrayList<Phase>();
+		Collection<Phase> phasesCollection = new ArrayList<Phase>();
 
 		handyWorker = this.handyWorkerService.findOne(LoginService.getPrincipal().getId());
 		applicationsCollection = handyWorker.getApplications();

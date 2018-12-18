@@ -30,12 +30,12 @@ public class ProfileCustomerController extends AbstractController {
 	public ModelAndView action1() {
 		ModelAndView result;
 		Customer customer;
-		final Collection<Complaint> complaints = new ArrayList<>();
-		Collection<Complaint> complaintsCollection = new ArrayList<>();
-		final Collection<CreditCard> creditCards = new ArrayList<>();
-		Collection<CreditCard> creditCardCollection = new ArrayList<>();
-		final Collection<FixUpTask> fixUpTasks = new ArrayList<>();
-		Collection<FixUpTask> fixUpTaskCollection = new ArrayList<>();
+		final Collection<Complaint> complaints = new ArrayList<Complaint>();
+		Collection<Complaint> complaintsCollection = new ArrayList<Complaint>();
+		final Collection<CreditCard> creditCards = new ArrayList<CreditCard>();
+		Collection<CreditCard> creditCardCollection = new ArrayList<CreditCard>();
+		final Collection<FixUpTask> fixUpTasks = new ArrayList<FixUpTask>();
+		Collection<FixUpTask> fixUpTaskCollection = new ArrayList<FixUpTask>();
 
 		customer = this.customerService.findOne(LoginService.getPrincipal().getId());
 		complaintsCollection = customer.getComplaints();
