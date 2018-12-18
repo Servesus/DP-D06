@@ -46,12 +46,10 @@
 <display:column property="number" titleKey="fixUpTask.phases.number" />
 </display:table>
 
-<input type="submit" name="Update" value="<spring:message code="fixUpTask.update" />"
-			onclick="javascript: relativeRedir('fixUpTask/customer/create.do');" />
 
 <input type="submit" name="delete"
 			value="<spring:message code="fixUpTask.delete" />"
 			onclick="return confirm('<spring:message code="fixUpTask.confirm.delete" />')" />&nbsp;
 
-<input type="button" name="Cancel" value="<spring:message code="fixUpTask.cancel" />"
+<input type="button" name="cancel" value="<spring:message code="fixUpTask.cancel" />"
 			onclick="javascript: relativeRedir('fixUpTask/customer/findAll.do');" />

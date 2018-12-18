@@ -20,6 +20,7 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="ticker" />
  
  	<form:label path="startDate">
 		<spring:message code="fixUpTask.startDate" />:
@@ -108,7 +109,7 @@
 			onclick="return confirm('<spring:message code="fixUpTask.confirm.delete" />')" />&nbsp;
 	</jstl:if>
 		
-		<input type="button" name="Cancel"
+		<input type="button" name="cancel"
 		value="<spring:message code="fixUpTask.cancel" />"
 		onclick="javascript: relativeRedir('fixUpTask/customer/findAll.do');" />
 	<br />

@@ -17,15 +17,10 @@
 <security:authorize access="hasRole('CUSTOMER')">
 <body>
 
-<form:label path="title">
-	<spring:message code="fixUpTask.title" />:
-</form:label>
-<br />
-
 <display:table pagesize="5" class="fixUpTask" name="fixUpTasks" 
 	requestURI="fixUpTask/customer/findAll.do" id="row">
 	
-<display:column> <a href="fixUpTask/findOne.do?fixUpTaskId=${row.id}">
+<display:column> <a href="fixUpTask/customer/findOne.do?fixUpTaskId=${row.id}">
 	<spring:message code="fixUpTask.list" /></a> </display:column>
 		
 	<spring:message code="fixUpTask.startDate" var="startDate" />
@@ -37,6 +32,9 @@
 	<spring:message code="fixUpTask.id" var="id" />
 	<display:column property="id" title="${id}" sortable="true"/>
 
+<display:column> <a href="fixUpTask/customer/edit.do?fixUpTaskId=${row.id}">
+	<spring:message code="fixUpTask.update" /></a> </display:column>
+	
 </display:table>
 <input type="button" name="Create" value="<spring:message code="fixUpTask.create" />"
 			onclick="javascript: relativeRedir('fixUpTask/customer/create.do');" />

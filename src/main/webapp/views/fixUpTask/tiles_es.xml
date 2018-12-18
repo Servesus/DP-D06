@@ -24,7 +24,7 @@
 	
 	<definition name="fixUpTask/customer/findAll" extends="master.page">
 		<put-attribute name="title" value="Mostrar las Fix-Up Task" />
-		<put-attribute name="body" value="/views/fixUpTask/findAll.jsp" />
+		<put-attribute name="body" value="/views/fixUpTask/findAllCustomer.jsp" />
 	</definition>
 	
 	<definition name="fixUpTask/customer/findOne" extends="master.page">
