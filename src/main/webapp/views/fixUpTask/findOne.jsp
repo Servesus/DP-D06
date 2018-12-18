@@ -47,7 +47,7 @@
 </display:table>
 
 <input type="submit" name="Update" value="<spring:message code="fixUpTask.update" />"
-			onclick="javascript: relativeRedir('fixUpTask/customer/update.do');" />
+			onclick="javascript: relativeRedir('fixUpTask/customer/create.do');" />
 
 <input type="submit" name="delete"
 			value="<spring:message code="fixUpTask.delete" />"
