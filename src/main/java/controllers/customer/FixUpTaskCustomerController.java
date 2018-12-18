@@ -100,6 +100,18 @@ public class FixUpTaskCustomerController extends AbstractController {
 			}
 		return result;
 	}
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(@Valid final FixUpTask fixUpTask, final BindingResult binding) {
+		ModelAndView result;
+
+		try {
+			this.fixUpTaskService.delete(fixUpTask);
+			result = new ModelAndView("redirect:findAll.do");
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(fixUpTask, "fixUpTask.commit.error");
+		}
+		return result;
+	}
 	protected ModelAndView createEditModelAndView(final FixUpTask fix) {
 		ModelAndView result;
 		result = this.createEditModelAndView(fix, null);
