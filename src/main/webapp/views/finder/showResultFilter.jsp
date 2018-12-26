@@ -9,7 +9,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">				   <!-- Esto no se que poner -->
-<display:table pagesize="5" class="Finder" name="fixUpTaksFinder" requestURI="finder/handyWorker/showResultFinder.do" id="row">
+<display:table pagesize="5" class="Finder" name="fixUpTaksFinder" requestURI="finder/handyWorker/list.do" id="row">
 	
 	<!-- Action links -->
 
