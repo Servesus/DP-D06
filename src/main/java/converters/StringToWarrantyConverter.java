@@ -7,20 +7,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.NoteRepository;
-import domain.Note;
+import repositories.WarrantyRepository;
+import domain.Warranty;
 
 @Component
 @Transactional
-public class StringToNoteConverter implements Converter<String, Note> {
+public class StringToWarrantyConverter implements Converter<String, Warranty> {
 
 	@Autowired
-	NoteRepository	noteRepository;
+	WarrantyRepository	warrantyRepository;
 
 
 	@Override
-	public Note convert(final String text) {
-		Note result;
+	public Warranty convert(final String text) {
+		Warranty result;
 		int id;
 
 		try {
@@ -28,7 +28,7 @@ public class StringToNoteConverter implements Converter<String, Note> {
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.noteRepository.findOne(id);
+				result = this.warrantyRepository.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);
@@ -36,5 +36,4 @@ public class StringToNoteConverter implements Converter<String, Note> {
 
 		return result;
 	}
-
 }
