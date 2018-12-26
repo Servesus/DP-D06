@@ -7,20 +7,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.EducationalRecordRepository;
-import domain.EducationalRecord;
+import repositories.ComplaintRepository;
+import domain.Complaint;
 
 @Component
 @Transactional
-public class StringToEducationalRecordConverter implements Converter<String, EducationalRecord> {
+public class StringToComplaintConverter implements Converter<String, Complaint> {
 
 	@Autowired
-	EducationalRecordRepository	educationalRecordRepository;
+	ComplaintRepository	complaintRepository;
 
 
 	@Override
-	public EducationalRecord convert(final String text) {
-		EducationalRecord result;
+	public Complaint convert(final String text) {
+		Complaint result;
 		int id;
 
 		try {
@@ -28,7 +28,7 @@ public class StringToEducationalRecordConverter implements Converter<String, Edu
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.educationalRecordRepository.findOne(id);
+				result = this.complaintRepository.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);
