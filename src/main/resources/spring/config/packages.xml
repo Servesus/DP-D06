@@ -20,7 +20,6 @@
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="converters" />
 	<context:component-scan base-package="domain" />
-	<context:component-scan base-package="forms" />
 	<context:component-scan base-package="repositories" />
 	<context:component-scan base-package="services" />
 	<context:component-scan base-package="security" />
