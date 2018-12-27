@@ -12,7 +12,7 @@ import controllers.AbstractController;
 import domain.Administrator;
 
 @Controller
-@RequestMapping("/administrator/administrator")
+@RequestMapping("/administrator")
 public class AdministratorController extends AbstractController {
 
 	@Autowired
