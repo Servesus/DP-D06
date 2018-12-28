@@ -10,13 +10,13 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<display:table name="miscRecord" id="row" requestURI="miscRecord/handyWorker/list.do" pagesize="5" class="displaytag">
+<display:table name="miscRecord" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 	<display:column>
-		<a href="miscRecord/handyWorker/edit.do?miscRecordId=${row.id}">
+		<a href="miscRecord/handyWorker/edit.do?recordId=${row.id}">
 			<spring:message code="miscRecord.edit"/>
 		</a>
 	</display:column>
 	<spring:message code="miscRecord.title" var="columnTitle"/>
-	<display:column property="title" titleKey="columnTitle"/>
+	<display:column property="title" title="${columnTitle}"/>
 </display:table>
 </security:authorize>
