@@ -18,10 +18,83 @@
 	">
 
 	<util:list id="converters">
-		<!-- 
-			Add your own converters using entries of the following form: 
-			<bean class="converters.Class1ToClass2" /> 
-		-->
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.StringToAuthorityConverter" />
+		
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.StringToActorConverter" />
+		
+		<bean class="converters.AdministratorToStringConverter" />
+		<bean class="converters.StringToAdministratorConverter" />
+		
+		<bean class="converters.ApplicationToStringConverter" />
+		<bean class="converters.StringToApplicationConverter" />
+		
+		<bean class="converters.BoxToStringConverter" />
+		<bean class="converters.StringToBoxConverter" />
+		
+		<bean class="converters.CategoryToStringConverter" />
+		<bean class="converters.StringToCategoryConverter" />
+		
+		<bean class="converters.ComplaintToStringConverter" />
+		<bean class="converters.StringToComplaintConverter" />
+		
+		<bean class="converters.ConfigurationToStringConverter" />
+		<bean class="converters.StringToConfigurationConverter" />
+		
+		<bean class="converters.CreditCardToStringConverter" />
+		<bean class="converters.StringToCreditCardConverter" />
+		
+		<bean class="converters.CurriculaToStringConverter" />
+		<bean class="converters.StringToCurriculaConverter" />
+		
+		<bean class="converters.CustomerToStringConverter" />
+		<bean class="converters.StringToCustomerConverter" />
+		
+		<bean class="converters.EducationalRecordToStringConverter" />
+		<bean class="converters.StringToEducationalRecordConverter" />
+		
+		<bean class="converters.EndorserRecordToStringConverter" />
+		<bean class="converters.StringToEndorserRecordConverter" />
+		
+		<bean class="converters.FinderToStringConverter" />
+		<bean class="converters.StringToFinderConverter" />
+		
+		<bean class="converters.FixUpTaskToStringConverter" />
+		<bean class="converters.StringToFixUpTaskConverter" />
+		
+		<bean class="converters.HandyWorkerToStringConverter" />
+		<bean class="converters.StringToHandyWorkerConverter" />
+		
+		<bean class="converters.MessageToStringConverter" />
+		<bean class="converters.StringToMessageConverter" />
+		
+		<bean class="converters.MiscRecordToStringConverter" />
+		<bean class="converters.StringToMiscRecordConverter" />
+		
+		<bean class="converters.NoteToStringConverter" />
+		<bean class="converters.StringToNoteConverter" />
+		
+		<bean class="converters.PersonalRecordToStringConverter" />
+		<bean class="converters.StringToPersonalRecordConverter" />
+		
+		<bean class="converters.PhaseToStringConverter" />
+		<bean class="converters.StringToPhaseConverter" />
+		
+		<bean class="converters.ProfessionalRecordToStringConverter" />
+		<bean class="converters.StringToProfessionalRecordConverter" />
+		
+		<bean class="converters.ProfileToStringConverter" />
+		<bean class="converters.StringToProfileConverter" />
+		
+		<bean class="converters.RefereeToStringConverter" />
+		<bean class="converters.StringToRefereeConverter" />
+		
+		<bean class="converters.ReportToStringConverter" />
+		<bean class="converters.StringToReportConverter" />
+		
+		<bean class="converters.WarrantyToStringConverter" />
+		<bean class="converters.StringToWarrantyConverter" />
 	</util:list>
 	
 </beans>
