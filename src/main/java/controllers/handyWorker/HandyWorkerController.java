@@ -12,14 +12,14 @@ import controllers.AbstractController;
 import domain.HandyWorker;
 
 @Controller
-@RequestMapping("/handyWorker/register.do")
-public class RegisterHandyWorkerController extends AbstractController {
+@RequestMapping("/handyWorker")
+public class HandyWorkerController extends AbstractController {
 
 	@Autowired
 	private HandyWorkerService	handyWorkerService;
 
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView register() {
 		ModelAndView result;
 		HandyWorker handyWorker;

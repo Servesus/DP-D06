@@ -1,5 +1,5 @@
 /*
- * AdministratorController.java
+ * CustomerController.java
  * 
  * Copyright (C) 2018 Universidad de Sevilla
  * 
@@ -8,7 +8,7 @@
  * http://www.tdg-seville.info/License.html
  */
 
-package controllers.administrator;
+package controllers.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,35 +16,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CustomerService;
 import controllers.AbstractController;
-
-import services.AdministratorService;
-import domain.Administrator;
+import domain.Customer;
 
 @Controller
-@RequestMapping("/administrator")
-public class AdministratorController extends AbstractController {
+@RequestMapping("/customer")
+public class CustomerController extends AbstractController {
 
 	@Autowired
-	private AdministratorService	administratorService;
+	private CustomerService	customerService;
 
 
 	// Constructors -----------------------------------------------------------
 
-	public AdministratorController() {
+	public CustomerController() {
 		super();
 	}
 
-	@RequestMapping(value = "/administrator/create", method = RequestMethod.GET)
-	public ModelAndView createAdministrator() {
+	//Register
+
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView register() {
 		ModelAndView result;
-		Administrator administrator;
+		Customer customer;
 
-		administrator = this.administratorService.create();
+		customer = this.customerService.create();
 
-		result = new ModelAndView("administrator/create");
-		result.addObject("administrator", administrator);
-		result.addObject("requestURI", "administrator/administrator/create.do");
+		result = new ModelAndView("customer/register");
+		result.addObject("customer", customer);
+		result.addObject("requestURI", "customer/register.do");
 
 		return result;
 	}
@@ -55,20 +56,19 @@ public class AdministratorController extends AbstractController {
 	public ModelAndView action1() {
 		ModelAndView result;
 
-		result = new ModelAndView("administrator/action-1");
+		result = new ModelAndView("customer/action-1");
 
 		return result;
 	}
 
-	// Action-2 ---------------------------------------------------------------
+	// Action-2 ---------------------------------------------------------------		
 
 	@RequestMapping("/action-2")
 	public ModelAndView action2() {
 		ModelAndView result;
 
-		result = new ModelAndView("administrator/action-2");
+		result = new ModelAndView("customer/action-2");
 
 		return result;
 	}
-
 }
