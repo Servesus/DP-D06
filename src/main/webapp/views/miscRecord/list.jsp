@@ -19,4 +19,9 @@
 	<spring:message code="miscRecord.title" var="columnTitle"/>
 	<display:column property="title" title="${columnTitle}"/>
 </display:table>
+<div>
+	<a href="miscRecord/handyWorker/create.do"> <spring:message
+				code="miscRecord.create" />
+	</a>
+</div>
 </security:authorize>
