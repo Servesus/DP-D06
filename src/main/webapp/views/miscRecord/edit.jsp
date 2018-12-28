@@ -44,7 +44,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="miscRecord.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		onclick="javascript: relativeRedir('miscRecord/handyWorker/list.do');" />
 	<br />
 	
 	
