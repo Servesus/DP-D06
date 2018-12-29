@@ -26,7 +26,7 @@
 		<spring:message code="educationalRecord.studiesBeg"/>
 	</form:label>
 	<form:input path="studiesBeggining"/>
-	<form:errors cssClass="error" path="stuediesBeggining"/>
+	<form:errors cssClass="error" path="studiesBeggining"/>
 	<br />
 	
 	<form:label path="studiesEnding">

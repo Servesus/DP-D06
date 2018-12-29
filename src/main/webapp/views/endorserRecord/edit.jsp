@@ -57,7 +57,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="endorserRecord.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		onclick="javascript: relativeRedir('endorserRecord/handyWorker/list.do');" />
 	<br />
 	
 	

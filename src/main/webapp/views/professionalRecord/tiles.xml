@@ -16,12 +16,12 @@
        
 <tiles-definitions>
 
-	<definition name="handyWorker/professionalRecord/edit" extends="master.page">	
-
+	<definition name="professionalRecord/handyWorker/edit" extends="master.page">	
 		<put-attribute name="title" value="Professional Record" />
 		<put-attribute name="body" value="/views/professionalRecord/edit.jsp" />
 	</definition>
-	<definition name="handyWorker/professionalRecord/list" extends="master.page">	
+	
+	<definition name="professionalRecord/handyWorker/list" extends="master.page">	
 		<put-attribute name="title" value="Professional Record List" />
 		<put-attribute name="body" value="/views/professionalRecord/list.jsp" />
 	</definition>

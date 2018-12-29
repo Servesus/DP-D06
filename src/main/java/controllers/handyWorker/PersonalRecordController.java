@@ -9,7 +9,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
@@ -22,7 +21,7 @@ import domain.PersonalRecord;
 
 @Controller
 @RequestMapping("personalRecord/handyWorker")
-public class PersonalRecordHandyWorkerController extends AbstractController {
+public class PersonalRecordController extends AbstractController {
 
 	@Autowired
 	private ActorService			actorService;
@@ -32,28 +31,15 @@ public class PersonalRecordHandyWorkerController extends AbstractController {
 	private PersonalRecordService	personalRecordService;
 
 
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public ModelAndView show() {
-		//sacar personal record
-		final ModelAndView result;
-		PersonalRecord personalRecord;
-		final Actor user = this.actorService.getActorLogged();
-		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
-		personalRecord = hw.getCurricula().getPersonalRecord();
-		//meterlo en result
-		result = new ModelAndView("personalRecord/show");
-		result.addObject("personalRecord", personalRecord);
-		result.addObject("requestURI", "personalRecord/handyWorker/show.do");
-		//return
-		return result;
-	}
-
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int personalRecordId) {
+	public ModelAndView edit() {
 		ModelAndView result;
 		PersonalRecord personalRecord;
 
-		personalRecord = this.personalRecordService.findOne(personalRecordId);
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
+
+		personalRecord = hw.getCurricula().getPersonalRecord();
 		Assert.notNull(personalRecord);
 		result = this.createEditModelAndView(personalRecord);
 
@@ -69,9 +55,9 @@ public class PersonalRecordHandyWorkerController extends AbstractController {
 		else
 			try {
 				this.personalRecordService.save(personalRecord);
-				result = new ModelAndView("redirect:show.do");
+				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(personalRecord, "personalRecord.update.error");
+				result = this.createEditModelAndView(personalRecord, "personalRecord.commit.error");
 			}
 		return result;
 	}
@@ -87,7 +73,7 @@ public class PersonalRecordHandyWorkerController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final PersonalRecord personalRecord, final String messageCode) {
 		ModelAndView result;
 
-		result = new ModelAndView("personalRecord/edit");
+		result = new ModelAndView("personalRecord/handyWorker/edit");
 		result.addObject("personalRecord", personalRecord);
 		result.addObject("messageCode", messageCode);
 
