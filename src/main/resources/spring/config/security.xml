@@ -52,6 +52,7 @@
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 		
 		<security:intercept-url pattern="/miscRecord/handyWorker/**" access="hasRole('HANDYWORKER')" />
+		<security:intercept-url pattern="/endorserRecord/handyWorker/**" access="hasRole('HANDYWORKER')" />
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

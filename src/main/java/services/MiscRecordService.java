@@ -27,8 +27,6 @@ public class MiscRecordService {
 	private ActorService			actorService;
 	@Autowired
 	private HandyWorkerService		handyWorkerService;
-	@Autowired
-	private CurriculaService		curriculaService;
 
 
 	//Simple CRUD methods
@@ -60,10 +58,6 @@ public class MiscRecordService {
 		Assert.isTrue(this.handyWorkerService.findOne(this.actorService.getActorLogged().getId()).getCurricula() != null);
 		if (miscRecord.getId() == 0) {
 			result = this.miscRecordRepository.save(miscRecord);
-			//final Curricula c = hw.getCurricula();
-			//final Collection<MiscRecord> records = c.getMiscRecord();
-			//records.add(result);
-			//c.setMiscRecord(records);
 			hw.getCurricula().getMiscRecord().add(result);
 
 		} else
