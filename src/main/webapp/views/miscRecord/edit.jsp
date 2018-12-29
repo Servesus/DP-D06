@@ -25,7 +25,7 @@
 		<spring:message code="miscRecord.attachment"/>
 	</form:label>
 	<form:input path="attachment"/>
-	<form:errors cssClass="errors" path="attachment"/>
+	<form:errors cssClass="error" path="attachment"/>
 	<br />
 	
 	<form:label path="comments">

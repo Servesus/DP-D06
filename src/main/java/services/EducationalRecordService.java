@@ -3,7 +3,6 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.EducationalRecordRepository;
 import security.UserAccount;
+import domain.Actor;
 import domain.EducationalRecord;
 import domain.HandyWorker;
 
@@ -27,8 +27,6 @@ public class EducationalRecordService {
 	private ActorService				actorService;
 	@Autowired
 	private HandyWorkerService			handyWorkerService;
-	@Autowired
-	private CurriculaService			curriculaService;
 
 
 	//Simple CRUD methods
@@ -51,34 +49,30 @@ public class EducationalRecordService {
 	}
 
 	public EducationalRecord save(final EducationalRecord educationalRecord) {
+		EducationalRecord result;
 		UserAccount userAccount;
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 		Assert.isTrue(this.handyWorkerService.findOne(this.actorService.getActorLogged().getId()).getCurricula() != null);
-		final EducationalRecord result = this.educationalRecordRepository.save(educationalRecord);
-		Assert.notNull(result);
 		final HandyWorker hw = this.handyWorkerService.findOne(this.actorService.getActorLogged().getId());
-		if (result.getId() == 0) {
-			final List<EducationalRecord> eR = (List<EducationalRecord>) hw.getCurricula().getEducationalRecord();
-			eR.add(result);
-			hw.getCurricula().setEducationalRecord(eR);
-			this.curriculaService.save(hw.getCurricula());
-		} else {
-
-			final List<EducationalRecord> eR = (List<EducationalRecord>) hw.getCurricula().getEducationalRecord();
-			eR.add(result);
-			hw.getCurricula().setEducationalRecord(eR);
-			this.curriculaService.save(hw.getCurricula());
-		}
+		if (educationalRecord.getId() == 0) {
+			result = this.educationalRecordRepository.saveAndFlush(educationalRecord);
+			hw.getCurricula().getEducationalRecord().add(result);
+		} else
+			result = this.educationalRecordRepository.save(educationalRecord);
 		return result;
 	}
 
 	public void delete(final EducationalRecord educationalRecord) {
 		UserAccount userAccount;
 		userAccount = this.actorService.getActorLogged().getUserAccount();
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 		Assert.isTrue(this.handyWorkerService.findOne(this.actorService.getActorLogged().getId()).getCurricula() != null);
 		Assert.isTrue(educationalRecord.getId() != 0);
+		hw.getCurricula().getEducationalRecord().remove(educationalRecord);
+
 		this.educationalRecordRepository.delete(educationalRecord);
 	}
 

@@ -15,14 +15,14 @@
 	<form:hidden path="version" />
 	
 	<form:label path="companyName">
-		<spring:message code="professionalRecord.company"/>
+		<spring:message code="professionalRecord.companyName"/>
 	</form:label>
 	<form:input path="companyName"/>
 	<form:errors cssClass="error" path="companyName"/>
 	<br />	
 	
 	<form:label path="jobBeggining">
-		<spring:message code="professionalRecord.jobBeg"/>
+		<spring:message code="professionalRecord.jobBeggining"/>
 	</form:label>
 	<form:input path="jobBeggining"/>
 	<form:errors cssClass="error" path="jobBeggining"/>
@@ -65,7 +65,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="professionalRecord.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		onclick="javascript: relativeRedir('professionalRecord/handyWorker/list.do');" />
 	<br />
 	
 	

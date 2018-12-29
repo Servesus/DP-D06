@@ -32,6 +32,7 @@
 		<spring:message code="personalRecord.middleName" />
 	</form:label>
 	<form:input path="middleName"/>
+	<form:errors cssClass="error" path="middleName"/>
 	<br />
 	
 	<form:label path="email">
@@ -53,22 +54,20 @@
 	</form:label>
 	<form:input path="photo"/>
 	<form:errors cssClass="error" path="photo"/>
+	<br />
 	
 	<form:label path="linkedInProfile">
 		<spring:message code="personalRecord.linkedInProfile"/>
 	</form:label>
 	<form:input path="linkedInProfile"/>
 	<form:errors cssClass="error" path="linkedInProfile"/>
+	<br />
 	
 	<input type="submit" name="save"
 		value="<spring:message code="personalRecord.save" />" />&nbsp; 
-	<jstl:if test="${personalRecord.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="personalRecord.delete" />" />
-	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="personalRecord.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		onclick="javascript: relativeRedir('/');" />
 	<br />
 	
 	
