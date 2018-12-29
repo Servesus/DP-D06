@@ -60,7 +60,8 @@
 					<li><a href="professionalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listProfessional" /></a></li>
 					<li><a href="miscRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listMisc" /></a></li>
 					<li><a href="personalRecord/handyWorker/edit.do"><spring:message code="master.page.handyWorker.edit" /></a></li>
-					<li><a href="finder/fixUpTask/handyWorker/list.do"><spring:message code="master.page.handyWorker.listFinder" /></a></li>
+					<li><a href="finder/handyWorker/list.do"><spring:message code="master.page.handyWorker.listFinder" /></a></li>
+					<li><a href="finder/handyWorker/edit.do"><spring:message code="master.page.handyWorker.editFinder" /></a></li>
 					<li><a href="application/handyWorker/create.do"><spring:message code="master.page.handyWorker.createApplication" /></a></li>
 				</ul>
 			</li>
