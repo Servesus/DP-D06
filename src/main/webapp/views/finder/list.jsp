@@ -8,8 +8,8 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('HANDYWORKER')">				   <!-- Esto no se que poner -->
-<display:table pagesize="5" class="Finder" name="fixUpTaksFinder" requestURI="finder/handyWorker/list.do" id="row">
+<security:authorize access="hasRole('HANDYWORKER')">
+<display:table pagesize="5" class="FixUpTask" name="fixUpTaksFinder" requestURI="finder/handyWorker/list.do" id="row">
 	
 	<!-- Action links -->
 
@@ -19,10 +19,10 @@
 	<!-- Attributes -->
 	
 	<spring:message code="fixUpTask.ticker" var="ticker" />
-	<display:column property="ticker" title="${fixUpTask.ticker}" sortable="true"/>
+	<display:column property="ticker" title="${ticker}"/>
 	
 	<spring:message code="fixUpTask.startDate" var="startDate" />
-	<display:column property="startDate" title="${fixUpTask.dateStartDate}" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	<display:column property="startDate" title="${startDate}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
 </display:table>
 </security:authorize>
