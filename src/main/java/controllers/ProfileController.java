@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
 import security.LoginService;
 import services.AdministratorService;
 import services.CustomerService;
@@ -55,11 +56,7 @@ public class ProfileController extends AbstractController {
 	@RequestMapping(value = "/action-1", method = RequestMethod.GET)
 	public ModelAndView action1() {
 		final ModelAndView result = new ModelAndView("profile/action-1");
-		final String administrador = "ADMIN";
-		final String customer = "CUSTOMER";
-		final String referee = "REFEREE";
-		final String handyWorker = "HANDYWORKER";
-		if (LoginService.getPrincipal().getAuthorities().contains(administrador)) {
+		if (LoginService.getPrincipal().getAuthorities().contains(Authority.ADMIN)) {
 			Administrator administrador1;
 			final Collection<String> categories = new ArrayList<>();
 			Collection<Category> categoriesCollection = new ArrayList<>();
@@ -76,7 +73,7 @@ public class ProfileController extends AbstractController {
 			result.addObject("administrator.id", administrador1.getId());
 			result.addObject("administrator.categories", categories);
 
-		} else if (LoginService.getPrincipal().getAuthorities().contains(customer)) {
+		} else if (LoginService.getPrincipal().getAuthorities().contains(Authority.CUSTOMER)) {
 			Customer customer1;
 			final Collection<Complaint> complaints = new ArrayList<Complaint>();
 			Collection<Complaint> complaintsCollection = new ArrayList<Complaint>();
@@ -102,7 +99,7 @@ public class ProfileController extends AbstractController {
 			result.addObject("customer.complaints", complaints);
 			result.addObject("customer.fixUpTasks", fixUpTasks);
 
-		} else if (LoginService.getPrincipal().getAuthorities().contains(referee)) {
+		} else if (LoginService.getPrincipal().getAuthorities().contains(Authority.REFEREE)) {
 			Referee referee1;
 
 			final Collection<Report> reports = new ArrayList<Report>();
@@ -120,7 +117,7 @@ public class ProfileController extends AbstractController {
 			result.addObject("referee.id", referee1.getId());
 			result.addObject("referee.reports", reports);
 
-		} else if (LoginService.getPrincipal().getAuthorities().contains(handyWorker)) {
+		} else if (LoginService.getPrincipal().getAuthorities().contains(Authority.HANDYWORKER)) {
 			HandyWorker handyWorker1;
 
 			final Collection<Application> applications = new ArrayList<Application>();
@@ -140,6 +137,7 @@ public class ProfileController extends AbstractController {
 			result.addObject("handyWorker.email", handyWorker1.getEmail());
 			result.addObject("handyWorker.phoneNumber", handyWorker1.getPhoneNumber());
 			result.addObject("handyWorker.id", handyWorker1.getId());
+			result.addObject("handyWorker.make", handyWorker1.getMake());
 			result.addObject("handyWorker.applications", applications);
 			result.addObject("handyWorker.phases", phases);
 
