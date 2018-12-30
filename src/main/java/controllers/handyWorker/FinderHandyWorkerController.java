@@ -11,7 +11,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
@@ -52,11 +51,14 @@ public class FinderHandyWorkerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int finderId) {
+	public ModelAndView edit() {
 		ModelAndView result;
 		Finder finder;
 
-		finder = this.finderService.findOne(finderId);
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
+
+		finder = hw.getFinder();
 		Assert.notNull(finder);
 		result = this.createEditModelAndView(finder);
 
@@ -72,7 +74,7 @@ public class FinderHandyWorkerController extends AbstractController {
 		else
 			try {
 				this.finderService.save(finder);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(finder, "finder.update.error");
 			}
@@ -89,13 +91,13 @@ public class FinderHandyWorkerController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Finder finder, final String messageCode) {
 		ModelAndView result;
-		Collection<FixUpTask> fixUpTasks;
+		//Collection<FixUpTask> fixUpTasks;
 
-		fixUpTasks = finder.getFixUpTask();
+		//fixUpTasks = finder.getFixUpTask();
 
 		result = new ModelAndView("finder/handyWorker/edit");
 		result.addObject("finder", finder);
-		result.addObject("fixUpTasks", fixUpTasks);
+		//result.addObject("fixUpTasks", fixUpTasks);
 		result.addObject("messageCode", messageCode);
 
 		return result;
