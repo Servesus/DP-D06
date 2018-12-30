@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import security.Authority;
 import security.LoginService;
 import services.AdministratorService;
 import services.CustomerService;
@@ -56,7 +55,7 @@ public class ProfileController extends AbstractController {
 	@RequestMapping(value = "/action-1", method = RequestMethod.GET)
 	public ModelAndView action1() {
 		final ModelAndView result = new ModelAndView("profile/action-1");
-		if (LoginService.getPrincipal().getAuthorities().contains(Authority.ADMIN)) {
+		if (LoginService.getPrincipal().getAuthorities().contains("ADMIN")) {
 			Administrator administrador1;
 			final Collection<String> categories = new ArrayList<>();
 			Collection<Category> categoriesCollection = new ArrayList<>();
@@ -73,7 +72,7 @@ public class ProfileController extends AbstractController {
 			result.addObject("administrator.id", administrador1.getId());
 			result.addObject("administrator.categories", categories);
 
-		} else if (LoginService.getPrincipal().getAuthorities().contains(Authority.CUSTOMER)) {
+		} else if (LoginService.getPrincipal().getAuthorities().contains("CUSTOMER")) {
 			Customer customer1;
 			final Collection<Complaint> complaints = new ArrayList<Complaint>();
 			Collection<Complaint> complaintsCollection = new ArrayList<Complaint>();
@@ -99,7 +98,7 @@ public class ProfileController extends AbstractController {
 			result.addObject("customer.complaints", complaints);
 			result.addObject("customer.fixUpTasks", fixUpTasks);
 
-		} else if (LoginService.getPrincipal().getAuthorities().contains(Authority.REFEREE)) {
+		} else if (LoginService.getPrincipal().getAuthorities().contains("REFEREE")) {
 			Referee referee1;
 
 			final Collection<Report> reports = new ArrayList<Report>();
@@ -117,7 +116,7 @@ public class ProfileController extends AbstractController {
 			result.addObject("referee.id", referee1.getId());
 			result.addObject("referee.reports", reports);
 
-		} else if (LoginService.getPrincipal().getAuthorities().contains(Authority.HANDYWORKER)) {
+		} else if (LoginService.getPrincipal().getAuthorities().contains("HANDYWORKER")) {
 			HandyWorker handyWorker1;
 
 			final Collection<Application> applications = new ArrayList<Application>();
