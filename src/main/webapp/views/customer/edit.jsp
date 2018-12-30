@@ -16,7 +16,7 @@
 </head>
 <body>
 <security:authorize access="hasRole('CUSTOMER')">
-<spring:message code="handyWorker.firstMessage" />
+<spring:message code="customer.firstMessage" />
 <form:form action="customer/customer/edit.do" modelAttribute="customer">
 
 	<form:hidden path="id" />

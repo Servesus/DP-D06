@@ -16,14 +16,14 @@
       
 <tiles-definitions>
 	
-	<definition name="customer/customer/register" extends="master.page">	
+	<definition name="customer/create" extends="master.page">	
 		<put-attribute name="title" value="Registrarse" />
 		<put-attribute name="body" value="/views/customer/register.jsp" />
 	</definition>
 	
-	<definition name="customer/customer/editPD" extends="master.page">	
+	<definition name="customer/customer/edit" extends="master.page">	
 		<put-attribute name="title" value="Editar datos personales" />
-		<put-attribute name="body" value="/views/customer/editPD.jsp" />
+		<put-attribute name="body" value="/views/customer/edit.jsp" />
 	</definition>
 	
 </tiles-definitions>

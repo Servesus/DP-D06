@@ -22,8 +22,8 @@
 
 <input type="button" name="registerCustomer"
 		value="<spring:message code="welcome.register.customer" />"
-		onclick="javascript: relativeRedir('customer/register.jsp');" />&nbsp;
+		onclick="javascript: relativeRedir('customer/create.do');" />&nbsp;
 
 <input type="button" name="registerHandyWorker"
 		value="<spring:message code="welcome.register.handyWorker" />"
-		onclick="javascript: relativeRedir('handyWorker/register.jsp');" />
+		onclick="javascript: relativeRedir('handyWorker/create.do');" />

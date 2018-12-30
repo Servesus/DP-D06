@@ -16,7 +16,7 @@
 </head>
 <body>
 <spring:message code="customer.firstMessage" />
-<form:form action="customer/register.do" modelAttribute="customer">
+<form:form action="customer/create.do" modelAttribute="customer">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -26,18 +26,18 @@
 	<form:hidden path="complaints" />
 	<form:hidden path="fixUpTasks" />
  
- 	<form:label path="username">
+ 	<form:label path="userAccount.username">
 		<spring:message code="customer.username" />:
 	</form:label>
-	<form:input path="username" />
-	<form:errors cssClass="error" path="username" />
+	<form:input path="userAccount.username" />
+	<form:errors cssClass="error" path="userAccount.username" />
 	<br />
 	
-	<form:label path="password">
+	<form:label path="userAccount.password">
 		<spring:message code="customer.password" />:
 	</form:label>
-	<form:input path="password" />
-	<form:errors cssClass="error" path="password" />
+	<form:password path="userAccount.password" />
+	<form:errors cssClass="error" path="userAccount.password" />
 	<br />
 	
 	<form:label path="name">
@@ -89,12 +89,12 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="Register"
+	<input type="submit" name="save"
 		value="<spring:message code="customer.register" />" />&nbsp; 
 	
-		<input type="button" name="Cancel"
+		<input type="button" name="cancel"
 		value="<spring:message code="customer.cancel" />"
-		onclick="javascript: relativeRedir('security/login');" />
+		onclick="javascript: relativeRedir('welcome/index');" />
 	<br />
  	
 </form:form>

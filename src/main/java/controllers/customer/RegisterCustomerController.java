@@ -41,8 +41,8 @@ public class RegisterCustomerController extends AbstractController {
 	}
 
 	//Luego hay que rellenar el formulario y guardarlo en la base de datos
-	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
-	public ModelAndView register(@Valid final Customer customer, final BindingResult binding) {
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid final Customer customer, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
@@ -50,7 +50,7 @@ public class RegisterCustomerController extends AbstractController {
 		else
 			try {
 				this.customerService.save(customer);
-				result = new ModelAndView("redirect:master-page");
+				result = new ModelAndView("redirect:#");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(customer, "customer.commit.error");
 			}
@@ -75,7 +75,8 @@ public class RegisterCustomerController extends AbstractController {
 		fixUpTasks = customer.getFixUpTasks();
 		profiles = customer.getProfiles();
 
-		result = new ModelAndView("customer/edit");
+		result = new ModelAndView("customer/create");
+		result.addObject("customer", customer);
 		result.addObject("creditCards", creditCards);
 		result.addObject("complaints", complaints);
 		result.addObject("fixUpTasks", fixUpTasks);
