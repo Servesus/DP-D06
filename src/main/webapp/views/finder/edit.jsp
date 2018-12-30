@@ -9,19 +9,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<form:form action ="finder/handyWorker/edit.do" modelAtribute="finder">
+<form:form action ="finder/handyWorker/edit.do" modelAttribute="finder">
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="rangeStart" />
 	<form:hidden path="rangeFinish" />
-		
-	<!--<form:label path="title">
-		<spring:message code="finder.update.title" />:
-	</form:label>
-	<form:input path="title"/>
-	<form:errors cssClass="error" path="title" />
-	<br />-->
 
 	<form:label path="singleKeyWord">
 		<spring:message code="finder.update.keyword" />:
