@@ -26,7 +26,7 @@
 		<spring:message code="educationalRecord.studiesBeg"/>
 	</form:label>
 	<form:input path="studiesBeggining"/>
-	<form:errors cssClass="error" path="stuediesBeggining"/>
+	<form:errors cssClass="error" path="studiesBeggining"/>
 	<br />
 	
 	<form:label path="studiesEnding">
@@ -39,7 +39,7 @@
 	<form:label path="institution">
 		<spring:message code="educationalRecord.institution"/>
 	</form:label>
-	<form:input path="intitution"/>
+	<form:input path="institution"/>
 	<form:errors cssClass="error" path="institution"/>
 	<br />
 	
@@ -67,7 +67,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="educationalRecord.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		onclick="javascript: relativeRedir('educationalRecord/handyWorker/list.do');" />
 	<br />
 	
 	

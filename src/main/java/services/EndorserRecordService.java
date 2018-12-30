@@ -3,7 +3,6 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.EndorserRecordRepository;
 import security.UserAccount;
+import domain.Actor;
 import domain.EndorserRecord;
 import domain.HandyWorker;
 
@@ -27,8 +27,6 @@ public class EndorserRecordService {
 	private ActorService				actorService;
 	@Autowired
 	private HandyWorkerService			handyWorkerService;
-	@Autowired
-	private CurriculaService			curriculaService;
 
 
 	//Simple CRUD methods
@@ -51,32 +49,30 @@ public class EndorserRecordService {
 	}
 
 	public EndorserRecord save(final EndorserRecord endorserRecord) {
+		EndorserRecord result;
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
 		UserAccount userAccount;
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 		Assert.isTrue(this.handyWorkerService.findOne(this.actorService.getActorLogged().getId()).getCurricula() != null);
-		final EndorserRecord result = this.endorserRecordRepository.save(endorserRecord);
-		final HandyWorker hw = this.handyWorkerService.findOne(this.actorService.getActorLogged().getId());
-		if (result.getId() == 0) {
-			final List<EndorserRecord> eR = (List<EndorserRecord>) hw.getCurricula().getEndorserRecord();
-			eR.add(result);
-			hw.getCurricula().setEndorserRecord(eR);
-			this.curriculaService.save(hw.getCurricula());
-		} else {
-			final List<EndorserRecord> eR = (List<EndorserRecord>) hw.getCurricula().getEndorserRecord();
-			eR.add(result);
-			hw.getCurricula().setEndorserRecord(eR);
-			this.curriculaService.save(hw.getCurricula());
-		}
+		if (endorserRecord.getId() == 0) {
+			result = this.endorserRecordRepository.save(endorserRecord);
+			hw.getCurricula().getEndorserRecord().add(result);
+		} else
+			result = this.endorserRecordRepository.save(endorserRecord);
 		return result;
 	}
 
 	public void delete(final EndorserRecord endorserRecord) {
 		UserAccount userAccount;
 		userAccount = this.actorService.getActorLogged().getUserAccount();
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 		Assert.isTrue(this.handyWorkerService.findOne(this.actorService.getActorLogged().getId()).getCurricula() != null);
 		Assert.isTrue(endorserRecord.getId() != 0);
+		hw.getCurricula().getEndorserRecord().remove(endorserRecord);
 		this.endorserRecordRepository.delete(endorserRecord);
 	}
 

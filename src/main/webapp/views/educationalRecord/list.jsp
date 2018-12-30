@@ -8,18 +8,23 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('HANDYWORKER')">				   	<!-- esto habra que cambiarlo -->
-<display:table pagesize="5" class="educationalRecord" name="educationalRecords" requestURI="educationalRecord/handyWorker/list.do" id="row">
+<security:authorize access="hasRole('HANDYWORKER')">				   
+<display:table pagesize="5" class="educationalRecord" name="educationalRecord" requestURI="${requestURI}" id="row">
 	
 	<!-- Action links -->
 
 	<display:column> <a href="educationalRecord/handyWorker/edit.do?educationalRecordId=${row.id}">
-	<spring:message code="edrecord.link" /></a> </display:column>
+	<spring:message code="educationalRecord.edit" /></a> </display:column>
 	
 	<!-- Attributes -->
 	
-	<spring:message code="edrecord.diploma" var="diplomasTitle" />
+	<spring:message code="educationalRecord.title" var="diplomasTitle" />
 	<display:column property="diplomasTitle" title="${diplomasTitle}"/>
 
 </display:table>
+<div>
+	<a href="educationalRecord/handyWorker/create.do"> <spring:message
+				code="educationalRecord.create" />
+	</a>
+</div>
 </security:authorize>
