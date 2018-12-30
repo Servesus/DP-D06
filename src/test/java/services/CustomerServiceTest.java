@@ -41,14 +41,11 @@ public class CustomerServiceTest extends AbstractTest {
 		final Customer c = this.customerService.create();
 
 		final UserAccount userAccount = c.getUserAccount();
-		userAccount.setUsername("customer20");
-		userAccount.setPassword("123468023");
+		userAccount.setUsername("pruebaRegister");
+		userAccount.setPassword("pruebaRegister");
 		c.setUserAccount(userAccount);
-		c.setAddress("Calle Municipal");
-		c.setEmail("miguel@gmail.com");
-		c.setName("Miguel");
-		c.setSurname("Velasco");
-		c.setPhoneNumber("625817204");
+		c.setName("pruebaRegister");
+		c.setSurname("pruebaRegister");
 
 		final Customer test = this.customerService.save(c);
 

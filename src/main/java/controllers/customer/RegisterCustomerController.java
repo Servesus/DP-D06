@@ -50,7 +50,7 @@ public class RegisterCustomerController extends AbstractController {
 		else
 			try {
 				this.customerService.save(customer);
-				result = new ModelAndView("redirect:#");
+				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(customer, "customer.commit.error");
 			}
