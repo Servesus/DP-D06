@@ -35,9 +35,9 @@ public class BoxController extends AbstractController {
 		user = this.actorService.getActorLogged();
 		boxes = user.getBoxes();
 
-		result = new ModelAndView("box/list");
+		result = new ModelAndView("box/customer,handyWorker,referee,administrator/list");
 		result.addObject("boxes", boxes);
-		result.addObject("box/customer,handyWorker,referee,administrator/list.do");
+		result.addObject("requestURI", "box/customer,handyWorker,referee,administrator/list.do");
 
 		return result;
 	}

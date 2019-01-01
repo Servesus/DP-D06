@@ -19,18 +19,14 @@
 
 
 <display:table pagesize="5" class="displaytag" name="boxes" 
-	requestURI="box/customer,handyWorker,referee,administrator/list.do" id="row">
+	requestURI="${requestURI}" id="row">
 		
 	<spring:message code="box.name" var="name" />
-	<jstl:set var = "Inbox" value = ${name == "Inbox"}/>
-	<jstl:set var = "Outbox" value = ${name == "Outbox"}/>
-	<jstl:set var = "Trashbox" value = ${name == "Trashbox"}/>
-	<jstl:set var = "Spambox" value = ${name == "Spambox"}/> 
 	<display:column property="name" title="${name}" sortable="true"/>
 
 	<display:column>
-	<jstl:if test="${box.id != 0 && box.isSystem ==false}">
-		<a href="box/customer,handyWorker,referee,administrator/list.do?boxId=${row.id}">
+	<jstl:if test="${box.isSystem ==false}">
+		<a href="box/customer,handyWorker,referee,administrator/edit.do?boxId=${row.id}">
   	 	<spring:message code="box.edit" /> </a>
   	 </jstl:if>
 	</display:column>	
