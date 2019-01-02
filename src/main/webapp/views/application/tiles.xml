@@ -17,19 +17,14 @@
        
 <tiles-definitions>
 
-	<definition name="applicaion/handyWorker/create" extends="master.page">	
-		<put-attribute name="title" value="Create Application" />
-		<put-attribute name="body" value="/views/application/createApplication.jsp" />
+	<definition name="applicaion/handyWorker/edit" extends="master.page">	
+		<put-attribute name="title" value="Application" />
+		<put-attribute name="body" value="/views/application/edit.jsp" />
 	</definition>
 	
-	<definition name="application/customer/findAll" extends="master.page">
-		<put-attribute name="title" value="Find all Applications" />
-		<put-attribute name="body" value="/views/application/findAll.jsp" />
-	</definition>
-	
-	<definition name="application/customer/findOne" extends="master.page">
-		<put-attribute name="title" value="Find one Application" />
-		<put-attribute name="body" value="/views/application/findOne.jsp" />
+	<definition name="application/customer/list" extends="master.page">
+		<put-attribute name="title" value="List of Applications" />
+		<put-attribute name="body" value="/views/application/list.jsp" />
 	</definition>
 	
 

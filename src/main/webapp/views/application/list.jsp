@@ -14,17 +14,17 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 </head>
-<security:authorize access="hasRole('CUSTOMER')">
+<security:authorize access="hasAnyRole('CUSTOMER,HANDYWORKER')">
 <body>
 
 <display:table pagesize="5" class="application" name="applications" 
-	requestURI="application/customer/findAll.do" id="row">
+	requestURI="${requestURI}" id="row">
 	
-<display:column> <a href="application/findOne.do?applicationId=${row.id}">
+<display:column> <a href="application/customer/edit.do?applicationId=${row.id}">
 	<spring:message code="application.findOne" /></a> </display:column>
 		
 		<spring:message code="application.moment" var="moment" />
-	<display:column property="moment" title="${moment}" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}" sortable="true"/>
@@ -33,9 +33,17 @@
 	<display:column property="status" title="${status}" sortable="true"/>
 
 	<spring:message code="application.handyWorker" var="handyWorker" />
-	<display:column property="handyWorker" title="${handyWorker.make}" sortable="true"/>
+	<display:column property="handyWorker" title="${handyWorker.make}"/>
+	
+	<spring:message code="application.phases" var="phases" />
+	<display:column property="phases" title="${phases}"/>
 
 </display:table>
+<div>
+	<a href="application/handyWorker/create.do"> <spring:message
+				code="application.create" />
+	</a>
+</div>
 </body>
 </security:authorize>
 </html>
