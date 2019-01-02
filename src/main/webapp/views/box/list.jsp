@@ -20,12 +20,28 @@
 
 <display:table pagesize="5" class="displaytag" name="boxes" 
 	requestURI="${requestURI}" id="row">
-		
-	<spring:message code="box.name" var="name" />
+	
+	<jstl:choose>
+		<jstl:when test="${row.name == 'INBOX'}">
+			<spring:message code="box.inbox" var="name" />
+		</jstl:when>
+		<jstl:when test="${row.name == 'OUTBOX'}">
+			<spring:message code="box.outbox" var="name" />
+		</jstl:when>
+		<jstl:when test="${row.name == 'SPAMBOX'}">
+			<spring:message code="box.spambox" var="name" />
+		</jstl:when>
+		<jstl:when test="${row.name == 'TRASHBOX'}">
+			<spring:message code="box.trashbox" var="name" />
+		</jstl:when>
+		<jstl:otherwise>
+			<spring:message code="box.name" var="name" />
+		</jstl:otherwise>
+	</jstl:choose>
 	<display:column property="name" title="${name}" sortable="true"/>
-
+	
 	<display:column>
-	<jstl:if test="${box.isSystem ==false}">
+	<jstl:if test="${row.isSystem == false}">
 		<a href="box/customer,handyWorker,referee,administrator/edit.do?boxId=${row.id}">
   	 	<spring:message code="box.edit" /> </a>
   	 </jstl:if>

@@ -801,7 +801,7 @@
 	</bean>
 	
 	<bean id="box2" class="domain.Box">
-		<property name="name" value="Box1"/>
+		<property name="name" value="Box2"/>
 		<property name="isSystem" value="false"/>
 		<property name="parentBoxes">
 			<list>
@@ -818,7 +818,7 @@
 	</bean>
 	
 	<bean id="box3" class="domain.Box">
-		<property name="name" value="Box1"/>
+		<property name="name" value="Box3"/>
 		<property name="isSystem" value="false"/>
 		<property name="parentBoxes">
 			<list>
@@ -835,7 +835,7 @@
 	</bean>
 	
 	<bean id="box4" class="domain.Box">
-		<property name="name" value="Box1"/>
+		<property name="name" value="Box4"/>
 		<property name="isSystem" value="false"/>
 		<property name="parentBoxes">
 			<list>
@@ -867,7 +867,7 @@
 		</property>
 	</bean>
 	<bean id="box6" class="domain.Box">
-		<property name="name" value="Box5"/>
+		<property name="name" value="Box6"/>
 		<property name="isSystem" value="false"/>
 		<property name="parentBoxes">
 			<list>
@@ -883,7 +883,7 @@
 		</property>
 	</bean>
 	<bean id="box7" class="domain.Box">
-		<property name="name" value="Box5"/>
+		<property name="name" value="Box7"/>
 		<property name="isSystem" value="false"/>
 		<property name="parentBoxes">
 			<list>
@@ -899,7 +899,7 @@
 		</property>
 	</bean>
 	<bean id="box8" class="domain.Box">
-		<property name="name" value="Box5"/>
+		<property name="name" value="Box8"/>
 		<property name="isSystem" value="false"/>
 		<property name="parentBoxes">
 			<list>
@@ -952,7 +952,7 @@
 	</bean>
 	
 	<bean id="inBox" class="domain.Box">
-		<property name="name" value="inBox"/>
+		<property name="name" value="INBOX"/>
 		<property name="isSystem" value="true"/>
 		<property name="parentBoxes">
 			<list>
@@ -969,7 +969,7 @@
 	</bean>
 	
 	<bean id="outBox" class="domain.Box">
-		<property name="name" value="outBox"/>
+		<property name="name" value="OUTBOX"/>
 		<property name="isSystem" value="true"/>
 		<property name="parentBoxes">
 			<list>
@@ -986,7 +986,7 @@
 	</bean>
 	
 	<bean id="spamBox" class="domain.Box">
-		<property name="name" value="spamBox"/>
+		<property name="name" value="SPAMBOX"/>
 		<property name="isSystem" value="true"/>
 		<property name="parentBoxes">
 			<list>
@@ -1003,7 +1003,7 @@
 	</bean>
 	
 	<bean id="trashBox" class="domain.Box">
-		<property name="name" value="trashBox"/>
+		<property name="name" value="TRASHBOX"/>
 		<property name="isSystem" value="true"/>
 		<property name="parentBoxes">
 			<list>
@@ -1318,6 +1318,10 @@
 		</property>	
 		<property name="boxes">
 			<list>
+				<ref bean="inBox"/>
+				<ref bean="outBox"/>
+				<ref bean="spamBox"/>
+				<ref bean="trashBox"/>
 				<ref bean="box7"/>
 			</list>
 		</property>
