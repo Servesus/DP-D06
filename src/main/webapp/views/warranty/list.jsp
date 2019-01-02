@@ -9,7 +9,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('ADMINISTRATOR')">
+<security:authorize access="hasRole('ADMIN')">
 <display:table name="warranty" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 	<display:column>
 		<a href="warranty/administrator/edit.do?warrantyId=${row.id}">

@@ -9,7 +9,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('ADMINISTRATOR')">
+<security:authorize access="hasRole('ADMIN')">
 <form:form action="warranty/administrator/edit.do" modelAttribute="warranty">
 	<form:hidden path="id" />
 	<form:hidden path="version" />

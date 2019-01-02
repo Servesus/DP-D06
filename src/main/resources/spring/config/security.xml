@@ -60,8 +60,10 @@
 		<security:intercept-url pattern="/personalRecord/handyWorker/**" access="hasRole('HANDYWORKER')" />
 		
 		<security:intercept-url pattern="/box/customer,handyWorker,referee,administrator/**" access="isAuthenticated()" />
-	
+		
+		<security:intercept-url pattern="/warranty/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
+		
 
 		<security:form-login 
 			login-page="/security/login.do"
