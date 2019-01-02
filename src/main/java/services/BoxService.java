@@ -12,7 +12,6 @@ import org.springframework.util.Assert;
 
 import repositories.BoxRepository;
 import domain.Actor;
-import domain.Administrator;
 import domain.Box;
 import domain.Message;
 
@@ -103,10 +102,7 @@ public class BoxService {
 		Assert.isTrue(!box.getIsSystem());
 		final Actor a = this.actorService.getActorLogged();
 		final Collection<Box> boxes = a.getBoxes();
-
-		final Administrator admin = this.adminService.findOne(a.getId());
-		admin.getBoxes().remove(box);
-		//		boxes.remove(box);
+		boxes.remove(box);
 		this.boxRepository.delete(box);
 
 	}

@@ -19,6 +19,7 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="isSystem"/>
 	
 	<form:label path="name">
 		<spring:message code="box.name" />:
