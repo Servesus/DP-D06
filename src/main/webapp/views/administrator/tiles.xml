@@ -16,9 +16,9 @@
        
 <tiles-definitions>
 	
-	<definition name="administrator/administrator/editPD" extends="master.page">	
+	<definition name="administrator/administrator/edit" extends="master.page">	
 		<put-attribute name="title" value="Edit personal data" />
-		<put-attribute name="body" value="/views/administrator/editPD.jsp" />
+		<put-attribute name="body" value="/views/administrator/edit.jsp" />
 	</definition>
 	
 </tiles-definitions>

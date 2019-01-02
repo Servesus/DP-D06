@@ -16,27 +16,27 @@
 </head>
 <body>
 <spring:message code="handyWorker.firstMessage" />
-<form:form action="handyWorker/register.do" modelAttribute="handyWorker">
+<form:form action="handyWorker/create.do" modelAttribute="handyWorker">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
  
- 	<form:label path="username">
-		<spring:message code="handyWorker.username" />:
+ 	<form:label path="userAccount.username">
+		<spring:message code="handyWorker.username" />*:
 	</form:label>
-	<form:input path="username" />
-	<form:errors cssClass="error" path="username" />
+	<form:input path="userAccount.username" />
+	<form:errors cssClass="error" path="userAccount.username" />
 	<br />
 	
-	<form:label path="password">
-		<spring:message code="handyWorker.password" />:
+	<form:label path="userAccount.password">
+		<spring:message code="handyWorker.password" />*:
 	</form:label>
-	<form:input path="password" />
-	<form:errors cssClass="error" path="password" />
+	<form:password path="userAccount.password" />
+	<form:errors cssClass="error" path="userAccount.password" />
 	<br />
 	
 	<form:label path="name">
-		<spring:message code="handyWorker.name" />:
+		<spring:message code="handyWorker.name" />*:
 	</form:label>
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
@@ -57,7 +57,7 @@
 	<br />
 	
 	<form:label path="surname">
-		<spring:message code="handyWorker.surname" />:
+		<spring:message code="handyWorker.surname" />*:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
@@ -91,12 +91,12 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="Register"
+	<input type="submit" name="save"
 		value="<spring:message code="handyWorker.register" />" />&nbsp; 
 	
-		<input type="button" name="Cancel"
+		<input type="button" name="cancel"
 		value="<spring:message code="handyWorker.cancel" />"
-		onclick="javascript: relativeRedir('security/login');" />
+		onclick="javascript: relativeRedir('welcome/index');" />
 	<br />
  	
 </form:form>

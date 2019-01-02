@@ -83,12 +83,12 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="Save"
+	<input type="submit" name="save"
 		value="<spring:message code="handyWorker.save" />" />&nbsp; 
 	
-		<input type="button" name="Back"
+		<input type="button" name="back"
 		value="<spring:message code="handyWorker.back" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
 	<br />
  	
 </form:form>

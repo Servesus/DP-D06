@@ -7,9 +7,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CustomerService;
@@ -50,10 +52,21 @@ public class RegisterCustomerController extends AbstractController {
 		else
 			try {
 				this.customerService.save(customer);
-				result = new ModelAndView("redirect:/");
+				result = new ModelAndView("redirect:welcome/index");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(customer, "customer.commit.error");
 			}
+		return result;
+	}
+	@RequestMapping(value = "/customer/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final int customerId) {
+		ModelAndView result;
+		Customer customer;
+
+		customer = this.customerService.findOne(customerId);
+		Assert.notNull(customer);
+		result = this.createEditModelAndView(customer);
+
 		return result;
 	}
 
@@ -75,7 +88,7 @@ public class RegisterCustomerController extends AbstractController {
 		fixUpTasks = customer.getFixUpTasks();
 		profiles = customer.getProfiles();
 
-		result = new ModelAndView("customer/create");
+		result = new ModelAndView("customer/customer/edit");
 		result.addObject("customer", customer);
 		result.addObject("creditCards", creditCards);
 		result.addObject("complaints", complaints);

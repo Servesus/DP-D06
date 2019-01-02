@@ -27,21 +27,21 @@
 	<form:hidden path="fixUpTasks" />
  
  	<form:label path="userAccount.username">
-		<spring:message code="customer.username" />:
+		<spring:message code="customer.username" />*:
 	</form:label>
 	<form:input path="userAccount.username" />
 	<form:errors cssClass="error" path="userAccount.username" />
 	<br />
 	
 	<form:label path="userAccount.password">
-		<spring:message code="customer.password" />:
+		<spring:message code="customer.password" />*:
 	</form:label>
 	<form:password path="userAccount.password" />
 	<form:errors cssClass="error" path="userAccount.password" />
 	<br />
 	
 	<form:label path="name">
-		<spring:message code="customer.name" />:
+		<spring:message code="customer.name" />*:
 	</form:label>
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
@@ -55,7 +55,7 @@
 	<br />
 	
 	<form:label path="surname">
-		<spring:message code="customer.surname" />:
+		<spring:message code="customer.surname" />*:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />

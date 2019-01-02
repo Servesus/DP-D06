@@ -26,7 +26,7 @@
 	<form:hidden path="categories" />
  
 	<form:label path="name">
-		<spring:message code="administrator.name" />:
+		<spring:message code="administrator.name" />*:
 	</form:label>
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
@@ -40,7 +40,7 @@
 	<br />
 	
 	<form:label path="surname">
-		<spring:message code="administrator.surname" />:
+		<spring:message code="administrator.surname" />*:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
@@ -74,12 +74,12 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="Save"
+	<input type="submit" name="save"
 		value="<spring:message code="administrator.save" />" />&nbsp; 
 	
-		<input type="button" name="Back"
+		<input type="button" name="back"
 		value="<spring:message code="administrator.back" />"
-		onclick="javascript: relativeRedir('master-page');" />
+		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
 	<br />
  	
 </form:form>

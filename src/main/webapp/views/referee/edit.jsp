@@ -26,7 +26,7 @@
 	<form:hidden path="reports" />
  
 	<form:label path="name">
-		<spring:message code="referee.name" />:
+		<spring:message code="referee.name" />*:
 	</form:label>
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
@@ -40,7 +40,7 @@
 	<br />
 	
 	<form:label path="surname">
-		<spring:message code="referee.surname" />:
+		<spring:message code="referee.surname" />*:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
@@ -74,12 +74,12 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="Save"
+	<input type="submit" name="save"
 		value="<spring:message code="referee.save" />" />&nbsp; 
 	
-		<input type="button" name="Back"
+		<input type="button" name="back"
 		value="<spring:message code="referee.back" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
 	<br />
  	
 </form:form>
