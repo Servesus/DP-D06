@@ -80,7 +80,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="actor/box/list.do"><spring:message code="master.page.box.list" /></a></li>
+					<li><a href="box/customer,handyWorker,referee,administrator/list.do"><spring:message code="master.page.box.list" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

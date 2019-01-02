@@ -19,24 +19,38 @@
 
 
 <display:table pagesize="5" class="displaytag" name="boxes" 
-	requestURI="box/customer,handyWorker,referee,administrator/list.do" id="row">
-		
-	<spring:message code="box.name" var="name" />
-	<jstl:set var = "Inbox" value = ${name == "Inbox"}/>
-	<jstl:set var = "Outbox" value = ${name == "Outbox"}/>
-	<jstl:set var = "Trashbox" value = ${name == "Trashbox"}/>
-	<jstl:set var = "Spambox" value = ${name == "Spambox"}/> 
-	<display:column property="name" title="${name}" sortable="true"/>
-
+	requestURI="${requestURI}" id="row">
+	
+	<spring:message code="box.name" var="columnTitle"/>
+	<display:column title="${columnTitle }" sortable="true">
+	<jstl:choose>
+		<jstl:when test="${row.name == 'INBOX'}">
+			<spring:message code="box.inbox"/>
+		</jstl:when>
+		<jstl:when test="${row.name == 'OUTBOX'}">
+			<spring:message code="box.outbox" />
+		</jstl:when>
+		<jstl:when test="${row.name == 'SPAMBOX'}">
+			<spring:message code="box.spambox"/>
+		</jstl:when>
+		<jstl:when test="${row.name == 'TRASHBOX'}">
+			<spring:message code="box.trashbox" />
+		</jstl:when>
+		<jstl:otherwise>
+			<jstl:out value="${row.name}" />
+		</jstl:otherwise>
+	</jstl:choose>
+	</display:column>
+	
 	<display:column>
-	<jstl:if test="${box.id != 0 && box.isSystem ==false}">
-		<a href="box/customer,handyWorker,referee,administrator/list.do?boxId=${row.id}">
+	<jstl:if test="${row.isSystem == false}">
+		<a href="box/customer,handyWorker,referee,administrator/edit.do?boxId=${row.id}">
   	 	<spring:message code="box.edit" /> </a>
   	 </jstl:if>
 	</display:column>	
 
 	<display:column>
-		<a href="box/customer,handyWorker,referee,administrator/list.do">
+		<a href="message/customer,handyWorker,referee,administrator/list.do">
   	 		<spring:message code="box.view" /> </a>
 	</display:column>	
 
