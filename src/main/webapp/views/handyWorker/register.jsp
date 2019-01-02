@@ -21,6 +21,7 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
  
+ <jstl:if test="${handyWorker.id == 0}">
  	<form:label path="userAccount.username">
 		<spring:message code="handyWorker.username" />*:
 	</form:label>
@@ -34,6 +35,7 @@
 	<form:password path="userAccount.password" />
 	<form:errors cssClass="error" path="userAccount.password" />
 	<br />
+</jstl:if>
 	
 	<form:label path="name">
 		<spring:message code="handyWorker.name" />*:
@@ -96,7 +98,7 @@
 	
 		<input type="button" name="cancel"
 		value="<spring:message code="handyWorker.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index');" />
+		onclick="javascript: relativeRedir('/');" />
 	<br />
  	
 </form:form>

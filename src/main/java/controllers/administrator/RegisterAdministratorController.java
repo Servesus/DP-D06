@@ -83,7 +83,7 @@ public class RegisterAdministratorController extends AbstractController {
 		categories = administrator.getCategories();
 		profiles = administrator.getProfiles();
 
-		result = new ModelAndView("administrator/administrator/edit");
+		result = new ModelAndView("administrator/administrator/create");
 		result.addObject("categories", categories);
 		result.addObject("profiles", profiles);
 		result.addObject("message", messageCode);
