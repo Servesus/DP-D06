@@ -21,24 +21,26 @@
 <display:table pagesize="5" class="displaytag" name="boxes" 
 	requestURI="${requestURI}" id="row">
 	
+	<spring:message code="box.name" var="columnTitle"/>
+	<display:column title="${columnTitle }" sortable="true">
 	<jstl:choose>
 		<jstl:when test="${row.name == 'INBOX'}">
-			<spring:message code="box.inbox" var="name" />
+			<spring:message code="box.inbox"/>
 		</jstl:when>
 		<jstl:when test="${row.name == 'OUTBOX'}">
-			<spring:message code="box.outbox" var="name" />
+			<spring:message code="box.outbox" />
 		</jstl:when>
 		<jstl:when test="${row.name == 'SPAMBOX'}">
-			<spring:message code="box.spambox" var="name" />
+			<spring:message code="box.spambox"/>
 		</jstl:when>
 		<jstl:when test="${row.name == 'TRASHBOX'}">
-			<spring:message code="box.trashbox" var="name" />
+			<spring:message code="box.trashbox" />
 		</jstl:when>
 		<jstl:otherwise>
-			<spring:message code="box.name" var="name" />
+			<jstl:out value="${row.name}" />
 		</jstl:otherwise>
 	</jstl:choose>
-	<display:column property="name" title="${name}" sortable="true"/>
+	</display:column>
 	
 	<display:column>
 	<jstl:if test="${row.isSystem == false}">
@@ -48,7 +50,7 @@
 	</display:column>	
 
 	<display:column>
-		<a href="box/customer,handyWorker,referee,administrator/list.do">
+		<a href="message/customer,handyWorker,referee,administrator/list.do">
   	 		<spring:message code="box.view" /> </a>
 	</display:column>	
 
