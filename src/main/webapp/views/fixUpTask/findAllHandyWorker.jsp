@@ -34,7 +34,7 @@
 
 <input type="button" name="relationships"
 		value="<spring:message code="handyWorker.relationships" />"
-		onclick="javascript: relativeRedir('fixUpTask/handyWorker/relationshipsHandyWorker.do');" />
+		onclick="javascript: relativeRedir('fixUpTask/handyWorker/relationships.do');" />
 		
 <input type="button" name="customers"
 		value="<spring:message code="handyWorker.customers" />"

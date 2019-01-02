@@ -17,7 +17,7 @@ import domain.Customer;
 import domain.FixUpTask;
 
 @Controller
-@RequestMapping("/fixUpTask/handyWorker")
+@RequestMapping("fixUpTask/handyWorker")
 public class FixUpTaskHandyWorkerController extends AbstractController {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class FixUpTaskHandyWorkerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/relationshipsHandyWorker", method = RequestMethod.GET)
+	@RequestMapping(value = "/relationships", method = RequestMethod.GET)
 	public ModelAndView findAllRelationships() {
 		ModelAndView result;
 
