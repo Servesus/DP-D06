@@ -74,7 +74,7 @@ public class ProfileController extends AbstractController {
 
 		} else if (userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER")) {
 			HandyWorker handyWorker1;
-			handyWorker1 = this.handyWorkerService.findOne(LoginService.getPrincipal().getId());
+			handyWorker1 = this.handyWorkerService.findOne(user.getId());
 			Assert.notNull(handyWorker1);
 			result.addObject("handyWorker", handyWorker1);
 

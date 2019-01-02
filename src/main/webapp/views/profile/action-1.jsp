@@ -16,7 +16,6 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="profile.Welcome" /></p>
 
 
 
@@ -39,7 +38,6 @@
 <display:table name="${customer.complaints}" id="row">
 <display:column property="moment" titleKey="customer.complaints.moment" />
 <display:column property="description" titleKey="customer.complaints.description" />
-<display:column property="customer" titleKey="customer.complaints.customer" />
 </display:table>
 
 <spring:message code="customer.fixUpTasks" />
