@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<form:form action="box/customer,handyWorker,referee,administrator/create.do" modelAttribute="box">
+<form:form action="box/customer,handyWorker,referee,administrator/edit.do" modelAttribute="box">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -30,10 +30,9 @@
 	<input type="submit" name="save"
 		value="<spring:message code="box.save" />" />&nbsp; 
 	
-	<jstl:if test="${box.id != 0 && box.isSystem ==false}">
+	<jstl:if test="${box.id != 0}">
 		<input type="submit" name="delete"
-			value="<spring:message code="box.delete" />"
-			onclick="return confirm('<spring:message code="box.confirm.delete" />')" />&nbsp;
+			value="<spring:message code="box.delete" />"/>&nbsp;
 	</jstl:if>
 	
 	<input type="button" name="cancel"

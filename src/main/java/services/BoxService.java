@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 
 import repositories.BoxRepository;
 import domain.Actor;
+import domain.Administrator;
 import domain.Box;
 import domain.Message;
 
@@ -21,11 +22,14 @@ public class BoxService {
 
 	//Managed repository
 	@Autowired
-	private BoxRepository	boxRepository;
+	private BoxRepository			boxRepository;
 
 	//Supporting service
 	@Autowired
-	private ActorService	actorService;
+	private ActorService			actorService;
+
+	@Autowired
+	private AdministratorService	adminService;
 
 
 	//Simple CRUD methods
@@ -34,6 +38,7 @@ public class BoxService {
 		box.setParentBoxes(new ArrayList<Box>());
 		box.setChildBoxes(new ArrayList<Box>());
 		box.setMessages(new ArrayList<Message>());
+		box.setIsSystem(false);
 		return box;
 	}
 
@@ -72,7 +77,7 @@ public class BoxService {
 		if (box.getId() == 0) {
 			boxes.add(result);
 			a.setBoxes(boxes);
-			this.actorService.save(a);
+			//	this.actorService.save(a);
 		}
 		return result;
 
@@ -97,22 +102,13 @@ public class BoxService {
 		Assert.isTrue(box.getId() != 0);
 		Assert.isTrue(!box.getIsSystem());
 		final Actor a = this.actorService.getActorLogged();
-		final List<Box> boxes = (List<Box>) a.getBoxes();
-		if (!(box.getChildBoxes().isEmpty())) {
-			for (final Box b1 : box.getChildBoxes()) {
-				boxes.remove(b1);
-				a.setBoxes(boxes);
-				this.actorService.save(a);
-				this.boxRepository.delete(b1);
-			}
-			boxes.remove(box);
-			this.actorService.save(a);
-			this.boxRepository.delete(box);
-		} else {
-			boxes.remove(box);
-			this.actorService.save(a);
-			this.boxRepository.delete(box);
-		}
+		final Collection<Box> boxes = a.getBoxes();
+
+		final Administrator admin = this.adminService.findOne(a.getId());
+		admin.getBoxes().remove(box);
+		//		boxes.remove(box);
+		this.boxRepository.delete(box);
+
 	}
 
 	//Other business methods
