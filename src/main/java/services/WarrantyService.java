@@ -54,6 +54,8 @@ public class WarrantyService {
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 		Assert.notNull(warranty);
+		if (warranty.getId() != 0)
+			Assert.isTrue(!this.warrantyRepository.findOne(warranty.getId()).getIsFinal());
 		Warranty result;
 		result = this.warrantyRepository.save(warranty);
 		return result;
@@ -65,6 +67,7 @@ public class WarrantyService {
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 		Assert.notNull(warranty);
+		Assert.isTrue(!warranty.getIsFinal());
 		this.warrantyRepository.delete(warranty);
 	}
 }
