@@ -19,3 +19,11 @@
 <p><spring:message code="welcome.greeting.prefix" /> ${name}<spring:message code="welcome.greeting.suffix" /></p>
 
 <p><spring:message code="welcome.greeting.current.time" /> ${moment}</p> 
+
+<input type="button" name="registerCustomer"
+		value="<spring:message code="welcome.register.customer" />"
+		onclick="javascript: relativeRedir('customer/create.do');" />&nbsp;
+
+<input type="button" name="registerHandyWorker"
+		value="<spring:message code="welcome.register.handyWorker" />"
+		onclick="javascript: relativeRedir('handyWorker/create.do');" />

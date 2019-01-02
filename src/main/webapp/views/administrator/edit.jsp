@@ -15,80 +15,71 @@
 
 </head>
 <body>
-<security:authorize access="hasRole('HANDYWORKER')">
-<form:form action="handyWorker/handyWorker/edit.do" modelAttribute="handyWorker">
+<security:authorize access="hasRole('ADMIN')">
+<spring:message code="administrator.firstMessage" />
+<form:form action="administrator/administrator/edit.do" modelAttribute="administrator">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="profiles" />
 	<form:hidden path="boxes" />
-	<form:hidden path="applications" />
-	<form:hidden path="phases" />
-	<form:hidden path="curricula" />
-	<form:hidden path="finder" />
+	<form:hidden path="categories" />
  
 	<form:label path="name">
-		<spring:message code="handyWorker.name" />:
+		<spring:message code="administrator.name" />*:
 	</form:label>
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
 	<br />
 	
 	<form:label path="middleName">
-		<spring:message code="handyWorker.middleName" />:
+		<spring:message code="administrator.middleName" />:
 	</form:label>
 	<form:input path="middleName" />
 	<form:errors cssClass="error" path="middleName" />
 	<br />
 	
 	<form:label path="surname">
-		<spring:message code="handyWorker.surname" />:
+		<spring:message code="administrator.surname" />*:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
 	<br />
 	
-	<form:label path="make">
-		<spring:message code="handyWorker.make" />:
-	</form:label>
-	<form:input path="make" />
-	<form:errors cssClass="error" path="make" />
-	<br />
-	
 	<form:label path="photo">
-		<spring:message code="handyWorker.photo" />:
+		<spring:message code="administrator.photo" />:
 	</form:label>
 	<form:input path="photo" />
 	<form:errors cssClass="error" path="photo" />
 	<br />
 	
 	<form:label path="email">
-		<spring:message code="handyWorker.email" />:
+		<spring:message code="administrator.email" />:
 	</form:label>
 	<form:input path="email" />
 	<form:errors cssClass="error" path="email" />
 	<br />
 	
 	<form:label path="phoneNumber">
-		<spring:message code="handyWorker.phoneNumber" />:
+		<spring:message code="administrator.phoneNumber" />:
 	</form:label>
 	<form:input path="phoneNumber" />
 	<form:errors cssClass="error" path="phoneNumber" />
 	<br />
 	
 	<form:label path="address">
-		<spring:message code="handyWorker.address" />:
+		<spring:message code="administrator.address" />:
 	</form:label>
 	<form:input path="address" />
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="Save"
-		value="<spring:message code="handyWorker.save" />" />&nbsp; 
+	<input type="submit" name="save"
+		value="<spring:message code="administrator.save" />" />&nbsp; 
 	
-		<input type="button" name="Back"
-		value="<spring:message code="handyWorker.back" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		<input type="button" name="back"
+		value="<spring:message code="administrator.back" />"
+		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
 	<br />
  	
 </form:form>

@@ -15,71 +15,73 @@
 
 </head>
 <body>
-<security:authorize access="hasRole('REFEREE')">
-<spring:message code="referee.firstMessage" />
-<form:form action="referee/referee/edit.do" modelAttribute="referee">
+<security:authorize access="hasRole('CUSTOMER')">
+<spring:message code="customer.firstMessage" />
+<form:form action="customer/customer/edit.do" modelAttribute="customer">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="profiles" />
 	<form:hidden path="boxes" />
-	<form:hidden path="reports" />
+	<form:hidden path="creditCards" />
+	<form:hidden path="complaints" />
+	<form:hidden path="fixUpTasks" />
  
 	<form:label path="name">
-		<spring:message code="referee.name" />:
+		<spring:message code="customer.name" />:
 	</form:label>
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
 	<br />
 	
 	<form:label path="middleName">
-		<spring:message code="referee.middleName" />:
+		<spring:message code="customer.middleName" />:
 	</form:label>
 	<form:input path="middleName" />
 	<form:errors cssClass="error" path="middleName" />
 	<br />
 	
 	<form:label path="surname">
-		<spring:message code="referee.surname" />:
+		<spring:message code="customer.surname" />:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
 	<br />
 	
 	<form:label path="photo">
-		<spring:message code="referee.photo" />:
+		<spring:message code="customer.photo" />:
 	</form:label>
 	<form:input path="photo" />
 	<form:errors cssClass="error" path="photo" />
 	<br />
 	
 	<form:label path="email">
-		<spring:message code="referee.email" />:
+		<spring:message code="customer.email" />:
 	</form:label>
 	<form:input path="email" />
 	<form:errors cssClass="error" path="email" />
 	<br />
 	
 	<form:label path="phoneNumber">
-		<spring:message code="referee.phoneNumber" />:
+		<spring:message code="customer.phoneNumber" />:
 	</form:label>
 	<form:input path="phoneNumber" />
 	<form:errors cssClass="error" path="phoneNumber" />
 	<br />
 	
 	<form:label path="address">
-		<spring:message code="referee.address" />:
+		<spring:message code="customer.address" />:
 	</form:label>
 	<form:input path="address" />
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="Save"
-		value="<spring:message code="referee.save" />" />&nbsp; 
+	<input type="submit" name="save"
+		value="<spring:message code="customer.save" />" />&nbsp; 
 	
-		<input type="button" name="Back"
-		value="<spring:message code="referee.back" />"
-		onclick="javascript: relativeRedir('master.page');" />
+		<input type="button" name="back"
+		value="<spring:message code="customer.back" />"
+		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
 	<br />
  	
 </form:form>

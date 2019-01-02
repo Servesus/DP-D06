@@ -7,9 +7,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
@@ -39,8 +41,8 @@ public class RegisterAdministratorController extends AbstractController {
 	}
 
 	//Luego hay que rellenar el formulario y guardarlo en la base de datos
-	@RequestMapping(value = "/administrator/register", method = RequestMethod.POST, params = "save")
-	public ModelAndView register(@Valid final Administrator administrator, final BindingResult binding) {
+	@RequestMapping(value = "/administrator/create", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid final Administrator administrator, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
@@ -48,10 +50,22 @@ public class RegisterAdministratorController extends AbstractController {
 		else
 			try {
 				this.administratorService.save(administrator);
-				result = new ModelAndView("redirect:master-page");
+				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(administrator, "administrator.commit.error");
 			}
+		return result;
+	}
+
+	@RequestMapping(value = "/administrator/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final int administratorId) {
+		ModelAndView result;
+		Administrator administrator;
+
+		administrator = this.administratorService.findOne(administratorId);
+		Assert.notNull(administrator);
+		result = this.createEditModelAndView(administrator);
+
 		return result;
 	}
 
@@ -69,7 +83,7 @@ public class RegisterAdministratorController extends AbstractController {
 		categories = administrator.getCategories();
 		profiles = administrator.getProfiles();
 
-		result = new ModelAndView("customer/edit");
+		result = new ModelAndView("administrator/administrator/edit");
 		result.addObject("categories", categories);
 		result.addObject("profiles", profiles);
 		result.addObject("message", messageCode);
