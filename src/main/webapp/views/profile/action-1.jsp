@@ -64,7 +64,7 @@
 
 <spring:message code="administrator.categories" />
 <display:table name="${administrator.categories}" id="row">
-<display:column property="name" titleKey="administrator.categories.name" />
+<display:column property="name" titleKey="administrator.categories" />
 </display:table>
 
 <input type="button" name="Edit PD" value="<spring:message code="administrator.editPD" />"
