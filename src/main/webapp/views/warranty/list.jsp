@@ -12,9 +12,11 @@
 <security:authorize access="hasRole('ADMIN')">
 <display:table name="warranty" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 	<display:column>
+	<jstl:if test="${row.isFinal == false }">
 		<a href="warranty/administrator/edit.do?warrantyId=${row.id}">
 			<spring:message code="warranty.edit"/>
 		</a>
+	</jstl:if>
 	</display:column>
 	<display:column>
 		<a href="warranty/administrator/show.do?warrantyId=${row.id}">

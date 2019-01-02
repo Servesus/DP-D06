@@ -38,6 +38,7 @@
 		<value>/views/personalRecord/tiles.xml</value>
 		<value>/views/professionalRecord/tiles.xml</value>
 		<value>/views/referee/tiles.xml</value>
+		<value>/views/warranty/tiles.xml</value>
 		
 	</util:list>
 

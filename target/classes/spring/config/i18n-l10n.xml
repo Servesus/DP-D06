@@ -38,6 +38,7 @@
 		<value>/views/personalRecord/messages</value>
 		<value>/views/professionalRecord/messages</value>
 		<value>/views/referee/messages</value>
+		<value>/views/warranty/messages</value>
 	</util:list>
 
 </beans>
