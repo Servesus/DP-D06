@@ -29,9 +29,6 @@
 <input type="button" name="registerHandyWorker"
 		value="<spring:message code="welcome.register.handyWorker" />"
 		onclick="javascript: relativeRedir('handyWorker/create.do');" />
-<<<<<<< HEAD
 
-
-=======
 </security:authorize>
->>>>>>> origin/miguel
+
