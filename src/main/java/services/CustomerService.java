@@ -15,6 +15,7 @@ import org.springframework.util.Assert;
 import repositories.CustomerRepository;
 import security.Authority;
 import security.UserAccount;
+import security.UserAccountService;
 import domain.Actor;
 import domain.Application;
 import domain.Box;
@@ -44,6 +45,9 @@ public class CustomerService {
 
 	@Autowired
 	private ComplaintService	complaintService;
+
+	@Autowired
+	private UserAccountService	userAccountService;
 
 
 	public Customer create() {
@@ -106,12 +110,12 @@ public class CustomerService {
 		Assert.notNull(customer);
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		final String res = encoder.encodePassword(customer.getUserAccount().getPassword(), null);
-		final UserAccount a = new UserAccount();
-		a.setUsername(customer.getUserAccount().getUsername());
-		a.setPassword(res);
+		customer.getUserAccount().setPassword(res);
 		Customer result;
 
 		if (customer.getId() == 0) {
+			final UserAccount a = this.userAccountService.save(customer.getUserAccount());
+			customer.setUserAccount(a);
 			final Collection<Box> systemBox = this.boxService.createSystemBoxes();
 			customer.setBoxes(systemBox);
 		}
