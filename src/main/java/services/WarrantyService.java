@@ -34,7 +34,7 @@ public class WarrantyService {
 
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
+		//Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 		Assert.notNull(this.warrantyRepository);
 		result = this.warrantyRepository.findAll();
 		return result;

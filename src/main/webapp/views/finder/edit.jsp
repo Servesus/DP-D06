@@ -15,6 +15,8 @@
 	<form:hidden path="version" />
 	<form:hidden path="rangeStart" />
 	<form:hidden path="rangeFinish" />
+	<form:hidden path="lastUpdate"/>
+	<form:hidden path="fixUpTask"/>
 
 	<form:label path="singleKeyWord">
 		<spring:message code="finder.update.keyword" />:
@@ -36,21 +38,14 @@
 	<form:input path="dateFinishRange" />
 	<form:errors cssClass="error" path="dateFinishRange" />
 	<br />
-	
-	<form:label path="lastUpdate">
-		<spring:message code="finder.update.lastupdate" />:
-	</form:label>
-	<form:input path="lastUpdate" />
-	<form:errors cssClass="error" path="lastUpdate" />
-	<br />
 	 
 	<form:label path="categoryName">
 		<spring:message code="finder.update.category" />:
 	</form:label>
-	<form:select id="categoryName" path="categoryName">
+	<form:select path="categoryName">
 		<form:option value="0" label="----" />		
-		<form:options items="${categoryName}" itemValue="id"
-			itemLabel="name" />
+		<form:options items="${cNames}"
+			/>
 	</form:select>
 	<form:errors cssClass="error" path="categoryName" />
 	<br />
@@ -58,10 +53,10 @@
 	<form:label path="warrantyTitle">
 		<spring:message code="finder.update.warranty" />:
 	</form:label>
-	<form:select id="warrantyTitle" path="warrantyTitle">
+	<form:select path="warrantyTitle">
 		<form:option value="0" label="----" />		
-		<form:options items="${warrantyTitle}" itemValue="id"
-			itemLabel="title" />
+		<form:options items="${wTitles}"
+			/>
 	</form:select>
 	<form:errors cssClass="error" path="warrantyTitle" />
 	<br />

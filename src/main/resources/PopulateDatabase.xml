@@ -719,11 +719,10 @@
 		<property name="lastUpdate" value="11/11/2018 10:00"/>
 		<property name="fixUpTask">
 			<list>
-				<ref bean="fixUpTask1"/>
 			</list>
 		</property>
-		<property name="warrantyTitle" value="warranty1"/>
-		<property name="categoryName" value="category1"/>
+		<property name="warrantyTitle"><null/></property>
+		<property name="categoryName"><null/></property>
 	</bean>
 	<bean id="finder2" class="domain.Finder">
 		<property name="singleKeyWord" value="keyWord2"/>

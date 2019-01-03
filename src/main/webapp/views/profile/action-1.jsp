@@ -81,8 +81,7 @@
 <spring:message code="handyWorker.phoneNumber" /> ${handyWorker.phoneNumber} <br/>
 <spring:message code="handyWorker.id" /> ${handyWorker.id} <br/>
 <spring:message code="handyWorker.make" /> ${handyWorker.make} <br/>
-<spring:message code="handyWorker.curricula" /> ${handyWorker.curricula} <br/>
-<spring:message code="handyWorker.finder" /> ${handyWorker.finder} <br/>
+
 
 <spring:message code="handyWorker.applications" />
 <display:table name="${handyWorker.applications}" id="row">
