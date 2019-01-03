@@ -17,7 +17,7 @@
        
 <tiles-definitions>
 
-	<definition name="applicaion/handyWorker/edit" extends="master.page">	
+	<definition name="application/customer/edit" extends="master.page">	
 		<put-attribute name="title" value="Application" />
 		<put-attribute name="body" value="/views/application/edit.jsp" />
 	</definition>
@@ -27,5 +27,19 @@
 		<put-attribute name="body" value="/views/application/list.jsp" />
 	</definition>
 	
+	<definition name="application/handyWorker/list" extends="master.page">
+		<put-attribute name="title" value="List of Applications" />
+		<put-attribute name="body" value="/views/application/list.jsp" />
+	</definition>
+	
+	<definition name="application/handyWorker/show" extends="master.page">
+		<put-attribute name="title" value="Show Application" />
+		<put-attribute name="body" value="/views/application/show.jsp" />
+	</definition>
+	
+	<definition name="application/customer/show" extends="master.page">
+		<put-attribute name="title" value="Show Application" />
+		<put-attribute name="body" value="/views/application/show.jsp" />
+	</definition>
 
 </tiles-definitions>
