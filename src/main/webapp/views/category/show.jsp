@@ -8,6 +8,5 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<b><spring:message code="warranty.title"/>:</b> ${title} <br />
-<b><spring:message code="warranty.terms"/>:</b> ${terms} <br />
-<b><spring:message code="warranty.applicableLaws"/>:</b> ${applicableLaws} <br />
+<b><spring:message code="category.name"/>:</b> ${name} <br />
+<b><spring:message code="category.parent"/>:</b> ${parent} <br />

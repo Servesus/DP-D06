@@ -10,42 +10,28 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('ADMIN')">
-<form:form action="warranty/administrator/edit.do" modelAttribute="warranty">
+<form:form action="category/administrator/edit.do" modelAttribute="category">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
-	<form:label path="title">
-		<spring:message code="warranty.title"/>
+	<form:label path="name">
+		<spring:message code="category.name"/>
 	</form:label>
-	<form:input path="title"/>
-	<form:errors cssClass="error" path="title"/>
+	<form:input path="name"/>
+	<form:errors cssClass="error" path="name"/>
 	<br />
 	
-	<form:label path="terms">
-		<spring:message code="warranty.terms"/>
-	</form:label>
-	<form:input path="terms"/>
-	<form:errors cssClass="error" path="terms"/>
-	<br />
 	
-	<form:label path="applicableLaws">
-		<spring:message code="warranty.applicableLaws"/>
-	</form:label>
-	<form:input path="applicableLaws"/>
-	<form:errors cssClass="error" path="applicableLaws"/>
-	<br />
 	
-	<input type="submit" name="draft"
-		value="<spring:message code="warranty.draft" />" />&nbsp; 
-	<input type="submit" name="final"
-		value="<spring:message code="warranty.final" />" />&nbsp; 
+	<input type="submit" name="save"
+		value="<spring:message code="category.save" />" />&nbsp; 
 	<jstl:if test="${warranty.id != 0}">
 		<input type="submit" name="delete"
-			value="<spring:message code="warranty.delete" />" />
+			value="<spring:message code="category.delete" />" />
 	</jstl:if>
 	<input type="button" name="cancel"
-		value="<spring:message code="warranty.cancel" />"
-		onclick="javascript: relativeRedir('warranty/administrator/list.do');" />
+		value="<spring:message code="category.cancel" />"
+		onclick="javascript: relativeRedir('category/administrator/list.do');" />
 	<br />
 	
 	

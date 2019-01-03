@@ -34,4 +34,9 @@ public class CategoryController extends AbstractController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/create")
+	public ModelAndView create() {
+		return null;
+	}
 }
