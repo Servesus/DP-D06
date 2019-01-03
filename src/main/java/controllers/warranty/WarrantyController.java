@@ -111,6 +111,20 @@ public class WarrantyController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(@RequestParam final int warrantyId) {
+		ModelAndView result;
+		final Warranty warranty = this.warrantyService.findOne(warrantyId);
+
+		result = new ModelAndView("warranty/administrator/show");
+		result.addObject("title", warranty.getTitle());
+		result.addObject("terms", warranty.getTerms());
+		result.addObject("applicableLaws", warranty.getApplicableLaws());
+
+		return result;
+
+	}
+
 	protected ModelAndView createEditModelAndView(final Warranty warranty) {
 		ModelAndView result;
 		result = this.createEditModelAndView(warranty, null);
