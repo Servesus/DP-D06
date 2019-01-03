@@ -9,72 +9,64 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<form:form action ="finder/handyWorker/edit.do" modelAtribute="finder">
+<form:form action ="finder/handyWorker/edit.do" modelAttribute="finder">
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="rangeStart" />
 	<form:hidden path="rangeFinish" />
-		
-	<form:label path="title">
-		<spring:message code="finder.update.title" />:
-	</form:label>
-	<br />
+	<form:hidden path="lastUpdate"/>
+	<form:hidden path="fixUpTask"/>
 
-	<form:label path="singleKeyword">
+	<form:label path="singleKeyWord">
 		<spring:message code="finder.update.keyword" />:
 	</form:label>
-	<form:input path="singleKeyword" />
-	<form:errors cssClass="error" path="singleKeyword" />
+	<form:input path="singleKeyWord" />
+	<form:errors cssClass="error" path="singleKeyWord" />
 	<br />
 	
 	<form:label path="dateStartRange">
 		<spring:message code="finder.update.startdate" />:
 	</form:label>
-	<form:textarea path="dateStartRange" />
+	<form:input path="dateStartRange" />
 	<form:errors cssClass="error" path="dateStartRange" />
 	<br />
 	
 	<form:label path="dateFinishRange">
 		<spring:message code="finder.update.finishdate" />:
 	</form:label>
-	<form:textarea path="dateFinishRange" />
+	<form:input path="dateFinishRange" />
 	<form:errors cssClass="error" path="dateFinishRange" />
 	<br />
-	
-	<form:label path="lastUpdate">
-		<spring:message code="finder.update.lastupdate" />:
-	</form:label>
-	<form:textarea path="lastUpdate" />
-	<form:errors cssClass="error" path="lastUpdate" />
-	<br />
-	
+	 
 	<form:label path="categoryName">
 		<spring:message code="finder.update.category" />:
 	</form:label>
-	<form:select id="category" path="category">
+	<form:select path="categoryName">
 		<form:option value="0" label="----" />		
-		<form:options items="${category.name}" itemValue="id"
-			itemLabel="name" />
+		<form:options items="${cNames}"
+			/>
 	</form:select>
-	<form:errors cssClass="error" path="category" />
+	<form:errors cssClass="error" path="categoryName" />
+	<br />
 	
 	<form:label path="warrantyTitle">
 		<spring:message code="finder.update.warranty" />:
 	</form:label>
-	<form:select id="warranty" path="warranty">
+	<form:select path="warrantyTitle">
 		<form:option value="0" label="----" />		
-		<form:options items="${warranty.title}" itemValue="id"
-			itemLabel="title" />
+		<form:options items="${wTitles}"
+			/>
 	</form:select>
-	<form:errors cssClass="error" path="warranty" />
+	<form:errors cssClass="error" path="warrantyTitle" />
+	<br />
 	
 	<input type="submit" name="confirm"
 		value="<spring:message code="finder.update.update" />" />&nbsp; 
 	
 	<input type="button" name="cancel"
-		value="<spring:message code="announcement.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />    <!-- Aqui va el link del return a pagina de HW -->
+		value="<spring:message code="finder.update.cancel" />"
+		onclick="javascript: relativeRedir('master.page');" />
 	<br />
 	
 </form:form>
