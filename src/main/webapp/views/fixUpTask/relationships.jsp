@@ -21,8 +21,6 @@
 <display:table pagesize="5" class="customer" name="fixCustomers" 
 	requestURI="fixUpTask/handyWorker/relationships.do" id="row">
 		
-		<spring:message code="fixCustomer.assigned" var="assigned" />
-	<display:column property="assigned" title="${assigned}" sortable="false"/>
 	
 </display:table>
 <input type="button" name="cancel"

@@ -6,8 +6,10 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CustomerService;
@@ -32,20 +34,20 @@ public class FixUpTaskHandyWorkerController extends AbstractController {
 
 		Collection<FixUpTask> fixUpTaskCollection = new ArrayList<FixUpTask>();
 		fixUpTaskCollection = this.fixUpTaskService.findAll();
-
+		Assert.notNull(fixUpTaskCollection);
 		result = new ModelAndView("fixUpTask/handyWorker/findAll");
 		result.addObject("fixUpTasks", fixUpTaskCollection);
 		return result;
 	}
 
-	@RequestMapping(value = "/relationshipsHandyWorker", method = RequestMethod.GET)
+	@RequestMapping(value = "/relationships", method = RequestMethod.GET)
 	public ModelAndView findAllRelationships() {
 		ModelAndView result;
 
 		Collection<String> collection = new ArrayList<String>();
 		collection = this.customerService.CustomerPorFixUpTask();
-
-		result = new ModelAndView("fixUpTask/handyWorker/relationshipsHandyWorker");
+		Assert.notNull(collection);
+		result = new ModelAndView("fixUpTask/handyWorker/relationships");
 		result.addObject("fixCustomers", collection);
 		return result;
 	}
@@ -56,9 +58,19 @@ public class FixUpTaskHandyWorkerController extends AbstractController {
 
 		Collection<Customer> collection = new ArrayList<Customer>();
 		collection = this.customerService.findAll();
-
+		Assert.notNull(collection);
 		result = new ModelAndView("fixUpTask/handyWorker/customersHandyWorker");
 		result.addObject("customers", collection);
+		return result;
+	}
+	@RequestMapping(value = "/handySeeCustomer", method = RequestMethod.GET)
+	public ModelAndView showCustomer(@RequestParam final int customerId) {
+
+		ModelAndView result;
+		final Customer customer = this.customerService.findOne(customerId);
+		Assert.notNull(customer);
+		result = new ModelAndView("fixUpTask/handyWorker/handySeeCustomer");
+		result.addObject("customer", customer);
 		return result;
 	}
 

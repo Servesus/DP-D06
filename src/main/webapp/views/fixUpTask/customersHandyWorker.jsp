@@ -28,7 +28,7 @@
 	<display:column property="id" title="${id}" sortable="false"/>
 
 	<display:column>
-		<a href="customer/findOne.do?customerId=${row.id}">
+		<a href="fixUpTask/handyWorker/handySeeCustomer.do?customerId=${row.id}">
   	 <spring:message code="fixUpTask.customer.customer" /> </a>
 	</display:column>
 

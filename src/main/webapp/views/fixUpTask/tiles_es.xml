@@ -37,14 +37,19 @@
 		<put-attribute name="body" value="/views/fixUpTask/findAllHandyWorker.jsp" />
 	</definition>
 	
-	<definition name="fixUpTask/handyWorker/relationshipsHandyWorker" extends="master.page">	
+	<definition name="fixUpTask/handyWorker/relationships" extends="master.page">	
 		<put-attribute name="title" value="Relaciones" />
-		<put-attribute name="body" value="/views/fixUpTask/relationshipsHandyWorker.jsp" />
+		<put-attribute name="body" value="/views/fixUpTask/relationships.jsp" />
 	</definition>
 	
 	<definition name="fixUpTask/handyWorker/customersHandyWorker" extends="master.page">	
 		<put-attribute name="title" value="Clientes" />
 		<put-attribute name="body" value="/views/fixUpTask/customersHandyWorker.jsp" />
+	</definition>
+	
+	<definition name="fixUpTask/handyWorker/handySeeCustomer" extends="master.page">	
+		<put-attribute name="title" value="Perfil" />
+		<put-attribute name="body" value="/views/fixUpTask/handySeeCustomer.jsp" />
 	</definition>
 
 </tiles-definitions>
