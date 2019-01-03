@@ -38,7 +38,7 @@ public class FixUpTaskHandyWorkerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/relationships", method = RequestMethod.GET)
+	@RequestMapping(value = "/relationshipsHandyWorker", method = RequestMethod.GET)
 	public ModelAndView findAllRelationships() {
 		ModelAndView result;
 

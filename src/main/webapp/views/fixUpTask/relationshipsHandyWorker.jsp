@@ -27,7 +27,7 @@
 </display:table>
 <input type="button" name="cancel"
 		value="<spring:message code="fixUpTask.cancel" />"
-		onclick="javascript: relativeRedir('fixUpTask/handyWorker/findAllHandyWorker.do');" />
+		onclick="javascript: relativeRedir('fixUpTask/handyWorker/findAll.do');" />
 </body>
 </security:authorize>
 </html>
