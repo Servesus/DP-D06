@@ -47,5 +47,8 @@
 <display:column property="maxPrice" titleKey="customer.fixUpTasks.maxPrice" />
 </display:table>
 
+<input type="button" name="cancel"
+		value="<spring:message code="fixUpTask.back" />"
+		onclick="javascript: relativeRedir('fixUpTask/handyWorker/customersHandyWorker.do');" />
 </security:authorize>
 
