@@ -1335,42 +1335,248 @@
 	<!-- Category -->
 	<bean id="category" class = "domain.Category">
 		<property name="name" value="CATEGORY"/>
-		<property name="parents">
-			<list>
-				
-			</list>
-		</property>
+		<property name="parents"><null/></property>
 		<property name="childs">
 			<list>
 				<ref bean = "category1"/>
+				<ref bean = "Repairments"/>
+				<ref bean = "Installations"/>
+				<ref bean = "Carpentry"/>
+				<ref bean = "Cleaning"/>
+				<ref bean = "ConcreteWork"/>
+				<ref bean = "Doors"/>
+				<ref bean = "Moving"/>
+				<ref bean = "Painting"/>
+				<ref bean = "PestControl"/>
+				<ref bean = "Roofing"/>
+				<ref bean = "Cleaning"/>
+				<ref bean = "Electronic"/>
 			</list>
 		</property>	
 	</bean>
 	
 	<bean id="category1" class = "domain.Category">
 		<property name="name" value="category1"/>
-		<property name="parents">
-			<list>
-				<ref bean = "category"/>
-			</list>
-		</property>
+		<property name="parents" ref="category"/>
 		<property name="childs">
 			<list>
-				<ref bean = "category"/>
+				<ref bean = "category2"/>
 			</list>
 		</property>
 	</bean>
 	
 	<bean id="category2" class = "domain.Category">
 		<property name="name" value="category2"/>
-		<property name="parents">
-			<list>
-				<ref bean = "category1"/>
-			</list>
-		</property>
+		<property name="parents" ref="category1"/>
 		<property name="childs">
 			<list>
 				
+			</list>
+		</property>	
+	</bean>
+	
+	<bean id="Carpentry" class = "domain.Category">
+		<property name="name" value="Carpentry"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="CeilingRepair" class = "domain.Category">
+		<property name="name" value="Ceiling Repair"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Cleaning" class = "domain.Category">
+		<property name="name" value="Cleaning"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="ConcreteWork" class = "domain.Category">
+		<property name="name" value="Concrete Work"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Doors" class = "domain.Category">
+		<property name="name" value="Doors"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="ElectricalWiring" class = "domain.Category">
+		<property name="name" value="Electrical Wiring"/>
+		<property name="parents" ref="Electronic"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="FanInstallation" class = "domain.Category">
+		<property name="name" value="Fan Installation"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="FenceFixing" class = "domain.Category">
+		<property name="name" value="FenceFixing"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="HomeSecuritySystems" class = "domain.Category">
+		<property name="name" value="Home Security Systems"/>
+		<property name="parents" ref="Electronic"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="InsulationInstallation" class = "domain.Category">
+		<property name="name" value="Insulation Installation"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="LampRepair" class = "domain.Category">
+		<property name="name" value="Lamp Repair"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Moving" class = "domain.Category">
+		<property name="name" value="Moving"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Painting" class = "domain.Category">
+		<property name="name" value="Painting"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="PestControl" class = "domain.Category">
+		<property name="name" value="PestControl"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="PlumberingRepair" class = "domain.Category">
+		<property name="name" value="Plumbering Repair"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Roofing" class = "domain.Category">
+		<property name="name" value="Roofing"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="ShelfInstallation" class = "domain.Category">
+		<property name="name" value="Shelf Installation"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="SolarPanels" class = "domain.Category">
+		<property name="name" value="Solar Panels"/>
+		<property name="parents" ref="Electronic"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Soundproofing" class = "domain.Category">
+		<property name="name" value="Soundproofing"/>
+		<property name="parents" ref="Installations"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="SprinklerRepair" class = "domain.Category">
+		<property name="name" value="SprinklerRepair"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="WindowRepair" class = "domain.Category">
+		<property name="name" value="Window Repair"/>
+		<property name="parents" ref="Repairments"/>
+		<property name="childs">
+			<list>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Repairments" class = "domain.Category">
+		<property name="name" value="Repairments"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			<ref bean = "CeilingRepair"/>
+			<ref bean = "FenceFixing"/>
+			<ref bean = "LampRepair"/>
+			<ref bean = "PlumberingRepair"/>
+			<ref bean = "SprinklerRepair"/>
+			<ref bean = "WindowRepair"/>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Installations" class = "domain.Category">
+		<property name="name" value="Installations"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			<ref bean = "FanInstallation"/>
+			<ref bean = "InsulationInstallation"/>
+			<ref bean = "ShelfInstallation"/>
+			<ref bean = "Soundproofing"/>
+			</list>
+		</property>	
+	</bean>
+	<bean id="Electronic" class = "domain.Category">
+		<property name="name" value="Electronic"/>
+		<property name="parents" ref="category"/>
+		<property name="childs">
+			<list>
+			<ref bean = "ElectricalWiring"/>
+			<ref bean = "HomeSecuritySystems"/>
+			<ref bean = "SolarPanels"/>
 			</list>
 		</property>	
 	</bean>

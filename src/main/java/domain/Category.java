@@ -6,7 +6,9 @@ import java.util.Collection;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -30,15 +32,17 @@ public class Category extends DomainEntity {
 
 	//Relationships 
 	private Collection<Category>	childs;
-	private Collection<Category>	parents;
+	private Category				parents;
 
 
-	@ManyToMany(mappedBy = "parents")
+	@Valid
+	@OneToMany(mappedBy = "parents")
 	public Collection<Category> getChilds() {
 		return this.childs;
 	}
-	@ManyToMany
-	public Collection<Category> getParents() {
+	@Valid
+	@ManyToOne(optional = true)
+	public Category getParents() {
 		return this.parents;
 	}
 
@@ -46,7 +50,7 @@ public class Category extends DomainEntity {
 		this.childs = childs;
 	}
 
-	public void setParents(final Collection<Category> parents) {
+	public void setParents(final Category parents) {
 		this.parents = parents;
 	}
 
