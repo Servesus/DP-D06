@@ -10,25 +10,23 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('ADMIN')">
-<display:table name="warranty" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
+<display:table name="category" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 	<display:column>
-	<jstl:if test="${row.isFinal == false }">
-		<a href="warranty/administrator/edit.do?warrantyId=${row.id}">
-			<spring:message code="warranty.edit"/>
-		</a>
-	</jstl:if>
-	</display:column>
-	<display:column>
-		<a href="warranty/administrator/show.do?warrantyId=${row.id}">
-			<spring:message code="warranty.view"/>
+		<a href="category/administrator/edit.do?category=${row.id}">
+			<spring:message code="category.edit"/>
 		</a>
 	</display:column>
-	<spring:message code="warranty.title" var="columnTitle"/>
-	<display:column property="title" title="${columnTitle}"/>
+	<display:column>
+		<a href="category/administrator/show.do?categoryId=${row.id}">
+			<spring:message code="category.view"/>
+		</a>
+	</display:column>
+	<spring:message code="category.name" var="columnTitle"/>
+	<display:column property="name" title="${columnTitle}"/>
 </display:table>
 <div>
-	<a href="warranty/administrator/create.do"> <spring:message
-				code="warranty.create" />
+	<a href="category/administrator/create.do"> <spring:message
+				code="category.create" />
 	</a>
 </div>
 </security:authorize>
