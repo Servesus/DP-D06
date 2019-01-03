@@ -84,7 +84,7 @@ public class HandyWorkerController extends AbstractController {
 		applications = handyWorker.getApplications();
 		phases = handyWorker.getPhases();
 
-		result = new ModelAndView("handyWorker/handyWorker/edit");
+		result = new ModelAndView("handyWorker/create");
 		result.addObject("handyWorker", handyWorker);
 		result.addObject("applications", applications);
 		result.addObject("phases", phases);

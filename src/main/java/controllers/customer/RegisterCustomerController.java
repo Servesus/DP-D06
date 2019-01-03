@@ -52,7 +52,7 @@ public class RegisterCustomerController extends AbstractController {
 		else
 			try {
 				this.customerService.save(customer);
-				result = new ModelAndView("redirect:welcome/index");
+				result = new ModelAndView("redirect:security/login.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(customer, "customer.commit.error");
 			}
@@ -88,7 +88,7 @@ public class RegisterCustomerController extends AbstractController {
 		fixUpTasks = customer.getFixUpTasks();
 		profiles = customer.getProfiles();
 
-		result = new ModelAndView("customer/customer/edit");
+		result = new ModelAndView("customer/create");
 		result.addObject("customer", customer);
 		result.addObject("creditCards", creditCards);
 		result.addObject("complaints", complaints);

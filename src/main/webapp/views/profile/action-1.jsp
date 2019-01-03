@@ -48,7 +48,7 @@
 </display:table>
 
 <input type="button" name="Edit PD" value="<spring:message code="customer.editPD" />"
-			onclick="javascript: relativeRedir(customer/edit.do');" />
+			onclick="javascript: relativeRedir(customer/customer/edit.do');" />
 </security:authorize>
 
 

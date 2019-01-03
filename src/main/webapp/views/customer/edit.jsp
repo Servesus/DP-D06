@@ -26,6 +26,22 @@
 	<form:hidden path="creditCards" />
 	<form:hidden path="complaints" />
 	<form:hidden path="fixUpTasks" />
+	
+ <jstl:if test="${customer.id == 0}">
+ <form:label path="userAccount.username">
+		<spring:message code="customer.username" />*:
+	</form:label>
+	<form:input path="userAccount.username" />
+	<form:errors cssClass="error" path="userAccount.username" />
+	<br />
+	
+	<form:label path="userAccount.password">
+		<spring:message code="customer.password" />*:
+	</form:label>
+	<form:password path="userAccount.password" />
+	<form:errors cssClass="error" path="userAccount.password" />
+	<br />
+	</jstl:if>
  
 	<form:label path="name">
 		<spring:message code="customer.name" />:

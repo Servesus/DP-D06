@@ -16,7 +16,7 @@
 </head>
 <body>
 <spring:message code="customer.firstMessage" />
-<form:form action="customer/create.do" modelAttribute="customer">
+<form:form action="customer/save.do" modelAttribute="customer">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -25,8 +25,11 @@
 	<form:hidden path="creditCards" />
 	<form:hidden path="complaints" />
 	<form:hidden path="fixUpTasks" />
+	<form:hidden path="isSuspicious" />
+	<form:hidden path="isBanned"/>
  
- 	<form:label path="userAccount.username">
+ 	<jstl:if test="${customer.id == 0}">
+ <form:label path="userAccount.username">
 		<spring:message code="customer.username" />*:
 	</form:label>
 	<form:input path="userAccount.username" />
@@ -39,6 +42,7 @@
 	<form:password path="userAccount.password" />
 	<form:errors cssClass="error" path="userAccount.password" />
 	<br />
+	</jstl:if>
 	
 	<form:label path="name">
 		<spring:message code="customer.name" />*:
@@ -90,7 +94,7 @@
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="customer.register" />" />&nbsp; 
+		value="<spring:message code="customer.save" />" />&nbsp; 
 	
 		<input type="button" name="cancel"
 		value="<spring:message code="customer.cancel" />"

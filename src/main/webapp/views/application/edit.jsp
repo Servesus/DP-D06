@@ -8,13 +8,12 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('HANDYWORKER')">
-<form:form action ="application/handyWorker/create.do" modelAtribute="application">
+<security:authorize access="hasRole('HANDYWORKER,CUSTOMER')">
+<form:form action ="application/handyWorker/save.do" modelAtribute="application">
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="moment" />
-	<form:hidden path="status" />
 	<form:hidden path="customerComments" />
 	<form:hidden path="handyWorker" />
 	<form:hidden path="fixUpTask" />
@@ -38,12 +37,20 @@
 	<form:errors cssClass="error" path="hwComments" />
 	<br />
 	
-	<input type="submit" name="create"
+	<jstl:if test="${customer.userAccount.authority == 'CUSTOMER' }">
+	<form:label path="status">
+		<spring:message code="application.status" />:
+	</form:label>
+	<form:input path="status" />
+	<form:errors cssClass="error" path="status" />
+	<br />
+	</jstl:if>
+	<input type="submit" name="save"
 		value="<spring:message code="application.create" />" />&nbsp; 
 	
-	<input type="button" name="cancel"
-		value="<spring:message code="announcement.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />    <!-- Aqui va el link del return a pagina de HW -->
+	<input type="button" name="back"
+		value="<spring:message code="application.back" />"
+		onclick="javascript: relativeRedir('profile/action-1.jsp');" /> 
 	<br />
 	
 </form:form>

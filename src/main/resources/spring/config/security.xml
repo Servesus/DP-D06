@@ -59,6 +59,9 @@
 		<security:intercept-url pattern="/fixUpTask/customer/**" access="hasRole('CUSTOMER')" />  
 		
 		<security:intercept-url pattern="/fixUpTask/handyWorker/**" access="hasRole('HANDYWORKER')" />
+		
+		<security:intercept-url pattern="/application/handyWorker/**" access="hasRole('HANDYWORKER')" />
+		<security:intercept-url pattern="/application/customer/**" access="hasRole('CUSTOMER')" />
 
 		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 

@@ -81,7 +81,7 @@ public class RegisterRefereeController extends AbstractController {
 		reports = referee.getReports();
 		profiles = referee.getProfiles();
 
-		result = new ModelAndView("referee/referee/edit");
+		result = new ModelAndView("referee/administrator/create");
 		result.addObject("referee", referee);
 		result.addObject("reports", reports);
 		result.addObject("profiles", profiles);
