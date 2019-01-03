@@ -21,6 +21,14 @@
 	<form:errors cssClass="error" path="name"/>
 	<br />
 	
+	<form:select path="parents">
+		<form:option value="0" label="----" />		
+		<form:options items="${cNames}" itemValue="name"
+			/>
+	</form:select>
+	<form:errors cssClass="error" path="parents" />
+	<br />
+	
 	
 	
 	<input type="submit" name="save"

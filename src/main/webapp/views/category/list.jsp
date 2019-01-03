@@ -12,7 +12,7 @@
 <security:authorize access="hasRole('ADMIN')">
 <display:table name="category" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 	<display:column>
-		<a href="category/administrator/edit.do?category=${row.id}">
+		<a href="category/administrator/edit.do?categoryId=${row.id}">
 			<spring:message code="category.edit"/>
 		</a>
 	</display:column>
