@@ -21,7 +21,7 @@
 	requestURI="${requestURI}" id="row">
 	
 	<security:authorize access="hasRole('CUSTOMER')">
-<display:column> <a href="application/customer/show.do?applicationId=${row.id}">
+	<display:column> <a href="application/customer/show.do?applicationId=${row.id}">
 	<spring:message code="application.findOne" /></a> </display:column>
 	
 	<spring:message code="application.moment" var="moment" />
@@ -33,13 +33,13 @@
 	<spring:message code="application.status" var="status" />
 	<display:column property="status" title="${status}"/>
 
-	<spring:message code="application.handyWorker" var="make" />
-	<display:column property="handyWorker.name" title="${handyWorker.make}"/>
+	<spring:message code="application.handyWorker" var="handyWorker.make" />
+	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
 	
 	</security:authorize>
 	
-		<security:authorize access="hasRole('HANDYWORKER')">
-		<display:column> <a href="application/handyWorker/show.do?applicationId=${row.id}">
+	<security:authorize access="hasRole('HANDYWORKER')">
+	<display:column> <a href="application/handyWorker/show.do?applicationId=${row.id}">
 	<spring:message code="application.findOne" /></a> </display:column>
 	
 	<spring:message code="application.moment" var="moment" />
