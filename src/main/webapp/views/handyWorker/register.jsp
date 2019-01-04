@@ -20,8 +20,17 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="profiles" />
+	<form:hidden path="boxes" />
+	<form:hidden path="applications" />
+	<form:hidden path="phases" />
+	<form:hidden path="curricula" />
+	<form:hidden path="finder" />
+	<form:hidden path="isSuspicious" />
+	<form:hidden path="isBanned"/>
+	<form:hidden path="userAccount.authorities"/>
  
- <jstl:if test="${handyWorker.id == 0}">
+ 	
  	<form:label path="userAccount.username">
 		<spring:message code="handyWorker.username" />*:
 	</form:label>
@@ -35,7 +44,7 @@
 	<form:password path="userAccount.password" />
 	<form:errors cssClass="error" path="userAccount.password" />
 	<br />
-</jstl:if>
+	
 	
 	<form:label path="name">
 		<spring:message code="handyWorker.name" />*:
@@ -51,18 +60,18 @@
 	<form:errors cssClass="error" path="middleName" />
 	<br />
 	
-	<form:label path="make">
-		<spring:message code="handyWorker.make" />:
-	</form:label>
-	<form:input path="make" />
-	<form:errors cssClass="error" path="make" />
-	<br />
-	
 	<form:label path="surname">
 		<spring:message code="handyWorker.surname" />*:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
+	<br />
+	
+	<form:label path="make">
+		<spring:message code="handyWorker.make" />:
+	</form:label>
+	<form:input path="make" />
+	<form:errors cssClass="error" path="make" />
 	<br />
 	
 	<form:label path="photo">
@@ -94,7 +103,7 @@
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="handyWorker.register" />" />&nbsp; 
+		value="<spring:message code="handyWorker.save" />" />&nbsp; 
 	
 		<input type="button" name="cancel"
 		value="<spring:message code="handyWorker.cancel" />"

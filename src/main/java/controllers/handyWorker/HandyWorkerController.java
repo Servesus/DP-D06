@@ -49,7 +49,7 @@ public class HandyWorkerController extends AbstractController {
 		else
 			try {
 				this.handyWorkerService.save(handyWorker);
-				result = new ModelAndView("redirect:/");
+				result = new ModelAndView("redirect:security/login.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(handyWorker, "handyWorker.commit.error");
 			}

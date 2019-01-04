@@ -49,7 +49,10 @@
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}"/>
 	
-	<spring:message code="application.status" var="status"/>
+	<spring:message code="application.handyWorker.make" var="make" />
+	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
+	
+	<spring:message code="application.status" var="status" />
 	<display:column property="status" title="${status}">
 	<jstl:choose>
 		<jstl:when test="${application.status == 1}">
@@ -63,9 +66,6 @@
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
-
-	<spring:message code="application.handyWorker" var="make"/>
-	<display:column property="handyWorker.mame" title="${handyWorker.make}"/>
 	</security:authorize>
 
 </display:table>
