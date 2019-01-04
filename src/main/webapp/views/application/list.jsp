@@ -40,7 +40,8 @@
 	
 	<security:authorize access="hasRole('HANDYWORKER')">
 	<display:column> <a href="application/handyWorker/show.do?applicationId=${row.id}">
-	<spring:message code="application.findOne" /></a> </display:column>
+	<spring:message code="application.findOne" /></a>
+	</display:column>
 	
 	<spring:message code="application.moment" var="moment" />
 	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
@@ -48,11 +49,23 @@
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}"/>
 	
-	<spring:message code="application.status" var="status" />
-	<display:column property="status" title="${status}"/>
+	<spring:message code="application.status" var="status"/>
+	<display:column property="status" title="${status}">
+	<jstl:choose>
+		<jstl:when test="${application.status == 1}">
+		<spring:message code="application.accepted"/>
+		</jstl:when>
+		<jstl:when test="${application.status == 0}">
+			<spring:message code="application.pending"/>
+		</jstl:when>
+		<jstl:when test="${application.status == -1}">
+			<spring:message code="application.rejected"/>
+		</jstl:when>
+	</jstl:choose>
+	</display:column>
 
-	<spring:message code="application.handyWorker" var="make" />
-	<display:column property="handyWorker.name" title="${handyWorker.make}"/>
+	<spring:message code="application.handyWorker" var="make"/>
+	<display:column property="handyWorker.mame" title="${handyWorker.make}"/>
 	</security:authorize>
 
 </display:table>

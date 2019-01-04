@@ -28,12 +28,24 @@
 	
 	<p>
 	<spring:message code="application.price"/>:
-	<jstl:out value="${application.price}"></jstl:out> 
+	<jstl:out value="${application.price}"></jstl:out> &nbsp; 
+	<spring:message code="application.price.iva"/>:
+	<jstl:out value="${application.price * 1.21}"/>
 	</p>
 	
 	<p>
 	<spring:message code="application.status"/>:
-	<jstl:out value="${application.status}"></jstl:out> 
+	<jstl:choose>
+		<jstl:when test="${application.status == 1}">
+			<spring:message code="application.accepted"/>
+		</jstl:when>
+		<jstl:when test="${application.status == 0}">
+			<spring:message code="application.pending" />
+		</jstl:when>
+		<jstl:when test="${application.status == -1}">
+			<spring:message code="application.rejected" />
+		</jstl:when>
+	</jstl:choose>
 	</p>
 	
 	<p>
@@ -43,10 +55,9 @@
 	
 	<spring:message code="application.hwComments"/>:
 				<ul>
-					<jstl:forEach items="${row.hwComment}" var="hwComment">
+					<jstl:forEach items="${application.hwComments}" var="hwComment">
 						<li>
-							<jstl:out value="${hwComment}">
-							</jstl:out>
+							<jstl:out value="${hwComment}"/>
 						</li>
 					</jstl:forEach>
 				</ul>
@@ -57,12 +68,12 @@
 	</p>
 	
 	<jstl:if test="${application.status == 1}">
-	<spring:message code="application.customerComments" />:
+	<spring:message code="application.customerComments"/>:
 				<ul>
-					<jstl:forEach items="${row.customerComment}" var="customerComment">
+					<jstl:forEach items="${application.customerComments}" 
+					var="customerComment">
 						<li>
-							<jstl:out value="${customerComment}">
-							</jstl:out>
+							<jstl:out value="${customerComment}"/>
 						</li>
 					</jstl:forEach>
 				</ul>
