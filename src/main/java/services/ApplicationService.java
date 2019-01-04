@@ -139,4 +139,18 @@ public class ApplicationService {
 		return res;
 	}
 
+	public Application addComment(final Application application, final String comment) {
+		Assert.notNull(application);
+		Application res;
+		Collection<String> customerComments;
+
+		customerComments = application.getCustomerComments();
+		customerComments.add(comment);
+		application.setCustomerComments(customerComments);
+
+		res = this.save(application);
+
+		return res;
+	}
+
 }

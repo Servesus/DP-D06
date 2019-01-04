@@ -21,7 +21,7 @@
 	<form:hidden path="status"/>
 	
 	<form:textarea path="customerComments" />
-	<form:errors cssClass="error" path="hwComments" />
+	<form:errors cssClass="error" path="customerComments" />
 	<br />
 	
 	<input type="submit" name="saveCustomer"
