@@ -99,7 +99,7 @@
 	
 		<input type="button" name="cancel"
 		value="<spring:message code="customer.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index');" />
+		onclick="javascript: relativeRedir('/');" />
 	<br />
  	
 </form:form>

@@ -8,7 +8,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('HANDYWORKER,CUSTOMER')">
+<security:authorize access="hasRole('CUSTOMER')">
 <form:form action ="application/handyWorker/save.do" modelAtribute="application">
 	
 	<form:hidden path="id" />

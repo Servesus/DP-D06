@@ -16,10 +16,12 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+
 <p><spring:message code="welcome.greeting.prefix" /> ${name}<spring:message code="welcome.greeting.suffix" /></p>
 
 <p><spring:message code="welcome.greeting.current.time" /> ${moment}</p> 
 
+<security:authorize access="isAnonymous()">
 <input type="button" name="registerCustomer"
 		value="<spring:message code="welcome.register.customer" />"
 		onclick="javascript: relativeRedir('customer/create.do');" />&nbsp;
@@ -28,4 +30,5 @@
 		value="<spring:message code="welcome.register.handyWorker" />"
 		onclick="javascript: relativeRedir('handyWorker/create.do');" />
 
+</security:authorize>
 

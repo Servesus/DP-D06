@@ -73,6 +73,20 @@ public class ApplicationController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/handyWorker/show", method = RequestMethod.GET)
+	public ModelAndView showHandyWorker(@RequestParam final int applicationId) {
+		ModelAndView result;
+		Application application;
+
+		application = this.applicationService.findOne(applicationId);
+
+		result = new ModelAndView("application/handyWorker/show");
+		result.addObject("application", application);
+		result.addObject("requestURI", "application/handyWorker/show.do");
+
+		return result;
+	}
+
 	@RequestMapping(value = "/handyWorker/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;

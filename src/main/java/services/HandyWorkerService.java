@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import repositories.HandyWorkerRepository;
 import security.Authority;
 import security.UserAccount;
+import security.UserAccountService;
 import domain.Application;
 import domain.Box;
 import domain.Complaint;
@@ -22,6 +23,7 @@ import domain.Finder;
 import domain.FixUpTask;
 import domain.HandyWorker;
 import domain.Phase;
+import domain.Profile;
 
 @Service
 @Transactional
@@ -39,6 +41,8 @@ public class HandyWorkerService {
 	private ActorService			actorService;
 	@Autowired
 	private CurriculaService		curriculaService;
+	@Autowired
+	private UserAccountService		userAccountService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -56,6 +60,7 @@ public class HandyWorkerService {
 		final Curricula curricula;
 		final Collection<Application> apps = new ArrayList<Application>();
 		final Collection<Phase> phases = new ArrayList<Phase>();
+		final Collection<Profile> profiles = new ArrayList<Profile>();
 
 		auts = new ArrayList<Authority>();
 		aut = new Authority();
@@ -75,6 +80,7 @@ public class HandyWorkerService {
 		result.setApplications(apps);
 		result.setPhases(phases);
 		result.setCurricula(curricula);
+		result.setProfiles(profiles);
 		return result;
 	}
 
@@ -101,11 +107,12 @@ public class HandyWorkerService {
 
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		final String res = encoder.encodePassword(handyWorker.getUserAccount().getPassword(), null);
-		final UserAccount a = new UserAccount();
-		a.setUsername(handyWorker.getUserAccount().getUsername());
-		a.setPassword(res);
+		handyWorker.getUserAccount().setPassword(res);
+		final HandyWorker result;
 
 		if (handyWorker.getId() == 0) {
+			final UserAccount userAccount = this.userAccountService.save(handyWorker.getUserAccount());
+			handyWorker.setUserAccount(userAccount);
 			Collection<Box> boxSystem;
 			boxSystem = this.boxService.createSystemBoxes();
 			handyWorker.setBoxes(boxSystem);
@@ -118,7 +125,6 @@ public class HandyWorkerService {
 			handyWorker.setCurricula(curricula);
 			handyWorker.setFinder(finder);
 		}
-		HandyWorker result;
 		result = this.handyWorkerRepository.save(handyWorker);
 		return result;
 	}
