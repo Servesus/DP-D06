@@ -60,33 +60,29 @@
 	<form:label path="warranty">
 		<spring:message code="fixUpTask.warranty" />:
 	</form:label>
-	<form:input path="warranty" />
-	<form:errors cssClass="error" path="warranty" />
-	<br />
+	<form:select id="warranties" path="warranty">
+		<form:option value="0" label="----" />		
+		<form:options items="${warranties}" itemValue="id" itemLabel="title" />
+	</form:select>
 	
 	<form:label path="category">
 		<spring:message code="fixUpTask.category" />:
 	</form:label>
-	<form:input path="category" />
-	<form:errors cssClass="error" path="category" />
-	<br />
+	<form:select id="categories" path="category">
+		<form:option value="0" label="----" />		
+		<form:options items="${categories}" itemValue="id" itemLabel="name" />
+	</form:select>
 	
 	<form:label path="application">
 		<spring:message code="fixUpTask.application" />:
 	</form:label>
-	<form:select id="applications" path="application">
-		<form:option value="0" label="----" />		
-		<form:options items="${applications}" itemValue="id" itemLabel="name" />
-	</form:select>
-	<form:errors cssClass="error" path="applications" />
-	<br />
 	
 	<form:label path="complaint">
 		<spring:message code="fixUpTask.complaint" />:
 	</form:label>
 	<form:select id="complaints" path="complaint">
 		<form:option value="0" label="----" />		
-		<form:options items="${complaints}" itemValue="id" itemLabel="name" />
+		<form:options items="${complaints}" itemValue="id" itemLabel="moment" />
 	</form:select>
 	<form:errors cssClass="error" path="complaints" />
 	<br />
@@ -96,7 +92,7 @@
 	</form:label>
 	<form:select id="phases" path="phase">
 		<form:option value="0" label="----" />		
-		<form:options items="${phases}" itemValue="id" itemLabel="name" />
+		<form:options items="${phases}" itemValue="id" itemLabel="title" />
 	</form:select>
 	<form:errors cssClass="error" path="phases" />
 	<br />
