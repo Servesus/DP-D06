@@ -73,6 +73,20 @@ public class ApplicationController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/customer/show", method = RequestMethod.GET)
+	public ModelAndView showCustomer(@RequestParam final int applicationId) {
+		ModelAndView result;
+		Application application;
+
+		application = this.applicationService.findOne(applicationId);
+
+		result = new ModelAndView("application/customer/show");
+		result.addObject("application", application);
+		result.addObject("requestURI", "application/customer/show.do");
+
+		return result;
+	}
+
 	@RequestMapping(value = "/handyWorker/show", method = RequestMethod.GET)
 	public ModelAndView showHandyWorker(@RequestParam final int applicationId) {
 		ModelAndView result;
@@ -93,7 +107,7 @@ public class ApplicationController extends AbstractController {
 		Application application;
 
 		application = this.applicationService.create(fixUpTaskId);
-		result = this.createEditModelAndView(application);
+		result = this.createEditModelAndViewHandyWorker(application);
 
 		return result;
 	}
@@ -105,8 +119,23 @@ public class ApplicationController extends AbstractController {
 
 		application = this.applicationService.findOne(applicationId);
 		Assert.notNull(application);
-		result = this.createEditModelAndView(application);
+		result = this.createEditModelAndViewCustomer(application);
 
+		return result;
+	}
+
+	@RequestMapping(value = "/customer/edit", method = RequestMethod.POST, params = "saveCustomer")
+	public ModelAndView saveCustomer(@Valid final Application application, final BindingResult binding) {
+		ModelAndView result;
+		if (binding.hasErrors())
+			result = this.createEditModelAndViewCustomer(application);
+		else
+			try {
+				this.applicationService.save(application);
+				result = new ModelAndView("redirect:list.do");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndViewCustomer(application, "application.commit.error");
+			}
 		return result;
 	}
 
@@ -114,41 +143,70 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView saveHandyWorker(@Valid final Application application, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(application);
+			result = this.createEditModelAndViewHandyWorker(application);
 		else
 			try {
 				this.applicationService.save(application);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(application, "application.commit.error");
+				result = this.createEditModelAndViewHandyWorker(application, "application.commit.error");
 			}
 		return result;
 	}
 
-	@RequestMapping(value = "/customer/save", method = RequestMethod.POST, params = "save")
-	public ModelAndView saveCustomer(@Valid final Application application, final BindingResult binding) {
+	@RequestMapping(value = "/customer/accept", method = RequestMethod.GET)
+	public ModelAndView accept(@Valid final Application application) {
 		ModelAndView result;
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(application);
-		else
-			try {
-				this.applicationService.save(application);
-				result = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(application, "application.commit.error");
-			}
-		return result;
-	}
+		Application accepted;
 
-	protected ModelAndView createEditModelAndView(final Application application) {
-		ModelAndView result;
+		accepted = this.applicationService.acceptApplication(application);
 
-		result = this.createEditModelAndView(application, null);
+		result = new ModelAndView("/application/customer/show");
+		result.addObject("application", accepted);
+		result.addObject("requestURI", "application/customer/accept.do");
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final Application application, final String messageCode) {
+	@RequestMapping(value = "/customer/reject", method = RequestMethod.GET)
+	public ModelAndView reject(@Valid final Application application) {
+		ModelAndView result;
+		final Application rejected;
+
+		rejected = this.applicationService.rejectApplication(application);
+
+		result = new ModelAndView("/application/customer/show");
+		result.addObject("application", rejected);
+		result.addObject("requestURI", "application/customer/reject.do");
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewCustomer(final Application application) {
+		ModelAndView result;
+
+		result = this.createEditModelAndViewCustomer(application, null);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewCustomer(final Application application, final String messageCode) {
+		ModelAndView result;
+		result = new ModelAndView("application/customer/edit");
+		result.addObject("application", application);
+		result.addObject("message", messageCode);
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewHandyWorker(final Application application) {
+		ModelAndView result;
+
+		result = this.createEditModelAndViewHandyWorker(application, null);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewHandyWorker(final Application application, final String messageCode) {
 		ModelAndView result;
 		result = new ModelAndView("application/handyWorker/edit");
 		result.addObject("application", application);

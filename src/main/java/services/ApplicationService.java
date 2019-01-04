@@ -46,8 +46,7 @@ public class ApplicationService {
 
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority()
-				.equals("HANDYWORKER"));
+		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 
 		fixUpTask = this.fixUpTaskService.findOne(fixUpTaskId);
 		handyWorker = this.handyWorkerService.findOne(this.actorService.getActorLogged().getId());
@@ -92,10 +91,7 @@ public class ApplicationService {
 		HandyWorker handyWorker;
 
 		userAccount = LoginService.getPrincipal();
-		Assert.isTrue(userAccount.getAuthorities().iterator().next()
-				.getAuthority().equals("CUSTOMER") || 
-				userAccount.getAuthorities().iterator().next()
-				.getAuthority().equals("HANDYWORKER"));
+		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER") || userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 
 		Application result;
 
@@ -119,6 +115,28 @@ public class ApplicationService {
 		}
 
 		return result;
+	}
+
+	public Application acceptApplication(final Application application) {
+		Assert.notNull(application);
+		Application res;
+
+		application.setStatus(1);
+
+		res = this.save(application);
+
+		return res;
+	}
+
+	public Application rejectApplication(final Application application) {
+		Assert.notNull(application);
+		Application res;
+
+		application.setStatus(-1);
+
+		res = this.save(application);
+
+		return res;
 	}
 
 }
