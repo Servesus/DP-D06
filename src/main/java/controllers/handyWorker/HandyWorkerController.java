@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CurriculaService;
 import services.HandyWorkerService;
 import controllers.AbstractController;
 import domain.Application;
+import domain.Curricula;
 import domain.HandyWorker;
 import domain.Phase;
 import domain.Profile;
@@ -27,6 +29,8 @@ public class HandyWorkerController extends AbstractController {
 
 	@Autowired
 	private HandyWorkerService	handyWorkerService;
+	@Autowired
+	private CurriculaService	curriculaService;
 
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
@@ -48,6 +52,9 @@ public class HandyWorkerController extends AbstractController {
 			result = this.createEditModelAndView(handyWorker);
 		else
 			try {
+				Curricula curricula = this.curriculaService.create();
+				curricula = this.curriculaService.save(curricula);
+				handyWorker.setCurricula(curricula);
 				this.handyWorkerService.save(handyWorker);
 				result = new ModelAndView("redirect:security/login.do");
 			} catch (final Throwable oops) {

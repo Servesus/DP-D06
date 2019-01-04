@@ -19,7 +19,6 @@ import domain.Application;
 import domain.Box;
 import domain.Complaint;
 import domain.Curricula;
-import domain.Finder;
 import domain.FixUpTask;
 import domain.HandyWorker;
 import domain.Phase;
@@ -56,7 +55,6 @@ public class HandyWorkerService {
 		UserAccount user;
 		Authority aut;
 		Collection<Authority> auts;
-		Finder finder;
 		final Curricula curricula;
 		final Collection<Application> apps = new ArrayList<Application>();
 		final Collection<Phase> phases = new ArrayList<Phase>();
@@ -66,7 +64,6 @@ public class HandyWorkerService {
 		aut = new Authority();
 		user = new UserAccount();
 		result = new HandyWorker();
-		finder = this.finderService.create();
 		curricula = this.curriculaService.create();
 
 		aut.setAuthority(Authority.HANDYWORKER);
@@ -76,7 +73,6 @@ public class HandyWorkerService {
 		result.setUserAccount(user);
 		result.setIsBanned(false);
 		result.setIsSuspicious(false);
-		result.setFinder(finder);
 		result.setApplications(apps);
 		result.setPhases(phases);
 		result.setCurricula(curricula);
@@ -116,14 +112,6 @@ public class HandyWorkerService {
 			Collection<Box> boxSystem;
 			boxSystem = this.boxService.createSystemBoxes();
 			handyWorker.setBoxes(boxSystem);
-			Finder finder;
-			finder = handyWorker.getFinder();
-			finder = this.finderService.save(finder);
-			Curricula curricula;
-			curricula = handyWorker.getCurricula();
-			curricula = this.curriculaService.save(curricula);
-			handyWorker.setCurricula(curricula);
-			handyWorker.setFinder(finder);
 		}
 		result = this.handyWorkerRepository.save(handyWorker);
 		return result;

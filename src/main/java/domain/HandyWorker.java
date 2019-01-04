@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -61,7 +60,6 @@ public class HandyWorker extends Actor {
 		this.phases = phases;
 	}
 
-	@NotNull
 	@Valid
 	@OneToOne(optional = false)
 	public Curricula getCurricula() {
