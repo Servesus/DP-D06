@@ -24,7 +24,7 @@ public interface FinderRepository extends JpaRepository<Finder, Integer> {
 	@Query("select f from FixUpTask f where f.maxPrice BETWEEN ?1 AND ?2")
 	Collection<FixUpTask> getFixUpTasksByPriceRange(Integer minPrice, Integer maxPrice);
 
-	@Query("select f from FixUpTask f where f.category.name like ?1")
+	@Query("select f from FixUpTask f where f.category.nameEN like ?1 or f.category.nameES like ?1")
 	Collection<FixUpTask> getFixUpTasksByCategory(String categoryName);
 
 	@Query("select f from FixUpTask f where f.warranty.title like ?1")

@@ -2,33 +2,42 @@
 package domain;
 
 import java.util.Collection;
-import java.util.Map;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Category extends DomainEntity {
 
 	//Attributes 
-	private Map<String, String>	name;
+	private String	nameEN;
+	private String	nameES;
 
 
 	//Getters and setters
-	@NotNull
-	@ElementCollection
-	public Map<String, String> getName() {
-		return this.name;
+
+	@NotBlank
+	public String getNameEN() {
+		return this.nameEN;
 	}
-	public void setName(final Map<String, String> name) {
-		this.name = name;
+
+	public void setNameEN(final String nameEN) {
+		this.nameEN = nameEN;
+	}
+	@NotBlank
+	public String getNameES() {
+		return this.nameES;
+	}
+
+	public void setNameES(final String nameES) {
+		this.nameES = nameES;
 	}
 
 

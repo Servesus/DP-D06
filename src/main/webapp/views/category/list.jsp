@@ -11,18 +11,30 @@
 
 <security:authorize access="hasRole('ADMIN')">
 <display:table name="category" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
-	<display:column>
-		<a href="category/administrator/edit.do?categoryId=${row.id}">
-			<spring:message code="category.edit"/>
-		</a>
-	</display:column>
+	<spring:message code="category.name" var="columnTitle"/>
+	<jstl:if test="${lang=='es' }">
+		<display:column title="${columnTitle}">
+			${row.nameES}
+		</display:column>
+	</jstl:if>
+	
+	<jstl:if test="${lang=='en' }">
+		<display:column title="${columnTitle}">
+			${row.nameEN}
+		</display:column>
+	</jstl:if>
+	
 	<display:column>
 		<a href="category/administrator/show.do?categoryId=${row.id}">
 			<spring:message code="category.view"/>
 		</a>
 	</display:column>
-	<spring:message code="category.name" var="columnTitle"/>
-	<display:column property="name" title="${columnTitle}"/>
+	
+	<display:column>
+		<a href="category/administrator/edit.do?categoryId=${row.id}">
+			<spring:message code="category.edit"/>
+		</a>
+	</display:column>
 </display:table>
 <div>
 	<a href="category/administrator/create.do"> <spring:message

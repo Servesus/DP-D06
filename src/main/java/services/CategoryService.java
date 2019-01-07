@@ -62,19 +62,28 @@ public class CategoryService {
 		a = this.actorService.getActorLogged();
 
 		Assert.isTrue(a.getUserAccount().getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
+		Assert.isTrue(c.getNameEN() != "CATEGORY");
 		Assert.notNull(c);
 
 		Administrator admin;
 		admin = this.administratorService.findOne(a.getId());
-
 		Category result;
-		result = this.categoryRepository.save(c);
-		Collection<Category> categories;
-		categories = admin.getCategories();
-		categories.add(result);
-		admin.setCategories(categories);
-		this.administratorService.save(admin);
+		if (c.getId() == 0) {
+			result = this.categoryRepository.save(c);
+			Collection<Category> categories;
+			categories = admin.getCategories();
+			categories.add(result);
+			c.getParents().getChilds().add(result);
+		} else {
+			final Category oldParent = this.categoryRepository.findOne(c.getId()).getParents();
+			if (oldParent.equals(c.getParents())) {
+				oldParent.getChilds().remove(c);
+				result = this.categoryRepository.save(c);
+				c.getParents().getChilds().add(result);
+			} else
+				result = this.categoryRepository.save(c);
 
+		}
 		return result;
 	}
 
