@@ -98,7 +98,6 @@ public class CategoryService {
 				this.administratorService.save(admin);
 			}
 		Assert.notNull(c);
-		Assert.isTrue(c.getName() != "CATEGORY");
 		if (!(c.getChilds().isEmpty())) {
 			for (final Category c1 : c.getChilds())
 				this.categoryRepository.delete(c1);
