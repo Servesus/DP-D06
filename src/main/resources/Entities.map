@@ -1,5 +1,9 @@
 #./src/main/resources/Entities.map
+<<<<<<< HEAD
 #Fri Jan 04 12:11:28 CET 2019
+=======
+#Fri Jan 04 01:40:31 CET 2019
+>>>>>>> 91f3bbd808c7e2efb35a11319deec44f2684e9a6
 message1=3213
 FanInstallation=3170
 educationalRecord2=3149

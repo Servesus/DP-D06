@@ -16,7 +16,6 @@ import domain.Curricula;
 import domain.EducationalRecord;
 import domain.EndorserRecord;
 import domain.MiscRecord;
-import domain.PersonalRecord;
 import domain.ProfessionalRecord;
 
 @Service
@@ -30,12 +29,13 @@ public class CurriculaService {
 	//Supporting services
 	@Autowired
 	private PersonalRecordService	personalRecordService;
+
+
 	//Simple CRUD methods
 	public Curricula create() {
 		final Curricula curricula = new Curricula();
-		final PersonalRecord personalRecord = this.personalRecordService.create();
+
 		curricula.setTicker(CurriculaService.generadorDeTickers());
-		curricula.setPersonalRecord(personalRecord);
 		curricula.setEducationalRecord(new ArrayList<EducationalRecord>());
 		curricula.setEndorserRecord(new ArrayList<EndorserRecord>());
 		curricula.setProfessionalRecord(new ArrayList<ProfessionalRecord>());
@@ -51,9 +51,9 @@ public class CurriculaService {
 	}
 
 	public Curricula save(final Curricula curricula) {
-		final PersonalRecord saved = this.personalRecordService.save(curricula.getPersonalRecord());
-		curricula.setPersonalRecord(saved);
-		final Curricula result = this.curriculaRepository.save(curricula);
+		Curricula result;
+		result = this.curriculaRepository.save(curricula);
+
 		//final HandyWorker hw = this.handyWorkerService.findOne(this.actorService.getActorLogged().getId());
 		//UserAccount userAccount;
 		//userAccount = this.actorService.getActorLogged().getUserAccount();

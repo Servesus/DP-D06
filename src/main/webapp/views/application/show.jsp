@@ -18,34 +18,154 @@
 
 
 
-<security:authorize access="hasRole('HANDYWORKER')">
+	<security:authorize access="hasRole('HANDYWORKER')">
 
-	<display:table>
-	<spring:message code="application.moment" var="moment" />
-	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
-
-	<spring:message code="application.price" var="price" />
-	<display:column property="price" title="${price}"/>
+	<div>
+	<p>
+	<spring:message code="application.moment"/>:
+	<jstl:out value="${application.moment}"></jstl:out> 
+	</p>
 	
-	<spring:message code="application.status" var="status" />
-	<display:column property="status" title="${status}"/>
-
-	<spring:message code="application.handyWorker" var="make" />
-	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
+	<p>
+	<spring:message code="application.price"/>:
+	<jstl:out value="${application.price}"></jstl:out> &nbsp; (${application.price*1.21})
+	</p>
 	
-	<spring:message code="application.hwComments" var="hwComments"/> 
-	<display:column property="hwComments" title="${hwComments }" sortable="true"/>
+	<p>
+	<spring:message code="application.status"/>:
+	<jstl:choose>
+		<jstl:when test="${application.status == 1}">
+			<spring:message code="application.accepted"/>
+		</jstl:when>
+		<jstl:when test="${application.status == 0}">
+			<spring:message code="application.pending" />
+		</jstl:when>
+		<jstl:when test="${application.status == -1}">
+			<spring:message code="application.rejected" />
+		</jstl:when>
+	</jstl:choose>
+	</p>
 	
-	<spring:message code="application.fixUpTask" var ="fixUpTask"/>
-	<display:column property="fixUpTask.id" title="${fixUpTask.id }"/>
+	<p>
+	<spring:message code="application.handyWorker"/>:
+	<jstl:out value="${application.handyWorker.make}"></jstl:out> 
+	</p>
+	
+	<spring:message code="application.hwComments"/>:
+				<ul>
+					<jstl:forEach items="${application.hwComments}" var="hwComment">
+						<li>
+							<jstl:out value="${hwComment}"/>
+						</li>
+					</jstl:forEach>
+				</ul>
+	
+	<p>
+	<spring:message code="application.fixUpTask"/>:
+	<jstl:out value="${application.fixUpTask.id}"></jstl:out> 
+	</p>
+	
+	<jstl:if test="${application.status == 1}">
+	<spring:message code="application.customerComments"/>:
+				<ul>
+					<jstl:forEach items="${application.customerComments}" 
+					var="customerComment">
+						<li>
+							<jstl:out value="${customerComment}"/>
+						</li>
+					</jstl:forEach>
+				</ul>
+	</jstl:if>
+</div>
+	<jstl:if test="${application.status == 1}">
+	<input type= button name="create"
+	value="<spring:message code="phase.create" />"
+	onclick="javascript: relativeRedir('phase/handyWorker/create.?applicationId=${application.id}');"/>
+	</jstl:if>
+	
+	<input type="button" name="back"
+		value="<spring:message code="application.back" />"
+		onclick="javascript: relativeRedir('application/handyWorker/list.do');" />
+</security:authorize>
 
-<jstl:if test="${status == 1}">
-<spring:message code="application.customerComments" />
-<display:column property="${customerComments}" sortable="true"/>
-</jstl:if>
-</display:table>
 
-<jstl:if test="${ status==1}">
-<a href="phase/handyWorker/create.do"><spring:message code="phase.create" /></a>
-</jstl:if>
+
+
+<security:authorize access="hasRole('CUSTOMER')">
+
+	<div>
+	<p>
+	<spring:message code="application.moment"/>:
+	<jstl:out value="${application.moment}"></jstl:out> 
+	</p>
+	
+	<p>
+	<spring:message code="application.price"/>:
+	<jstl:out value="${application.price}"></jstl:out> &nbsp; (${application.price*1.21})
+	</p>
+	
+	<p>
+	<spring:message code="application.status"/>:
+	<jstl:choose>
+		<jstl:when test="${application.status == 1}">
+			<spring:message code="application.accepted"/>
+		</jstl:when>
+		<jstl:when test="${application.status == 0}">
+			<spring:message code="application.pending" />
+		</jstl:when>
+		<jstl:when test="${application.status == -1}">
+			<spring:message code="application.rejected" />
+		</jstl:when>
+	</jstl:choose>
+	</p>
+	
+	<p>
+	<spring:message code="application.handyWorker.make"/>:
+	<jstl:out value="${application.handyWorker.make}"></jstl:out> 
+	</p>
+	
+	<spring:message code="application.hwComments"/>:
+				<ul>
+					<jstl:forEach items="${application.hwComments}" var="hwComment">
+						<li>
+							<jstl:out value="${hwComment}"/>
+						</li>
+					</jstl:forEach>
+				</ul>
+	
+	<p>
+	<spring:message code="application.fixUpTask"/>:
+	<jstl:out value="${application.fixUpTask.id}"></jstl:out> 
+	</p>
+	
+	<jstl:if test="${application.status == 1}">
+	<spring:message code="application.customerComments"/>:
+				<ul>
+					<jstl:forEach items="${application.customerComments}" 
+					var="customerComment">
+						<li>
+							<jstl:out value="${customerComment}"/>
+						</li>
+					</jstl:forEach>
+				</ul>
+	</jstl:if>
+</div>
+
+	<jstl:if test="${application.status == 0}">
+	<input type= button name="application.accept"
+	value="<spring:message code="application.accept" />"
+	onclick="javascript: relativeRedir('application/customer/accept.do?applicationId=${application.id}');"/>
+	<input type= button name="application.reject"
+	value="<spring:message code="application.reject" />"
+	onclick="javascript: relativeRedir('application/customer/reject.do?applicationId=${application.id}');"/>
+	</jstl:if>
+	<jstl:if test="${application.status == 1}">
+	<input type= button name="newComment"
+	value="<spring:message code="application.newComment" />"
+	onclick="javascript: relativeRedir('application/customer/edit.do?applicationId=${application.id}');"/>
+	</jstl:if>
+	
+	<input type="button" name="back"
+		value="<spring:message code="application.back" />"
+		onclick="javascript: relativeRedir('application/customer/list.do');" />
 </security:authorize>

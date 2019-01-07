@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -37,7 +36,6 @@ public class Curricula extends DomainEntity {
 	public void setTicker(final String ticker) {
 		this.ticker = ticker;
 	}
-	@NotNull
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL)
 	public PersonalRecord getPersonalRecord() {
