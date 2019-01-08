@@ -9,44 +9,27 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('CUSTOMER')">
-<form:form action ="application/handyWorker/edit.do" modelAttribute="application">
+<form:form action ="application/customer/edit.do" modelAttribute="application">
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="moment" />
 	<form:hidden path="handyWorker" />
 	<form:hidden path="fixUpTask" />
+	<form:hidden path="hwComments"/>
+	<form:hidden path="price"/>
 	<form:hidden path="status"/>
-	<form:hidden path="customerComments"/>
 	
-	
-	<form:label path="diplomasTitle">
-		<spring:message code="educationalRecord.title"/>
-	</form:label>
-	<form:input path="diplomasTitle"/>
-	<form:errors cssClass="error" path="diplomasTitle"/>
+	<form:textarea path="customerComments" />
+	<form:errors cssClass="error" path="customerComments" />
 	<br />
 	
-	<form:label path="price">
-	<spring:message code="application.price"/>
-	</form:label>
-	<form:input path="price"/>
-	<form:errors cssClass="error" path="price"/>
-	<br/>
-	
-	<form:label path="hwComments">
-	<spring:message code="application.comment"/>
-	</form:label>
-	<form:textarea path="hwComments"/>
-	<form:errors cssClass="error" path="hwComments" />
-	<br />
-	
-	<input type="submit" name="save"
-		value="<spring:message code="application.create" />" />&nbsp; 
+	<input type="submit" name="saveCustomer"
+		value="<spring:message code="application.newComment" />" />&nbsp; 
 	
 	<input type="button" name="back"
 		value="<spring:message code="application.back" />"
-		onclick="javascript: relativeRedir('application/customer/show.do?fixUpTaskId=${application.fixUpTask.id}');" /> 
+		onclick="javascript: relativeRedir('application/customer/show.do?applicationId=${row.id}');" /> 
 	<br />
 	
 </form:form>

@@ -147,7 +147,7 @@ public class ApplicationController extends AbstractController {
 		else
 			try {
 				this.applicationService.save(application);
-				result = new ModelAndView("redirect:application/handyWorker/list.do?" + fixUpTask.getId());
+				result = new ModelAndView("redirect:application/handyWorker/show.do?" + fixUpTask.getId());
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndViewHandyWorker(application, "application.commit.error");
 			}

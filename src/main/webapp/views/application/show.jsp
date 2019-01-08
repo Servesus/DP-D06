@@ -85,7 +85,7 @@
 	
 	<input type="button" name="back"
 		value="<spring:message code="application.back" />"
-		onclick="javascript: relativeRedir('application/handyWorker/list.do');" />
+		onclick="javascript: relativeRedir('application/handyWorker/list.do?fixUpTaskId=${application.fixUpTask.id}');" />
 </security:authorize>
 
 
@@ -167,5 +167,5 @@
 	
 	<input type="button" name="back"
 		value="<spring:message code="application.back" />"
-		onclick="javascript: relativeRedir('application/customer/list.do');" />
+		onclick="javascript: relativeRedir('application/customer/list.do?fixUpTaskId=${application.fixUpTask.id}');" />
 </security:authorize>
