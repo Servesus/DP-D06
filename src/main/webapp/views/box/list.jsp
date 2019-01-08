@@ -50,7 +50,7 @@
 	</display:column>	
 
 	<display:column>
-		<a href="message/customer,handyWorker,referee,administrator/list.do">
+		<a href="message/customer,handyWorker,referee,administrator/list.do?boxId=${row.id}">
   	 		<spring:message code="box.view" /> </a>
 	</display:column>	
 

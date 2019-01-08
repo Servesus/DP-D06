@@ -20,26 +20,25 @@
 	requestURI="${requestURI}" id="row">
 		
 	<spring:message code="message.sender" var="sender" />
-	<display:column property="sender" title="${sender.name}"/>
+	<display:column property="sender" title="${row.sender.name}"/>
 	
 	<spring:message code="message.subject" var="subject" />
 	<display:column property="subject" title="${subject}"/>
 	
-	<spring:message code="message.priority" var="priority" />
+	<spring:message code="message.priority" var="columnTitle" />
+	<display:column property="${columnTitle }" sortable="true">
 	<jstl:choose>
-		<jstl:when test="${message.priority == 0}">
-			priority = "NEUTRAL"
+		<jstl:when test="${row.priority == 0}">
+			<spring:message code="message.neutral"/>
 		</jstl:when>
-		<jstl:when test="${message.priority == -1}">
-			priority = "LOW"
+		<jstl:when test="${row.priority == -1}">
+			<spring:message code="message.low" />
 		</jstl:when>
-		<jstl:when test="${message.priority == 1">
-			priority = "HIGH"
+		<jstl:when test="${row.priority == 1}">
+			<spring:message code="message.high"/>
 		</jstl:when>
 	</jstl:choose>
-	<display:column property="priority" title="${priority}"/>
-	
-		<display:column property="subject" title="${subject}"/>
+	</display:column>
 	
 	<spring:message code="message.sendDate" var="sendDate" />
 	<display:column property="sendDate" title="${sendDate}"/>
@@ -47,7 +46,7 @@
 		
 
 	<display:column>
-		<a href="message/view.do"> <!-- TODO -->
+		<a href="message/customer,handyWorker,referee,administrator/show.do?messageId=${row.id}">
   	 		<spring:message code="message.view" /> </a>
 	</display:column>
 	<display:column>
