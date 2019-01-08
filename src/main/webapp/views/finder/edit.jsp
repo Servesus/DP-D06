@@ -43,7 +43,7 @@
 		<spring:message code="finder.update.category" />:
 	</form:label>
 	<form:select path="categoryName">
-		<form:option value="0" label="----" />		
+		<form:option value="" label="----" />		
 		<form:options items="${cNames}"
 			/>
 	</form:select>
@@ -54,14 +54,14 @@
 		<spring:message code="finder.update.warranty" />:
 	</form:label>
 	<form:select path="warrantyTitle">
-		<form:option value="0" label="----" />		
+		<form:option value="" label="----" />		
 		<form:options items="${wTitles}"
 			/>
 	</form:select>
 	<form:errors cssClass="error" path="warrantyTitle" />
 	<br />
 	
-	<input type="submit" name="confirm"
+	<input type="submit" name="save"
 		value="<spring:message code="finder.update.update" />" />&nbsp; 
 	
 	<input type="button" name="cancel"

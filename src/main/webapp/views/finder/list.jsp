@@ -9,20 +9,20 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<display:table pagesize="5" class="FixUpTask" name="fixUpTaksFinder" requestURI="finder/handyWorker/list.do" id="row">
+<display:table pagesize="5" class="displaytag" name="fixUpTask" requestURI="finder/handyWorker/list.do" id="row">
 	
 	<!-- Action links -->
 
-	<display:column> <a href="fixUpTask/findOne.do?fixUpTaskId=${row.id}">
-	<spring:message code="fixUpTask.findOne" /></a> </display:column>
+	<!--<display:column> <a href="fixUpTask/findOne.do?fixUpTaskId=${row.id}">
+	<spring:message code="fixUpTask.findOne" /></a> </display:column>--!>
 	
 	<!-- Attributes -->
 	
 	<spring:message code="fixUpTask.ticker" var="ticker" />
-	<display:column property="ticker" title="${ticker}"/>
+	<display:column property="ticker" title="${finder.fixUpTask.ticker}"/>
 	
 	<spring:message code="fixUpTask.startDate" var="startDate" />
-	<display:column property="startDate" title="${startDate}" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	<display:column property="startDate" title="${finder.fixUpTask.startDate}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
 </display:table>
 </security:authorize>
