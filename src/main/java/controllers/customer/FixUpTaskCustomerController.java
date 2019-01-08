@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -16,21 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
-import services.ApplicationService;
 import services.CategoryService;
-import services.ComplaintService;
 import services.CustomerService;
 import services.FixUpTaskService;
-import services.PhaseService;
 import services.WarrantyService;
 import controllers.AbstractController;
 import domain.Actor;
-import domain.Application;
 import domain.Category;
-import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
-import domain.Phase;
 import domain.Warranty;
 
 @Controller
@@ -47,12 +42,6 @@ public class FixUpTaskCustomerController extends AbstractController {
 	private WarrantyService		warrantyService;
 	@Autowired
 	private CategoryService		categoryService;
-	@Autowired
-	private ComplaintService	complaintService;
-	@Autowired
-	private PhaseService		phaseService;
-	@Autowired
-	private ApplicationService	applicationService;
 
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
@@ -76,11 +65,13 @@ public class FixUpTaskCustomerController extends AbstractController {
 	@RequestMapping(value = "/findOne", method = RequestMethod.GET)
 	public ModelAndView findAll(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
+		final String language = LocaleContextHolder.getLocale().getLanguage();
 		final FixUpTask fix = this.fixUpTaskService.findOne(fixUpTaskId);
 		Assert.notNull(fix);
 
 		result = new ModelAndView("fixUpTask/customer/findOne");
 		result.addObject("fixUpTask", fix);
+		result.addObject("lang", language);
 		return result;
 	}
 
@@ -138,19 +129,10 @@ public class FixUpTaskCustomerController extends AbstractController {
 		warranties = this.warrantyService.findAll();
 		Collection<Category> categories;
 		categories = this.categoryService.findAll();
-		Collection<Complaint> complaints;
-		complaints = this.complaintService.findAll();
-		Collection<Phase> phases;
-		phases = this.phaseService.findAll();
-		Collection<Application> applications;
-		applications = this.applicationService.findAll();
 		result = new ModelAndView("fixUpTask/customer/create");
 		result.addObject("message", messageCode);
 		result.addObject("warranties", warranties);
 		result.addObject("categories", categories);
-		result.addObject("complaints", complaints);
-		result.addObject("phases", phases);
-		result.addObject("applications", applications);
 		result.addObject("fixUpTask", fix);
 		return result;
 	}
