@@ -21,6 +21,9 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="ticker" />
+	<form:hidden path="phases" />
+	<form:hidden path="applications" />
+	<form:hidden path="complaints" />
  
  	<form:label path="startDate">
 		<spring:message code="fixUpTask.startDate" />:
@@ -75,34 +78,6 @@
 		<form:options items="${categories}" itemValue="id" itemLabel="nameEN"/>
 	</form:select>
 	
-	<br />
-	
-	<form:label path="complaints">
-		<spring:message code="fixUpTask.complaints" />:
-	</form:label>
-	<form:select id="complaints" path="complaints">	
-		<form:options items="${complaints}" itemValue="id" itemLabel="description" />
-	</form:select>
-	
-	<br />
-	
-	<form:label path="applications">
-		<spring:message code="fixUpTask.applications" />:
-	</form:label>
-	<form:select id="applications" path="applications">	
-		<form:options items="${applications}" itemValue="id" itemLabel="price" />
-	</form:select>
-	
-	<br />
-	
-	<form:label path="phases">
-		<spring:message code="fixUpTask.phases" />:
-	</form:label>
-	<form:select id="phases" path="phases">
-				
-		<form:options items="${phases}" itemValue="id" itemLabel="title" />
-	</form:select>
-	<form:errors cssClass="error" path="phases" />
 	<br />
 	
 	<input type="submit" name="save"
