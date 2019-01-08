@@ -17,7 +17,7 @@
 
 <body>
 <display:table pagesize="5" class="displaytag" name="messages" 
-	requestURI="message/customer,handyWorker,referee,administrator/list.do" id="row">
+	requestURI="${requestURI}" id="row">
 		
 	<spring:message code="message.sender" var="sender" />
 	<display:column property="sender" title="${sender.name}"/>
