@@ -13,6 +13,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
 import domain.Category;
+import domain.FixUpTask;
 
 @Service
 @Transactional
@@ -20,13 +21,14 @@ public class CategoryService {
 
 	//Managed Repository
 	@Autowired
-	private CategoryRepository		categoryRepository;
+	private CategoryRepository	categoryRepository;
 
 	//Supporting services
 	@Autowired
-	private ActorService			actorService;
+	private ActorService		actorService;
+
 	@Autowired
-	private AdministratorService	administratorService;
+	private FixUpTaskService	fixUpTaskService;
 
 
 	//Simple CRUD methods
@@ -87,12 +89,14 @@ public class CategoryService {
 		Assert.isTrue(a.getUserAccount().getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 		Assert.notNull(c);
 
-		Assert.notNull(c);
-		if (!(c.getChilds().isEmpty())) {
-			for (final Category c1 : c.getChilds())
-				this.categoryRepository.delete(c1);
-			this.categoryRepository.delete(c);
-		} else
-			this.categoryRepository.delete(c);
+		for (final Category child : c.getChilds()) {
+			final Category parent = c.getParents();
+			child.setParents(parent);
+		}
+		for (final FixUpTask f : this.fixUpTaskService.findAll())
+			if (f.getCategory().equals(c))
+				f.setCategory(c.getParents());
+
+		this.categoryRepository.delete(c);
 	}
 }
