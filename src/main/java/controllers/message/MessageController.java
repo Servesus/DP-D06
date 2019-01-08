@@ -32,7 +32,10 @@ public class MessageController {
 
 		messages = this.boxService.findOne(boxId).getMessages();
 
-		result = new ModelAndView();
+		result = new ModelAndView("message/customer,handyWorker,referee,administrator/list");
+
+		result.addObject("messages", messages);
+		result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/list.do");
 
 		return result;
 	}
