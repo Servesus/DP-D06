@@ -12,7 +12,6 @@ import repositories.CategoryRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
-import domain.Administrator;
 import domain.Category;
 
 @Service
@@ -64,15 +63,9 @@ public class CategoryService {
 		Assert.isTrue(a.getUserAccount().getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 		Assert.isTrue(c.getNameEN() != "CATEGORY");
 		Assert.notNull(c);
-
-		Administrator admin;
-		admin = this.administratorService.findOne(a.getId());
 		Category result;
 		if (c.getId() == 0) {
 			result = this.categoryRepository.save(c);
-			Collection<Category> categories;
-			categories = admin.getCategories();
-			categories.add(result);
 			c.getParents().getChilds().add(result);
 		} else {
 			final Category oldParent = this.categoryRepository.findOne(c.getId()).getParents();
@@ -90,22 +83,10 @@ public class CategoryService {
 	public void delete(final Category c) {
 		Actor a;
 		a = this.actorService.getActorLogged();
-		Collection<Category> categories;
 
 		Assert.isTrue(a.getUserAccount().getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 		Assert.notNull(c);
 
-		Collection<Administrator> admins;
-		admins = this.administratorService.findAll();
-
-		for (final Administrator admin : admins)
-			if (admin.getCategories().contains(c)) {
-
-				categories = admin.getCategories();
-				categories.remove(c);
-				admin.setCategories(categories);
-				this.administratorService.save(admin);
-			}
 		Assert.notNull(c);
 		if (!(c.getChilds().isEmpty())) {
 			for (final Category c1 : c.getChilds())

@@ -1324,12 +1324,6 @@
 				<ref bean="box7"/>
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean = "category"/>
-				<ref bean = "category1"/>
-			</list>
-		</property>	
 	</bean>
 	<!-- Category -->
 	<bean id="category" class = "domain.Category">
