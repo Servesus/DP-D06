@@ -18,15 +18,22 @@
 <body>
 <display:table pagesize="5" class="displaytag" name="messages" 
 	requestURI="${requestURI}" id="row">
+	
 		
 	<spring:message code="message.sender" var="sender" />
-	<display:column property="sender" title="${row.sender.name}"/>
+	<display:column  title="${sender}">
+		${row.sender.name}
+	</display:column>
 	
 	<spring:message code="message.subject" var="subject" />
 	<display:column property="subject" title="${subject}"/>
 	
+	
+	<spring:message code="message.sendDate" var="sendDate" />
+	<display:column property="sendDate" title="${sendDate}"/>
+	
 	<spring:message code="message.priority" var="columnTitle" />
-	<display:column property="${columnTitle }" sortable="true">
+	<display:column title="${columnTitle }" sortable="true">
 	<jstl:choose>
 		<jstl:when test="${row.priority == 0}">
 			<spring:message code="message.neutral"/>
@@ -39,10 +46,6 @@
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
-	
-	<spring:message code="message.sendDate" var="sendDate" />
-	<display:column property="sendDate" title="${sendDate}"/>
-	
 		
 
 	<display:column>
@@ -56,7 +59,7 @@
 
 </display:table>
 
-<input type="button" name="Back" value="<spring:message code="box.list" />"
+<input type="button" name="Back" value="<spring:message code="message.back" />"
 			onclick="javascript: relativeRedir('actor/box/list.do');" />
 </body>
 
