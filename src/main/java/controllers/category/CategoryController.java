@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -30,12 +31,13 @@ public class CategoryController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Category> categories;
-
+		final String language = LocaleContextHolder.getLocale().getLanguage();
 		categories = this.categoryService.findAll();
 
 		result = new ModelAndView("category/administrator/list");
 		result.addObject("category", categories);
 		result.addObject("requestURI", "category/administrator/list.do");
+		result.addObject("lang", language);
 
 		return result;
 	}
@@ -71,6 +73,7 @@ public class CategoryController extends AbstractController {
 			result = this.createEditModelAndView(category);
 		else
 			try {
+
 				this.categoryService.save(category);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
@@ -100,7 +103,8 @@ public class CategoryController extends AbstractController {
 		final Category category = this.categoryService.findOne(categoryId);
 
 		result = new ModelAndView("category/administrator/show");
-		result.addObject("name", category.getName());
+		result.addObject("nameEN", category.getNameEN());
+		result.addObject("nameES", category.getNameEN());
 		result.addObject("parent", category.getParents());
 		result.addObject("childs", category.getChilds());
 
@@ -119,10 +123,12 @@ public class CategoryController extends AbstractController {
 
 		parents = this.categoryService.findAll();
 		parents.remove(category);
+		final String language = LocaleContextHolder.getLocale().getLanguage();
 
 		result = new ModelAndView("category/administrator/edit");
 		result.addObject("category", category);
 		result.addObject("cNames", parents);
+		result.addObject("lang", language);
 		return result;
 	}
 

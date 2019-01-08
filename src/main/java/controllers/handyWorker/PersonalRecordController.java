@@ -39,8 +39,15 @@ public class PersonalRecordController extends AbstractController {
 		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
 
 		personalRecord = hw.getCurricula().getPersonalRecord();
-		if (personalRecord == null)
+		if (personalRecord == null) {
 			personalRecord = this.personalRecordService.create();
+			personalRecord.setEmail(hw.getEmail());
+			personalRecord.setMiddleName(hw.getMiddleName());
+			personalRecord.setName(hw.getName());
+			personalRecord.setPhone(hw.getPhoneNumber());
+			personalRecord.setSurname(hw.getSurname());
+			personalRecord.setPhoto(hw.getPhoto());
+		}
 		result = this.createEditModelAndView(personalRecord);
 
 		return result;
