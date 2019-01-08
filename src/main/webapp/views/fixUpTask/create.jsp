@@ -53,7 +53,7 @@
 	<form:label path="estimatedDate">
 		<spring:message code="fixUpTask.estimatedDate" />:
 	</form:label>
-	<form:input path="estimatedDate" />
+	<form:input path="estimatedDate" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	<form:errors cssClass="error" path="estimatedDate" />
 	<br />
 	
