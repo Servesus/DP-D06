@@ -13,6 +13,7 @@
 <form:form action="category/administrator/edit.do" modelAttribute="category">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="childs"/>
 	
 	<form:label path="nameEN">
 		<spring:message code="category.nameEN"/>
