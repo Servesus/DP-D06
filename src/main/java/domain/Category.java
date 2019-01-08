@@ -17,16 +17,27 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Category extends DomainEntity {
 
 	//Attributes 
-	private String	name;
+	private String	nameEN;
+	private String	nameES;
 
 
 	//Getters and setters
+
 	@NotBlank
-	public String getName() {
-		return this.name;
+	public String getNameEN() {
+		return this.nameEN;
 	}
-	public void setName(final String name) {
-		this.name = name;
+
+	public void setNameEN(final String nameEN) {
+		this.nameEN = nameEN;
+	}
+	@NotBlank
+	public String getNameES() {
+		return this.nameES;
+	}
+
+	public void setNameES(final String nameES) {
+		this.nameES = nameES;
 	}
 
 

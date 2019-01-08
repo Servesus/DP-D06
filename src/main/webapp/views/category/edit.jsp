@@ -14,26 +14,48 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
-	<form:label path="name">
-		<spring:message code="category.name"/>
+	<form:label path="nameEN">
+		<spring:message code="category.nameEN"/>
 	</form:label>
-	<form:input path="name"/>
-	<form:errors cssClass="error" path="name"/>
+	<form:input path="nameEN"/>
+	<form:errors cssClass="error" path="nameEN"/>
 	<br />
 	
-	<form:select path="parents">
-		<form:option value="0" label="----" />		
-		<form:options items="${cNames}" itemValue="name"
+	<form:label path="nameES">
+		<spring:message code="category.nameES"/>
+	</form:label>
+	<form:input path="nameES"/>
+	<form:errors cssClass="error" path="nameES"/>
+	<br />
+	
+	<jstl:if test="${lang == 'en' }">
+	<form:label path="parents">
+		<spring:message code="category.parent"/>
+	</form:label>
+	<form:select path="parents">	
+		<form:options items="${cNames}" itemValue="id" itemLabel="nameEN"
 			/>
 	</form:select>
 	<form:errors cssClass="error" path="parents" />
 	<br />
+	</jstl:if>
 	
+	<jstl:if test="${lang == 'es' }">
+	<form:label path="parents">
+		<spring:message code="category.parent"/>
+	</form:label>
+	<form:select path="parents">	
+		<form:options items="${cNames}" itemValue="id" itemLabel="nameES"
+			/>
+	</form:select>
+	<form:errors cssClass="error" path="parents" />
+	<br />
+	</jstl:if>
 	
 	
 	<input type="submit" name="save"
 		value="<spring:message code="category.save" />" />&nbsp; 
-	<jstl:if test="${warranty.id != 0}">
+	<jstl:if test="${category.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="category.delete" />" />
 	</jstl:if>

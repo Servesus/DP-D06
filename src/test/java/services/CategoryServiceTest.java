@@ -32,10 +32,8 @@ public class CategoryServiceTest extends AbstractTest {
 		super.authenticate("admin1");
 		Category c;
 		c = this.categoryService.create();
-		c.setName("categoryTest");
 
 		Assert.notNull(c);
-		Assert.isTrue(c.getName().equals("categoryTest"));
 		super.authenticate(null);
 	}
 
@@ -47,8 +45,8 @@ public class CategoryServiceTest extends AbstractTest {
 		Collection<Category> categories;
 
 		c = this.categoryService.create();
-		c.setName("categoryTest");
-
+		c.setNameEN("test");
+		c.setNameES("prueba");
 		saved = this.categoryService.save(c);
 		categories = this.categoryService.findAll();
 
@@ -65,7 +63,7 @@ public class CategoryServiceTest extends AbstractTest {
 		id = this.getEntityId("category1");
 		Category c;
 		c = this.categoryService.findOne(id);
-		Assert.isTrue(c.getName().equals("category1"));
+		Assert.notNull(c);
 	}
 
 	@Test
