@@ -1,15 +1,18 @@
 
 package controllers.administrator;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ActorService;
 import services.AdministratorService;
 import controllers.AbstractController;
+import domain.Customer;
+import domain.HandyWorker;
 
 @Controller
 @RequestMapping("administrator")
@@ -17,8 +20,6 @@ public class DashboardAdministratorController extends AbstractController {
 
 	@Autowired
 	private AdministratorService	administratorService;
-	@Autowired
-	private ActorService			actorService;
 
 
 	//Operaciones Dashboard
@@ -56,13 +57,46 @@ public class DashboardAdministratorController extends AbstractController {
 		final Double MinNotesPerRefereeReport = this.administratorService.getStatsNotesPerRefereeReport().get(1);
 		final Double StddevNotesPerRefereeReport = this.administratorService.getStatsNotesPerRefereeReport().get(3);
 		final Double RatioFixUpTaskWithComplaint = this.administratorService.getRatioFixUpTaskWithComplaint();
-		final Double AvgNotes = this.administratorService.getStatsNotes().get(0);
-		final Double SteddevNotes = this.administratorService.getStatsNotes().get(1);
-		final Double MaxNotes = this.administratorService.getStatsNotes().get(2);
-		final Double MinNotes = this.administratorService.getStatsNotes().get(3);
+		final List<Customer> CustomerMoreAcceptedThanAvg = this.administratorService.customerMoreAcceptedThanAvg();
+		final List<HandyWorker> HwMoreAcceptedThanAvg = this.administratorService.getHwMoreAcceptedThanAvg();
+		final List<Customer> Top3CustomersOfComplaints = this.administratorService.getTop3CustomersOfComplaints();
+		final List<HandyWorker> Top3HandyWorkerOfComplaints = this.administratorService.getTop3HandyWorkerOfComplaints();
 
 		result = new ModelAndView("administrator/administrator/dashboard");
 		result.addObject("AvgOfFixUpTasksPerUser", AvgOfFixUpTasksPerUser);
+		result.addObject("MinOfFixUpTasksPerUser", MinOfFixUpTasksPerUser);
+		result.addObject("MaxOfFixUpTasksPerUser", MaxOfFixUpTasksPerUser);
+		result.addObject("StddevOfFixUpTasksPerUser", StddevOfFixUpTasksPerUser);
+		result.addObject("AvgApplicationsPerFixUpTask", AvgApplicationsPerFixUpTask);
+		result.addObject("MaxApplicationsPerFixUpTask", MaxApplicationsPerFixUpTask);
+		result.addObject("MinApplicationsPerFixUpTask", MinApplicationsPerFixUpTask);
+		result.addObject("StddevApplicationsPerFixUpTask", StddevApplicationsPerFixUpTask);
+		result.addObject("AvgMaxPricePerFixUpTask", AvgMaxPricePerFixUpTask);
+		result.addObject("MaxMaxPricePerFixUpTask", MaxMaxPricePerFixUpTask);
+		result.addObject("MinMaxPricePerFixUpTask", MinMaxPricePerFixUpTask);
+		result.addObject("StddevMaxPricePerFixUpTask", StddevMaxPricePerFixUpTask);
+		result.addObject("AvgPriceOfferedOfApplication", AvgPriceOfferedOfApplication);
+		result.addObject("MinPriceOfferedOfApplication", MinPriceOfferedOfApplication);
+		result.addObject("MaxPriceOfferedOfApplication", MaxPriceOfferedOfApplication);
+		result.addObject("StddevPriceOfferedOfApplciation", StddevPriceOfferedOfApplciation);
+		result.addObject("RatioOfPendingApplications", RatioOfPendingApplications);
+		result.addObject("RatioOfAcceptedApplications", RatioOfAcceptedApplications);
+		result.addObject("RatioOfRejectedApplications", RatioOfRejectedApplications);
+		result.addObject("RatioOfPendingApplicationsCanNotChangeStatus", RatioOfPendingApplicationsCanNotChangeStatus);
+		result.addObject("AvgComplaintsPerFixUpTask", AvgComplaintsPerFixUpTask);
+		result.addObject("MaxComplaintsPerFixUpTask", MaxComplaintsPerFixUpTask);
+		result.addObject("MinComplaintsPerFixUpTask", MinComplaintsPerFixUpTask);
+		result.addObject("StddevComplaintsPerFixUpTask", StddevComplaintsPerFixUpTask);
+		result.addObject("AvgNotesPerRefereeReport", AvgNotesPerRefereeReport);
+		result.addObject("MaxNotesPerRefereeReport", MaxNotesPerRefereeReport);
+		result.addObject("MinNotesPerRefereeReport", MinNotesPerRefereeReport);
+		result.addObject("StddevNotesPerRefereeReport", StddevNotesPerRefereeReport);
+		result.addObject("RatioFixUpTaskWithComplaint", RatioFixUpTaskWithComplaint);
+		result.addObject("CustomerMoreAcceptedThanAvg", CustomerMoreAcceptedThanAvg);
+		result.addObject("HwMoreAcceptedThanAvg", HwMoreAcceptedThanAvg);
+		result.addObject("Top3CustomersOfComplaints", Top3CustomersOfComplaints);
+		result.addObject("Top3HandyWorkerOfComplaints", Top3HandyWorkerOfComplaints);
+
 		return result;
 	}
 }
