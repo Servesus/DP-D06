@@ -16,15 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
+import services.ApplicationService;
 import services.CategoryService;
+import services.ComplaintService;
 import services.CustomerService;
 import services.FixUpTaskService;
+import services.PhaseService;
 import services.WarrantyService;
 import controllers.AbstractController;
 import domain.Actor;
+import domain.Application;
 import domain.Category;
+import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
+import domain.Phase;
 import domain.Warranty;
 
 @Controller
@@ -41,6 +47,12 @@ public class FixUpTaskCustomerController extends AbstractController {
 	private WarrantyService		warrantyService;
 	@Autowired
 	private CategoryService		categoryService;
+	@Autowired
+	private ComplaintService	complaintService;
+	@Autowired
+	private PhaseService		phaseService;
+	@Autowired
+	private ApplicationService	applicationService;
 
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
@@ -88,7 +100,7 @@ public class FixUpTaskCustomerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final FixUpTask fixUpTask, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
@@ -102,7 +114,7 @@ public class FixUpTaskCustomerController extends AbstractController {
 			}
 		return result;
 	}
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(@Valid final FixUpTask fixUpTask, final BindingResult binding) {
 		ModelAndView result;
 
@@ -126,12 +138,19 @@ public class FixUpTaskCustomerController extends AbstractController {
 		warranties = this.warrantyService.findAll();
 		Collection<Category> categories;
 		categories = this.categoryService.findAll();
+		Collection<Complaint> complaints;
+		complaints = this.complaintService.findAll();
+		Collection<Phase> phases;
+		phases = this.phaseService.findAll();
+		Collection<Application> applications;
+		applications = this.applicationService.findAll();
 		result = new ModelAndView("fixUpTask/customer/create");
 		result.addObject("message", messageCode);
 		result.addObject("warranties", warranties);
 		result.addObject("categories", categories);
-		result.addObject("complaints", fix.getComplaints());
-		result.addObject("phases", fix.getPhases());
+		result.addObject("complaints", complaints);
+		result.addObject("phases", phases);
+		result.addObject("applications", applications);
 		result.addObject("fixUpTask", fix);
 		return result;
 	}

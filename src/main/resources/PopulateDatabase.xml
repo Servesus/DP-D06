@@ -1961,11 +1961,11 @@
 	<!--FIX_UP_TASK-->
 	<bean id="fixUpTask1" class="domain.FixUpTask">
 		<property name="ticker" value="123228-e63fp6"/>
-		<property name="startDate" value="2018/11/11 8:00"/>
+		<property name="startDate" value="11/11/2018 8:00"/>
 		<property name="description" value="descripcion fix_up_task1" />
 		<property name="address" value="https://monday.com/"/>
 		<property name="maxPrice" value="2500"/>
-		<property name="estimatedDate" value="2018/12/11 8:00"/>
+		<property name="estimatedDate" value="11/12/2018 8:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty1"/>
 		<property name="applications">
@@ -1985,11 +1985,11 @@
 	</bean>
 	<bean id="fixUpTask2" class="domain.FixUpTask">
 		<property name="ticker" value="123238-e63fh6"/>
-		<property name="startDate" value="2018/12/11 9:00"/>
+		<property name="startDate" value="11/12/2018 9:00"/>
 		<property name="description" value="descripcion fix_up_task2" />
 		<property name="address" value="https://monday.com/"/>
 		<property name="maxPrice" value="3500"/>
-		<property name="estimatedDate" value="2018/12/12 8:00"/>
+		<property name="estimatedDate" value="11/12/2018 8:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty2"/>
 		<property name="applications">
@@ -2010,11 +2010,11 @@
 	</bean>
 	<bean id="fixUpTask3" class="domain.FixUpTask">
 		<property name="ticker" value="132138-e63dh8"/>
-		<property name="startDate" value="2018/12/12 10:00"/>
+		<property name="startDate" value="12/12/2018 10:00"/>
 		<property name="description" value="descripcion fix_up_task3" />
 		<property name="address" value="https://monday.com/"/>
 		<property name="maxPrice" value="3400"/>
-		<property name="estimatedDate" value="2018/12/12 13:00"/>
+		<property name="estimatedDate" value="12/12/2018 13:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty3"/>
 		<property name="applications">
@@ -2034,11 +2034,11 @@
 	</bean>
 	<bean id="fixUpTask4" class="domain.FixUpTask">
 		<property name="ticker" value="132138-f63xs6"/>
-		<property name="startDate" value="2018/12/11 12:00"/>
+		<property name="startDate" value="11/12/2018 12:00"/>
 		<property name="description" value="descripcion fix_up_task3" />
 		<property name="address" value="https://monday.com/"/>
 		<property name="maxPrice" value="1500"/>
-		<property name="estimatedDate" value="2018/12/12 14:00"/>
+		<property name="estimatedDate" value="12/12/2018 14:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty4"/>
 		<property name="applications">
@@ -2060,11 +2060,11 @@
 	</bean>
 	<bean id="fixUpTask5" class="domain.FixUpTask">
 		<property name="ticker" value="123898-g63xx6"/>
-		<property name="startDate" value="2018/12/11 15:00"/>
+		<property name="startDate" value="11/12/2018 15:00"/>
 		<property name="description" value="descripcion fix_up_task5" />
 		<property name="address" value="https://monday.com/"/>
 		<property name="maxPrice" value="2000"/>
-		<property name="estimatedDate" value="2018/12/11 16:00"/>
+		<property name="estimatedDate" value="11/12/2018 16:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty5"/>
 		<property name="applications">
