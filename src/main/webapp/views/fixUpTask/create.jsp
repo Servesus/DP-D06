@@ -25,7 +25,7 @@
  	<form:label path="startDate">
 		<spring:message code="fixUpTask.startDate" />:
 	</form:label>
-	<form:input path="startDate" />
+	<form:input path="startDate" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	<form:errors cssClass="error" path="startDate" />
 	<br />
 	
@@ -53,50 +53,54 @@
 	<form:label path="estimatedDate">
 		<spring:message code="fixUpTask.estimatedDate" />:
 	</form:label>
-	<form:input path="estimatedDate" />
+	<form:input path="estimatedDate" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	<form:errors cssClass="error" path="estimatedDate" />
 	<br />
 	
 	<form:label path="warranty">
 		<spring:message code="fixUpTask.warranty" />:
 	</form:label>
-	<form:input path="warranty" />
-	<form:errors cssClass="error" path="warranty" />
+	<form:select id="warranties" path="warranty">
+		<form:option value="0" label="----" />		
+		<form:options items="${warranties}" itemValue="id" itemLabel="title" />
+	</form:select>
+	
 	<br />
 	
 	<form:label path="category">
 		<spring:message code="fixUpTask.category" />:
 	</form:label>
-	<form:input path="category" />
-	<form:errors cssClass="error" path="category" />
-	<br />
-	
-	<form:label path="application">
-		<spring:message code="fixUpTask.application" />:
-	</form:label>
-	<form:select id="applications" path="application">
+	<form:select id="categories" path="category">
 		<form:option value="0" label="----" />		
-		<form:options items="${applications}" itemValue="id" itemLabel="name" />
+		<form:options items="${categories}" itemValue="id" itemLabel="nameEN"/>
 	</form:select>
-	<form:errors cssClass="error" path="applications" />
+	
 	<br />
 	
-	<form:label path="complaint">
-		<spring:message code="fixUpTask.complaint" />:
+	<form:label path="complaints">
+		<spring:message code="fixUpTask.complaints" />:
 	</form:label>
-	<form:select id="complaints" path="complaint">
-		<form:option value="0" label="----" />		
-		<form:options items="${complaints}" itemValue="id" itemLabel="name" />
+	<form:select id="complaints" path="complaints">	
+		<form:options items="${complaints}" itemValue="id" itemLabel="description" />
 	</form:select>
-	<form:errors cssClass="error" path="complaints" />
+	
 	<br />
 	
-	<form:label path="phase">
-		<spring:message code="fixUpTask.phase" />:
+	<form:label path="applications">
+		<spring:message code="fixUpTask.applications" />:
 	</form:label>
-	<form:select id="phases" path="phase">
-		<form:option value="0" label="----" />		
-		<form:options items="${phases}" itemValue="id" itemLabel="name" />
+	<form:select id="applications" path="applications">	
+		<form:options items="${applications}" itemValue="id" itemLabel="price" />
+	</form:select>
+	
+	<br />
+	
+	<form:label path="phases">
+		<spring:message code="fixUpTask.phases" />:
+	</form:label>
+	<form:select id="phases" path="phases">
+				
+		<form:options items="${phases}" itemValue="id" itemLabel="title" />
 	</form:select>
 	<form:errors cssClass="error" path="phases" />
 	<br />

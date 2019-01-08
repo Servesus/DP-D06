@@ -47,9 +47,5 @@
 </display:table>
 
 
-<input type="submit" name="delete"
-			value="<spring:message code="fixUpTask.delete" />"
-			onclick="return confirm('<spring:message code="fixUpTask.confirm.delete" />')" />&nbsp;
-
 <input type="button" name="cancel" value="<spring:message code="fixUpTask.cancel" />"
 			onclick="javascript: relativeRedir('fixUpTask/customer/findAll.do');" />
