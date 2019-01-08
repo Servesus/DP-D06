@@ -104,7 +104,7 @@ public class CategoryController extends AbstractController {
 
 		result = new ModelAndView("category/administrator/show");
 		result.addObject("nameEN", category.getNameEN());
-		result.addObject("nameES", category.getNameEN());
+		result.addObject("nameES", category.getNameES());
 		result.addObject("parent", category.getParents());
 		result.addObject("childs", category.getChilds());
 

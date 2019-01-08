@@ -29,8 +29,6 @@
 	<spring:message code="fixUpTask.description" var="description" />
 	<display:column property="description" title="${description}" sortable="true"/>
 
-	<spring:message code="fixUpTask.id" var="id" />
-	<display:column property="id" title="${id}" sortable="true"/>
 
 <display:column> <a href="fixUpTask/customer/edit.do?fixUpTaskId=${row.id}">
 	<spring:message code="fixUpTask.update" /></a> </display:column>

@@ -527,6 +527,21 @@
 		<property name="body" value="body1"/>
 		<property name="priority" value="1"/>
 	</bean>
+	
+	<bean id="message2" class="domain.Message">
+		<property name="sendDate" value="11/11/2018" />
+		<property name="recipient">
+			<list>
+			<ref bean="admin1"/>
+			</list>
+		</property>
+		<property name="sender" ref="handyWorker1" />
+		<property name="subject" value="subject1"/>
+		<property name="body" value="body1"/>
+		<property name="priority" value="1"/>
+	</bean>
+	
+	
 	<!-- Handy Worker --> 
 		<bean id="handyWorker1" class="domain.HandyWorker">
 		<property name="name" value="handyWorker1" />
@@ -963,6 +978,7 @@
 		</property>
 		<property name="messages">
 			<list>
+			<ref bean="message2"/>
 			</list>
 		</property>
 	</bean>
