@@ -77,7 +77,7 @@ public class Message extends DomainEntity {
 		this.body = body;
 	}
 
-	@Range(min = 0, max = 3)
+	@Range(min = -1, max = 1)
 	public int getPriority() {
 		return this.priority;
 	}

@@ -1,8 +1,6 @@
 
 package controllers.message;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.BoxService;
 import services.MessageService;
-import domain.Message;
+import domain.Box;
 
 @Controller
 @RequestMapping("message/customer,handyWorker,referee,administrator")
@@ -28,13 +26,13 @@ public class MessageController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int boxId) {
 		final ModelAndView result;
-		Collection<Message> messages;
+		Box box;
 
-		messages = this.boxService.findOne(boxId).getMessages();
+		box = this.boxService.findOne(boxId);
 
 		result = new ModelAndView("message/customer,handyWorker,referee,administrator/list");
 
-		result.addObject("messages", messages);
+		result.addObject("messages", box.getMessages());
 		result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/list.do");
 
 		return result;
