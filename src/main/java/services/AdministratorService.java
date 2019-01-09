@@ -316,6 +316,20 @@ public class AdministratorService {
 
 		return result;
 	}
+	//Q16
+	public List<Double> getStatsNotes() {
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
+
+		List<Double> result;
+		result = new ArrayList<Double>();
+		result.add(this.administratorRepository.getAvgNotes());
+		result.add(this.administratorRepository.getSteddevNotes());
+		result.add(this.administratorRepository.getMaxNotes().doubleValue());
+		result.add(this.administratorRepository.getMinNotes().doubleValue());
+		return result;
+	}
 
 	public List<Actor> getSuspicious() {
 		UserAccount userAccount;

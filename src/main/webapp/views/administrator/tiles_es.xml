@@ -21,4 +21,8 @@
 		<put-attribute name="body" value="/views/administrator/edit.jsp" />
 	</definition>
 	
+	<definition name="administrator/administrator/dashboard" extends="master.page">	
+		<put-attribute name="title" value="Operaciones" />
+		<put-attribute name="body" value="/views/administrator/dashboard.jsp" />
+	</definition>
 </tiles-definitions>

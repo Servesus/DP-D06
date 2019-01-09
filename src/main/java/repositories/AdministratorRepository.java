@@ -177,6 +177,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	@Query("select h from HandyWorker h join h.applications a join a.fixUpTask t group by h.id order by t.complaints.size DESC")
 	List<HandyWorker> getTop3HandyWorkerOfComplaints();
 
+	/* Q16 */
 	//The average of the number of notes per referee report
 	@Query("select avg(r.notes.size) from Report r")
 	Double getAvgNotes();

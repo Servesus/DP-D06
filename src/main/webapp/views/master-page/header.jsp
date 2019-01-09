@@ -30,7 +30,8 @@
 				<ul>
 					<li class="arrow"></li>	
 					<li><a href="warranty/administrator/list.do"><spring:message code="master.page.administrator.warranty" /></a></li>
-					<li><a href="category/administrator/list.do"><spring:message code="master.page.administrator.category" /></a></li>				
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.administrator.category" /></a></li>
+					<li><a href="administrator/administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>				
 				</ul>
 			</li>
 		</security:authorize>
