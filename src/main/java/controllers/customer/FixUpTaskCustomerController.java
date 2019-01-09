@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -15,58 +16,62 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import security.LoginService;
+import services.ActorService;
+import services.CategoryService;
 import services.CustomerService;
 import services.FixUpTaskService;
+import services.WarrantyService;
 import controllers.AbstractController;
-import domain.Application;
-import domain.Complaint;
+import domain.Actor;
+import domain.Category;
 import domain.Customer;
 import domain.FixUpTask;
-import domain.Phase;
+import domain.Warranty;
 
 @Controller
-@RequestMapping("/fixUpTask/customer")
+@RequestMapping("fixUpTask/customer")
 public class FixUpTaskCustomerController extends AbstractController {
 
 	@Autowired
 	private FixUpTaskService	fixUpTaskService;
 	@Autowired
 	private CustomerService		customerService;
+	@Autowired
+	private ActorService		actorService;
+	@Autowired
+	private WarrantyService		warrantyService;
+	@Autowired
+	private CategoryService		categoryService;
 
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
 	public ModelAndView findAll() {
 		ModelAndView result;
 		Customer customer;
+		final Actor user = this.actorService.getActorLogged();
 
-		final Collection<FixUpTask> fixUpTasks = new ArrayList<FixUpTask>();
 		Collection<FixUpTask> fixUpTaskCollection = new ArrayList<FixUpTask>();
 
-		customer = this.customerService.findOne(LoginService.getPrincipal().getId());
+		customer = this.customerService.findOne(user.getId());
+		Assert.notNull(customer);
 		fixUpTaskCollection = customer.getFixUpTasks();
-		fixUpTasks.addAll(fixUpTaskCollection);
+		Assert.notNull(fixUpTaskCollection);
 
 		result = new ModelAndView("fixUpTask/customer/findAll");
-		result.addObject("fixUpTasks", fixUpTasks);
+		result.addObject("fixUpTasks", fixUpTaskCollection);
 		return result;
 	}
 
 	@RequestMapping(value = "/findOne", method = RequestMethod.GET)
-	public ModelAndView findAll(@RequestParam final int rowId) {
+	public ModelAndView findAll(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
-		final FixUpTask fix = this.fixUpTaskService.findOne(rowId);
+		final String language = LocaleContextHolder.getLocale().getLanguage();
+		final FixUpTask fix = this.fixUpTaskService.findOne(fixUpTaskId);
+		Assert.notNull(fix);
 
-		result = new ModelAndView("fixUpTask/customer/findAll");
-		result.addObject("fixUpTask.startDate", fix.getStartDate());
-		result.addObject("fixUpTask.description", fix.getDescription());
-		result.addObject("fixUpTask.address", fix.getAddress());
-		result.addObject("fixUpTask.maxPrice", fix.getMaxPrice());
-		result.addObject("fixUpTask.estimatedDate", fix.getEstimatedDate());
-		result.addObject("fixUpTask.category", fix.getCategory());
-		result.addObject("fixUpTask.warranty", fix.getWarranty());
-		result.addObject("fixUpTask.complaints", fix.getComplaints());
-		result.addObject("fixUpTask.phases", fix.getPhases());
+		result = new ModelAndView("fixUpTask/customer/findOne");
+		result.addObject("fixUpTask", fix);
+		result.addObject("lang", language);
 		return result;
 	}
 
@@ -86,7 +91,7 @@ public class FixUpTaskCustomerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final FixUpTask fixUpTask, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
@@ -100,7 +105,7 @@ public class FixUpTaskCustomerController extends AbstractController {
 			}
 		return result;
 	}
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(@Valid final FixUpTask fixUpTask, final BindingResult binding) {
 		ModelAndView result;
 
@@ -118,14 +123,17 @@ public class FixUpTaskCustomerController extends AbstractController {
 		return result;
 	}
 	protected ModelAndView createEditModelAndView(final FixUpTask fix, final String messageCode) {
+
 		final ModelAndView result;
-		final Collection<Application> applications = fix.getApplications();
-		final Collection<Complaint> complaints = fix.getComplaints();
-		final Collection<Phase> phases = fix.getPhases();
+		Collection<Warranty> warranties;
+		warranties = this.warrantyService.findAll();
+		Collection<Category> categories;
+		categories = this.categoryService.findAll();
 		result = new ModelAndView("fixUpTask/customer/create");
-		result.addObject("applications", applications);
-		result.addObject("complaints", complaints);
-		result.addObject("phases", phases);
+		result.addObject("message", messageCode);
+		result.addObject("warranties", warranties);
+		result.addObject("categories", categories);
+		result.addObject("fixUpTask", fix);
 		return result;
 	}
 

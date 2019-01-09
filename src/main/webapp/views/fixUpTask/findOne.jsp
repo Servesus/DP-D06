@@ -18,38 +18,19 @@
 
 
 
+<b><spring:message code="fixUpTask.startDate" /></b> ${fixUpTask.startDate} <br/>
+<b><spring:message code="fixUpTask.description" /></b> ${fixUpTask.description} <br/>
+<b><spring:message code="fixUpTask.address" /></b> ${fixUpTask.address} <br/>
+<b><spring:message code="fixUpTask.maxPrice" /></b> ${fixUpTask.maxPrice} <br/>
+<b><spring:message code="fixUpTask.estimatedDate" /></b> ${fixUpTask.estimatedDate} <br/>
+<b><spring:message code="fixUpTask.warranty" /></b> ${fixUpTask.warranty.title} <br/>
+<b><spring:message code="fixUpTask.category" /></b>
+<jstl:if test="${lang=='es' }">
+			${fixUpTask.category.nameES}
+	</jstl:if>
+	<jstl:if test="${lang=='en' }">
+			${fixUpTask.category.nameEN}
+	</jstl:if>
 
 
-<spring:message code="fixUpTask.startDate" /> ${fixUpTask.startDate} <br/>
-<spring:message code="fixUpTask.description" /> ${fixUpTask.description} <br/>
-<spring:message code="fixUpTask.address" /> ${fixUpTask.address} <br/>
-<spring:message code="fixUpTask.maxPrice" /> ${fixUpTask.maxPrice} <br/>
-<spring:message code="fixUpTask.estimatedDate" /> ${fixUpTask.estimatedDate} <br/>
-<spring:message code="fixUpTask.warranty" /> ${fixUpTask.warranty} <br/>
-<spring:message code="fixUpTask.category" /> ${fixUpTask.category} <br/>
 
-<spring:message code="fixUpTask.applications" />
-<input type="button" name="Applications" value="<spring:message code="fixUpTask.applications" />"
-			onclick="javascript: relativeRedir('application/customer/findAll.do');" />
-
-<spring:message code="fixUpTask.complaints" />
-<display:table name="${fixUpTask.complaints}" id="row">
-<display:column property="moment" titleKey="fixUpTask.complaints.moment" />
-<display:column property="description" titleKey="fixUpTask.complaints.description" />
-<display:column property="customer" titleKey="fixUpTask.complaints.customer" />
-</display:table>
-
-<spring:message code="fixUpTask.phases" />
-<display:table name="${fixUpTask.phases}" id="row">
-<display:column property="title" titleKey="fixUpTask.phases.title" />
-<display:column property="description" titleKey="fixUpTask.phases.description" />
-<display:column property="number" titleKey="fixUpTask.phases.number" />
-</display:table>
-
-
-<input type="submit" name="delete"
-			value="<spring:message code="fixUpTask.delete" />"
-			onclick="return confirm('<spring:message code="fixUpTask.confirm.delete" />')" />&nbsp;
-
-<input type="button" name="cancel" value="<spring:message code="fixUpTask.cancel" />"
-			onclick="javascript: relativeRedir('fixUpTask/customer/findAll.do');" />

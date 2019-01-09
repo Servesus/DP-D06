@@ -123,7 +123,7 @@ public class ApplicationService {
 
 		application.setStatus(1);
 
-		res = this.save(application);
+		res = this.applicationRepository.save(application);
 
 		return res;
 	}
@@ -134,7 +134,21 @@ public class ApplicationService {
 
 		application.setStatus(-1);
 
-		res = this.save(application);
+		res = this.applicationRepository.save(application);
+
+		return res;
+	}
+
+	public Application addComment(final Application application, final String comment) {
+		Assert.notNull(application);
+		Application res;
+		Collection<String> customerComments;
+
+		customerComments = application.getCustomerComments();
+		customerComments.add(comment);
+		application.setCustomerComments(customerComments);
+
+		res = this.applicationRepository.save(application);
 
 		return res;
 	}

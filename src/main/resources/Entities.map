@@ -1,5 +1,13 @@
 #./src/main/resources/Entities.map
+<<<<<<< HEAD
 #Tue Jan 08 13:21:51 CET 2019
+=======
+<<<<<<< HEAD
+#Tue Jan 08 17:38:14 CET 2019
+=======
+#Tue Jan 08 18:38:20 CET 2019
+>>>>>>> jesus
+>>>>>>> 575008b643c47741a5a435cd6d891268f145296a
 message1=3213
 FanInstallation=3170
 educationalRecord2=3149

@@ -90,7 +90,7 @@ public class FinderHandyWorkerController extends AbstractController {
 				this.finderService.save(finder);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(finder, "finder.update.error");
+				result = this.createEditModelAndView(finder, oops.getLocalizedMessage());
 			}
 		return result;
 	}

@@ -18,7 +18,6 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Administrator;
 import domain.Box;
-import domain.Category;
 import domain.Customer;
 import domain.HandyWorker;
 import domain.Profile;
@@ -45,10 +44,8 @@ public class AdministratorService {
 		Authority aut;
 		Administrator result;
 		Collection<Authority> auts;
-		Collection<Category> categories;
 		Collection<Profile> profiles;
 
-		categories = new ArrayList<Category>();
 		profiles = new ArrayList<Profile>();
 
 		userAccount = LoginService.getPrincipal();
@@ -63,7 +60,6 @@ public class AdministratorService {
 		auts.add(aut);
 		nowUserAccount.setAuthorities(auts);
 
-		result.setCategories(categories);
 		result.setProfiles(profiles);
 		result.setUserAccount(nowUserAccount);
 		result.setIsBanned(false);

@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 
 import repositories.FixUpTaskRepository;
 import security.UserAccount;
+import domain.Actor;
 import domain.Application;
 import domain.Complaint;
 import domain.Customer;
@@ -77,16 +78,16 @@ public class FixUpTaskService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER") || userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 
 		Assert.notNull(fixUpTask);
-		if (fixUpTask.getId() == 0) {
-			final FixUpTask result1 = this.fixUpTaskRepository.save(fixUpTask);
-			final Integer idCustomer = this.actorService.getActorLogged().getId();
-			final Customer customer = this.customerService.findOne(idCustomer);
-			final Collection<FixUpTask> f = customer.getFixUpTasks();
-			f.add(result1);
-			customer.setFixUpTasks(f);
-			this.customerService.save(customer);
-		}
 		result = this.fixUpTaskRepository.save(fixUpTask);
+		final Actor a = this.actorService.getActorLogged();
+		final Customer customer = this.customerService.findOne(a.getId());
+		final Collection<FixUpTask> f = customer.getFixUpTasks();
+
+		if (fixUpTask.getId() == 0) {
+			f.add(result);
+			customer.setFixUpTasks(f);
+			//this.customerService.save(customer);
+		}
 		return result;
 	}
 	public void delete(final FixUpTask fixUpTask) {

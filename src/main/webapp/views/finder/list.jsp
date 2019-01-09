@@ -9,7 +9,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<display:table pagesize="5" class="displaytag" name="fixUpTask" requestURI="finder/handyWorker/list.do" id="row">
+<display:table pagesize="5" class="fixUpTask" name="fixUpTasks" requestURI="finder/handyWorker/list.do" id="row">
 	
 	<!-- Action links -->
 
@@ -19,10 +19,10 @@
 	<!-- Attributes -->
 	
 	<spring:message code="fixUpTask.ticker" var="ticker" />
-	<display:column property="ticker" title="${finder.fixUpTask.ticker}"/>
+	<display:column property="ticker" title="${ticker}"/>
 	
 	<spring:message code="fixUpTask.startDate" var="startDate" />
-	<display:column property="startDate" title="${finder.fixUpTask.startDate}" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	<display:column property="startDate" title="${startDate}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
 </display:table>
 </security:authorize>

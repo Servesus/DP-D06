@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -18,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -50,6 +50,7 @@ public class FixUpTask extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -83,7 +84,7 @@ public class FixUpTask extends DomainEntity {
 	public void setMaxPrice(final double maxPrice) {
 		this.maxPrice = maxPrice;
 	}
-
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getEstimatedDate() {
 		return this.estimatedDate;
 	}
@@ -113,7 +114,7 @@ public class FixUpTask extends DomainEntity {
 
 	@Valid
 	@NotNull
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	public Warranty getWarranty() {
 		return this.warranty;
 	}
@@ -124,7 +125,7 @@ public class FixUpTask extends DomainEntity {
 
 	@Valid
 	@NotNull
-	@ManyToOne
+	@ManyToOne(optional = false)
 	public Category getCategory() {
 		return this.category;
 	}
