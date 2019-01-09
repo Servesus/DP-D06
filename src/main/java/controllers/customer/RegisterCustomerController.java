@@ -23,7 +23,7 @@ import domain.FixUpTask;
 import domain.Profile;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("customer")
 public class RegisterCustomerController extends AbstractController {
 
 	@Autowired

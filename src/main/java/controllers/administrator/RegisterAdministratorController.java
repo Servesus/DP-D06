@@ -17,11 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AdministratorService;
 import controllers.AbstractController;
 import domain.Administrator;
-import domain.Category;
 import domain.Profile;
 
 @Controller
-@RequestMapping("/administrator")
+@RequestMapping("administrator")
 public class RegisterAdministratorController extends AbstractController {
 
 	@Autowired
@@ -29,7 +28,7 @@ public class RegisterAdministratorController extends AbstractController {
 
 
 	//Para registrarse como administador, primero un admin llama al create del servicio
-	@RequestMapping(value = "/administrator/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		Administrator administrator;
@@ -41,7 +40,7 @@ public class RegisterAdministratorController extends AbstractController {
 	}
 
 	//Luego hay que rellenar el formulario y guardarlo en la base de datos
-	@RequestMapping(value = "/administrator/create", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Administrator administrator, final BindingResult binding) {
 		ModelAndView result;
 
@@ -57,7 +56,7 @@ public class RegisterAdministratorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/administrator/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int administratorId) {
 		ModelAndView result;
 		Administrator administrator;
@@ -77,14 +76,11 @@ public class RegisterAdministratorController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Administrator administrator, final String messageCode) {
 		ModelAndView result;
-		Collection<Category> categories;
 		Collection<Profile> profiles;
-
-		categories = administrator.getCategories();
 		profiles = administrator.getProfiles();
 
-		result = new ModelAndView("administrator/administrator/create");
-		result.addObject("categories", categories);
+		result = new ModelAndView("administrator/create");
+		result.addObject("administrator", administrator);
 		result.addObject("profiles", profiles);
 		result.addObject("message", messageCode);
 

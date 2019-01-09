@@ -44,6 +44,7 @@
 		<security:intercept-url pattern="/administrator/action-1.do" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/administrator/action-2.do" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/administrator/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/administrator/**" access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/customer/create.do" access="permitAll" />
 		<security:intercept-url pattern="/customer/register.do" access="permitAll" />
@@ -54,7 +55,7 @@
 		<security:intercept-url pattern="/handyWorker/handyWorker/**" access="isAuthenticated()" />
 		
 		<security:intercept-url pattern="/referee/referee/**" access="isAutheticated()" />
-		<security:intercept-url pattern="/referee/administrator" access="hasRole('ADMIN')" />  
+		<security:intercept-url pattern="/referee/administrator/**" access="hasRole('ADMIN')" />  
 
 		<security:intercept-url pattern="/fixUpTask/customer/**" access="hasRole('CUSTOMER')" />  
 		

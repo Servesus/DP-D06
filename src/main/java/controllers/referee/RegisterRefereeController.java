@@ -7,11 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.RefereeService;
@@ -21,7 +19,7 @@ import domain.Referee;
 import domain.Report;
 
 @Controller
-@RequestMapping("/referee")
+@RequestMapping("referee")
 public class RegisterRefereeController extends AbstractController {
 
 	@Autowired
@@ -55,17 +53,17 @@ public class RegisterRefereeController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/referee/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int refereeId) {
-		ModelAndView result;
-		Referee referee;
-
-		referee = this.refereeService.findOne(refereeId);
-		Assert.notNull(referee);
-		result = this.createEditModelAndView(referee);
-
-		return result;
-	}
+	//	@RequestMapping(value = "/referee/edit", method = RequestMethod.GET)
+	//	public ModelAndView edit(@RequestParam final int refereeId) {
+	//		ModelAndView result;
+	//		Referee referee;
+	//
+	//		referee = this.refereeService.findOne(refereeId);
+	//		Assert.notNull(referee);
+	//		result = this.createEditModelAndView(referee);
+	//
+	//		return result;
+	//	}
 
 	protected ModelAndView createEditModelAndView(final Referee referee) {
 		ModelAndView result;
