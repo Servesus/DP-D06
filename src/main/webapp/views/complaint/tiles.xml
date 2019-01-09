@@ -31,10 +31,5 @@
 		<put-attribute name="title" value="Complaint" />
 		<put-attribute name="body" value="/views/complaint/edit.jsp" />
 	</definition>
-	
-	<definition name="complaint/customer/confirm" extends="master.page">
-		<put-attribute name="title" value="Are you sure you want to create this complaint?" />
-		<put-attribute name="body" value="/views/complaint/confirm.jsp" />
-	</definition>
 
 </tiles-definitions>

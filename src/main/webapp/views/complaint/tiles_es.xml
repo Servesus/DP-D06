@@ -32,19 +32,4 @@
 		<put-attribute name="body" value="/views/complaint/edit.jsp" />
 	</definition>
 	
-	<definition name="complaint/customer/confirm" extends="master.page">
-		<put-attribute name="title" value="¿De verdad desea crear esta queja?" />
-		<put-attribute name="body" value="/views/complaint/confirm.jsp" />
-	</definition>
-	
-	<definition name="application/handyWorker/show" extends="master.page">
-		<put-attribute name="title" value="Mostrando Aplicación" />
-		<put-attribute name="body" value="/views/application/show.jsp" />
-	</definition>
-	
-	<definition name="application/customer/show" extends="master.page">
-		<put-attribute name="title" value="Mostrando Aplicación" />
-		<put-attribute name="body" value="/views/application/show.jsp" />
-	</definition>
-	
 </tiles-definitions>

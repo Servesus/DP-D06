@@ -61,8 +61,8 @@ public class ComplaintService {
 	}
 
 	public Complaint findOne(final int complaintId) {
+		Assert.notNull(complaintId);
 		Complaint result;
-		Assert.notNull(this.complaintRepository);
 		result = this.complaintRepository.findOne(complaintId);
 		return result;
 
@@ -78,14 +78,12 @@ public class ComplaintService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER"));
 		Assert.notNull(complaint);
 		if (complaint.getId() == 0) {
-			final Complaint result1 = this.complaintRepository.save(complaint);
+			result = this.complaintRepository.save(complaint);
 			final FixUpTask f = complaint.getFixUpTasks();
 			final Collection<Complaint> c = f.getComplaints();
-			c.add(result1);
-			f.setComplaints(c);
-			this.fixUpTaskService.save(f);
-		}
-		result = this.complaintRepository.save(complaint);
+			c.add(result);
+		} else
+			result = this.complaintRepository.save(complaint);
 		return result;
 	}
 

@@ -64,7 +64,7 @@ public class ComplaintController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/customer/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
 		Complaint complaint;
@@ -78,26 +78,16 @@ public class ComplaintController extends AbstractController {
 	@RequestMapping(value = "/customer/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Complaint complaint, final BindingResult binding) {
 		ModelAndView result;
+
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(complaint);
 		else
 			try {
-				result = new ModelAndView("redirect:confirm.do?=" + complaint.getId());
+				this.complaintService.save(complaint);
+				result = new ModelAndView("redirect:list.do?=" + complaint.getFixUpTasks().getId());
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(complaint, "complaint.commit.error");
 			}
-		return result;
-	}
-
-	@RequestMapping(value = "/customer/confirm", method = RequestMethod.POST, params = "confirm")
-	public ModelAndView confirm(@Valid final Complaint complaint) {
-		ModelAndView result;
-		Complaint confirmed;
-
-		confirmed = this.complaintService.save(complaint);
-
-		result = new ModelAndView("redirect:show.do?=" + confirmed.getId());
-
 		return result;
 	}
 

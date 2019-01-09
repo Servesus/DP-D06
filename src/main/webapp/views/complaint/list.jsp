@@ -27,13 +27,9 @@
 	
 	<spring:message code="complaint.moment" var="moment" />
 	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
-
-	<spring:message code="complaint.ticker" var="ticker" />
-	<display:column property="ticker" title="${ticker}"/>
 	
 	<spring:message code="complaint.description" var="description" />
-	<display:column property="description" title="${description}"
-	sortable="true"/>
+	<display:column property="description" title="${description}"/>
 	
 	<spring:message code="complaint.fixUpTask.id" var="fixUpTasks.id" />
 	<display:column property="fixUpTasks.id" title="${fixUpTasks.id}"/>
