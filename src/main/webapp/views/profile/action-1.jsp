@@ -106,18 +106,7 @@
 <spring:message code="referee.surname" /> ${referee.surname} <br/>
 <spring:message code="referee.email" /> ${referee.email} <br/>
 <spring:message code="referee.phoneNumber" /> ${referee.phoneNumber} <br/>
-<spring:message code="referee.id" /> ${referee.id} <br/>
 
-
-<spring:message code="referee.reports" />
-<display:table name="${referee.reports}" id="row">
-<display:column property="moment" titleKey="referee.reports.moment" />
-<display:column property="description" titleKey="referee.reports.description" />
-<display:column property="attachment" titleKey="referee.reports.attachment" />
-<display:column property="isFinal" titleKey="referee.reports.isFinal" />
-</display:table>
-
-<input type="button" name="Edit PD" value="<spring:message code="referee.editPD" />"
-			onclick="javascript: relativeRedir(referee/edit.do');" />
-
+<a href="referee/referee/edit.do?refereeId=${referee.id}">
+<spring:message code="referee.editPD" /></a>
 </security:authorize>
