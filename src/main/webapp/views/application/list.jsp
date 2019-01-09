@@ -35,7 +35,7 @@
 	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
 	
 	<spring:message code="application.status" var="status" />
-	<display:column property="status" title="${status}">
+	<display:column title="${status}">
 	<jstl:choose>
 		<jstl:when test="${application.status == 1}">
 		<spring:message code="application.accepted"/>
@@ -62,7 +62,7 @@
 	<display:column property="price" title="${price}"/>
 	
 	<spring:message code="application.status" var="status" />
-	<display:column property="status" title="${status}">
+	<display:column title="${status}">
 	<jstl:choose>
 		<jstl:when test="${application.status == 1}">
 		<spring:message code="application.accepted"/>

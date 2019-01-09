@@ -51,6 +51,35 @@ public class ComplaintController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/referee/listSelfAssigned", method = RequestMethod.GET)
+	public ModelAndView listRefereeAssigned() {
+		ModelAndView result;
+		Collection<Complaint> complaints;
+
+		complaints = this.complaintService.getComplaintSelfAssigned();
+
+		result = new ModelAndView("complaint/referee/list");
+		result.addObject("complaints", complaints);
+		result.addObject("requestURI", "complaint/referee/list.do");
+		return result;
+	}
+
+	@RequestMapping(value = "/referee/listAll", method = RequestMethod.GET)
+	public ModelAndView listAll() {
+		ModelAndView result;
+		Collection<Complaint> complaints;
+
+		complaints = this.complaintService.findAll();
+
+		for (final Complaint c : complaints)
+			if (c.getReports().size() > 0)
+				complaints.remove(c);
+		result = new ModelAndView("complaint/referee/list");
+		result.addObject("complaints", complaints);
+		result.addObject("requestURI", "complaint/referee/list.do");
+		return result;
+	}
+
 	@RequestMapping(value = "/customer/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int complaintId) {
 		ModelAndView result;
