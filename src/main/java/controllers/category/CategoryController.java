@@ -2,6 +2,7 @@
 package controllers.category;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -101,12 +102,16 @@ public class CategoryController extends AbstractController {
 	public ModelAndView show(@RequestParam final int categoryId) {
 		ModelAndView result;
 		final Category category = this.categoryService.findOne(categoryId);
+		final List<Category> childs = (List<Category>) category.getChilds();
+
+		final String language = LocaleContextHolder.getLocale().getLanguage();
 
 		result = new ModelAndView("category/administrator/show");
 		result.addObject("nameEN", category.getNameEN());
 		result.addObject("nameES", category.getNameES());
 		result.addObject("parent", category.getParents());
-		result.addObject("childs", category.getChilds());
+		result.addObject("childs", childs);
+		result.addObject("lang", language);
 
 		return result;
 	}
