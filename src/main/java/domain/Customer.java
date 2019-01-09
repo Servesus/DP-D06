@@ -36,7 +36,7 @@ public class Customer extends Actor {
 		this.complaints = complaints;
 	}
 
-	@OneToMany
+	@OneToMany(mappedBy = "customer")
 	public Collection<FixUpTask> getFixUpTasks() {
 		return this.fixUpTasks;
 	}

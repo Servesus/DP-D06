@@ -46,11 +46,6 @@
 	</jstl:choose>
 	</p>
 	
-	<p>
-	<spring:message code="application.handyWorker"/>:
-	<jstl:out value="${application.handyWorker.make}"></jstl:out> 
-	</p>
-	
 	<spring:message code="application.hwComments"/>:
 				<ul>
 					<jstl:forEach items="${application.hwComments}" var="hwComment">

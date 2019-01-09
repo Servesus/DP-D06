@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+
+ * Copyright (C) 2017 Universidad de Sevilla
+ * Author (A) 2012 Rafael Corchuelo (corchu@us.es)
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="complaint/customer/list" extends="master.page">
+		<put-attribute name="title" value="List of Complaints" />
+		<put-attribute name="body" value="/views/complaint/list.jsp" />
+	</definition>
+	
+	<definition name="complaint/customer/show" extends="master.page">
+		<put-attribute name="title" value="Show Complaint" />
+		<put-attribute name="body" value="/views/complaint/show.jsp" />
+	</definition>
+	
+	<definition name="complaint/customer/edit" extends="master.page">
+		<put-attribute name="title" value="Complaint" />
+		<put-attribute name="body" value="/views/complaint/edit.jsp" />
+	</definition>
+	
+	<definition name="complaint/customer/confirm" extends="master.page">
+		<put-attribute name="title" value="Are you sure you want to create this complaint?" />
+		<put-attribute name="body" value="/views/complaint/confirm.jsp" />
+	</definition>
+
+</tiles-definitions>

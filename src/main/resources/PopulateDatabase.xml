@@ -1978,6 +1978,7 @@
 		<property name="estimatedDate" value="11/12/2018 8:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty1"/>
+		<property name="customer" ref="customer1"/>
 		<property name="applications">
 			<list>
 				<ref bean="application1"/>
@@ -2002,6 +2003,7 @@
 		<property name="estimatedDate" value="11/12/2018 8:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty2"/>
+		<property name="customer" ref="customer1"/>
 		<property name="applications">
 			<list>
 				<ref bean="application2"/>
@@ -2027,6 +2029,7 @@
 		<property name="estimatedDate" value="12/12/2018 13:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty3"/>
+		<property name="customer" ref="customer2"/>
 		<property name="applications">
 			<list>
 				<ref bean="application3"/>
@@ -2051,6 +2054,7 @@
 		<property name="estimatedDate" value="12/12/2018 14:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty4"/>
+		<property name="customer" ref="customer2"/>
 		<property name="applications">
 			<list>
 				<ref bean="application5"/>
@@ -2077,6 +2081,7 @@
 		<property name="estimatedDate" value="11/12/2018 16:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty5"/>
+		<property name="customer" ref="customer3"/>
 		<property name="applications">
 			<list>
 				<ref bean="application7"/>

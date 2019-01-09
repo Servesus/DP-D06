@@ -36,7 +36,17 @@ public class FixUpTask extends DomainEntity {
 	private Warranty				warranty;
 	private Category				category;
 	private Collection<Phase>		phases;
+	private Customer				customer;
 
+
+	@ManyToOne
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(final Customer customer) {
+		this.customer = customer;
+	}
 
 	@NotBlank
 	@Column(unique = true)

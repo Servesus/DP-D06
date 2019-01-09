@@ -34,6 +34,7 @@ public class FixUpTaskService {
 	public FixUpTask create() {
 		UserAccount userAccount;
 		userAccount = this.actorService.getActorLogged().getUserAccount();
+		final Customer c = this.customerService.findOne(this.actorService.getActorLogged().getId());
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER"));
 		final FixUpTask result = new FixUpTask();
 		result.setTicker(CurriculaService.generadorDeTickers());
@@ -42,6 +43,7 @@ public class FixUpTaskService {
 		final Collection<Phase> phases = new ArrayList<Phase>();
 		result.setApplications(applications);
 		result.setComplaints(complaints);
+		result.setCustomer(c);
 		result.setPhases(phases);
 		return result;
 	}

@@ -31,7 +31,7 @@
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}"/>
 	
-	<spring:message code="application.handyWorker.make" var="make" />
+	<spring:message code="application.handyWorker.make" var="handyWorker.make" />
 	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
 	
 	<spring:message code="application.status" var="status" />
@@ -60,9 +60,6 @@
 
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}"/>
-	
-	<spring:message code="application.handyWorker.make" var="make" />
-	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
 	
 	<spring:message code="application.status" var="status" />
 	<display:column property="status" title="${status}">

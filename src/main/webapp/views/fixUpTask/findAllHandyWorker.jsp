@@ -29,16 +29,12 @@
 
 	<spring:message code="fixUpTask.id" var="id" />
 	<display:column property="id" title="${id}" sortable="false"/>
+	<spring:message code="handyWorker.customers" var="customer"/>
+	<display:column title="${customer }">
+	 <a href="fixUpTask/handyWorker/handySeeCustomer.do?customerId=${row.customer.id}"> ${row.customer.name }</a>
+	</display:column>
 
 </display:table>
-
-<input type="button" name="relationships"
-		value="<spring:message code="handyWorker.relationships" />"
-		onclick="javascript: relativeRedir('fixUpTask/handyWorker/relationships.do');" />
-		
-<input type="button" name="customers"
-		value="<spring:message code="handyWorker.customers" />"
-		onclick="javascript: relativeRedir('fixUpTask/handyWorker/customersHandyWorker.do');" />
 		
 </body>
 </security:authorize>
