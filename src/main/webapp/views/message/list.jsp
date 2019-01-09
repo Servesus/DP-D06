@@ -21,16 +21,16 @@
 	
 		
 	<spring:message code="message.sender" var="sender" />
-	<display:column  title="${sender}">
+	<display:column  title="${sender}" sortable="true">
 		${row.sender.name}
 	</display:column>
 	
 	<spring:message code="message.subject" var="subject" />
-	<display:column property="subject" title="${subject}"/>
+	<display:column property="subject" title="${subject}" sortable="true"/>
 	
 	
 	<spring:message code="message.sendDate" var="sendDate" />
-	<display:column property="sendDate" title="${sendDate}"/>
+	<display:column property="sendDate" title="${sendDate}" sortable="true"/>
 	
 	<spring:message code="message.priority" var="columnTitle" />
 	<display:column title="${columnTitle }" sortable="true">
@@ -53,14 +53,19 @@
   	 		<spring:message code="message.view" /> </a>
 	</display:column>
 	<display:column>
-		<a href="box/message/delete.do"> <!-- TODO -->
+		<a href="message/customer,handyWorker,referee,administrator/edit.do?messageId=${row.id}"> <!-- TODO -->
   	 		<spring:message code="message.delete" /> </a>
 	</display:column>		
 
 </display:table>
 
 <input type="button" name="Back" value="<spring:message code="message.back" />"
-			onclick="javascript: relativeRedir('actor/box/list.do');" />
+			onclick="javascript: relativeRedir('box/customer,handyWorker,referee,administrator/list.do');" />
+			
+<input type="button" name="New Message" value="<spring:message code="message.create" />"
+			onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/create.do');" />
 </body>
+
+
 
 </html>
