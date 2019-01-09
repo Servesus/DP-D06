@@ -17,24 +17,24 @@
        
 <tiles-definitions>
 
-<definition name="application/handyWorker/edit" extends="master.page">	
-		<put-attribute name="title" value="Aplicación" />
-		<put-attribute name="body" value="/views/application/edit.jsp" />
+<definition name="complaint/customer/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de Quejas" />
+		<put-attribute name="body" value="/views/complaint/list.jsp" />
 	</definition>
 	
-	<definition name="application/customer/addComment" extends="master.page">	
-		<put-attribute name="title" value="Añadir nuevo comentario" />
-		<put-attribute name="body" value="/views/application/addComment.jsp" />
+	<definition name="complaint/customer/show" extends="master.page">	
+		<put-attribute name="title" value="Queja" />
+		<put-attribute name="body" value="/views/complaint/show.jsp" />
 	</definition>
 	
-	<definition name="application/customer/list" extends="master.page">
-		<put-attribute name="title" value="Lista de todas las Aplicaciones" />
-		<put-attribute name="body" value="/views/application/list.jsp" />
+	<definition name="complaint/customer/edit" extends="master.page">
+		<put-attribute name="title" value="Queja" />
+		<put-attribute name="body" value="/views/complaint/edit.jsp" />
 	</definition>
 	
-	<definition name="application/handyWorker/list" extends="master.page">
-		<put-attribute name="title" value="Lista de todas las Aplicaciones" />
-		<put-attribute name="body" value="/views/application/list.jsp" />
+	<definition name="complaint/customer/confirm" extends="master.page">
+		<put-attribute name="title" value="¿De verdad desea crear esta queja?" />
+		<put-attribute name="body" value="/views/complaint/confirm.jsp" />
 	</definition>
 	
 	<definition name="application/handyWorker/show" extends="master.page">

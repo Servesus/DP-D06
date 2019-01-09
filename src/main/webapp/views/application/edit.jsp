@@ -8,7 +8,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('CUSTOMER')">
+<security:authorize access="hasRole('HANDYWORKER')">
 <form:form action ="application/handyWorker/edit.do" modelAttribute="application">
 	
 	<form:hidden path="id" />
@@ -18,14 +18,6 @@
 	<form:hidden path="fixUpTask" />
 	<form:hidden path="status"/>
 	<form:hidden path="customerComments"/>
-	
-	
-	<form:label path="diplomasTitle">
-		<spring:message code="educationalRecord.title"/>
-	</form:label>
-	<form:input path="diplomasTitle"/>
-	<form:errors cssClass="error" path="diplomasTitle"/>
-	<br />
 	
 	<form:label path="price">
 	<spring:message code="application.price"/>
@@ -41,7 +33,7 @@
 	<form:errors cssClass="error" path="hwComments" />
 	<br />
 	
-	<input type="submit" name="save"
+	<input type="submit" name="saveHandyWorker"
 		value="<spring:message code="application.create" />" />&nbsp; 
 	
 	<input type="button" name="back"

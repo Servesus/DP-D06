@@ -164,6 +164,11 @@
 	value="<spring:message code="application.newComment" />"
 	onclick="javascript: relativeRedir('application/customer/edit.do?applicationId=${application.id}');"/>
 	</jstl:if>
+	<jstl:if test="${application.status == -1}">
+	<input type= button name="newComment"
+	value="<spring:message code="application.newComment" />"
+	onclick="javascript: relativeRedir('application/customer/edit.do?applicationId=${application.id}');"/>
+	</jstl:if>
 	
 	<input type="button" name="back"
 		value="<spring:message code="application.back" />"

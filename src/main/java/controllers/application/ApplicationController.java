@@ -133,12 +133,12 @@ public class ApplicationController extends AbstractController {
 
 		result = new ModelAndView("/application/customer/edit");
 		result.addObject("application", commentAdded);
-		result.addObject("requestURI", "application/customer/edit.do?" + application.getId());
+		result.addObject("requestURI", "application/customer/edit.do");
 
 		return result;
 	}
 
-	@RequestMapping(value = "/handyWorker/save", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/handyWorker/save", method = RequestMethod.POST, params = "saveHandyWorker")
 	public ModelAndView saveHandyWorker(@Valid final Application application, final BindingResult binding) {
 		ModelAndView result;
 		final FixUpTask fixUpTask = application.getFixUpTask();
@@ -147,7 +147,7 @@ public class ApplicationController extends AbstractController {
 		else
 			try {
 				this.applicationService.save(application);
-				result = new ModelAndView("redirect:application/handyWorker/show.do?" + fixUpTask.getId());
+				result = new ModelAndView("redirect:application/handyWorker/show.do?=" + fixUpTask.getId());
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndViewHandyWorker(application, "application.commit.error");
 			}
