@@ -13,10 +13,10 @@
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="rangeStart" />
-	<form:hidden path="rangeFinish" />
 	<form:hidden path="lastUpdate"/>
 	<form:hidden path="fixUpTask"/>
+	
+	${messageCode}
 
 	<form:label path="singleKeyWord">
 		<spring:message code="finder.update.keyword" />:
@@ -26,24 +26,38 @@
 	<br />
 	
 	<form:label path="dateStartRange">
-		<spring:message code="finder.update.startdate" />:
+		<spring:message code="finder.update.daterange" />:
+		<spring:message code="finder.update.between"/>
 	</form:label>
 	<form:input path="dateStartRange" />
 	<form:errors cssClass="error" path="dateStartRange" />
-	<br />
 	
 	<form:label path="dateFinishRange">
-		<spring:message code="finder.update.finishdate" />:
+		<spring:message code="finder.update.and" />
 	</form:label>
 	<form:input path="dateFinishRange" />
 	<form:errors cssClass="error" path="dateFinishRange" />
+	<br />
+	
+	<form:label path="rangeStart">
+		<spring:message code="finder.update.pricerange" />:
+		<spring:message code="finder.update.between"/>
+	</form:label>
+	<form:input path="rangeStart" />
+	<form:errors cssClass="error" path="rangeStart" />
+	
+	<form:label path="rangeFinish">
+		<spring:message code="finder.update.and" />
+	</form:label>
+	<form:input path="rangeFinish" />
+	<form:errors cssClass="error" path="rangeFinish" />
 	<br />
 	 
 	<form:label path="categoryName">
 		<spring:message code="finder.update.category" />:
 	</form:label>
 	<form:select path="categoryName">
-		<form:option value="0" label="----" />		
+		<form:option value="" label="----" />		
 		<form:options items="${cNames}"
 			/>
 	</form:select>
@@ -54,14 +68,14 @@
 		<spring:message code="finder.update.warranty" />:
 	</form:label>
 	<form:select path="warrantyTitle">
-		<form:option value="0" label="----" />		
+		<form:option value="" label="----" />		
 		<form:options items="${wTitles}"
 			/>
 	</form:select>
 	<form:errors cssClass="error" path="warrantyTitle" />
 	<br />
 	
-	<input type="submit" name="confirm"
+	<input type="submit" name="save"
 		value="<spring:message code="finder.update.update" />" />&nbsp; 
 	
 	<input type="button" name="cancel"

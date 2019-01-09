@@ -4,7 +4,9 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,7 @@ public class FinderService {
 
 	public Finder save(Finder finder) {
 		Assert.notNull(finder);
-		final Collection<FixUpTask> fixUps = finder.getFixUpTask();
+		final Set<FixUpTask> fixUps = new HashSet<FixUpTask>();
 		if (finder.getSingleKeyWord() != null && finder.getSingleKeyWord() != "") {
 			final Collection<FixUpTask> fixUpTasks = this.finderRepository.getFixUpTasksByKeyWord(finder.getSingleKeyWord());
 			fixUps.addAll(fixUpTasks);
@@ -54,7 +56,9 @@ public class FinderService {
 			fixUps.addAll(fixUpTasks);
 		}
 		if (finder.getRangeStart() != null && finder.getRangeFinish() != null) {
-			final Collection<FixUpTask> fixUpTasks = this.finderRepository.getFixUpTasksByPriceRange(finder.getRangeStart(), finder.getRangeFinish());
+			final Integer minPrice = finder.getRangeStart();
+			final Integer maxPrice = finder.getRangeFinish();
+			final Collection<FixUpTask> fixUpTasks = this.finderRepository.getFixUpTasksByPriceRange(minPrice * 1.0, maxPrice * 1.0);
 			fixUps.addAll(fixUpTasks);
 		}
 		if (finder.getCategoryName() != null && finder.getCategoryName() != "") {

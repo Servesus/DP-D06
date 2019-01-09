@@ -8,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -51,10 +52,13 @@ public class FinderHandyWorkerController extends AbstractController {
 		Collection<FixUpTask> fixUpTasks;
 		final Actor user = this.actorService.getActorLogged();
 		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
-		fixUpTasks = hw.getFinder().getFixUpTask();
+		Finder finder;
+		finder = hw.getFinder();
+		fixUpTasks = finder.getFixUpTask();
 		//meterlo en result
 		result = new ModelAndView("finder/handyWorker/list");
 		result.addObject("fixUpTasks", fixUpTasks);
+		result.addObject("finder", finder);
 		result.addObject("requestURI", "finder/handyWorker/list.do");
 		//return
 		return result;
@@ -84,9 +88,9 @@ public class FinderHandyWorkerController extends AbstractController {
 		else
 			try {
 				this.finderService.save(finder);
-				result = new ModelAndView("redirect:/");
+				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(finder, "finder.update.error");
+				result = this.createEditModelAndView(finder, oops.getLocalizedMessage());
 			}
 		return result;
 	}
@@ -105,21 +109,27 @@ public class FinderHandyWorkerController extends AbstractController {
 
 		//fixUpTasks = finder.getFixUpTask();
 		final List<Category> allCategories = (List<Category>) this.categoryService.findAll();
-		final List<String> allCategoriesNames = new ArrayList<String>();
-		for (int i = 0; i < allCategories.size(); i++)
-			allCategoriesNames.add(allCategories.get(i).getName());
+		final List<String> allCategoriesNamesES = new ArrayList<String>();
+		final List<String> allCategoriesNamesEN = new ArrayList<String>();
+		for (int i = 0; i < allCategories.size(); i++) {
+			allCategoriesNamesES.add(allCategories.get(i).getNameES());
+			allCategoriesNamesEN.add(allCategories.get(i).getNameEN());
+		}
 		final List<Warranty> allWarranties = (List<Warranty>) this.warrantyService.findAll();
 		final List<String> allWarrantiesTitles = new ArrayList<String>();
 		for (int i = 0; i < allWarranties.size(); i++)
 			allWarrantiesTitles.add(allWarranties.get(i).getTitle());
+		final String language = LocaleContextHolder.getLocale().getLanguage();
 
 		result = new ModelAndView("finder/handyWorker/edit");
 		result.addObject("finder", finder);
-		result.addObject("cNames", allCategoriesNames);
+		if (language.equals("es"))
+			result.addObject("cNames", allCategoriesNamesES);
+		else if (language.equals("en"))
+			result.addObject("cNames", allCategoriesNamesEN);
 		result.addObject("wTitles", allWarrantiesTitles);
 		result.addObject("messageCode", messageCode);
 
 		return result;
 	}
-
 }
