@@ -21,7 +21,7 @@ import domain.Referee;
 import domain.Report;
 
 @Controller
-@RequestMapping("/referee")
+@RequestMapping("referee")
 public class RegisterRefereeController extends AbstractController {
 
 	@Autowired
@@ -62,7 +62,8 @@ public class RegisterRefereeController extends AbstractController {
 
 		referee = this.refereeService.findOne(refereeId);
 		Assert.notNull(referee);
-		result = this.createEditModelAndView(referee);
+		result = new ModelAndView("referee/referee/edit");
+		result.addObject("referee", referee);
 
 		return result;
 	}

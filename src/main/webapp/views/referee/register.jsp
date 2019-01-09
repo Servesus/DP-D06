@@ -15,9 +15,8 @@
 
 </head>
 <body>
-<security:authorize access="hasRole('REFEREE')">
-<spring:message code="referee.firstMessage" />
-<form:form action="referee/referee/edit.do" modelAttribute="referee">
+<spring:message code="administrador.firstMessage" />
+<form:form action="referee/administrator/create.do" modelAttribute="referee">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -28,6 +27,22 @@
 	<form:hidden path="userAccount.authorities"/>
 	<form:hidden path="reports"/>
  
+ 	
+ 	<form:label path="userAccount.username">
+		<spring:message code="referee.username" />*:
+	</form:label>
+	<form:input path="userAccount.username" />
+	<form:errors cssClass="error" path="userAccount.username" />
+	<br />
+	
+	<form:label path="userAccount.password">
+		<spring:message code="referee.password" />*:
+	</form:label>
+	<form:password path="userAccount.password" />
+	<form:errors cssClass="error" path="userAccount.password" />
+	<br />
+	
+	
 	<form:label path="name">
 		<spring:message code="referee.name" />*:
 	</form:label>
@@ -80,12 +95,11 @@
 	<input type="submit" name="save"
 		value="<spring:message code="referee.save" />" />&nbsp; 
 	
-		<input type="button" name="back"
+		<input type="button" name="cancel"
 		value="<spring:message code="referee.back" />"
-		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
+		onclick="javascript: relativeRedir('/');" />
 	<br />
  	
 </form:form>
-</security:authorize>
 </body>
 </html>

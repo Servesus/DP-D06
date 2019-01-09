@@ -22,7 +22,17 @@
 	</definition>
 	
 	<definition name="administrator/administrator/dashboard" extends="master.page">	
-		<put-attribute name="title" value="Operaciones" />
+		<put-attribute name="title" value="Tablero" />
 		<put-attribute name="body" value="/views/administrator/dashboard.jsp" />
+	</definition>
+	
+	<definition name="administrator/create" extends="master.page">	
+		<put-attribute name="title" value="Registro" />
+		<put-attribute name="body" value="/views/administrator/register.jsp" />
+	</definition>
+	
+	<definition name="administrator/createReferee" extends="master.page">	
+		<put-attribute name="title" value="Registro" />
+		<put-attribute name="body" value="/views/administrator/registerReferee.jsp" />
 	</definition>
 </tiles-definitions>

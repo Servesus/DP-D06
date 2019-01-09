@@ -15,9 +15,8 @@
 
 </head>
 <body>
-<security:authorize access="hasRole('REFEREE')">
-<spring:message code="referee.firstMessage" />
-<form:form action="referee/referee/edit.do" modelAttribute="referee">
+<spring:message code="administrador.firstMessage" />
+<form:form action="administrator/create.do" modelAttribute="administrator">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -26,66 +25,80 @@
 	<form:hidden path="isSuspicious" />
 	<form:hidden path="isBanned"/>
 	<form:hidden path="userAccount.authorities"/>
-	<form:hidden path="reports"/>
  
+ 	
+ 	<form:label path="userAccount.username">
+		<spring:message code="administrator.username" />*:
+	</form:label>
+	<form:input path="userAccount.username" />
+	<form:errors cssClass="error" path="userAccount.username" />
+	<br />
+	
+	<form:label path="userAccount.password">
+		<spring:message code="administrator.password" />*:
+	</form:label>
+	<form:password path="userAccount.password" />
+	<form:errors cssClass="error" path="userAccount.password" />
+	<br />
+	
+	
 	<form:label path="name">
-		<spring:message code="referee.name" />*:
+		<spring:message code="administrator.name" />*:
 	</form:label>
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
 	<br />
 	
 	<form:label path="middleName">
-		<spring:message code="referee.middleName" />:
+		<spring:message code="administrator.middleName" />:
 	</form:label>
 	<form:input path="middleName" />
 	<form:errors cssClass="error" path="middleName" />
 	<br />
 	
 	<form:label path="surname">
-		<spring:message code="referee.surname" />*:
+		<spring:message code="administrator.surname" />*:
 	</form:label>
 	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
 	<br />
 	
 	<form:label path="photo">
-		<spring:message code="referee.photo" />:
+		<spring:message code="administrator.photo" />:
 	</form:label>
 	<form:input path="photo" />
 	<form:errors cssClass="error" path="photo" />
 	<br />
 	
 	<form:label path="email">
-		<spring:message code="referee.email" />:
+		<spring:message code="administrator.email" />:
 	</form:label>
 	<form:input path="email" />
 	<form:errors cssClass="error" path="email" />
 	<br />
 	
 	<form:label path="phoneNumber">
-		<spring:message code="referee.phoneNumber" />:
+		<spring:message code="administrator.phoneNumber" />:
 	</form:label>
 	<form:input path="phoneNumber" />
 	<form:errors cssClass="error" path="phoneNumber" />
 	<br />
 	
 	<form:label path="address">
-		<spring:message code="referee.address" />:
+		<spring:message code="administrator.address" />:
 	</form:label>
 	<form:input path="address" />
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="referee.save" />" />&nbsp; 
+		value="<spring:message code="administrator.save" />" />&nbsp; 
 	
-		<input type="button" name="back"
-		value="<spring:message code="referee.back" />"
-		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
+		<input type="button" name="cancel"
+		value="<spring:message code="administrator.back" />"
+		onclick="javascript: relativeRedir('/');" />
 	<br />
  	
 </form:form>
-</security:authorize>
 </body>
 </html>
