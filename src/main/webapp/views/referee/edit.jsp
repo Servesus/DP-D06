@@ -23,7 +23,10 @@
 	<form:hidden path="version" />
 	<form:hidden path="profiles" />
 	<form:hidden path="boxes" />
-	<form:hidden path="reports" />
+	<form:hidden path="isSuspicious" />
+	<form:hidden path="isBanned"/>
+	<form:hidden path="userAccount.authorities"/>
+	<form:hidden path="reports"/>
  
 	<form:label path="name">
 		<spring:message code="referee.name" />*:
