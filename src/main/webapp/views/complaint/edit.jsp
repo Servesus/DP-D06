@@ -28,19 +28,24 @@
 	<form:errors cssClass="error" path="description"/>
 	<br />
 	
+	<br/>
+	<p><spring:message code="complaint.message.attachment"/><p>
+	<br/>
+	
 	<form:label path="attachment">
 		<spring:message code="complaint.attachment"/>
 	</form:label>
-	<form:input path="attachment" type="file"/>
+	<form:textarea path="attachment"/>
 	<form:errors cssClass="error" path="attachment"/>
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="complaint.save" />" />&nbsp; 
+		value="<spring:message code="complaint.save" />" 
+		onclick="return confirm('<spring:message code="complaint.confirm" />')" />
 	
 	<input type="button" name="cancel"
 		value="<spring:message code="complaint.cancel" />"
-		onclick="javascript: relativeRedir('fixUpTask/customer/show.do?fixUpTaskId=${complaint.fixUpTasks.id}');" />
+		onclick="javascript: relativeRedir('fixUpTask/customer/findOne.do?fixUpTaskId=${complaint.fixUpTasks.id}');" />
 	<br />
 	
 	</jstl:if>

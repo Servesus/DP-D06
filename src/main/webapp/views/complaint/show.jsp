@@ -16,11 +16,6 @@
 	</p>
 	
 	<p>
-	<spring:message code="complaint.ticker"/>:
-	<jstl:out value="${complaint.ticker}"></jstl:out>
-	</p>
-	
-	<p>
 	<spring:message code="complaint.fixUpTask.id"/>:
 	<jstl:out value="${complaint.fixUpTasks.id}"></jstl:out>
 	</p>

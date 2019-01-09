@@ -17,7 +17,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-
+<security:authorize access="hasRole('CUSTOMER')">
 <b><spring:message code="fixUpTask.startDate" /></b> ${fixUpTask.startDate} <br/>
 <b><spring:message code="fixUpTask.description" /></b> ${fixUpTask.description} <br/>
 <b><spring:message code="fixUpTask.address" /></b> ${fixUpTask.address} <br/>
@@ -31,6 +31,25 @@
 	<jstl:if test="${lang=='en' }">
 			${fixUpTask.category.nameEN}
 	</jstl:if>
+</security:authorize>
+<input type="button" name="createComplaint"
+		value="<spring:message code="fixUpTask.complaint.create" />"
+		onclick="javascript: relativeRedir('complaint/customer/create.do?fixUpTaskId=${fixUpTask.id}');" />
 
+<security:authorize access="hasRole('HANDYWORKER')">
+<b><spring:message code="fixUpTask.startDate" /></b> ${fixUpTask.startDate} <br/>
+<b><spring:message code="fixUpTask.description" /></b> ${fixUpTask.description} <br/>
+<b><spring:message code="fixUpTask.address" /></b> ${fixUpTask.address} <br/>
+<b><spring:message code="fixUpTask.maxPrice" /></b> ${fixUpTask.maxPrice} <br/>
+<b><spring:message code="fixUpTask.estimatedDate" /></b> ${fixUpTask.estimatedDate} <br/>
+<b><spring:message code="fixUpTask.warranty" /></b> ${fixUpTask.warranty.title} <br/>
+<b><spring:message code="fixUpTask.category" /></b>
+<jstl:if test="${lang=='es' }">
+			${fixUpTask.category.nameES}
+	</jstl:if>
+	<jstl:if test="${lang=='en' }">
+			${fixUpTask.category.nameEN}
+	</jstl:if>
+</security:authorize>
 
 
