@@ -5,6 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<style type="text/css">
+.ACCEPTED{
+  background-color: green;
+}
+.REJECTED{
+  background-color: orange;
+}
+.PENDING{
+  background-color: grey;
+}
+</style>
+
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
@@ -20,19 +32,35 @@
 <display:table pagesize="5" class="application" name="applications" 
 	requestURI="${requestURI}" id="row">
 	
+	<jstl:choose>
+		<jstl:when test="${row.status == 1}">
+		<jstl:set var="css" value="ACCEPTED"></jstl:set>
+		</jstl:when>
+		<jstl:when test="${row.status == 0}">
+			<jstl:set var="css" value="PENDING"></jstl:set>
+		</jstl:when>
+		<jstl:when test="${row.status == -1}">
+			<jstl:set var="css" value="REJECTED"></jstl:set>
+		</jstl:when>
+	</jstl:choose>
+	
 	<security:authorize access="hasRole('CUSTOMER')">
 	<display:column> <a href="application/customer/show.do?applicationId=${row.id}">
 	<spring:message code="application.findOne" /></a>
 	</display:column>
 	
 	<spring:message code="application.moment" var="moment" />
-	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"
+	class="${css}"/>
 
-	<spring:message code="application.price" var="price" />
-	<display:column property="price" title="${price}"/>
+	<spring:message code="application.price" var="price"/>
+	<display:column property="price" title="${price}"
+	class="${css}"/>
 	
-	<spring:message code="application.handyWorker.make" var="handyWorker.make" />
-	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
+	<spring:message code="application.handyWorker.make" var="make"/>
+	<display:column title="${make}" class="${css}">
+	<jstl:out value="${row.handyWorker.make}"></jstl:out>
+	</display:column>
 	
 	
 	</security:authorize>
@@ -43,28 +71,27 @@
 	</display:column>
 	
 	<spring:message code="application.moment" var="moment" />
-	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"
+	class="${css}"/>
 
-	<spring:message code="application.price" var="price" />
-	<display:column property="price" title="${price}"/>
+	<spring:message code="application.price" var="price"/>
+	<display:column class="${css}" title="${price}"><jstl:out value="${row.price}"></jstl:out>
+	&nbsp; (${row.price*1.21})</display:column>
 	
-<<<<<<< HEAD
-=======
 	<spring:message code="application.status" var="status"/>
-	<display:column property="status" title="${status}">
+	<display:column title="${status}" class="${css}">
 	<jstl:choose>
-		<jstl:when test="${application.status == 1}">
+		<jstl:when test="${row.status == 1}">
 		<spring:message code="application.accepted"/>
 		</jstl:when>
-		<jstl:when test="${application.status == 0}">
+		<jstl:when test="${row.status == 0}">
 			<spring:message code="application.pending"/>
 		</jstl:when>
-		<jstl:when test="${application.status == -1}">
+		<jstl:when test="${row.status == -1}">
 			<spring:message code="application.rejected"/>
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
->>>>>>> origin/miguel
 	</security:authorize>
 
 </display:table>

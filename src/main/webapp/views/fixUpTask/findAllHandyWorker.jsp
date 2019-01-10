@@ -26,14 +26,16 @@
 
 	<spring:message code="fixUpTask.description" var="description" />
 	<display:column property="description" title="${description}" sortable="false"/>
-
-	<spring:message code="fixUpTask.id" var="id" />
-	<display:column property="id" title="${id}" sortable="false"/>
+	
 	<spring:message code="handyWorker.customers" var="customer"/>
 	<display:column title="${customer }">
 	 <a href="fixUpTask/handyWorker/handySeeCustomer.do?customerId=${row.customer.id}"> ${row.customer.name }</a>
 	</display:column>
-
+	
+	<display:column>
+		<a href="application/handyWorker/create.do?fixUpTaskId=${row.id}"> <spring:message code="application.create"/></a>
+	</display:column>
+	
 </display:table>
 		
 </body>
