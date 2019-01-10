@@ -84,7 +84,7 @@ public class HandyWorkerController extends AbstractController {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.editModelAndView(handyWorker, binding.getAllErrors().get(0).getDefaultMessage());
+			result = this.editModelAndView(handyWorker);
 		else
 			try {
 				this.handyWorkerService.save(handyWorker);
