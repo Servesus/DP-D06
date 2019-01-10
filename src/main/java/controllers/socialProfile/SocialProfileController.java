@@ -47,7 +47,7 @@ public class SocialProfileController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "handyWorker,customer,admin,referee/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		Profile profile;
@@ -58,7 +58,7 @@ public class SocialProfileController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "handyWorker,customer,admin,referee/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int socialProfileId) {
 		ModelAndView result;
 		Profile profile;
@@ -71,7 +71,7 @@ public class SocialProfileController extends AbstractController {
 
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "handyWorker,customer,admin,referee/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Profile profile, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
@@ -86,7 +86,7 @@ public class SocialProfileController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	@RequestMapping(value = "handyWorker,customer,admin,referee/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(final Profile profile, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())

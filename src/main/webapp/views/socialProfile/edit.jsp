@@ -10,7 +10,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasAnyRole('HANDYWORKER,CUSTOMER,ADMIN,REFEREE')">
-<form:form action="socialProfile/handyWorker,customer,admin,referee/edit.do" modelAttribute="profile">
+<form:form action="socialProfile/handyWorker,customer,admin,referee/edit.do" modelAttribute="socialProfile">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
@@ -44,7 +44,7 @@
 	
 	<input type="submit" name="save"
 		value="<spring:message code="socialProfile.save" />" />&nbsp; 
-	<jstl:if test="${professionalRecord.id != 0}">
+	<jstl:if test="${profile.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="socialProfile.delete" />" />
 	</jstl:if>

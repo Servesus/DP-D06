@@ -9,7 +9,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasAnyRole('HANDYWORKER,CUSTOMER,ADMIN,REFEREE')">				   
-<display:table pagesize="5" class="profile" name="profile" requestURI="${requestURI}" id="row">
+<display:table pagesize="5" class="socialProfiles" name="socialProfiles" requestURI="${requestURI}" id="row">
 	
 	<!-- Action links -->
 
@@ -22,7 +22,7 @@
 	<display:column property="nick" title="${nick}"/>
 	
 	<spring:message code="socialProfile.socialNetName" var="socialNetName" />
-	<display:column property="nick" title="${nick}"/>
+	<display:column property="socialNetName" title="${socialNetName}"/>
 	
 	<spring:message code="socialProfile.socialNetProfLink" var="socialNetProfLink" />
 	<display:column property="socialNetProfLink" title="${socialNetProfLink}"/>
