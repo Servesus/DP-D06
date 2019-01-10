@@ -31,8 +31,8 @@
 	<spring:message code="complaint.description" var="description" />
 	<display:column property="description" title="${description}"/>
 	
-	<spring:message code="complaint.fixUpTask.id" var="fixUpTasks.id" />
-	<display:column property="fixUpTasks.id" title="${fixUpTasks.id}"/>
+	<spring:message code="complaint.fixUpTask.id" var="id" />
+	<display:column property="fixUpTasks.id" title="${id}"/>
 
 	</security:authorize>
 	
@@ -40,7 +40,7 @@
 	<display:column> 
 	<input type="button" name="createReport"
 		value="<spring:message code="complaint.report.create" />"
-		onclick="javascript: relativeRedir('report/referee/create.do?complaintId=${complaint.id}');" />
+		onclick="javascript: relativeRedir('report/referee/create.do?complaintId=${row.id}');" />
 	</display:column>
 	
 	<spring:message code="complaint.moment" var="moment" />
@@ -49,8 +49,11 @@
 	<spring:message code="complaint.description" var="description" />
 	<display:column property="description" title="${description}"/>
 	
-	<spring:message code="complaint.fixUpTask.id" var="fixUpTasks.id" />
-	<display:column property="fixUpTasks.id" title="${fixUpTasks.id}"/>
+	<spring:message code="complaint.fixUpTask.id" var="id" />
+	<display:column property="fixUpTasks.id" title="${id}"/>
+	
+	<spring:message code="complaint.customer" var="customer" />
+	<display:column property="customer.name" title="${customer}"/>
 
 	</security:authorize>
 	</display:table>

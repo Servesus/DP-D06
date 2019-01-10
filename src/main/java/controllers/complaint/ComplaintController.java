@@ -58,9 +58,9 @@ public class ComplaintController extends AbstractController {
 
 		complaints = this.complaintService.getComplaintSelfAssigned();
 
-		result = new ModelAndView("complaint/referee/list");
+		result = new ModelAndView("complaint/referee/listSelfAssigned");
 		result.addObject("complaints", complaints);
-		result.addObject("requestURI", "complaint/referee/list.do");
+		result.addObject("requestURI", "complaint/referee/listSelfAssigned.do");
 		return result;
 	}
 
@@ -72,11 +72,11 @@ public class ComplaintController extends AbstractController {
 		complaints = this.complaintService.findAll();
 
 		for (final Complaint c : complaints)
-			if (c.getReports().size() > 0)
+			if (!c.getReports().isEmpty())
 				complaints.remove(c);
-		result = new ModelAndView("complaint/referee/list");
+		result = new ModelAndView("complaint/referee/listAll");
 		result.addObject("complaints", complaints);
-		result.addObject("requestURI", "complaint/referee/list.do");
+		result.addObject("requestURI", "complaint/referee/listAll.do");
 		return result;
 	}
 
