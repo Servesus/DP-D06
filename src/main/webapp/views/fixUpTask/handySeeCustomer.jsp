@@ -25,27 +25,8 @@
 <spring:message code="customer.surname" /> ${customer.surname} <br/>
 <spring:message code="customer.email" /> ${customer.email} <br/>
 <spring:message code="customer.phoneNumber" /> ${customer.phoneNumber} <br/>
-<spring:message code="customer.id" /> ${customer.id} <br/>
 
-<spring:message code="customer.creditCards" />
-<display:table name="${customer.creditCards}" id="row">
-<display:column property="holderName" titleKey="customer.creditCards.holderName" />
-<display:column property="brandName" titleKey="customer.creditCards.brandName" />
-<display:column property="number" titleKey="customer.creditCards.number" />
-</display:table>
-
-<spring:message code="customer.complaints" />
-<display:table name="${customer.complaints}" id="row">
-<display:column property="moment" titleKey="customer.complaints.moment" />
-<display:column property="description" titleKey="customer.complaints.description" />
-</display:table>
-
-<spring:message code="customer.fixUpTasks" />
-<display:table name="${customer.fixUpTasks}" id="row">
-<display:column property="startDate" titleKey="customer.fixUpTasks.startDate" />
-<display:column property="description" titleKey="customer.fixUpTasks.description" />
-<display:column property="maxPrice" titleKey="customer.fixUpTasks.maxPrice" />
-</display:table>
+<
 
 <input type="button" name="cancel"
 		value="<spring:message code="fixUpTask.back" />"
