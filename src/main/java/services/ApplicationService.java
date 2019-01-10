@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -38,8 +37,6 @@ public class ApplicationService {
 
 	public Application create(final int fixUpTaskId) {
 		Application result;
-		Collection<String> customerComments;
-		Collection<String> hwComments;
 		FixUpTask fixUpTask;
 		HandyWorker handyWorker;
 		UserAccount userAccount;
@@ -53,15 +50,11 @@ public class ApplicationService {
 
 		final Date moment = new Date();
 		final Integer status = 0;
-		customerComments = new ArrayList<String>();
-		hwComments = new ArrayList<String>();
 
 		result = new Application();
 
 		result.setMoment(moment);
 		result.setStatus(status);
-		result.setCustomerComments(customerComments);
-		result.setHwComments(hwComments);
 		result.setFixUpTask(fixUpTask);
 		result.setHandyWorker(handyWorker);
 
@@ -103,15 +96,11 @@ public class ApplicationService {
 		if (application.getId() == 0) {
 			final Collection<Application> apps = fixUpTask.getApplications();
 			apps.add(result);
-			fixUpTask.setApplications(apps);
-			this.fixUpTaskService.save(fixUpTask);
 		}
 
 		if (application.getId() == 0) {
 			final Collection<Application> apps = handyWorker.getApplications();
 			apps.add(result);
-			handyWorker.setApplications(apps);
-			this.handyWorkerService.save(handyWorker);
 		}
 
 		return result;
@@ -123,7 +112,7 @@ public class ApplicationService {
 
 		application.setStatus(1);
 
-		res = this.applicationRepository.save(application);
+		res = this.save(application);
 
 		return res;
 	}
@@ -134,21 +123,7 @@ public class ApplicationService {
 
 		application.setStatus(-1);
 
-		res = this.applicationRepository.save(application);
-
-		return res;
-	}
-
-	public Application addComment(final Application application, final String comment) {
-		Assert.notNull(application);
-		Application res;
-		Collection<String> customerComments;
-
-		customerComments = application.getCustomerComments();
-		customerComments.add(comment);
-		application.setCustomerComments(customerComments);
-
-		res = this.applicationRepository.save(application);
+		res = this.save(application);
 
 		return res;
 	}

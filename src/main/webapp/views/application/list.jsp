@@ -34,20 +34,7 @@
 	<spring:message code="application.handyWorker.make" var="handyWorker.make" />
 	<display:column property="handyWorker.make" title="${handyWorker.make}"/>
 	
-	<spring:message code="application.status" var="status" />
-	<display:column title="${status}">
-	<jstl:choose>
-		<jstl:when test="${application.status == 1}">
-		<spring:message code="application.accepted"/>
-		</jstl:when>
-		<jstl:when test="${application.status == 0}">
-			<spring:message code="application.pending"/>
-		</jstl:when>
-		<jstl:when test="${application.status == -1}">
-			<spring:message code="application.rejected"/>
-		</jstl:when>
-	</jstl:choose>
-	</display:column>
+	
 	</security:authorize>
 	
 	<security:authorize access="hasRole('HANDYWORKER')">
@@ -61,20 +48,6 @@
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}"/>
 	
-	<spring:message code="application.status" var="status" />
-	<display:column title="${status}">
-	<jstl:choose>
-		<jstl:when test="${application.status == 1}">
-		<spring:message code="application.accepted"/>
-		</jstl:when>
-		<jstl:when test="${application.status == 0}">
-			<spring:message code="application.pending"/>
-		</jstl:when>
-		<jstl:when test="${application.status == -1}">
-			<spring:message code="application.rejected"/>
-		</jstl:when>
-	</jstl:choose>
-	</display:column>
 	</security:authorize>
 
 </display:table>

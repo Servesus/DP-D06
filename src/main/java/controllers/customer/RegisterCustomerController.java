@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import services.CustomerService;
 import controllers.AbstractController;
 import domain.Complaint;
-import domain.CreditCard;
 import domain.Customer;
 import domain.FixUpTask;
 import domain.Profile;
@@ -78,19 +77,16 @@ public class RegisterCustomerController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Customer customer, final String messageCode) {
 		ModelAndView result;
-		Collection<CreditCard> creditCards;
 		Collection<Complaint> complaints;
 		Collection<FixUpTask> fixUpTasks;
 		Collection<Profile> profiles;
 
-		creditCards = customer.getCreditCards();
 		complaints = customer.getComplaints();
 		fixUpTasks = customer.getFixUpTasks();
 		profiles = customer.getProfiles();
 
 		result = new ModelAndView("customer/create");
 		result.addObject("customer", customer);
-		result.addObject("creditCards", creditCards);
 		result.addObject("complaints", complaints);
 		result.addObject("fixUpTasks", fixUpTasks);
 		result.addObject("profiles", profiles);

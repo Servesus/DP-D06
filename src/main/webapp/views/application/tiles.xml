@@ -16,11 +16,6 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
 <tiles-definitions>
-
-	<definition name="application/customer/addComment" extends="master.page">	
-		<put-attribute name="title" value="Add new comment" />
-		<put-attribute name="body" value="/views/application/addComment.jsp" />
-	</definition>
 	
 	<definition name="application/customer/list" extends="master.page">
 		<put-attribute name="title" value="List of Applications" />
@@ -45,6 +40,11 @@
 	<definition name="application/customer/show" extends="master.page">
 		<put-attribute name="title" value="Show Application" />
 		<put-attribute name="body" value="/views/application/show.jsp" />
+	</definition>
+	
+	<definition name="application/customer/accept extends="master.page">
+		<put-attribute name="title" value="Accept" />
+		<put-attribute name="body" value="/views/application/accept.jsp" />
 	</definition>
 
 </tiles-definitions>

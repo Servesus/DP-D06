@@ -124,20 +124,6 @@ public class ApplicationController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/customer/edit", method = RequestMethod.POST, params = "saveCustomer")
-	public ModelAndView saveCustomer(@Valid final Application application, @RequestParam final String comment) {
-		ModelAndView result;
-		Application commentAdded;
-
-		commentAdded = this.applicationService.addComment(application, comment);
-
-		result = new ModelAndView("/application/customer/edit");
-		result.addObject("application", commentAdded);
-		result.addObject("requestURI", "application/customer/edit.do");
-
-		return result;
-	}
-
 	@RequestMapping(value = "/handyWorker/save", method = RequestMethod.POST, params = "saveHandyWorker")
 	public ModelAndView saveHandyWorker(@Valid final Application application, final BindingResult binding) {
 		ModelAndView result;
@@ -155,29 +141,29 @@ public class ApplicationController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/customer/accept", method = RequestMethod.GET)
-	public ModelAndView accept(@Valid final Application application) {
+	public ModelAndView accept(@RequestParam final int applicationId) {
 		ModelAndView result;
-		Application accepted;
+		final Application accepted;
+		final Application application = this.applicationService.findOne(applicationId);
 
-		accepted = this.applicationService.acceptApplication(application);
+		result = new ModelAndView("application/customer/accept");
 
-		result = new ModelAndView("/application/customer/show");
-		result.addObject("application", accepted);
-		result.addObject("requestURI", "application/customer/accept.do");
+		//result = new ModelAndView("redirect:/application/customer/show.do?applicationId=" + accepted.getId());
+		//result.addObject("application", accepted);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/customer/reject", method = RequestMethod.GET)
-	public ModelAndView reject(@Valid final Application application) {
+	public ModelAndView reject(@RequestParam final int applicationId) {
 		ModelAndView result;
 		final Application rejected;
+		final Application application = this.applicationService.findOne(applicationId);
 
 		rejected = this.applicationService.rejectApplication(application);
 
-		result = new ModelAndView("/application/customer/show");
+		result = new ModelAndView("redirect:/application/customer/show.do?applicationId=" + rejected.getId());
 		result.addObject("application", rejected);
-		result.addObject("requestURI", "application/customer/reject.do");
 
 		return result;
 	}
@@ -192,7 +178,7 @@ public class ApplicationController extends AbstractController {
 
 	protected ModelAndView createEditModelAndViewCustomer(final Application application, final String messageCode) {
 		ModelAndView result;
-		result = new ModelAndView("application/customer/edit");
+		result = new ModelAndView("application/customer/accept");
 		result.addObject("application", application);
 		result.addObject("message", messageCode);
 		return result;

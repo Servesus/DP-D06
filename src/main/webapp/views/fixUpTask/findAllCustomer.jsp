@@ -33,6 +33,9 @@
 <display:column> <a href="fixUpTask/customer/edit.do?fixUpTaskId=${row.id}">
 	<spring:message code="fixUpTask.update" /></a> </display:column>
 	
+	<display:column> <a href="application/customer/list.do?fixUpTaskId=${row.id }">
+	<spring:message code="fixUpTask.applications"/></a> </display:column>
+	
 </display:table>
 <input type="button" name="Create" value="<spring:message code="fixUpTask.create" />"
 			onclick="javascript: relativeRedir('fixUpTask/customer/create.do');" />

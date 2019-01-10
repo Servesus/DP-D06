@@ -211,11 +211,6 @@
 				<ref bean="box1"/>
 			</list>
 		</property>
-		<property name="creditCards">
-			<list>
-			<ref bean="creditCard1"/>
-			</list>
-		</property>
 		<property name="complaints">
 			<list>
 			<ref bean="complaint1"/>
@@ -247,11 +242,6 @@
 		<property name="boxes">
 			<list>
 			<ref bean="box2"/>
-			</list>
-		</property>
-		<property name="creditCards">
-			<list>
-			<ref bean="creditCard2"/>
 			</list>
 		</property>
 		<property name="complaints">
@@ -287,11 +277,6 @@
 			<list>
 			</list>
 		</property>
-		<property name="creditCards">
-			<list>
-			<ref bean="creditCard3"/>
-			</list>
-		</property>
 		<property name="complaints">
 			<list>
 			<ref bean="complaint5"/>
@@ -323,11 +308,6 @@
 			<list>
 			</list>
 		</property>
-		<property name="creditCards">
-			<list>
-			<ref bean="creditCard4"/>
-			</list>
-		</property>
 		<property name="complaints">
 			<list>
 			</list>
@@ -357,11 +337,6 @@
 		</property>
 		<property name="boxes">
 			<list>
-			</list>
-		</property>
-		<property name="creditCards">
-			<list>
-			<ref bean="creditCard5"/>
 			</list>
 		</property>
 		<property name="complaints">
@@ -2102,15 +2077,13 @@
 		<property name="moment" value="15:30:00 11/11/2018"/>
 		<property name="price" value="2000.0"/>
 		<property name="status" value="1"/>
+		<property name="creditCard" ref="creditCard1"/>
 		<property name="customerComments">
-		<list>
 				<value>Comentario 1 del customer</value>
-			</list>
 		</property>
 		<property name="hwComments">
-		<list>
 				<value>Comentario 1 del handy worker</value>
-			</list>
+			
 		</property>
 		<property name="handyWorker" ref="handyWorker1"/>
 		<property name="fixUpTask" ref="fixUpTask1"/>
@@ -2119,15 +2092,12 @@
 		<property name="moment" value="15:40:03 13/11/2018"/>
 		<property name="price" value="1453.4"/>
 		<property name="status" value="1"/>
+		<property name="creditCard" ref="creditCard1"/>
 		<property name="customerComments">
-		<list>
 				<value>I need you to fix my bathroom</value>
-			</list>
 		</property>
 		<property name="hwComments">
-		<list>
 				<value>HE NEED SOME MILK</value>
-			</list>
 		</property>
 		<property name="handyWorker" ref="handyWorker2"/>
 		<property name="fixUpTask" ref="fixUpTask2"/>
@@ -2138,14 +2108,10 @@
 		<property name="price" value="500.99"/>
 		<property name="status" value="-1"/>
 		<property name="customerComments">
-		<list>
 				<value>Comentario 1 del customer</value>
-			</list>
 		</property>
 		<property name="hwComments">
-		<list>
 				<value>Comentario 1 del handy worker</value>
-			</list>
 		</property>
 		<property name="handyWorker" ref="handyWorker3"/>
 		<property name="fixUpTask" ref="fixUpTask3"/>
@@ -2156,14 +2122,10 @@
 		<property name="price" value="35.0"/>
 		<property name="status" value="0"/>
 		<property name="customerComments">
-		<list>
 				<value>Comentario 1 del customer</value>
-			</list>
 		</property>
 		<property name="hwComments">
-		<list>
 				<value>I make you the quechua so fast</value>
-			</list>
 		</property>
 		<property name="handyWorker" ref="handyWorker3"/>
 		<property name="fixUpTask" ref="fixUpTask3"/>
@@ -2174,14 +2136,10 @@
 		<property name="price" value="2034.0"/>
 		<property name="status" value="0"/>
 		<property name="customerComments">
-		<list>
 				<value>Comentario 1 del customer</value>
-			</list>
 		</property>
 		<property name="hwComments">
-		<list>
 				<value>Comentario 1 del handy worker</value>
-			</list>
 		</property>
 		<property name="handyWorker" ref="handyWorker4"/>
 		<property name="fixUpTask" ref="fixUpTask4"/>
@@ -2191,15 +2149,12 @@
 		<property name="moment" value="15:49:02 13/11/2018"/>
 		<property name="price" value="2150.0"/>
 		<property name="status" value="1"/>
+		<property name="creditCard" ref="creditCard1"/>
 		<property name="customerComments">
-		<list>
 				<value>Comentario 1 del customer</value>
-			</list>
 		</property>
 		<property name="hwComments">
-		<list>
 				<value>Comentario 1 del handy worker</value>
-			</list>
 		</property>
 		<property name="handyWorker" ref="handyWorker4"/>
 		<property name="fixUpTask" ref="fixUpTask4"/>
@@ -2210,14 +2165,10 @@
 		<property name="price" value="2000.11"/>
 		<property name="status" value="-1"/>
 		<property name="customerComments">
-		<list>
 				<value>Comentario 1 del customer</value>
-			</list>
 		</property>
 		<property name="hwComments">
-		<list>
 				<value>Comentario 1 del handy worker</value>
-			</list>
 		</property>
 		<property name="handyWorker" ref="handyWorker5"/>
 		<property name="fixUpTask" ref="fixUpTask5"/>

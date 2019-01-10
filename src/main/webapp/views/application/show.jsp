@@ -149,7 +149,7 @@
 	<jstl:if test="${application.status == 0}">
 	<input type= button name="application.accept"
 	value="<spring:message code="application.accept" />"
-	onclick="javascript: relativeRedir('application/customer/accept.do?applicationId=${application.id}');"/>
+	onclick="javascript: relativeRedir('application/customer/edit.do?applicationId=${application.id}');"/>
 	<input type= button name="application.reject"
 	value="<spring:message code="application.reject" />"
 	onclick="javascript: relativeRedir('application/customer/reject.do?applicationId=${application.id}');"/>

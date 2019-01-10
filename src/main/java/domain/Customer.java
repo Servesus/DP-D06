@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -13,19 +12,9 @@ import javax.persistence.OneToMany;
 @Access(AccessType.PROPERTY)
 public class Customer extends Actor {
 
-	private Collection<CreditCard>	creditCards;
 	private Collection<Complaint>	complaints;
 	private Collection<FixUpTask>	fixUpTasks;
 
-
-	@OneToMany(cascade = CascadeType.ALL)
-	public Collection<CreditCard> getCreditCards() {
-		return this.creditCards;
-	}
-
-	public void setCreditCards(final Collection<CreditCard> creditCards) {
-		this.creditCards = creditCards;
-	}
 
 	@OneToMany(mappedBy = "customer")
 	public Collection<Complaint> getComplaints() {

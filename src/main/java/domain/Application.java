@@ -1,12 +1,10 @@
 
 package domain;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -21,14 +19,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Application extends DomainEntity {
 
-	private Date				moment;
-	private double				price;
-	private int					status;
-	private Collection<String>	customerComments;
-	private Collection<String>	hwComments;
-	private HandyWorker			handyWorker;
-	private FixUpTask			fixUpTask;
+	private Date		moment;
+	private double		price;
+	private int			status;
+	private String		customerComments;
+	private String		hwComments;
+	private HandyWorker	handyWorker;
+	private FixUpTask	fixUpTask;
+	private CreditCard	creditCard;
 
+
+	@Valid
+	@ManyToOne
+	public CreditCard getCreditCard() {
+		return this.creditCard;
+	}
+
+	public void setCreditCard(final CreditCard creditCard) {
+		this.creditCard = creditCard;
+	}
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
@@ -45,12 +54,10 @@ public class Application extends DomainEntity {
 	public int getStatus() {
 		return this.status;
 	}
-	@ElementCollection
-	public Collection<String> getCustomerComments() {
+	public String getCustomerComments() {
 		return this.customerComments;
 	}
-	@ElementCollection
-	public Collection<String> getHwComments() {
+	public String getHwComments() {
 		return this.hwComments;
 	}
 
@@ -66,11 +73,11 @@ public class Application extends DomainEntity {
 		this.status = status;
 	}
 
-	public void setCustomerComments(final Collection<String> customerComments) {
+	public void setCustomerComments(final String customerComments) {
 		this.customerComments = customerComments;
 	}
 
-	public void setHwComments(final Collection<String> hwComments) {
+	public void setHwComments(final String hwComments) {
 		this.hwComments = hwComments;
 	}
 
