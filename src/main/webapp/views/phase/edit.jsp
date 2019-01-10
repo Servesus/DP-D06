@@ -32,21 +32,21 @@
 	<br />
 	
 	<form:label path="startMoment">
-		<spring:message code="startMoment" />:
+		<spring:message code="phase.startM" />:
 	</form:label>
 	<form:input path="startMoment" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	<form:errors cssClass="error" path="startMoment" />
 	<br />
 	
 	<form:label path="finishMoment">
-		<spring:message code="finishMoment" />:
+		<spring:message code="phase.finishM" />:
 	</form:label>
 	<form:input path="finishMoment" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	<form:errors cssClass="error" path="finishMoment" />
 	<br />
 	
 	<form:label path="number">
-		<spring:message code="number" />:
+		<spring:message code="phase.numero" />:
 	</form:label>
 	<form:input path="number"/>
 	<form:errors cssClass="error" path="number" />

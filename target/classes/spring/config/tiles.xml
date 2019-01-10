@@ -42,6 +42,7 @@
 		<value>/views/category/tiles.xml</value>
 		<value>/views/complaint/tiles.xml</value>
 		<value>/views/phase/tiles.xml</value>
+		<value>/views/socialProfile/tiles.xml</value>
 	</util:list>
 
 </beans>

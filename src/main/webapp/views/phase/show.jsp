@@ -21,21 +21,23 @@
 	</p>
 	
 	<p>
-	<spring:message code="phase.startMoment"/>:
+	<spring:message code="phase.startM"/>:
 	<jstl:out value="${phase.startMoment}"></jstl:out>
 	</p>
 	
 	<p>
-	<spring:message code="phase.finishMoment"/>:
+	<spring:message code="phase.finishM"/>:
 	<jstl:out value="${phase.finishMoment}"></jstl:out>
+	</p>
+	
+	<p>
+	<spring:message code="phase.numero"/>:
+	<jstl:out value="${phase.number}"></jstl:out>
 	</p>
 	
 	<input type="button" name="edit"
 		value="<spring:message code="phase.edit" />"
-		onclick="javascript: relativeRedir('phase/handyWorker/edit.do?phaseId=${phase.id}');" />
-	
-	<input type="submit" name="delete"
-		value="<spring:message code="phase.delete" />"/>
+		onclick="javascript: relativeRedir('phase/handyWorker/edit.do?phaseId=${phase.id}');" />&nbsp; 
 	
 	<input type="button" name="back"
 		value="<spring:message code="phase.back" />"
