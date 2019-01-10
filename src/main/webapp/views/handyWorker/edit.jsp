@@ -92,7 +92,7 @@
 	
 		<input type="button" name="back"
 		value="<spring:message code="handyWorker.back" />"
-		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
+		onclick="javascript: relativeRedir('/');" />
 	<br />
  	
 </form:form>

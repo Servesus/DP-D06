@@ -12,8 +12,9 @@ import org.hibernate.validator.constraints.Range;
 public class Configuration extends DomainEntity {
 
 	//Attributes
-	private int	maxResults	= 10;
-	private int	maxTime		= 1;
+	private int		maxResults	= 10;
+	private int		maxTime		= 1;
+	private String	pageName	= "Acme-Handy-Worker";
 
 
 	@Range(min = 10, max = 100)
@@ -31,6 +32,12 @@ public class Configuration extends DomainEntity {
 
 	public void setMaxTime(final int maxTime) {
 		this.maxTime = maxTime;
+	}
+	public String getPageName() {
+		return this.pageName;
+	}
+	public void setPageName(final String pageName) {
+		this.pageName = pageName;
 	}
 
 }

@@ -30,6 +30,7 @@ public class ConfigurationService {
 		result = new Configuration();
 		result.setMaxResults(10);
 		result.setMaxTime(1);
+		result.setPageName("Acme-Handy-Worker");
 		return result;
 	}
 
@@ -52,15 +53,15 @@ public class ConfigurationService {
 	}
 	public Configuration save(final Configuration configuration) {
 		Assert.notNull(configuration);
-		UserAccount userAccount;
 
+		UserAccount userAccount;
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 
 		Configuration result;
-
 		result = this.configurationRepository.save(configuration);
+
 		return result;
 	}
 
