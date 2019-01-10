@@ -37,14 +37,14 @@
 								
 				</ul>
 			</li>
+			<li><a class="fNiv" href="configuration/administrator/edit.do"><spring:message code="master.page.administrator.configuration" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="fixUpTask/customer/findAll.do"><spring:message code="master.page.customer.findAll" /></a></li>	
-					<li><a href="customer/customer/editPersonalData.do"><spring:message code="master.page.customer.editPersonalData" /></a></li>				
+					<li><a href="fixUpTask/customer/findAll.do"><spring:message code="master.page.customer.findAll" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>
@@ -53,7 +53,8 @@
 			<li><a class="fNiv"><spring:message	code="master.page.referee" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="referee/referee/edit.do"><spring:message code="referee.editPD" /></a></li>
+					<li><a href="complaint/referee/listSelfAssigned.do"><spring:message code="master.page.referee.listAll" /></a></li>
+					<li><a href="complaint/referee/listAll.do"><spring:message code="master.page.referee.listSelfAssigned" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -62,7 +63,6 @@
 			<li><a class="fNiv"><spring:message	code="master.page.handyWorker" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="handyWorker/handyWorker/edit.do"><spring:message code="master.page.handyWorker.editpersonaldata" /></a></li>
 					<li><a href="fixUpTask/handyWorker/findAll.do"><spring:message code="master.page.handyWorker.findAll" /></a></li>
 					<li><a href="educationalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.list" /></a></li>
 					<li><a href="endorserRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listEndorser" /></a></li>
@@ -71,7 +71,6 @@
 					<li><a href="personalRecord/handyWorker/edit.do"><spring:message code="master.page.handyWorker.edit" /></a></li>
 					<li><a href="finder/handyWorker/list.do"><spring:message code="master.page.handyWorker.listFinder" /></a></li>
 					<li><a href="finder/handyWorker/edit.do"><spring:message code="master.page.handyWorker.editFinder" /></a></li>
-					<li><a href="application/handyWorker/list.do"><spring:message code="master.page.handyWorker.listApplication" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

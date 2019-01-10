@@ -698,6 +698,7 @@
 	<bean id="configuration1" class="domain.Configuration">
 		<property name="maxResults" value="10"/>
 		<property name="maxTime" value="1"/>
+		<property name="pageName" value="Acme-Handy-Worker"/>
 	</bean>
 	<!-- Finder --> 
 	<bean id="finder1" class="domain.Finder">

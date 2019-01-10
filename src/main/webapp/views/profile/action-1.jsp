@@ -44,7 +44,7 @@
 			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
 
 <input type="button" name="Edit PD" value="<spring:message code="customer.editPD" />"
-			onclick="javascript: relativeRedir('/customer/customer/edit.do');" />
+			onclick="javascript: relativeRedir('customer/customer/editPersonalData.do');" />
 </security:authorize>
 
 
@@ -56,16 +56,11 @@
 <spring:message code="administrator.phoneNumber" /> ${administrator.phoneNumber} <br/>
 <spring:message code="administrator.id" /> ${administrator.id} <br/>
 
-<<<<<<< HEAD
+
 <input type="button" name="Edit PD" value="<spring:message code="handyWorker.editPD" />"
 			onclick="javascript: relativeRedir('administrator/administrator/edit.do');" />
-=======
 <input type="button" name="socialProfiles" value="<spring:message code="administrator.socialProfiles" />"
 			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
-
-<input type="button" name="Edit PD" value="<spring:message code="administrator.editPD" />"
-			onclick="javascript: relativeRedir('/administrator/edit.do');" />
->>>>>>> origin/miguel
 
 </security:authorize>
 
@@ -111,4 +106,6 @@
 
 <input type="button" name="socialProfiles" value="<spring:message code="referee.socialProfiles" />"
 			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
+<input type="button" name="Edit PD" value="<spring:message code="handyWorker.editPD" />"
+			onclick="javascript: relativeRedir('/referee/referee/edit.do');" />
 </security:authorize>

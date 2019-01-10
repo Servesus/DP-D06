@@ -79,9 +79,9 @@
 	<input type="submit" name="update"
 		value="<spring:message code="administrator.save" />" />&nbsp; 
 	
-		<input type="button" name="back"
+	<input type="button" name="back"
 		value="<spring:message code="administrator.back" />"
-		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
+		onclick="javascript: relativeRedir('/');" />
 	<br />
  	
 </form:form>

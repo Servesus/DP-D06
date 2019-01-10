@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<spring:message code="administrador.firstMessage" />
+<spring:message code="administrator.firstMessage" />
 <form:form action="administrator/create.do" modelAttribute="administrator">
 
 	<form:hidden path="id" />

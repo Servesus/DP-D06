@@ -87,6 +87,7 @@
 		
 		<security:intercept-url pattern="/warranty/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/category/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/configuration/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 		
 		

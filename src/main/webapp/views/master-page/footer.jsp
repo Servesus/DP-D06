@@ -23,4 +23,4 @@
 
 <hr />
 
-<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> ACME-HANDY-WORKER, Inc.</b>
+<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> ${conf.pageName}, Inc.</b>

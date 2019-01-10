@@ -85,9 +85,9 @@ ${message}
 	<input type="submit" name="save"
 		value="<spring:message code="referee.save" />" />&nbsp; 
 	
-		<input type="button" name="back"
+	<input type="button" name="back"
 		value="<spring:message code="referee.back" />"
-		onclick="javascript: relativeRedir('profile/action-1.jsp');" />
+		onclick="javascript: relativeRedir('/');" />
 	<br />
  	
 </form:form>
