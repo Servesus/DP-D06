@@ -93,6 +93,9 @@
 		<bean class="converters.ReportToStringConverter" />
 		<bean class="converters.StringToReportConverter" />
 		
+		<bean class="converters.UserAccountToStringConverter" />
+		<bean class="converters.StringToUserAccountConverter" />
+		
 		<bean class="converters.WarrantyToStringConverter" />
 		<bean class="converters.StringToWarrantyConverter" />
 	</util:list>
