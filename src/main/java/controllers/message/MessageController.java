@@ -89,6 +89,7 @@ public class MessageController extends AbstractController {
 			result = this.createEditModelAndView(mesage, binding.getAllErrors().get(0).getDefaultMessage());
 		else
 			try {
+				mesage.setSender(this.actorService.getActorLogged());
 				this.messageService.save(mesage);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {

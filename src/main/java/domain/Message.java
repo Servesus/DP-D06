@@ -12,10 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -31,8 +31,8 @@ public class Message extends DomainEntity {
 
 
 	//Getters and Setters
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getSendDate() {
 		return this.sendDate;
 	}
@@ -40,8 +40,7 @@ public class Message extends DomainEntity {
 	public void setSendDate(final Date sendDate) {
 		this.sendDate = sendDate;
 	}
-	@NotNull
-	@Valid
+
 	@ManyToMany
 	public Collection<Actor> getRecipient() {
 		return this.recipient;
@@ -50,7 +49,6 @@ public class Message extends DomainEntity {
 	public void setRecipient(final Collection<Actor> recipient) {
 		this.recipient = recipient;
 	}
-	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
 	public Actor getSender() {

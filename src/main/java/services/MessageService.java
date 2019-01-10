@@ -2,7 +2,6 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -57,27 +56,21 @@ public class MessageService {
 
 	public Message save(final Message message) {
 		//Declarar result
-		final Date actualDate = Calendar.getInstance().getTime();
-		message.setSendDate(actualDate);
+		//final Date actualDate = Calendar.getInstance().getTime();
+		//message.setSendDate(actualDate);
 		final Message result = this.messageRepository.save(message);
 		//Asserts y sacar sender y recipient
 		Assert.notNull(result);
 		Assert.isTrue(result.getId() != 0);
 		final Actor sender = result.getSender();
 		final List<Actor> recipients = (List<Actor>) result.getRecipient();
-		for (int i = 0; i < recipients.size(); i++) {
-			final Actor a = recipients.get(i);
-			Assert.isTrue(a.getId() != 0);
-		}
 		//Set sender message
-		result.setSender(sender);
+		//result.setSender(sender);
 		//meter message outbox sender
 		final List<Box> boxesS = (List<Box>) sender.getBoxes();
 		final Box outBoxS = boxesS.get(1);
 		final List<Message> m = (List<Message>) outBoxS.getMessages();
 		m.add(result);
-		outBoxS.setMessages(m);
-		this.boxService.save(outBoxS);
 		//lista de palabras spam
 		final String[] spam = {
 			"sex", "viagra", "cialis", "one million", "you've been selected", "Nigeria", "sexo", "un millón", "ha sido seleccionado"
@@ -101,16 +94,13 @@ public class MessageService {
 			for (int i = 0; i < recipients.size(); i++) {
 				final Actor a = recipients.get(i);
 				final List<Box> boxesR = (List<Box>) a.getBoxes();
-				final Box inBoxRx = boxesR.get(0);
-				final List<Message> m1 = (List<Message>) inBoxRx.getMessages();
-				m1.add(result);
-				inBoxRx.setMessages(m1);
-				this.boxService.saveRecipient(inBoxRx, a);
+				for (final Box b : boxesR)
+					if (b.getName() == "INBOX")
+						b.getMessages().add(result);
 			}
 		//Guardar mensaje en BD
 		return result;
 	}
-
 	public void delete(final Message message) {
 		Assert.notNull(message);
 		Assert.isTrue(message.getId() != 0);
