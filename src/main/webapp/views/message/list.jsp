@@ -20,29 +20,29 @@
 	requestURI="${requestURI}" id="row">
 	
 		
-	<spring:message code="message.sender" var="sender" />
+	<spring:message code="mesage.sender" var="sender" />
 	<display:column  title="${sender}" sortable="true">
 		${row.sender.name}
 	</display:column>
 	
-	<spring:message code="message.subject" var="subject" />
+	<spring:message code="mesage.subject" var="subject" />
 	<display:column property="subject" title="${subject}" sortable="true"/>
 	
 	
-	<spring:message code="message.sendDate" var="sendDate" />
+	<spring:message code="mesage.sendDate" var="sendDate" />
 	<display:column property="sendDate" title="${sendDate}" sortable="true"/>
 	
-	<spring:message code="message.priority" var="columnTitle" />
+	<spring:message code="mesage.priority" var="columnTitle" />
 	<display:column title="${columnTitle }" sortable="true">
 	<jstl:choose>
 		<jstl:when test="${row.priority == 0}">
-			<spring:message code="message.neutral"/>
+			<spring:message code="mesage.neutral"/>
 		</jstl:when>
 		<jstl:when test="${row.priority == -1}">
-			<spring:message code="message.low" />
+			<spring:message code="mesage.low" />
 		</jstl:when>
 		<jstl:when test="${row.priority == 1}">
-			<spring:message code="message.high"/>
+			<spring:message code="mesage.high"/>
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
@@ -50,19 +50,19 @@
 
 	<display:column>
 		<a href="message/customer,handyWorker,referee,administrator/show.do?messageId=${row.id}">
-  	 		<spring:message code="message.view" /> </a>
+  	 		<spring:message code="mesage.view" /> </a>
 	</display:column>
 	<display:column>
 		<a href="message/customer,handyWorker,referee,administrator/edit.do?messageId=${row.id}"> <!-- TODO -->
-  	 		<spring:message code="message.delete" /> </a>
+  	 		<spring:message code="mesage.delete" /> </a>
 	</display:column>		
 
 </display:table>
 
-<input type="button" name="Back" value="<spring:message code="message.back" />"
+<input type="button" name="Back" value="<spring:message code="mesage.back" />"
 			onclick="javascript: relativeRedir('box/customer,handyWorker,referee,administrator/list.do');" />
 			
-<input type="button" name="New Message" value="<spring:message code="message.create" />"
+<input type="button" name="New Message" value="<spring:message code="mesage.create" />"
 			onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/create.do');" />
 </body>
 
