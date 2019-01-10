@@ -16,6 +16,7 @@
 </head>
 <body>
 <security:authorize access="hasRole('REFEREE')">
+${message}
 <spring:message code="referee.firstMessage" />
 <form:form action="referee/referee/edit.do" modelAttribute="referee">
 
@@ -26,6 +27,8 @@
 	<form:hidden path="isSuspicious" />
 	<form:hidden path="isBanned"/>
 	<form:hidden path="userAccount.authorities"/>
+	<form:hidden path="userAccount.username" />
+	<form:hidden path="userAccount.password" />
 	<form:hidden path="reports"/>
  
 	<form:label path="name">
