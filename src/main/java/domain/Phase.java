@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -43,7 +44,8 @@ public class Phase extends DomainEntity {
 		this.description = description;
 	}
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getStartMoment() {
 		return this.startMoment;
 	}
@@ -52,7 +54,8 @@ public class Phase extends DomainEntity {
 		this.startMoment = startMoment;
 	}
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getFinishMoment() {
 		return this.finishMoment;
 	}

@@ -73,7 +73,8 @@ public class PhaseController extends AbstractController {
 	@RequestMapping(value = "/handyWorker/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Phase phase, final BindingResult binding) {
 		ModelAndView result;
-
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(phase);
 		try {
 			this.phaseService.save(phase);
 			result = new ModelAndView("redirect:list.do?fixUpTaskId=" + phase.getFixUpTask().getId());
@@ -83,6 +84,7 @@ public class PhaseController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/handyWorker/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int phaseId) {
 		ModelAndView result;
 		Phase phase;
@@ -97,7 +99,8 @@ public class PhaseController extends AbstractController {
 	@RequestMapping(value = "/handyWorker/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(@Valid final Phase phase, final BindingResult binding) {
 		ModelAndView result;
-
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(phase);
 		try {
 			this.phaseService.delete(phase);
 			result = new ModelAndView("redirect:list.do?fixUpTaskId=" + phase.getFixUpTask().getId());
