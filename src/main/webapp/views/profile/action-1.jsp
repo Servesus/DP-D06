@@ -60,13 +60,8 @@
 <spring:message code="administrator.phoneNumber" /> ${administrator.phoneNumber} <br/>
 <spring:message code="administrator.id" /> ${administrator.id} <br/>
 
-<spring:message code="administrator.categories" />
-<display:table name="${administrator.categories}" id="row">
-<display:column property="nameEN" titleKey="administrator.categories" />
-</display:table>
-
-<input type="button" name="Edit PD" value="<spring:message code="administrator.editPD" />"
-			onclick="javascript: relativeRedir(administrator/edit.do');" />
+<input type="button" name="Edit PD" value="<spring:message code="handyWorker.editPD" />"
+			onclick="javascript: relativeRedir('administrator/administrator/edit.do');" />
 
 </security:authorize>
 

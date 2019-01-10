@@ -23,7 +23,9 @@
 	<form:hidden path="version" />
 	<form:hidden path="profiles" />
 	<form:hidden path="boxes" />
-	<form:hidden path="categories" />
+	<form:hidden path="isBanned"/>
+	<form:hidden path="isSuspicious"/>
+	<form:hidden path="userAccount"/>
  
 	<form:label path="name">
 		<spring:message code="administrator.name" />*:
@@ -74,7 +76,7 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="save"
+	<input type="submit" name="update"
 		value="<spring:message code="administrator.save" />" />&nbsp; 
 	
 		<input type="button" name="back"
