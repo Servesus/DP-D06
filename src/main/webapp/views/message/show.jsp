@@ -16,21 +16,28 @@
 </head>
 <body>
 
-<spring:message code="message.sender" />
-	<display:table name="${message.sender}" id="row">
-</display:table>
+<p>
+	<spring:message code="message.sender"/>:
+	<jstl:out value="${message.sender}"></jstl:out> 
+</p>
 
 <spring:message code="message.subject" />
 	<display:table name="${message.subject}" id="row">
 </display:table>
 
-<spring:message code="message.priority" />
-	<display:table name="${message.priority}" id="row">
-</display:table>
+<p>
+	<spring:message code="message.subject"/>:
+	<jstl:out value="${message.subject}"></jstl:out> 
+</p>
 
-<spring:message code="message.body" />
-	<display:table name="${message.body}" id="row">
-</display:table>
+<form:select id="priorities" path="priority">
+			<form:options items="${priorities}"/>
+</form:select>
+
+<p>
+	<spring:message code="message.body"/>:
+	<jstl:out value="${message.body}"></jstl:out> 
+</p>
 
 <jstl:if test="${message.id != 0 }">
 	<input type="submit" name="delete"

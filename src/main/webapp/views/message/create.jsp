@@ -27,11 +27,11 @@
 	<form:errors cssClass="error" path="recipient" />
 	<br />
 	
-	<form:select id="priority" path="priority">
-		<form:option value="NEUTRAL" label="NEUTRAL" />
-		<form:option value="LOW" label="LOW" />
-		<form:option value="HIGH" label="HIGH" />		
-		<form:options items="${messages}" itemValue="id" itemLabel="priority" />
+	<form:select id="priority" path="priority">		
+			<form:option value="0" label="0" />
+			<form:option value="-1" label="-1" />
+			<form:option value="1" label="1" />	
+			<form:options items="${messages}"/>
 	</form:select>
 	
 	<form:label path="subject">
@@ -53,7 +53,7 @@
 	
 	<input type="button" name="cancel"
 		value="<spring:message code="message.cancel" />"
-		onclick="javascript: relativeRedir('message/edit.do');" /> <!-- TODITOTODO -->
+		onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/edit.do');" /> <!-- TODITOTODO -->
 	<br />
  	
 </form:form>
