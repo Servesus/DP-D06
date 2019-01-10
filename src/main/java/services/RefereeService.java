@@ -84,23 +84,20 @@ public class RefereeService {
 	}
 
 	public Referee save(final Referee r) {
+		final Referee result;
 		UserAccount userAccount;
 		userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN") || userAccount.getAuthorities().iterator().next().getAuthority().equals("REFEREE"));
 		Assert.notNull(r);
 
-		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		final String res = encoder.encodePassword(r.getUserAccount().getPassword(), null);
-		final UserAccount a = new UserAccount();
-		a.setUsername(r.getUserAccount().getUsername());
-		a.setPassword(res);
-
 		if (r.getId() == 0) {
+			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			final String res = encoder.encodePassword(r.getUserAccount().getPassword(), null);
+			r.getUserAccount().setPassword(res);
 			final Collection<Box> systemBox = this.boxService.createSystemBoxes();
 			r.setBoxes(systemBox);
 		}
 
-		Referee result;
 		result = this.refereeRepository.save(r);
 		return result;
 	}

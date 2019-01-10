@@ -54,7 +54,7 @@
 		<security:intercept-url pattern="/handyWorker/register.do" access="permitAll" /> 
 		<security:intercept-url pattern="/handyWorker/handyWorker/**" access="isAuthenticated()" />
 		
-		<security:intercept-url pattern="/referee/referee/**" access="isAutheticated()" />
+		<security:intercept-url pattern="/referee/referee/**" access="hasRole('REFEREE')" />
 		<security:intercept-url pattern="/referee/administrator/**" access="hasRole('ADMIN')" />  
 
 		<security:intercept-url pattern="/fixUpTask/customer/**" access="hasRole('CUSTOMER')" />  

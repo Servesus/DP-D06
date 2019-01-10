@@ -106,7 +106,4 @@
 <spring:message code="referee.surname" /> ${referee.surname} <br/>
 <spring:message code="referee.email" /> ${referee.email} <br/>
 <spring:message code="referee.phoneNumber" /> ${referee.phoneNumber} <br/>
-
-<a href="referee/referee/edit.do?refereeId=${referee.id}">
-<spring:message code="referee.editPD" /></a>
 </security:authorize>
