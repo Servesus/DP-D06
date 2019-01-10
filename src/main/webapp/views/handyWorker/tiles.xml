@@ -21,7 +21,7 @@
 		<put-attribute name="body" value="/views/handyWorker/register.jsp" />
 	</definition>
 	
-	<definition name="handyWorker/handyWorker/edit" extends="master.page">	
+	<definition name="handuWorker/handyWorker/edit" extends="master.page">	
 		<put-attribute name="title" value="Edit personal data" />
 		<put-attribute name="body" value="/views/handyWorker/edit.jsp" />
 	</definition>

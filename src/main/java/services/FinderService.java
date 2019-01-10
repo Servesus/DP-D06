@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.FinderRepository;
+import domain.Configuration;
 import domain.Finder;
 import domain.FixUpTask;
 
@@ -23,10 +24,12 @@ public class FinderService {
 
 	//Managed Repository
 	@Autowired
-	private FinderRepository	finderRepository;
-
+	private FinderRepository		finderRepository;
 
 	//Services
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	//Simple CRUD Methods
 	public Finder create() {
@@ -69,11 +72,23 @@ public class FinderService {
 			final Collection<FixUpTask> fixUpTasks = this.finderRepository.getFixUpTasksByWarranty(finder.getWarrantyTitle());
 			fixUps.addAll(fixUpTasks);
 		}
-		finder.setFixUpTask(fixUps);
+
+		Configuration conf;
+		conf = this.configurationService.findAll().get(0);
+		List<FixUpTask> fixUpsL = new ArrayList<FixUpTask>(fixUps);
+		//conf.getMaxResults()
+		if (fixUps.size() > conf.getMaxResults()) {
+			//final int size = fixUps.size();
+			final List<FixUpTask> fixUpsLim = new ArrayList<FixUpTask>();
+			for (int i = 0; i < conf.getMaxResults(); i++)
+				fixUpsLim.add(fixUpsL.get(i));
+			fixUpsL = fixUpsLim;
+		}
+
+		finder.setFixUpTask(fixUpsL);
 		final Date moment = new Date();
 		finder.setLastUpdate(moment);
 		finder = this.finderRepository.save(finder);
 		return finder;
 	}
-
 }

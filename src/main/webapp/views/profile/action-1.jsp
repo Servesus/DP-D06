@@ -73,22 +73,22 @@
 
 <security:authorize access="hasRole('HANDYWORKER')">
 
-<spring:message code="handyWorker.name" /> ${handyWorker.name} <br/>
-<spring:message code="handyWorker.surname" /> ${handyWorker.surname} <br/>
-<spring:message code="handyWorker.email" /> ${handyWorker.email} <br/>
-<spring:message code="handyWorker.phoneNumber" /> ${handyWorker.phoneNumber} <br/>
-<spring:message code="handyWorker.id" /> ${handyWorker.id} <br/>
-<spring:message code="handyWorker.make" /> ${handyWorker.make} <br/>
+<spring:message code="handyWorker.name" />: ${handyWorker.name} <br/>
+<spring:message code="handyWorker.surname" />: ${handyWorker.surname} <br/>
+<spring:message code="handyWorker.email" />: ${handyWorker.email} <br/>
+<spring:message code="handyWorker.phoneNumber" />: ${handyWorker.phoneNumber} <br/>
+<spring:message code="handyWorker.id" />: ${handyWorker.id} <br/>
+<spring:message code="handyWorker.make" />: ${handyWorker.make} <br/>
 
 
-<spring:message code="handyWorker.applications" />
+<spring:message code="handyWorker.applications" />:
 <display:table name="${handyWorker.applications}" id="row">
 <display:column property="moment" titleKey="handyWorker.applications.moment" />
 <display:column property="status" titleKey="handyWorker.applications.status" />
 <display:column property="price" titleKey="handyWorker.applications.price" />
 </display:table>
 
-<spring:message code="handyWorker.phases" />
+<spring:message code="handyWorker.phases" />:
 <display:table name="${handyWorker.phases}" id="row">
 <display:column property="title" titleKey="handyWorker.phases.title" />
 <display:column property="description" titleKey="handyWorker.phases.description" />
@@ -96,7 +96,7 @@
 </display:table>
 
 <input type="button" name="Edit PD" value="<spring:message code="handyWorker.editPD" />"
-			onclick="javascript: relativeRedir(handyWorker/edit.do');" />
+			onclick="javascript: relativeRedir('handyWorker/handyWorker/edit.do');" />
 
 </security:authorize>
 

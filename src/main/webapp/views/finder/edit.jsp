@@ -15,8 +15,6 @@
 	<form:hidden path="version" />
 	<form:hidden path="lastUpdate"/>
 	<form:hidden path="fixUpTask"/>
-	
-	${messageCode}
 
 	<form:label path="singleKeyWord">
 		<spring:message code="finder.update.keyword" />:
@@ -29,13 +27,13 @@
 		<spring:message code="finder.update.daterange" />:
 		<spring:message code="finder.update.between"/>
 	</form:label>
-	<form:input path="dateStartRange" />
+	<form:input path="dateStartRange" placeholder="dd/MM/yyyy HH:mm"/>
 	<form:errors cssClass="error" path="dateStartRange" />
 	
 	<form:label path="dateFinishRange">
 		<spring:message code="finder.update.and" />
 	</form:label>
-	<form:input path="dateFinishRange" />
+	<form:input path="dateFinishRange" placeholder="dd/MM/yyyy HH:mm"/>
 	<form:errors cssClass="error" path="dateFinishRange" />
 	<br />
 	
@@ -43,13 +41,13 @@
 		<spring:message code="finder.update.pricerange" />:
 		<spring:message code="finder.update.between"/>
 	</form:label>
-	<form:input path="rangeStart" />
+	<form:input path="rangeStart" placeholder="0"/>
 	<form:errors cssClass="error" path="rangeStart" />
 	
 	<form:label path="rangeFinish">
 		<spring:message code="finder.update.and" />
 	</form:label>
-	<form:input path="rangeFinish" />
+	<form:input path="rangeFinish" placeholder="99999"/>
 	<form:errors cssClass="error" path="rangeFinish" />
 	<br />
 	 
