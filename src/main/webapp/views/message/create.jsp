@@ -23,8 +23,10 @@
 	<form:hidden path= "sendDate"/>
 	 
 	<spring:message code="mesage.recipient" />:
-	<form:select multiple="true" path="recipient" items="${actors}" itemLabel="email" itemValue="id" />
-
+	<form:select multiple="true" path="recipient">	
+		<form:options items="${actors}" itemValue="id" itemLabel="name"
+			/>
+	</form:select>
 	<form:errors cssClass="error" path="recipient" />
 	<br />
 	

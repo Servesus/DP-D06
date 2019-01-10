@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,18 +55,9 @@ public class MessageController extends AbstractController {
 	public ModelAndView create() {
 		ModelAndView result;
 		Message mesage;
-		Actor user;
-		Collection<Actor> actors;
-
-		user = this.actorService.getActorLogged();
-		actors = this.actorService.findAll();
-
-		actors.remove(user);
 
 		mesage = this.messageService.create();
-		result = new ModelAndView("message/customer,handyWorker,referee,administrator/create");
-		result.addObject("mesage", mesage);
-		result.addObject("actors", actors);
+		result = this.createEditModelAndView(mesage);
 		return result;
 	}
 
@@ -82,11 +74,11 @@ public class MessageController extends AbstractController {
 	//	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "send")
-	public ModelAndView save(@Valid final Message mesage, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("mesage") @Valid final Message mesage, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(mesage, binding.getAllErrors().get(0).getDefaultMessage());
+			result = this.createEditModelAndView(mesage);
 		else
 			try {
 				mesage.setSender(this.actorService.getActorLogged());
@@ -100,20 +92,14 @@ public class MessageController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam final int messageId, final BindingResult binding) {
+	public ModelAndView delete(@RequestParam final int messageId) {
 		ModelAndView result;
 		Message mesage;
 
 		mesage = this.messageService.findOne(messageId);
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(mesage);
-		else
-			try {
-				this.messageService.delete(mesage);
-				result = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(mesage, "mesage.commit.error");
-			}
+		this.messageService.deleteMessage(mesage);
+		result = new ModelAndView("redirect:list.do");
+
 		return result;
 	}
 
@@ -146,9 +132,9 @@ public class MessageController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Message mesage, final String messageCode) {
 		ModelAndView result;
-
+		final Collection<Actor> actors = this.actorService.findAll();
 		result = new ModelAndView("message/customer,handyWorker,referee,administrator/create");
-
+		result.addObject("actors", actors);
 		result.addObject("mesage", mesage);
 		result.addObject("message", messageCode);
 

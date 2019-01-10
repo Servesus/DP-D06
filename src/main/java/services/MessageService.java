@@ -153,14 +153,7 @@ public class MessageService {
 		Assert.isTrue(message.getId() != 0);
 		final Actor a = message.getSender();
 		final List<Box> boxesActor = (List<Box>) a.getBoxes();
-		Box originBox = null;
-		boolean msgInActor = false;
-		for (int i = 0; i < a.getBoxes().size(); i++)
-			if (boxesActor.get(i).getMessages().contains(message)) {
-				originBox = boxesActor.get(i);
-				msgInActor = true;
-			}
-		Assert.isTrue(msgInActor);
+		final Box originBox = null;
 		//Si no es trashbox, mover a trashbox
 		if (boxesActor.get(2) != originBox) {
 			final Box trashBox = boxesActor.get(2);
