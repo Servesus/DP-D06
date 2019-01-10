@@ -61,8 +61,8 @@
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}"/>
 	
-	<spring:message code="application.status" var="status" />
-	<display:column title="${status}">
+	<spring:message code="application.status" var="status"/>
+	<display:column property="status" title="${status}">
 	<jstl:choose>
 		<jstl:when test="${application.status == 1}">
 		<spring:message code="application.accepted"/>
