@@ -42,11 +42,7 @@
 		<put-attribute name="body" value="/views/application/show.jsp" />
 	</definition>
 	
-<<<<<<< HEAD
-	<definition name="application/customer/accept" extends="master.page">
-=======
 	<definition name="application/customer/accept" extends="master.page"> 
->>>>>>> origin/miguel
 		<put-attribute name="title" value="Accept" />
 		<put-attribute name="body" value="/views/application/accept.jsp" />
 	</definition>

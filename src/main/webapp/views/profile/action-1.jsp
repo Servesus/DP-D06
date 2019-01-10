@@ -27,13 +27,6 @@
 <spring:message code="customer.phoneNumber" /> ${customer.phoneNumber} <br/>
 <spring:message code="customer.id" /> ${customer.id} <br/>
 
-<spring:message code="customer.creditCards" />
-<display:table name="${customer.creditCards}" id="row">
-<display:column property="holderName" titleKey="customer.creditCards.holderName" />
-<display:column property="brandName" titleKey="customer.creditCards.brandName" />
-<display:column property="number" titleKey="customer.creditCards.number" />
-</display:table>
-
 <spring:message code="customer.complaints" />
 <display:table name="${customer.complaints}" id="row">
 <display:column property="moment" titleKey="customer.complaints.moment" />
@@ -47,8 +40,11 @@
 <display:column property="maxPrice" titleKey="customer.fixUpTasks.maxPrice" />
 </display:table>
 
+<input type="button" name="socialProfiles" value="<spring:message code="customer.socialProfiles" />"
+			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
+
 <input type="button" name="Edit PD" value="<spring:message code="customer.editPD" />"
-			onclick="javascript: relativeRedir(customer/customer/edit.do');" />
+			onclick="javascript: relativeRedir('/customer/customer/edit.do');" />
 </security:authorize>
 
 
@@ -60,13 +56,11 @@
 <spring:message code="administrator.phoneNumber" /> ${administrator.phoneNumber} <br/>
 <spring:message code="administrator.id" /> ${administrator.id} <br/>
 
-<spring:message code="administrator.categories" />
-<display:table name="${administrator.categories}" id="row">
-<display:column property="nameEN" titleKey="administrator.categories" />
-</display:table>
+<input type="button" name="socialProfiles" value="<spring:message code="administrator.socialProfiles" />"
+			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
 
 <input type="button" name="Edit PD" value="<spring:message code="administrator.editPD" />"
-			onclick="javascript: relativeRedir(administrator/edit.do');" />
+			onclick="javascript: relativeRedir('/administrator/edit.do');" />
 
 </security:authorize>
 
@@ -95,8 +89,11 @@
 <display:column property="number" titleKey="handyWorker.phases.number" />
 </display:table>
 
+<input type="button" name="socialProfiles" value="<spring:message code="handyWorker.socialProfiles" />"
+			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
+
 <input type="button" name="Edit PD" value="<spring:message code="handyWorker.editPD" />"
-			onclick="javascript: relativeRedir('handyWorker/handyWorker/edit.do');" />
+			onclick="javascript: relativeRedir('/handyWorker/handyWorker/edit.do');" />
 
 </security:authorize>
 
@@ -106,4 +103,7 @@
 <spring:message code="referee.surname" /> ${referee.surname} <br/>
 <spring:message code="referee.email" /> ${referee.email} <br/>
 <spring:message code="referee.phoneNumber" /> ${referee.phoneNumber} <br/>
+
+<input type="button" name="socialProfiles" value="<spring:message code="referee.socialProfiles" />"
+			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
 </security:authorize>

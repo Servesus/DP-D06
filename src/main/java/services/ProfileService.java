@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,24 +41,20 @@ public class ProfileService {
 
 		Profile result;
 		Assert.notNull(profile);
+		final Actor user = this.actorService.getActorLogged();
 		result = this.profileRepository.save(profile);
+		if (profile.getId() == 0)
+			user.getProfiles().add(result);
 		return result;
 	}
 
 	public void delete(final Profile profile) {
 
-		Collection<Actor> actors = new ArrayList<Actor>();
+		final Actor actor = this.actorService.getActorLogged();
 		Assert.notNull(profile);
-		assert profile.getId() != 0;
 		Assert.isTrue(this.profileRepository.exists(profile.getId()));
-		actors = this.actorService.findAll();
-		for (final Actor a : actors)
-			if (a.getProfiles().contains(profile)) {
-				final Collection<Profile> profiles = a.getProfiles();
-				profiles.remove(profile);
-				a.setProfiles(profiles);
-				this.actorService.save(a);
-			}
+		final Collection<Profile> profiles = actor.getProfiles();
+		profiles.remove(profile);
 		this.profileRepository.delete(profile);
 	}
 }
