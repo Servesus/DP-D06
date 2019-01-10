@@ -72,6 +72,32 @@ public class ApplicationController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/customer/reject", method = RequestMethod.GET)
+	public ModelAndView reject(@RequestParam final int applicationId) {
+		ModelAndView result;
+		Application application;
+
+		application = this.applicationService.findOne(applicationId);
+		Assert.notNull(application);
+		result = this.createEditModelAndView(application);
+
+		return result;
+	}
+	@RequestMapping(value = "/customer/reject", method = RequestMethod.POST, params = "save")
+	public ModelAndView reject(@Valid final Application application, final BindingResult binding) {
+		ModelAndView result;
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(application);
+		else
+			try {
+				this.applicationService.rejectApplication(application);
+				result = new ModelAndView("redirect:/application/customer/show.do?applicationId=" + application.getId());
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(application);
+			}
+		return result;
+	}
+
 	@RequestMapping(value = "/customer/show", method = RequestMethod.GET)
 	public ModelAndView showCustomer(@RequestParam final int applicationId) {
 		ModelAndView result;

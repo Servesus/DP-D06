@@ -71,7 +71,7 @@
 	
 	
 	<input type="submit" name="save"
-		value="<spring:message code="application.create" />" />&nbsp; 
+		value="<spring:message code="application.save" />" />&nbsp; 
 	
 	<input type="button" name="back"
 		value="<spring:message code="application.back" />"
