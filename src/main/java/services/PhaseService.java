@@ -61,8 +61,6 @@ public class PhaseService {
 			final HandyWorker h = this.handyWorkerService.findOne(this.actorService.getActorLogged().getId());
 			final Collection<Phase> phases = h.getPhases();
 			phases.add(result);
-			h.setPhases(phases);
-			this.handyWorkerService.save(h);
 		}
 
 		return result;
@@ -81,7 +79,7 @@ public class PhaseService {
 		final HandyWorker h = this.handyWorkerService.findOne(this.actorService.getActorLogged().getId());
 		final Collection<Phase> phases = h.getPhases();
 		phases.remove(phase);
-		this.handyWorkerService.save(h);
+		phase.getFixUpTask().getPhases().remove(phase);
 		this.phaseRepository.delete(phase);
 	}
 	public Collection<Phase> phasesByFixUpTask(final int idFixUpTask) {

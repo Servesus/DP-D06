@@ -427,64 +427,64 @@
 	<bean id="phase1" class="domain.Phase">
 		<property name="title" value="phase1" />
 		<property name="description" value="description1" />
-		<property name="startMoment" value="11/11/2018" />
-		<property name="finishMoment" value="12/11/2018" />
+		<property name="startMoment" value="11/11/2018 00:00" />
+		<property name="finishMoment" value="12/11/2018 00:00" />
 		<property name="number" value="1" />
 	 	<property name="fixUpTask" ref="fixUpTask1"/>
 	</bean>
 	<bean id="phase2" class="domain.Phase">
 		<property name="title" value="phase2" />
 		<property name="description" value="description2" />
-		<property name="startMoment" value="12/11/2018" />
-		<property name="finishMoment" value="13/11/2018" />
+		<property name="startMoment" value="12/11/2018 00:00" />
+		<property name="finishMoment" value="13/11/2018 00:00" />
 		<property name="number" value="2" />
 	 	<property name="fixUpTask" ref="fixUpTask1"/>
 	</bean>
 	<bean id="phase3" class="domain.Phase">
 		<property name="title" value="phase1" />
 		<property name="description" value="description1" />
-		<property name="startMoment" value="11/11/2018" />
-		<property name="finishMoment" value="12/11/2018" />
+		<property name="startMoment" value="11/11/2018 00:00" />
+		<property name="finishMoment" value="12/11/2018 00:00" />
 		<property name="number" value="1" />
 	 	<property name="fixUpTask" ref="fixUpTask1"/>
 	</bean>
 	<bean id="phase4" class="domain.Phase">
 		<property name="title" value="phase2" />
 		<property name="description" value="description2" />
-		<property name="startMoment" value="12/11/2018" />
-		<property name="finishMoment" value="13/11/2018" />
+		<property name="startMoment" value="12/11/2018 00:00" />
+		<property name="finishMoment" value="13/11/2018 00:00" />
 		<property name="number" value="2" />
 	 	<property name="fixUpTask" ref="fixUpTask1"/>
 	</bean>
 	<bean id="phase5" class="domain.Phase">
 		<property name="title" value="phase1" />
 		<property name="description" value="description1" />
-		<property name="startMoment" value="12/11/2018" />
-		<property name="finishMoment" value="13/11/2018" />
+		<property name="startMoment" value="12/11/2018 00:00" />
+		<property name="finishMoment" value="13/11/2018 00:00" />
 		<property name="number" value="1" />
 	 	<property name="fixUpTask" ref="fixUpTask2"/>
 	</bean>
 	<bean id="phase6" class="domain.Phase">
 		<property name="title" value="phase1" />
 		<property name="description" value="description1" />
-		<property name="startMoment" value="12/11/2018" />
-		<property name="finishMoment" value="13/11/2018" />
+		<property name="startMoment" value="12/11/2018 00:00" />
+		<property name="finishMoment" value="13/11/2018 00:00" />
 		<property name="number" value="1" />
 	 	<property name="fixUpTask" ref="fixUpTask3"/>
 	</bean>
 	<bean id="phase7" class="domain.Phase">
 		<property name="title" value="phase1" />
 		<property name="description" value="description1" />
-		<property name="startMoment" value="12/11/2018" />
-		<property name="finishMoment" value="13/11/2018" />
+		<property name="startMoment" value="12/11/2018 00:00" />
+		<property name="finishMoment" value="13/11/2018 00:00" />
 		<property name="number" value="1" />
 	 	<property name="fixUpTask" ref="fixUpTask4"/>
 	</bean>
 	<bean id="phase8" class="domain.Phase">
 		<property name="title" value="phase1" />
 		<property name="description" value="description1" />
-		<property name="startMoment" value="12/11/2018" />
-		<property name="finishMoment" value="13/11/2018" />
+		<property name="startMoment" value="12/11/2018 00:00" />
+		<property name="finishMoment" value="13/11/2018 00:00" />
 		<property name="number" value="1" />
 	 	<property name="fixUpTask" ref="fixUpTask5"/>
 	</bean>
@@ -1946,11 +1946,11 @@
 	<!--FIX_UP_TASK-->
 	<bean id="fixUpTask1" class="domain.FixUpTask">
 		<property name="ticker" value="123228-e63fp6"/>
-		<property name="startDate" value="11/11/2018 8:00"/>
+		<property name="startDate" value="2/10/2019 00:00"/>
 		<property name="description" value="descripcion fix_up_task1" />
 		<property name="address" value="https://monday.com/"/>
 		<property name="maxPrice" value="2500"/>
-		<property name="estimatedDate" value="11/12/2018 8:00"/>
+		<property name="estimatedDate" value="2/10/2021 00:00"/>
 		<property name="category" ref="category1"/>
 		<property name="warranty" ref="warranty1"/>
 		<property name="customer" ref="customer1"/>

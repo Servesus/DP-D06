@@ -80,16 +80,18 @@ public class FixUpTaskService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER") || userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 
 		Assert.notNull(fixUpTask);
-		result = this.fixUpTaskRepository.save(fixUpTask);
 		final Actor a = this.actorService.getActorLogged();
 		final Customer customer = this.customerService.findOne(a.getId());
 		final Collection<FixUpTask> f = customer.getFixUpTasks();
 
 		if (fixUpTask.getId() == 0) {
+			fixUpTask.setCustomer(customer);
+			result = this.fixUpTaskRepository.save(fixUpTask);
 			f.add(result);
-			customer.setFixUpTasks(f);
+
 			//this.customerService.save(customer);
-		}
+		} else
+			result = this.fixUpTaskRepository.save(fixUpTask);
 		return result;
 	}
 	public void delete(final FixUpTask fixUpTask) {

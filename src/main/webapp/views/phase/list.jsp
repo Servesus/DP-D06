@@ -32,13 +32,13 @@
 	<spring:message code="phase.description" var="description" />
 	<display:column property="description" title="${description}"/>
 	
-	<spring:message code="phase.startMoment" var="phase.startMoment" />
+	<spring:message code="phase.startM" var="phase.startM" />
 	<display:column property="startMoment" title="${startMoment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	
-	<spring:message code="phase.finishMoment" var="phase.finishMoment" />
+	<spring:message code="phase.finishM" var="phase.finishM" />
 	<display:column property="finishMoment" title="${finishMoment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	
-	<spring:message code="phase.number" var="number" />
+	<spring:message code="phase.numero" var="phase.numero" />
 	<display:column property="number" title="${number}" sortable="true"/>
 	
 </display:table>
