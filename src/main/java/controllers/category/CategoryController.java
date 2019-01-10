@@ -25,7 +25,7 @@ import domain.Category;
 public class CategoryController extends AbstractController {
 
 	@Autowired
-	CategoryService	categoryService;
+	private CategoryService	categoryService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
