@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+
+ * Copyright (C) 2017 Universidad de Sevilla
+ * Author (A) 2012 Rafael Corchuelo (corchu@us.es)
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="phase/handyWorker/list" extends="master.page">	
+		<put-attribute name="title" value="Workplan" />
+		<put-attribute name="body" value="/views/phase/list.jsp" />
+	</definition>
+	
+	<definition name="phase/handyWorker/show" extends="master.page">	
+		<put-attribute name="title" value="Phase" />
+		<put-attribute name="body" value="/views/phase/show.jsp" />
+	</definition>
+	
+	<definition name="phase/handyWorker/edit" extends="master.page">
+		<put-attribute name="title" value="Phase" />
+		<put-attribute name="body" value="/views/phase/edit.jsp" />
+	</definition>
+
+</tiles-definitions>

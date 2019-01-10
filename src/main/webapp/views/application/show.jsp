@@ -74,8 +74,8 @@
 </div>
 	<jstl:if test="${application.status == 1}">
 	<input type= button name="create"
-	value="<spring:message code="phase.create" />"
-	onclick="javascript: relativeRedir('phase/handyWorker/create.?applicationId=${application.id}');"/>
+	value="<spring:message code="phase.workplan" />"
+	onclick="javascript: relativeRedir('phase/handyWorker/list.do?fixUpTaskId=${application.fixUpTask.id}');"/>
 	</jstl:if>
 	
 	<input type="button" name="back"

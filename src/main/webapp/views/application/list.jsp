@@ -48,6 +48,23 @@
 	<spring:message code="application.price" var="price" />
 	<display:column property="price" title="${price}"/>
 	
+<<<<<<< HEAD
+=======
+	<spring:message code="application.status" var="status"/>
+	<display:column property="status" title="${status}">
+	<jstl:choose>
+		<jstl:when test="${application.status == 1}">
+		<spring:message code="application.accepted"/>
+		</jstl:when>
+		<jstl:when test="${application.status == 0}">
+			<spring:message code="application.pending"/>
+		</jstl:when>
+		<jstl:when test="${application.status == -1}">
+			<spring:message code="application.rejected"/>
+		</jstl:when>
+	</jstl:choose>
+	</display:column>
+>>>>>>> origin/miguel
 	</security:authorize>
 
 </display:table>

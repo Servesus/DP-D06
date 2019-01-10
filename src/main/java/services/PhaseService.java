@@ -40,7 +40,6 @@ public class PhaseService {
 		result = new Phase();
 		final FixUpTask fixUpTask = this.fixUpTaskService.findOne(idFixUp);
 		result.setFixUpTask(fixUpTask);
-		result.setNumber(0);
 		return result;
 	}
 
