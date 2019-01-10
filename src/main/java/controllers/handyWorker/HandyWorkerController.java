@@ -74,7 +74,39 @@ public class HandyWorkerController extends AbstractController {
 		final Actor user = this.actorService.getActorLogged();
 		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
 		Assert.notNull(hw);
-		result = this.createEditModelAndView(hw);
+		result = this.editModelAndView(hw);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "update")
+	public ModelAndView update(@Valid final HandyWorker handyWorker, final BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.editModelAndView(handyWorker, binding.getAllErrors().get(0).getDefaultMessage());
+		else
+			try {
+				this.handyWorkerService.save(handyWorker);
+				result = new ModelAndView("redirect:/");
+			} catch (final Throwable oops) {
+				result = this.editModelAndView(handyWorker, oops.getLocalizedMessage()); //"handyWorker.commit.error"
+			}
+		return result;
+	}
+
+	protected ModelAndView editModelAndView(final HandyWorker handyWorker) {
+		ModelAndView result;
+		result = this.editModelAndView(handyWorker, null);
+		return result;
+	}
+
+	protected ModelAndView editModelAndView(final HandyWorker handyWorker, final String messageCode) {
+		ModelAndView result;
+
+		result = new ModelAndView("handyWorker/handyWorker/edit");
+		result.addObject("handyWorker", handyWorker);
+		result.addObject("messageCode", messageCode);
 
 		return result;
 	}

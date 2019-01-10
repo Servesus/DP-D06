@@ -1,9 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -13,8 +8,6 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-</head>
-<body>
 <security:authorize access="hasRole('HANDYWORKER')">
 <form:form action="handyWorker/handyWorker/edit.do" modelAttribute="handyWorker">
 
@@ -26,6 +19,17 @@
 	<form:hidden path="phases" />
 	<form:hidden path="curricula" />
 	<form:hidden path="finder" />
+	<form:hidden path="isBanned" />
+	<form:hidden path="isSuspicious" />
+	<form:hidden path="profiles" />
+	<form:hidden path="userAccount" />
+	<form:hidden path="userAccount.id" />
+	<form:hidden path="userAccount.version" />
+	<form:hidden path="userAccount.authorities" />
+	<form:hidden path="userAccount.username" />
+	<form:hidden path="userAccount.password" />
+	
+	${messageCode }
  
 	<form:label path="name">
 		<spring:message code="handyWorker.name" />:
@@ -83,7 +87,7 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
-	<input type="submit" name="save"
+	<input type="submit" name="update"
 		value="<spring:message code="handyWorker.save" />" />&nbsp; 
 	
 		<input type="button" name="back"
@@ -93,5 +97,3 @@
  	
 </form:form>
 </security:authorize>
-</body>
-</html>

@@ -5,23 +5,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.HandyWorker;
+import security.UserAccount;
 
 @Component
 @Transactional
-public class HandyWorkerToStringConverter implements Converter<HandyWorker, String> {
+public class UserAccountToStringConverter implements Converter<UserAccount, String> {
 
 	@Override
-	public String convert(final HandyWorker handyWorker) {
+	public String convert(final UserAccount userAccount) {
 		String result;
 
-		if (handyWorker == null)
+		if (userAccount == null)
 			result = null;
 		else
-			result = String.valueOf(handyWorker.getId());
-
+			result = String.valueOf(userAccount.getId());
 		return result;
-
 	}
-
 }
