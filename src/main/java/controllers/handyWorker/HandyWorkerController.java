@@ -11,12 +11,13 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.CurriculaService;
 import services.HandyWorkerService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Application;
 import domain.Curricula;
 import domain.HandyWorker;
@@ -24,9 +25,11 @@ import domain.Phase;
 import domain.Profile;
 
 @Controller
-@RequestMapping("/handyWorker")
+@RequestMapping("handyWorker/handyWorker")
 public class HandyWorkerController extends AbstractController {
 
+	@Autowired
+	private ActorService		actorService;
 	@Autowired
 	private HandyWorkerService	handyWorkerService;
 	@Autowired
@@ -63,14 +66,15 @@ public class HandyWorkerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/handyWorker/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int handyWorkerId) {
-		ModelAndView result;
-		HandyWorker handyWorker;
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
 
-		handyWorker = this.handyWorkerService.findOne(handyWorkerId);
-		Assert.notNull(handyWorker);
-		result = this.createEditModelAndView(handyWorker);
+		ModelAndView result;
+
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
+		Assert.notNull(hw);
+		result = this.createEditModelAndView(hw);
 
 		return result;
 	}

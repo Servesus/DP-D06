@@ -3,6 +3,7 @@ package controllers.handyWorker;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -87,6 +88,15 @@ public class FinderHandyWorkerController extends AbstractController {
 			result = this.createEditModelAndView(finder);
 		else
 			try {
+				if (finder.getRangeStart() == null)
+					finder.setRangeStart(0);
+				if (finder.getRangeFinish() == null)
+					finder.setRangeFinish(99999);
+				if (finder.getDateStartRange() == null)
+					finder.setDateStartRange(new Date(946681200000L)); //01/01/2000
+				if (finder.getDateFinishRange() == null)
+					finder.setDateFinishRange(new Date()); //fecha actual
+
 				this.finderService.save(finder);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
