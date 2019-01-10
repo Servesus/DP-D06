@@ -14,12 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.BoxService;
 import services.MessageService;
+import controllers.AbstractController;
 import domain.Box;
 import domain.Message;
 
 @Controller
 @RequestMapping("message/customer,handyWorker,referee,administrator")
-public class MessageController {
+public class MessageController extends AbstractController {
 
 	@Autowired
 	MessageService	messageService;
@@ -49,12 +50,13 @@ public class MessageController {
 		Message mesage;
 
 		mesage = this.messageService.create();
-		result = this.createEditModelAndView(mesage);
+		result = new ModelAndView("message/customer,handyWorker,referee,administrator/create");
+		result.addObject("message", mesage);
 
 		return result;
 	}
 
-	@RequestMapping(value = "edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int messageId) {
 		final ModelAndView result;
 		final Message mesage;
@@ -82,8 +84,7 @@ public class MessageController {
 		return result;
 	}
 
-	//TODO
-	@RequestMapping(value = "/edit", method = RequestMethod.GET, params = "delete")
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(final Message mesage, final BindingResult binding) {
 		ModelAndView result;
 
@@ -93,6 +94,19 @@ public class MessageController {
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(mesage, "message.commit.error");
 		}
+		return result;
+	}
+
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(@RequestParam final int messageId) {
+		ModelAndView result;
+		Message mesage;
+
+		mesage = this.messageService.findOne(messageId);
+
+		result = new ModelAndView("message/customer,handyWorker,referee,administrator/show");
+		result.addObject("mesage", mesage);
+		result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/show.do");
 		return result;
 	}
 
