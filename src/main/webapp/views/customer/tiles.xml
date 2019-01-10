@@ -21,9 +21,10 @@
 		<put-attribute name="body" value="/views/customer/register.jsp" />
 	</definition>
 	
-	<definition name="customer/customer/edit" extends="master.page">	
+	
+	<definition name="customer/customer/editPersonalData" extends="master.page">	
 		<put-attribute name="title" value="Edit personal data" />
-		<put-attribute name="body" value="/views/customer/register.jsp" />
+		<put-attribute name="body" value="/views/customer/editPersonalData.jsp" />
 	</definition>
 	
 </tiles-definitions>

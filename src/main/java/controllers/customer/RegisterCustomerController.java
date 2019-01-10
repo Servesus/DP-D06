@@ -11,11 +11,12 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.CustomerService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
@@ -27,6 +28,8 @@ public class RegisterCustomerController extends AbstractController {
 
 	@Autowired
 	private CustomerService	customerService;
+	@Autowired
+	private ActorService	actorService;
 
 
 	//Para registrarse como cliente, primero se llama al create del servicio
@@ -57,15 +60,32 @@ public class RegisterCustomerController extends AbstractController {
 			}
 		return result;
 	}
-	@RequestMapping(value = "/customer/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int customerId) {
+	@RequestMapping(value = "/customer/editPersonalData", method = RequestMethod.GET)
+	public ModelAndView edit() {
 		ModelAndView result;
+		final Actor user = this.actorService.getActorLogged();
 		Customer customer;
 
-		customer = this.customerService.findOne(customerId);
+		customer = this.customerService.findOne(user.getId());
 		Assert.notNull(customer);
-		result = this.createEditModelAndView(customer);
+		result = new ModelAndView("customer/customer/editPersonalData");
+		result.addObject("customer", customer);
 
+		return result;
+	}
+	@RequestMapping(value = "/customer/editPersonalData", method = RequestMethod.POST, params = "save")
+	public ModelAndView savePersonalData(@Valid final Customer customer, final BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView2(customer, binding.getAllErrors().get(0).getDefaultMessage());
+		else
+			try {
+				this.customerService.save(customer);
+				result = new ModelAndView("redirect:/");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView2(customer, "customer.commit.error");
+			}
 		return result;
 	}
 
@@ -86,6 +106,30 @@ public class RegisterCustomerController extends AbstractController {
 		profiles = customer.getProfiles();
 
 		result = new ModelAndView("customer/create");
+		result.addObject("customer", customer);
+		result.addObject("complaints", complaints);
+		result.addObject("fixUpTasks", fixUpTasks);
+		result.addObject("profiles", profiles);
+		result.addObject("message", messageCode);
+
+		return result;
+	}
+	protected ModelAndView createEditModelAndView2(final Customer customer) {
+		ModelAndView result;
+		result = this.createEditModelAndView2(customer, null);
+		return result;
+	}
+	protected ModelAndView createEditModelAndView2(final Customer customer, final String messageCode) {
+		ModelAndView result;
+		Collection<Complaint> complaints;
+		Collection<FixUpTask> fixUpTasks;
+		Collection<Profile> profiles;
+
+		complaints = customer.getComplaints();
+		fixUpTasks = customer.getFixUpTasks();
+		profiles = customer.getProfiles();
+
+		result = new ModelAndView("customer/customer/editPersonalData");
 		result.addObject("customer", customer);
 		result.addObject("complaints", complaints);
 		result.addObject("fixUpTasks", fixUpTasks);

@@ -39,7 +39,7 @@ public class FixUpTask extends DomainEntity {
 	private Customer				customer;
 
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	public Customer getCustomer() {
 		return this.customer;
 	}

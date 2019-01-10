@@ -43,7 +43,8 @@
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="fixUpTask/customer/findAll.do"><spring:message code="master.page.customer.findAll" /></a></li>					
+					<li><a href="fixUpTask/customer/findAll.do"><spring:message code="master.page.customer.findAll" /></a></li>	
+					<li><a href="customer/customer/editPersonalData.do"><spring:message code="master.page.customer.editPersonalData" /></a></li>				
 				</ul>
 			</li>
 		</security:authorize>
