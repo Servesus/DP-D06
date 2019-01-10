@@ -21,26 +21,23 @@
 	<form:hidden path="version" />
 	<form:hidden path="sender"/>
 	<form:hidden path= "sendDate"/>
-	
-	${message} 
-	
+	 
 	<spring:message code="mesage.recipient" />:
-	<form:select id="recipient" path="recipient" multiple ="true">		
-				
-			<form:options items="${actors}" itemValue="id" itemLabel="email"/>
-	</form:select>
+	<form:select multiple="true" path="recipient" items="${actors}" itemLabel="email" itemValue="id" />
+
+	<form:errors cssClass="error" path="recipient" />
 	<br />
 	
 	<br />
 	
 	<spring:message code="mesage.priority" />:
-	<form:select id="priority" path="priority">		
+	<form:select path="priority">		
 			
 			<form:option value="0" label="NEUTRAL" />
 			<form:option value="-1" label="LOW" />
 			<form:option value="1" label="HIGH" />	
-			<form:options items="${messages}"/>
 	</form:select>
+	<form:errors cssClass="error" path="priority" />
 	<br />
 	
 	<form:label path="subject">
