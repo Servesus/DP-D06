@@ -14,6 +14,7 @@ import repositories.ApplicationRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Application;
+import domain.CreditCard;
 import domain.FixUpTask;
 import domain.HandyWorker;
 
@@ -33,6 +34,9 @@ public class ApplicationService {
 
 	@Autowired
 	private ActorService			actorService;
+
+	@Autowired
+	private CreditCardService		creditCardService;
 
 
 	public Application create(final int fixUpTaskId) {
@@ -109,14 +113,14 @@ public class ApplicationService {
 	public Application acceptApplication(final Application application) {
 		Assert.notNull(application);
 		Application res;
-
+		final CreditCard saved = this.creditCardService.save(application.getCreditCard());
+		application.setCreditCard(saved);
 		application.setStatus(1);
 
 		res = this.save(application);
 
 		return res;
 	}
-
 	public Application rejectApplication(final Application application) {
 		Assert.notNull(application);
 		Application res;

@@ -8,8 +8,8 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('Customer')">
-<form:form action ="application/customer/save.do" modelAttribute="application">
+<security:authorize access="hasRole('CUSTOMER')">
+<form:form action ="application/customer/accept.do" modelAttribute="application">
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -17,23 +17,60 @@
 	<form:hidden path="handyWorker" />
 	<form:hidden path="fixUpTask" />
 	<form:hidden path="status"/>
-	<form:hidden path="customerComments"/>
+	<form:hidden path="hwComments"/>
+	<form:hidden path="price"/>
+	<form:hidden path="creditCard"/>
 	
-	<form:label path="price">
-	<spring:message code="application.price"/>
-	</form:label>
-	<form:input path="price"/>
-	<form:errors cssClass="error" path="price"/>
-	<br/>
-	
-	<form:label path="hwComments">
+	<form:label path="customerComments">
 	<spring:message code="application.comment"/>
 	</form:label>
-	<form:textarea path="hwComments"/>
-	<form:errors cssClass="error" path="hwComments" />
+	<form:textarea path="customerComments"/>
+	<form:errors cssClass="error" path="customerComments" />
 	<br />
 	
-	<input type="submit" name="saveHandyWorker"
+	<form:label path="creditCard.holderName">
+	<spring:message code="application.holderName"/>
+	</form:label>
+	<form:input path="creditCard.holderName"/>
+	<form:errors cssClass="error" path="creditCard.holderName"/>
+	<br />
+	
+	<form:label path="creditCard.brandName">
+		<spring:message code="application.brandName" />:
+	</form:label>
+	<form:select id="creditCard.brandName" path="creditCard.brandName">	
+		<option value="AMEX" selected="selected">AMEX</option>
+		<option value="VISA">VISA</option>
+		<option value="MASTER">MASTER</option>
+		<option value="DINNERS">DINERS</option>
+	</form:select>
+	
+	<form:label path="creditCard.number">
+	<spring:message code="application.number"/>
+	</form:label>
+	<form:input path="creditCard.number"/>
+	<form:errors cssClass="error" path="creditCard.number"/>
+	<br />
+	<form:label path="creditCard.month">
+	<spring:message code="application.month"/>
+	</form:label>
+	<form:input path="creditCard.month"/>
+	<form:errors cssClass="error" path="creditCard.month"/>
+	<br />
+	<form:label path="creditCard.expirationYear">
+	<spring:message code="application.expirationYear"/>
+	</form:label>
+	<form:input path="creditCard.expirationYear"/>
+	<form:errors cssClass="error" path="creditCard.expirationYear"/>
+	<br />
+	<form:label path="creditCard.cvv">
+	<spring:message code="application.cvv"/>
+	</form:label>
+	<form:input path="creditCard.cvv"/>
+	<form:errors cssClass="error" path="creditCard.cvv"/>
+	
+	
+	<input type="submit" name="save"
 		value="<spring:message code="application.create" />" />&nbsp; 
 	
 	<input type="button" name="back"
