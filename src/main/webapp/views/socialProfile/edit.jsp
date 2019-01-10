@@ -9,63 +9,48 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('HANDYWORKER')">
-<form:form action="professionalRecord/handyWorker/edit.do" modelAttribute="professionalRecord">
+<security:authorize access="hasAnyRole('HANDYWORKER,CUSTOMER,ADMIN,REFEREE')">
+<form:form action="socialProfile/handyWorker,customer,admin,referee/edit.do" modelAttribute="profile">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
-	<form:label path="companyName">
-		<spring:message code="professionalRecord.companyName"/>
+	<form:label path="nick">
+		<spring:message code="socialProfile.nick"/>
 	</form:label>
-	<form:input path="companyName"/>
-	<form:errors cssClass="error" path="companyName"/>
+	<form:input path="nick"/>
+	<form:errors cssClass="error" path="nick"/>
 	<br />	
 	
-	<form:label path="jobBeggining">
-		<spring:message code="professionalRecord.jobBeggining"/>
+	<form:label path="socialNetName">
+		<spring:message code="socialProfile.socialNetName"/>
 	</form:label>
-	<form:input path="jobBeggining"/>
-	<form:errors cssClass="error" path="jobBeggining"/>
+	<form:input path="socialNetName"/>
+	<form:errors cssClass="error" path="socialNetName"/>
 	<br />
 	
-	<form:label path="jobEnding">
-		<spring:message code="professionalRecord.jobEnding"/>
+	<form:label path="socialNetProfLink">
+		<spring:message code="socialProfile.socialNetProfLink"/>
 	</form:label>
-	<form:input path="jobEnding"/>
-	<form:errors cssClass="error" path="jobEnding"/>
+	<form:input path="socialNetProfLink"/>
+	<form:errors cssClass="error" path="socialNetProfLink"/>
 	<br />
 	
-	<form:label path="rol">
-		<spring:message code="professionalRecord.rol"/>
+	<form:label path="name">
+		<spring:message code="socialProfile.name"/>
 	</form:label>
-	<form:input path="rol"/>
-	<form:errors cssClass="error" path="rol"/>
+	<form:input path="name"/>
+	<form:errors cssClass="error" path="name"/>
 	<br />
-	
-	<form:label path="attachment">
-		<spring:message code="professionalRecord.attachment"/>
-	</form:label>
-	<form:input path="attachment"/>
-	<form:errors cssClass="error" path="attachment"/>
-	<br />
-	
-	<form:label path="comment">
-		<spring:message code="professionalRecord.comment"/>
-	</form:label>
-	<form:input path="comment"/>
-	<form:errors cssClass="error" path="comment"/>
-	<br />
-	
 	
 	<input type="submit" name="save"
-		value="<spring:message code="professionalRecord.save" />" />&nbsp; 
+		value="<spring:message code="socialProfile.save" />" />&nbsp; 
 	<jstl:if test="${professionalRecord.id != 0}">
 		<input type="submit" name="delete"
-			value="<spring:message code="professionalRecord.delete" />" />
+			value="<spring:message code="socialProfile.delete" />" />
 	</jstl:if>
 	<input type="button" name="cancel"
-		value="<spring:message code="professionalRecord.cancel" />"
-		onclick="javascript: relativeRedir('professionalRecord/handyWorker/list.do');" />
+		value="<spring:message code="socialProfile.cancel" />"
+		onclick="javascript: relativeRedir('socialProfile/handyWorker,customer,admin,referee/list.do');" />
 	<br />
 	
 	

@@ -42,6 +42,7 @@
 		<value>/views/category/messages</value>
 		<value>/views/complaint/messages</value>
 		<value>/views/phase/messages</value>
+		<value>/views/socialProfile/messages</value>
 	</util:list>
 
 </beans>
