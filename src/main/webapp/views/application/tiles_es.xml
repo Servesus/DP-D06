@@ -52,4 +52,9 @@
 		<put-attribute name="body" value="/views/application/accept.jsp" />
 	</definition>
 	
+	<definition name="application/customer/reject" extends="master.page">
+		<put-attribute name="title" value="Rechazar solicitud" />
+		<put-attribute name="body" value="/views/application/reject.jsp" />
+	</definition>
+	
 </tiles-definitions>

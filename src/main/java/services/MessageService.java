@@ -39,8 +39,9 @@ public class MessageService {
 		Message result;
 		result = new Message();
 		final Actor sender = this.actorService.getActorLogged();
-		final Date actualDate = Calendar.getInstance().getTime();
-		result.setSendDate(actualDate);
+		//		final Date actualDate = Calendar.getInstance().getTime();
+
+		result.setSendDate(new Date());
 		result.setSender(sender);
 		result.setRecipient(new ArrayList<Actor>());
 		return result;

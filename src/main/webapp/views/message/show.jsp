@@ -17,36 +17,42 @@
 <body>
 
 <p>
-	<spring:message code="message.sender"/>:
-	<jstl:out value="${message.sender}"></jstl:out> 
+	<b><spring:message code="mesage.sender"/>:</b> ${sender} <br />
 </p>
 
-<spring:message code="message.subject" />
-	<display:table name="${message.subject}" id="row">
-</display:table>
-
 <p>
-	<spring:message code="message.subject"/>:
-	<jstl:out value="${message.subject}"></jstl:out> 
+	<b><spring:message code="mesage.subject"/>:</b> ${subject} <br />
 </p>
 
-<form:select id="priorities" path="priority">
-			<form:options items="${priorities}"/>
-</form:select>
+<p>
+	<b><spring:message code="mesage.sendDate"/>:</b> ${sendDate} <br />
+</p>
 
 <p>
-	<spring:message code="message.body"/>:
-	<jstl:out value="${message.body}"></jstl:out> 
+	<b><spring:message code="mesage.priority"/>:</b>
+	<jstl:choose>
+		<jstl:when test="${priority == 0}">
+			<spring:message code="mesage.neutral"/><br />
+		</jstl:when>
+		<jstl:when test="${priority == -1}">
+			<spring:message code="mesage.low" /><br />
+		</jstl:when>
+		<jstl:when test="${priority == 1}">
+			<spring:message code="mesage.high"/><br />
+		</jstl:when>
+	</jstl:choose>
+</p>
+
+<p>
+	<b><spring:message code="mesage.body"/>:</b> ${body} <br />
 </p>
 
 <jstl:if test="${message.id != 0 }">
-	<input type="submit" name="delete"
-		value="<spring:message code="message.delete" />"
-		onclick="return confirm('<spring:message code="message.confirm.delete" />')" />&nbsp;
+	<input type="button" name="delete"
+		value="<spring:message code="mesage.delete" />"
+		onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/edit.do?messageId='${message.id});"
+	/>&nbsp;
 </jstl:if>
-
-<input type="button" name="Back" value="<spring:message code="message.list" />"
-			onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/list.do');" />
 
 
 </body>

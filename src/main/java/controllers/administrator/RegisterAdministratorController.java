@@ -7,11 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
@@ -56,17 +54,19 @@ public class RegisterAdministratorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int administratorId) {
-		ModelAndView result;
-		Administrator administrator;
-
-		administrator = this.administratorService.findOne(administratorId);
-		Assert.notNull(administrator);
-		result = this.createEditModelAndView(administrator);
-
-		return result;
-	}
+	/*
+	 * @RequestMapping(value = "/edit", method = RequestMethod.GET)
+	 * public ModelAndView edit(@RequestParam final int administratorId) {
+	 * ModelAndView result;
+	 * Administrator administrator;
+	 * 
+	 * administrator = this.administratorService.findOne(administratorId);
+	 * Assert.notNull(administrator);
+	 * result = this.createEditModelAndView(administrator);
+	 * 
+	 * return result;
+	 * }
+	 */
 
 	protected ModelAndView createEditModelAndView(final Administrator administrator) {
 		ModelAndView result;

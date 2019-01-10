@@ -73,10 +73,9 @@
 	<input type="submit" name="save"
 		value="<spring:message code="application.save" />" />&nbsp; 
 	
-	<input type="button" name="back"
+		<input type="button" name="back"
 		value="<spring:message code="application.back" />"
-		onclick="javascript: relativeRedir('application/customer/show.do?fixUpTaskId=${application.fixUpTask.id}');" /> 
-	<br />
+		onclick="javascript: relativeRedir('application/customer/list.do?fixUpTaskId=${application.fixUpTask.id}');" />
 	
 </form:form>
 </security:authorize>

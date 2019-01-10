@@ -15,45 +15,54 @@
 
 </head>
 <body>
-<form:form action="message/customer,handyWorker,referee,administrator/create.do" modelAttribute="message">
+<form:form action="message/customer,handyWorker,referee,administrator/create.do" modelAttribute="mesage">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="sender"/>
+	<form:hidden path= "sendDate"/>
 	
-	<form:label path="recipient">
-		<spring:message code="message.recipient" />:
-	</form:label>
-	<form:input path="recipient" />
-	<form:errors cssClass="error" path="recipient" />
+	${message} 
+	
+	<spring:message code="mesage.recipient" />:
+	<form:select id="recipient" path="recipient" multiple ="true">		
+				
+			<form:options items="${actors}" itemValue="id" itemLabel="email"/>
+	</form:select>
 	<br />
 	
+	<br />
+	
+	<spring:message code="mesage.priority" />:
 	<form:select id="priority" path="priority">		
-			<form:option value="0" label="0" />
-			<form:option value="-1" label="-1" />
-			<form:option value="1" label="1" />	
+			
+			<form:option value="0" label="NEUTRAL" />
+			<form:option value="-1" label="LOW" />
+			<form:option value="1" label="HIGH" />	
 			<form:options items="${messages}"/>
 	</form:select>
+	<br />
 	
 	<form:label path="subject">
-		<spring:message code="message.subject" />:
+		<spring:message code="mesage.subject" />:
 	</form:label>
 	<form:input path="subject" />
 	<form:errors cssClass="error" path="subject" />
 	<br />
 	
 	<form:label path="body">
-		<spring:message code="message.body" />:
+		<spring:message code="mesage.body" />:
 	</form:label>
 	<form:textarea path="body" />
 	<form:errors cssClass="error" path="body" />
 	<br />
 	
-	<input type="submit" name="save"
-		value="<spring:message code="message.save" />" />&nbsp; 
+	<input type="submit" name="send"
+		value="<spring:message code="mesage.send" />" />&nbsp; 
 	
 	<input type="button" name="cancel"
-		value="<spring:message code="message.cancel" />"
-		onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/edit.do');" /> <!-- TODITOTODO -->
+		value="<spring:message code="mesage.cancel" />"
+		onclick="javascript: relativeRedir('box/customer,handyWorker,referee,administrator/list.do');" /> 
 	<br />
  	
 </form:form>

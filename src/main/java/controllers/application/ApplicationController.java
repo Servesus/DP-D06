@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.ApplicationService;
 import services.FixUpTaskService;
+import services.HandyWorkerService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Application;
 import domain.FixUpTask;
+import domain.HandyWorker;
 
 @Controller
 @RequestMapping("application")
@@ -29,6 +33,12 @@ public class ApplicationController extends AbstractController {
 
 	@Autowired
 	private FixUpTaskService	fixUpTaskService;
+
+	@Autowired
+	private ActorService		actorService;
+
+	@Autowired
+	private HandyWorkerService	handyWorkerService;
 
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
@@ -79,7 +89,7 @@ public class ApplicationController extends AbstractController {
 
 		application = this.applicationService.findOne(applicationId);
 		Assert.notNull(application);
-		result = this.createEditModelAndView(application);
+		result = this.createEditModelAndView2(application);
 
 		return result;
 	}
@@ -87,7 +97,7 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView reject(@Valid final Application application, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(application);
+			result = this.createEditModelAndView2(application);
 		else
 			try {
 				this.applicationService.rejectApplication(application);
@@ -124,6 +134,39 @@ public class ApplicationController extends AbstractController {
 		result = new ModelAndView("application/customer/accept");
 		result.addObject("application", application);
 		result.addObject("message", messageCode);
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView2(final Application application) {
+		ModelAndView result;
+
+		result = this.createEditModelAndView2(application, null);
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView2(final Application application, final String messageCode) {
+		ModelAndView result;
+		result = new ModelAndView("application/customer/reject");
+		result.addObject("application", application);
+		result.addObject("message", messageCode);
+		return result;
+	}
+
+	// AQUI EMPIEZA HANDY WORKER-----------------------------------------
+	@RequestMapping(value = "/handyWorker/list", method = RequestMethod.GET)
+	public ModelAndView listHandyWorker() {
+		ModelAndView result;
+		Collection<Application> applications;
+
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker handyWorker = this.handyWorkerService.findOne(user.getId());
+
+		applications = handyWorker.getApplications();
+
+		result = new ModelAndView("application/handyWorker/list");
+		result.addObject("applications", applications);
+		result.addObject("requestURI", "application/handyWorker/list.do");
+
 		return result;
 	}
 
