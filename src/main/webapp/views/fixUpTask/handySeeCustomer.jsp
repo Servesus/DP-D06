@@ -26,7 +26,6 @@
 <spring:message code="customer.email" /> ${customer.email} <br/>
 <spring:message code="customer.phoneNumber" /> ${customer.phoneNumber} <br/>
 
-<
 
 <input type="button" name="cancel"
 		value="<spring:message code="fixUpTask.back" />"

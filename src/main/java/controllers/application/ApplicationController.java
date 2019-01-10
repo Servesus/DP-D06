@@ -170,4 +170,64 @@ public class ApplicationController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/handyWorker/create", method = RequestMethod.GET)
+	public ModelAndView create(@RequestParam final int fixUpTaskId) {
+		ModelAndView result;
+		Application application;
+
+		application = this.applicationService.create(fixUpTaskId);
+
+		result = this.createEditModelAndViewHandyWorker(application);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/handyWorker/edit", method = RequestMethod.POST, params = "saveHandyWorker")
+	public ModelAndView save(@Valid final Application application, final BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndViewHandyWorker(application);
+		else
+			try {
+				this.applicationService.save(application);
+				result = new ModelAndView("redirect:list.do");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndViewHandyWorker(application, "application.commit.error");
+			}
+		return result;
+	}
+
+	@RequestMapping(value = "/handyWorker/show", method = RequestMethod.GET)
+	public ModelAndView showHandyWorker(@RequestParam final int applicationId) {
+		ModelAndView result;
+		Application application;
+
+		application = this.applicationService.findOne(applicationId);
+
+		result = new ModelAndView("application/handyWorker/show");
+		result.addObject("application", application);
+		result.addObject("requestURI", "application/handyWorker/show.do");
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewHandyWorker(final Application application) {
+		ModelAndView result;
+
+		result = this.createEditModelAndViewHandyWorker(application, null);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewHandyWorker(final Application application, final String messageCode) {
+		ModelAndView result;
+
+		result = new ModelAndView("application/handyWorker/edit");
+		result.addObject("application", application);
+		result.addObject("message", messageCode);
+
+		return result;
+	}
+
 }

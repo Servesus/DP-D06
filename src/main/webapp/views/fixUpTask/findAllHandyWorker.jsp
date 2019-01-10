@@ -33,7 +33,11 @@
 	<display:column title="${customer }">
 	 <a href="fixUpTask/handyWorker/handySeeCustomer.do?customerId=${row.customer.id}"> ${row.customer.name }</a>
 	</display:column>
-
+	
+	<display:column>
+		<a href="application/handyWorker/create.do?fixUpTaskId=${row.id}"> <spring:message code="application.create"/></a>
+	</display:column>
+	
 </display:table>
 		
 </body>

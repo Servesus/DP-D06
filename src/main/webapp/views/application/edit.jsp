@@ -38,7 +38,7 @@
 	
 	<input type="button" name="back"
 		value="<spring:message code="application.back" />"
-		onclick="javascript: relativeRedir('application/customer/show.do?fixUpTaskId=${application.fixUpTask.id}');" /> 
+		onclick="javascript: relativeRedir('fixUpTask/handyWorker/findAll.do?fixUpTaskId=${application.fixUpTask.id}');" /> 
 	<br />
 	
 </form:form>

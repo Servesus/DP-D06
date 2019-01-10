@@ -45,11 +45,10 @@
 	<spring:message code="application.moment" var="moment" />
 	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
-	<spring:message code="application.price" var="price" />
-	<display:column property="price" title="${price}"/>
+	<spring:message code="application.price" var="price"/>
+	<display:column title="${price}"><jstl:out value="${row.price}"></jstl:out>
+	&nbsp; (${row.price*1.21})</display:column>
 	
-<<<<<<< HEAD
-=======
 	<spring:message code="application.status" var="status"/>
 	<display:column property="status" title="${status}">
 	<jstl:choose>
@@ -64,7 +63,6 @@
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
->>>>>>> origin/miguel
 	</security:authorize>
 
 </display:table>
