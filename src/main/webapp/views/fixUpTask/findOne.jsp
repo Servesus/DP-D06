@@ -31,9 +31,7 @@
 	<jstl:if test="${lang=='en' }">
 			${fixUpTask.category.nameEN}
 	</jstl:if>
-	<input type="button" name="createComplaint"
-		value="<spring:message code="fixUpTask.complaint.create" />"
-		onclick="javascript: relativeRedir('complaint/customer/create.do?fixUpTaskId=${fixUpTask.id}');" />
+	
 </security:authorize>
 
 
