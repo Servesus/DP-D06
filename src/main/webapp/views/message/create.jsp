@@ -21,15 +21,11 @@
 	<form:hidden path="version" />
 	<form:hidden path="sender"/>
 	<form:hidden path= "sendDate"/>
+	<form:hidden path="recipient"/>
 	 
 	<spring:message code="mesage.recipient" />:
-	<form:select multiple="true" path="recipient">	
-		<form:options items="${actors}" itemValue="id" itemLabel="name"
-			/>
-	</form:select>
-	<form:errors cssClass="error" path="recipient" />
-	<br />
-	
+	<input id="recipients" name="recipients" /> 
+	<jstl:set var="recipients" value="recipients"/>
 	<br />
 	
 	<spring:message code="mesage.priority" />:

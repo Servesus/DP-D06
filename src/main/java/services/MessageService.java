@@ -68,9 +68,9 @@ public class MessageService {
 		//result.setSender(sender);
 		//meter message outbox sender
 		final List<Box> boxesS = (List<Box>) sender.getBoxes();
-		final Box outBoxS = boxesS.get(1);
-		final List<Message> m = (List<Message>) outBoxS.getMessages();
-		m.add(result);
+		for (final Box b : boxesS)
+			if (b.getName().equals("OUTBOX"))
+				b.getMessages().add(result);
 		//lista de palabras spam
 		final String[] spam = {
 			"sex", "viagra", "cialis", "one million", "you've been selected", "Nigeria", "sexo", "un millón", "ha sido seleccionado"
@@ -95,7 +95,7 @@ public class MessageService {
 				final Actor a = recipients.get(i);
 				final List<Box> boxesR = (List<Box>) a.getBoxes();
 				for (final Box b : boxesR)
-					if (b.getName() == "INBOX")
+					if (b.getName().equals("INBOX"))
 						b.getMessages().add(result);
 			}
 		//Guardar mensaje en BD
@@ -112,59 +112,38 @@ public class MessageService {
 				msgInAnyBox = true;
 				break;
 			}
-		if (msgInAnyBox)
+		if (!msgInAnyBox)
 			this.messageRepository.delete(message);
 	}
 
 	//Other business methods
 
-	public void moveMessage(final Message message, final Box boxR) {
+	public void moveMessage(final Message message, final Box boxR, final Box originBox) {
 		//Asserts e inicializaciones
 		Assert.notNull(message);
 		Assert.isTrue(message.getId() != 0);
-		final Actor a = message.getSender();
-		final List<Box> boxesActor = (List<Box>) a.getBoxes();
-		Box originBox = null;
-		boolean msgInActor = false;
-		boolean boxInActor = false;
-		for (int i = 0; i < a.getBoxes().size(); i++) {
-			if (boxesActor.get(i).getMessages().contains(message)) {
-				originBox = boxesActor.get(i);
-				msgInActor = true;
-			}
-			if (boxesActor.get(i).equals(boxR))
-				boxInActor = true;
-		}
+		final Actor a = this.actorService.getActorLogged();
 		//Mover mensage
 		final List<Message> oM = (List<Message>) originBox.getMessages();
 		oM.remove(message);
-		originBox.setMessages(oM);
-		this.boxService.save(originBox);
 		final List<Message> dM = (List<Message>) boxR.getMessages();
 		dM.add(message);
-		boxR.setMessages(dM);
-		this.boxService.save(boxR);
 
 	}
 
-	public void deleteMessage(final Message message) {
+	public void deleteMessage(final Message message, final Box originBox) {
 		//Asserts e inicializaciones
 		Assert.notNull(message);
 		Assert.isTrue(message.getId() != 0);
-		final Actor a = message.getSender();
+		final Actor a = this.actorService.getActorLogged();
 		final List<Box> boxesActor = (List<Box>) a.getBoxes();
-		final Box originBox = null;
 		//Si no es trashbox, mover a trashbox
 		if (boxesActor.get(2) != originBox) {
 			final Box trashBox = boxesActor.get(2);
 			final List<Message> oM = (List<Message>) originBox.getMessages();
 			oM.remove(message);
-			originBox.setMessages(oM);
-			this.boxService.save(originBox);
 			final List<Message> tM = (List<Message>) trashBox.getMessages();
 			tM.add(message);
-			trashBox.setMessages(tM);
-			this.boxService.save(trashBox);
 			//Si trashbox, borrar de actor
 		} else
 			/*

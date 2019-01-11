@@ -53,9 +53,26 @@
   	 		<spring:message code="mesage.view" /> </a>
 	</display:column>
 	<display:column>
-		<a href="message/customer,handyWorker,referee,administrator/edit.do?messageId=${row.id}"> <!-- TODO -->
-  	 		<spring:message code="mesage.delete" /> </a>
+		<form action="message/customer,handyWorker,referee,administrator/move.do" method="post">
+		<input type="hidden" id="boxId" name="boxId" value="${boxId}" /> 
+		<input type="hidden" id="mesage" name="mesage" value="${row.id}" /> 
+		<select name="box" >
+		<jstl:forEach var="item" items="${boxes}">
+		<option value="${item.id}"> ${item.name }</option>
+		</jstl:forEach>
+		</select>
+		<input type="submit" name="move"
+		value="<spring:message code="mesage.move" />" />&nbsp; 
+  	 	</form>
 	</display:column>		
+	<display:column>
+		<form action="message/customer,handyWorker,referee,administrator/edit.do" method="post">
+		<input type="hidden" id="boxId" name="boxId" value="${boxId}" /> 
+		<input type="hidden" id="mesage" name="mesage" value="${row.id}" /> 
+		<input type="submit" name="delete"
+		value="<spring:message code="mesage.delete" />" />&nbsp; 
+  	 	</form>
+	</display:column>	
 
 </display:table>
 

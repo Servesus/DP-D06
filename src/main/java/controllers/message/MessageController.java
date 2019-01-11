@@ -1,6 +1,7 @@
 
 package controllers.message;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -8,7 +9,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,6 +47,8 @@ public class MessageController extends AbstractController {
 
 		result.addObject("messages", box.getMessages());
 		result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/list.do");
+		result.addObject("boxId", boxId);
+		result.addObject("boxes", this.actorService.getActorLogged().getBoxes());
 
 		return result;
 	}
@@ -74,16 +76,24 @@ public class MessageController extends AbstractController {
 	//	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "send")
-	public ModelAndView save(@ModelAttribute("mesage") @Valid final Message mesage, final BindingResult binding) {
+	public ModelAndView save(@Valid final Message mesage, @RequestParam final String recipients, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(mesage);
 		else
 			try {
+				final Collection<Actor> actors = new ArrayList<Actor>();
+				if (recipients.contains(",")) {
+					final String[] recipient = recipients.split(",");
+					for (final String s : recipient)
+						actors.add(this.actorService.findByUsername(s));
+				} else
+					actors.add(this.actorService.findByUsername(recipients));
+				mesage.setRecipient(actors);
 				mesage.setSender(this.actorService.getActorLogged());
 				this.messageService.save(mesage);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(mesage, "mesage.commit.error");
 			}
@@ -91,14 +101,24 @@ public class MessageController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam final int messageId) {
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(@RequestParam final int boxId, @RequestParam final int mesage) {
 		ModelAndView result;
-		Message mesage;
+		final Message message = this.messageService.findOne(mesage);
+		final Box b = this.boxService.findOne(boxId);
+		this.messageService.deleteMessage(message, b);
+		result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
 
-		mesage = this.messageService.findOne(messageId);
-		this.messageService.deleteMessage(mesage);
-		result = new ModelAndView("redirect:list.do");
+		return result;
+	}
+
+	@RequestMapping(value = "/move", method = RequestMethod.POST, params = "move")
+	public ModelAndView move(@RequestParam final int boxId, @RequestParam final int mesage, @RequestParam final Box box) {
+		ModelAndView result;
+		final Message message = this.messageService.findOne(mesage);
+		final Box originBox = this.boxService.findOne(boxId);
+		this.messageService.moveMessage(message, box, originBox);
+		result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
 
 		return result;
 	}
@@ -114,7 +134,7 @@ public class MessageController extends AbstractController {
 
 		result.addObject("sendDate", mesage.getSendDate());
 		result.addObject("recipient", mesage.getRecipient());
-		result.addObject("sender", mesage.getSender().getEmail());
+		result.addObject("sender", mesage.getSender().getUserAccount().getUsername());
 		result.addObject("subject", mesage.getSubject());
 		result.addObject("body", mesage.getBody());
 		result.addObject("priority", mesage.getPriority());
