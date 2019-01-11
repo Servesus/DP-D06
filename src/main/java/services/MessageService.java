@@ -118,32 +118,16 @@ public class MessageService {
 
 	//Other business methods
 
-	public void moveMessage(final Message message, final Box boxR) {
+	public void moveMessage(final Message message, final Box boxR, final Box originBox) {
 		//Asserts e inicializaciones
 		Assert.notNull(message);
 		Assert.isTrue(message.getId() != 0);
-		final Actor a = message.getSender();
-		final List<Box> boxesActor = (List<Box>) a.getBoxes();
-		Box originBox = null;
-		boolean msgInActor = false;
-		boolean boxInActor = false;
-		for (int i = 0; i < a.getBoxes().size(); i++) {
-			if (boxesActor.get(i).getMessages().contains(message)) {
-				originBox = boxesActor.get(i);
-				msgInActor = true;
-			}
-			if (boxesActor.get(i).equals(boxR))
-				boxInActor = true;
-		}
+		final Actor a = this.actorService.getActorLogged();
 		//Mover mensage
 		final List<Message> oM = (List<Message>) originBox.getMessages();
 		oM.remove(message);
-		originBox.setMessages(oM);
-		this.boxService.save(originBox);
 		final List<Message> dM = (List<Message>) boxR.getMessages();
 		dM.add(message);
-		boxR.setMessages(dM);
-		this.boxService.save(boxR);
 
 	}
 

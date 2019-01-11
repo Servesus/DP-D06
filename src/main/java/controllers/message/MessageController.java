@@ -48,6 +48,7 @@ public class MessageController extends AbstractController {
 		result.addObject("messages", box.getMessages());
 		result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/list.do");
 		result.addObject("boxId", boxId);
+		result.addObject("boxes", this.actorService.getActorLogged().getBoxes());
 
 		return result;
 	}
@@ -106,6 +107,17 @@ public class MessageController extends AbstractController {
 		final Message message = this.messageService.findOne(mesage);
 		final Box b = this.boxService.findOne(boxId);
 		this.messageService.deleteMessage(message, b);
+		result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
+
+		return result;
+	}
+
+	@RequestMapping(value = "/move", method = RequestMethod.POST, params = "move")
+	public ModelAndView move(@RequestParam final int boxId, @RequestParam final int mesage, @RequestParam final Box box) {
+		ModelAndView result;
+		final Message message = this.messageService.findOne(mesage);
+		final Box originBox = this.boxService.findOne(boxId);
+		this.messageService.moveMessage(message, box, originBox);
 		result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
 
 		return result;
