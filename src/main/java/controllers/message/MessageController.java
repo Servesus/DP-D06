@@ -1,6 +1,7 @@
 
 package controllers.message;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -8,7 +9,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,16 +74,24 @@ public class MessageController extends AbstractController {
 	//	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "send")
-	public ModelAndView save(@ModelAttribute("mesage") @Valid final Message mesage, final BindingResult binding) {
+	public ModelAndView save(@Valid final Message mesage, @RequestParam final String recipients, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(mesage);
 		else
 			try {
+				final Collection<Actor> actors = new ArrayList<Actor>();
+				if (recipients.contains(",")) {
+					final String[] recipient = recipients.split(",");
+					for (final String s : recipient)
+						actors.add(this.actorService.findByUsername(s));
+				} else
+					actors.add(this.actorService.findByUsername(recipients));
+				mesage.setRecipient(actors);
 				mesage.setSender(this.actorService.getActorLogged());
 				this.messageService.save(mesage);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(mesage, "mesage.commit.error");
 			}

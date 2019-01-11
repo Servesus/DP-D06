@@ -68,9 +68,9 @@ public class MessageService {
 		//result.setSender(sender);
 		//meter message outbox sender
 		final List<Box> boxesS = (List<Box>) sender.getBoxes();
-		final Box outBoxS = boxesS.get(1);
-		final List<Message> m = (List<Message>) outBoxS.getMessages();
-		m.add(result);
+		for (final Box b : boxesS)
+			if (b.getName() == "OUTBOX")
+				b.getMessages().add(result);
 		//lista de palabras spam
 		final String[] spam = {
 			"sex", "viagra", "cialis", "one million", "you've been selected", "Nigeria", "sexo", "un millón", "ha sido seleccionado"

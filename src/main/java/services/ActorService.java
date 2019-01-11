@@ -97,4 +97,12 @@ public class ActorService {
 		return result;
 	}
 
+	public Actor findByUsername(final String username) {
+		Assert.notNull(username);
+
+		Actor result;
+		result = this.actorRepository.findByUsername(username);
+		return result;
+	}
+
 }
