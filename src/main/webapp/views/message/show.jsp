@@ -47,12 +47,6 @@
 	<b><spring:message code="mesage.body"/>:</b> ${body} <br />
 </p>
 
-<jstl:if test="${message.id != 0 }">
-	<input type="button" name="delete"
-		value="<spring:message code="mesage.delete" />"
-		onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/edit.do?messageId='${message.id});"
-	/>&nbsp;
-</jstl:if>
 
 
 </body>

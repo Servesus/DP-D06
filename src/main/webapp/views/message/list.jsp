@@ -53,9 +53,17 @@
   	 		<spring:message code="mesage.view" /> </a>
 	</display:column>
 	<display:column>
-		<a href="message/customer,handyWorker,referee,administrator/edit.do?messageId=${row.id}"> <!-- TODO -->
+		<a href="message/customer,handyWorker,referee,administrator/edit.do?messageId=${row.id}">
   	 		<spring:message code="mesage.delete" /> </a>
 	</display:column>		
+	<display:column>
+		<form action="message/customer,handyWorker,referee,administrator/edit.do" method="post">
+		<input type="hidden" id="boxId" name="boxId" value="${boxId}" /> 
+		<input type="hidden" id="mesage" name="mesage" value="${row.id}" /> 
+		<input type="submit" name="delete"
+		value="<spring:message code="mesage.delete" />" />&nbsp; 
+  	 	</form>
+	</display:column>	
 
 </display:table>
 

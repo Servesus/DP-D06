@@ -21,6 +21,7 @@
 	<form:hidden path="version" />
 	<form:hidden path="sender"/>
 	<form:hidden path= "sendDate"/>
+	<form:hidden path="recipient"/>
 	 
 	<spring:message code="mesage.recipient" />:
 	<input id="recipients" name="recipients" /> 

@@ -47,6 +47,7 @@ public class MessageController extends AbstractController {
 
 		result.addObject("messages", box.getMessages());
 		result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/list.do");
+		result.addObject("boxId", boxId);
 
 		return result;
 	}
@@ -99,14 +100,13 @@ public class MessageController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam final int messageId) {
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(@RequestParam final int boxId, @RequestParam final int mesage) {
 		ModelAndView result;
-		Message mesage;
-
-		mesage = this.messageService.findOne(messageId);
-		this.messageService.deleteMessage(mesage);
-		result = new ModelAndView("redirect:list.do");
+		final Message message = this.messageService.findOne(mesage);
+		final Box b = this.boxService.findOne(boxId);
+		this.messageService.deleteMessage(message, b);
+		result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
 
 		return result;
 	}
@@ -122,7 +122,7 @@ public class MessageController extends AbstractController {
 
 		result.addObject("sendDate", mesage.getSendDate());
 		result.addObject("recipient", mesage.getRecipient());
-		result.addObject("sender", mesage.getSender().getEmail());
+		result.addObject("sender", mesage.getSender().getUserAccount().getUsername());
 		result.addObject("subject", mesage.getSubject());
 		result.addObject("body", mesage.getBody());
 		result.addObject("priority", mesage.getPriority());
