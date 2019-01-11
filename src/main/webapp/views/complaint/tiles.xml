@@ -22,6 +22,11 @@
 		<put-attribute name="body" value="/views/complaint/list.jsp" />
 	</definition>
 	
+	<definition name="complaint/handyWorker/listHandyWorker" extends="master.page">
+		<put-attribute name="title" value="List of Complaints" />
+		<put-attribute name="body" value="/views/complaint/list.jsp" />
+	</definition>
+	
 	<definition name="complaint/referee/listSelfAssigned" extends="master.page">
 		<put-attribute name="title" value="List of Complaints" />
 		<put-attribute name="body" value="/views/complaint/list.jsp" />

@@ -30,11 +30,14 @@
 	<display:column property="description" title="${description}" sortable="true"/>
 
 
-<display:column> <a href="fixUpTask/customer/edit.do?fixUpTaskId=${row.id}">
+	<display:column> <a href="fixUpTask/customer/edit.do?fixUpTaskId=${row.id}">
 	<spring:message code="fixUpTask.update" /></a> </display:column>
 	
 	<display:column> <a href="application/customer/list.do?fixUpTaskId=${row.id }">
 	<spring:message code="fixUpTask.applications"/></a> </display:column>
+	
+	<display:column> <a href="complaint/customer/create.do?fixUpTaskId=${row.id }">
+	<spring:message code="fixUpTask.complaint.create"/></a> </display:column>
 	
 </display:table>
 <input type="button" name="Create" value="<spring:message code="fixUpTask.create" />"

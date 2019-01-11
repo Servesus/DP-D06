@@ -56,4 +56,19 @@
 	<display:column property="customer.name" title="${customer}"/>
 
 	</security:authorize>
+	
+	<security:authorize access="hasRole('HANDYWORKER')">	
+	<spring:message code="complaint.moment" var="moment" />
+	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	
+	<spring:message code="complaint.description" var="description" />
+	<display:column property="description" title="${description}"/>
+	
+	<spring:message code="complaint.fixUpTask.id" var="id" />
+	<display:column property="fixUpTasks.id" title="${id}"/>
+	
+	<spring:message code="complaint.customer" var="customer" />
+	<display:column property="customer.name" title="${customer}"/>
+
+	</security:authorize>
 	</display:table>

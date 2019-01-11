@@ -1,6 +1,7 @@
 
 package controllers.complaint;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -16,10 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.ComplaintService;
 import services.CustomerService;
+import services.HandyWorkerService;
 import controllers.AbstractController;
 import domain.Actor;
+import domain.Application;
 import domain.Complaint;
 import domain.Customer;
+import domain.FixUpTask;
+import domain.HandyWorker;
 
 @Controller
 @RequestMapping("complaint")
@@ -34,9 +39,12 @@ public class ComplaintController extends AbstractController {
 	@Autowired
 	private CustomerService		customerService;
 
+	@Autowired
+	private HandyWorkerService	handyWorkerService;
+
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView listCustomer() {
 		ModelAndView result;
 		Collection<Complaint> complaints;
 
@@ -48,6 +56,29 @@ public class ComplaintController extends AbstractController {
 		result = new ModelAndView("complaint/customer/list");
 		result.addObject("complaints", complaints);
 		result.addObject("requestURI", "complaint/customer/list.do");
+		return result;
+	}
+
+	@RequestMapping(value = "/handyWorker/list", method = RequestMethod.GET)
+	public ModelAndView listHandyWorker() {
+		ModelAndView result;
+		final Collection<Complaint> complaints = new ArrayList<>();
+		Collection<Application> applications;
+		final Collection<FixUpTask> fixUpTasks = new ArrayList<>();
+
+		final Actor user = this.actorService.getActorLogged();
+		final HandyWorker handyWorker = this.handyWorkerService.findOne(user.getId());
+
+		applications = handyWorker.getApplications();
+		for (final Application a : applications)
+			if (a.getStatus() == 1)
+				fixUpTasks.add(a.getFixUpTask());
+		for (final FixUpTask f : fixUpTasks)
+			complaints.addAll(f.getComplaints());
+
+		result = new ModelAndView("complaint/handyWorker/listHandyWorker");
+		result.addObject("complaints", complaints);
+		result.addObject("requestURI", "complaint/handyWorker/listHandyWorker.do");
 		return result;
 	}
 
@@ -68,14 +99,16 @@ public class ComplaintController extends AbstractController {
 	public ModelAndView listAll() {
 		ModelAndView result;
 		Collection<Complaint> complaints;
+		final Collection<Complaint> res = new ArrayList<Complaint>();
 
 		complaints = this.complaintService.findAll();
+		res.addAll(complaints);
 
 		for (final Complaint c : complaints)
 			if (!c.getReports().isEmpty())
-				complaints.remove(c);
+				res.remove(c);
 		result = new ModelAndView("complaint/referee/listAll");
-		result.addObject("complaints", complaints);
+		result.addObject("complaints", res);
 		result.addObject("requestURI", "complaint/referee/listAll.do");
 		return result;
 	}
