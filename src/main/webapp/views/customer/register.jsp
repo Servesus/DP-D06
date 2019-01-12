@@ -82,7 +82,7 @@
 	<form:label path="phoneNumber">
 		<spring:message code="customer.phoneNumber" />:
 	</form:label>
-	<form:input path="phoneNumber" />
+	<form:input path="phoneNumber" id="phoneNumber" />
 	<form:errors cssClass="error" path="phoneNumber" />
 	<br />
 	
@@ -92,6 +92,25 @@
 	<form:input path="address" />
 	<form:errors cssClass="error" path="address" />
 	<br />
+	
+	<script type="text/javascript">
+	function phoneValidation(){
+		var phoneNumber = document.getElementById("phoneNumber");
+		var regexPN = new RegExp("^(\d\d\d\d+)$");
+		var regex1 = new RegExp("^((\+[1-9][0-9]{0,2}) \(([1-9][0-9]{0,2})\) (\d\d\d\d+))$");
+		var regex2 = new RegExp("^(\+[1-9][0-9]{0,2}) (\d\d\d\d+)$");
+		
+		if (regexPN.test(phoneNumber)) {
+		    return true;
+		} else if(regex1.test(phoneNumber)) {
+		    return true;
+		}else if(regex2.test(phoneNumber)){
+			return true;
+		}else{
+			return confirm('<spring:message code = "customer.confirm"/>');
+		}
+	}
+	</script>
 	
 	<input type="submit" name="save"
 		value="<spring:message code="customer.save" />" />&nbsp; 
