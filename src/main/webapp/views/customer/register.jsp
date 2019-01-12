@@ -95,17 +95,17 @@
 	
 	<script type="text/javascript">
 	function phoneValidation(){
-		var phoneNumber = document.getElementById("phoneNumber");
+		var phoneNumber = document.getElementById("phoneNumber").value;
 		var regexPN = new RegExp("^(\d\d\d\d+)$");
 		var regex1 = new RegExp("^((\+[1-9][0-9]{0,2}) \(([1-9][0-9]{0,2})\) (\d\d\d\d+))$");
 		var regex2 = new RegExp("^(\+[1-9][0-9]{0,2}) (\d\d\d\d+)$");
 		
 		if (regexPN.test(phoneNumber)) {
-		    return true;
+			return alert("hola");
 		} else if(regex1.test(phoneNumber)) {
-		    return true;
+			return alert("hola");
 		}else if(regex2.test(phoneNumber)){
-			return true;
+			return alert("hola");
 		}else{
 			return confirm('<spring:message code = "customer.confirm"/>');
 		}
@@ -113,7 +113,9 @@
 	</script>
 	
 	<input type="submit" name="save"
-		value="<spring:message code="customer.save" />" />&nbsp; 
+		value="<spring:message code="customer.save" />" 
+		onclick="javascript: phoneValidation();"
+		/> 
 	
 		<input type="button" name="cancel"
 		value="<spring:message code="customer.cancel" />"
