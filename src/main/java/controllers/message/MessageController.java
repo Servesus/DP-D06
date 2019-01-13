@@ -23,7 +23,7 @@ import domain.Box;
 import domain.Message;
 
 @Controller
-@RequestMapping("message/customer,handyWorker,referee,administrator")
+@RequestMapping("message")
 public class MessageController extends AbstractController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class MessageController extends AbstractController {
 	ActorService	actorService;
 
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer,handyWorker,referee,administrator/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int boxId) {
 		ModelAndView result;
 		Box box;
@@ -53,7 +53,7 @@ public class MessageController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer,handyWorker,referee,administrator/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		Message mesage;
@@ -63,19 +63,34 @@ public class MessageController extends AbstractController {
 		return result;
 	}
 
-	//	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	//	public ModelAndView edit(@RequestParam final int messageId) {
-	//		final ModelAndView result;
-	//		final Message mesage;
-	//
-	//		mesage = this.messageService.findOne(messageId);
-	//		Assert.notNull(mesage);
-	//		result = this.createEditModelAndView(mesage);
-	//
-	//		return result;
-	//	}
+	@RequestMapping(value = "/administrator/createbroadcast")
+	public ModelAndView createBroadcast() {
+		final ModelAndView result;
+		Message mesage;
+		mesage = this.messageService.create();
+		result = this.createEditModelAndView2(mesage);
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "send")
+		return result;
+	}
+
+	@RequestMapping(value = "/administrator/createbroadcast", method = RequestMethod.POST, params = "send")
+	public ModelAndView saveBroadcast(@Valid final Message mesage, final BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView2(mesage);
+		else
+			try {
+				this.messageService.adminMessage(mesage);
+				result = new ModelAndView("redirect:/box/customer,handyWorker,referee,administrator/list.do");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView2(mesage, "mesage.commit.error");
+			}
+
+		return result;
+	}
+
+	@RequestMapping(value = "/customer,handyWorker,referee,administrator/create", method = RequestMethod.POST, params = "send")
 	public ModelAndView save(@Valid final Message mesage, @RequestParam final String recipients, final BindingResult binding) {
 		ModelAndView result;
 
@@ -101,7 +116,7 @@ public class MessageController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	@RequestMapping(value = "/customer,handyWorker,referee,administrator/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(@RequestParam final int boxId, @RequestParam final int mesage) {
 		ModelAndView result;
 		final Message message = this.messageService.findOne(mesage);
@@ -112,7 +127,7 @@ public class MessageController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/move", method = RequestMethod.POST, params = "move")
+	@RequestMapping(value = "/customer,handyWorker,referee,administrator/move", method = RequestMethod.POST, params = "move")
 	public ModelAndView move(@RequestParam final int boxId, @RequestParam final int mesage, @RequestParam final Box box) {
 		ModelAndView result;
 		final Message message = this.messageService.findOne(mesage);
@@ -123,7 +138,7 @@ public class MessageController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer,handyWorker,referee,administrator/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int messageId) {
 		ModelAndView result;
 		Message mesage;
@@ -155,6 +170,23 @@ public class MessageController extends AbstractController {
 		final Collection<Actor> actors = this.actorService.findAll();
 		result = new ModelAndView("message/customer,handyWorker,referee,administrator/create");
 		result.addObject("actors", actors);
+		result.addObject("mesage", mesage);
+		result.addObject("message", messageCode);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView2(final Message mesage) {
+		ModelAndView result;
+
+		result = this.createEditModelAndView2(mesage, null);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView2(final Message mesage, final String messageCode) {
+		ModelAndView result;
+		result = new ModelAndView("message/administrator/createbroadcast");
 		result.addObject("mesage", mesage);
 		result.addObject("message", messageCode);
 

@@ -34,7 +34,7 @@
 					<li><a href="administrator/administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.registerAdmin" /></a></li>
 					<li><a href="referee/administrator/create.do"><spring:message code="master.page.administrator.registerReferee" /></a></li>
-								
+					<li><a href="message/administrator/createbroadcast.do"><spring:message code="master.page.administrator.broadcast" /></a></li>			
 				</ul>
 			</li>
 			<li><a class="fNiv" href="configuration/administrator/edit.do"><spring:message code="master.page.administrator.configuration" /></a></li>
