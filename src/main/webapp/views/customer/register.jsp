@@ -96,16 +96,16 @@
 	<script type="text/javascript">
 	function phoneValidation(){
 		var phoneNumber = document.getElementById("phoneNumber").value;
-		var regexPN = new RegExp("^(\d\d\d\d+)$");
-		var regex1 = new RegExp("^((\+[1-9][0-9]{0,2}) \(([1-9][0-9]{0,2})\) (\d\d\d\d+))$");
-		var regex2 = new RegExp("^(\+[1-9][0-9]{0,2}) (\d\d\d\d+)$");
+		var regexPN = /^(\d\d\d\d+)$/;
+		var regex1 = /^((\+[1-9][0-9]{0,2}) \(([1-9][0-9]{0,2})\) (\d\d\d\d+))$/;
+		var regex2 = /^(\+[1-9][0-9]{0,2}) (\d\d\d\d+)$/;
 		
 		if (regexPN.test(phoneNumber)) {
-			return alert("hola");
+			return true;
 		} else if(regex1.test(phoneNumber)) {
-			return alert("hola");
+			return true;
 		}else if(regex2.test(phoneNumber)){
-			return alert("hola");
+			return true;
 		}else{
 			return confirm('<spring:message code = "customer.confirm"/>');
 		}
