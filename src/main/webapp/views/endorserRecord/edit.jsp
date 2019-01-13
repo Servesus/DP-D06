@@ -45,7 +45,7 @@
 	<form:label path="comments">
 		<spring:message code="endorserRecord.comments"/>
 	</form:label>
-	<form:input path="comments"/>
+	<form:textarea path="comments"/>
 	<form:errors cssClass="errors" path="comments"/>
 	<br />
 	

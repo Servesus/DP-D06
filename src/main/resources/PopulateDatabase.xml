@@ -776,14 +776,6 @@
 	<bean id="box1" class="domain.Box">
 		<property name="name" value="Box1"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -793,14 +785,6 @@
 	<bean id="box2" class="domain.Box">
 		<property name="name" value="Box2"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -810,14 +794,6 @@
 	<bean id="box3" class="domain.Box">
 		<property name="name" value="Box3"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -827,14 +803,6 @@
 	<bean id="box4" class="domain.Box">
 		<property name="name" value="Box4"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -843,14 +811,6 @@
 	<bean id="box5" class="domain.Box">
 		<property name="name" value="Box5"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -859,14 +819,6 @@
 	<bean id="box6" class="domain.Box">
 		<property name="name" value="Box6"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -875,14 +827,6 @@
 	<bean id="box7" class="domain.Box">
 		<property name="name" value="Box7"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -891,14 +835,6 @@
 	<bean id="box8" class="domain.Box">
 		<property name="name" value="Box8"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -908,15 +844,6 @@
 	<bean id="parentBox" class="domain.Box">
 		<property name="name" value="parentBox"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-				<ref bean="childBox"/>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -926,15 +853,6 @@
 	<bean id="childBox" class="domain.Box">
 		<property name="name" value="childBox"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-				<ref bean="parentBox"/>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -944,14 +862,6 @@
 	<bean id="inBox" class="domain.Box">
 		<property name="name" value="INBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			<ref bean="message2"/>
@@ -962,14 +872,6 @@
 	<bean id="outBox" class="domain.Box">
 		<property name="name" value="OUTBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -979,14 +881,6 @@
 	<bean id="spamBox" class="domain.Box">
 		<property name="name" value="SPAMBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -996,14 +890,6 @@
 	<bean id="trashBox" class="domain.Box">
 		<property name="name" value="TRASHBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -1209,10 +1095,7 @@
 		<property name="studiesEnding" value="06/20/2018"/>
 		<property name="institution" value="Sevilla University"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/3/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	
 	<bean id="educationalRecord2" class="domain.EducationalRecord">
@@ -1221,10 +1104,7 @@
 		<property name="studiesEnding"><null/></property>
 		<property name="institution" value="Sevilla University"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/4/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	<!-- ENDORSER RECORDS -->
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
@@ -1232,10 +1112,7 @@
 		<property name="email" value="pepemartin@gmail.com"/>
 		<property name="phone" value="666445566"/>
 		<property name="linkedInProfile" value="https://www.linkedin.com/jobs/view/3/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	
 	<bean id="endorserRecord2" class="domain.EndorserRecord">
@@ -1243,10 +1120,7 @@
 		<property name="email" value="javiermartin@gmail.com"/>
 		<property name="phone" value="666555566"/>
 		<property name="linkedInProfile" value="https://www.linkedin.com/jobs/view/4/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	<!-- PROFESSIONAL RECORDS -->
 	<bean id="professionalRecord1" class="domain.ProfessionalRecord">
@@ -1255,10 +1129,7 @@
 		<property name="jobEnding" value="05/05/2006"/>
 		<property name="rol" value="Worker"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/5/"/>
-		<property name="comment">
-			<list>
-			</list>
-		</property>
+		<property name="comment" value=""/>
 	</bean>
 	
 	<bean id="professionalRecord2" class="domain.ProfessionalRecord">
@@ -1267,28 +1138,19 @@
 		<property name="jobEnding" value="05/05/2010"/>
 		<property name="rol" value="Worker"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/6/"/>
-		<property name="comment">
-			<list>
-			</list>
-		</property>
+		<property name="comment" value=""/>
 	</bean>
 	<!-- MISC RECORDS -->
 	<bean id="miscRecord1" class="domain.MiscRecord">
 		<property name="title" value="Titulo generico 1"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/7/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	
 	<bean id="miscRecord2" class="domain.MiscRecord">
 		<property name="title" value="Titulo generico 2"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/8/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	<!-- Administrator -->
 	<bean id="admin1" class = "domain.Administrator">

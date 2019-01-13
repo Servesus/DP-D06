@@ -16,8 +16,6 @@ public class Box extends DomainEntity {
 
 	private String				name;
 	private Boolean				isSystem;
-	private Collection<Box>		parentBoxes;
-	private Collection<Box>		childBoxes;
 	private Collection<Message>	messages;
 
 
@@ -35,21 +33,6 @@ public class Box extends DomainEntity {
 		this.isSystem = isSystem;
 	}
 
-	@ManyToMany
-	public Collection<Box> getParentBoxes() {
-		return this.parentBoxes;
-	}
-	public void setParentBoxes(final Collection<Box> parentBoxes) {
-		this.parentBoxes = parentBoxes;
-	}
-
-	@ManyToMany(mappedBy = "parentBoxes")
-	public Collection<Box> getChildBoxes() {
-		return this.childBoxes;
-	}
-	public void setChildBoxes(final Collection<Box> childBoxes) {
-		this.childBoxes = childBoxes;
-	}
 	@ManyToMany
 	public Collection<Message> getMessages() {
 		return this.messages;
