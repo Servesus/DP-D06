@@ -71,6 +71,7 @@
 					<li><a href="personalRecord/handyWorker/edit.do"><spring:message code="master.page.handyWorker.edit" /></a></li>
 					<li><a href="finder/handyWorker/list.do"><spring:message code="master.page.handyWorker.listFinder" /></a></li>
 					<li><a href="finder/handyWorker/edit.do"><spring:message code="master.page.handyWorker.editFinder" /></a></li>
+					<li><a href="complaint/handyWorker/list.do"><spring:message code="master.page.handyWorker.list" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
