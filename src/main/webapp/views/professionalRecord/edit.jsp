@@ -52,7 +52,7 @@
 	<form:label path="comment">
 		<spring:message code="professionalRecord.comment"/>
 	</form:label>
-	<form:input path="comment"/>
+	<form:textarea path="comment"/>
 	<form:errors cssClass="error" path="comment"/>
 	<br />
 	

@@ -21,21 +21,16 @@ public class BoxService {
 
 	//Managed repository
 	@Autowired
-	private BoxRepository			boxRepository;
+	private BoxRepository	boxRepository;
 
 	//Supporting service
 	@Autowired
-	private ActorService			actorService;
-
-	@Autowired
-	private AdministratorService	adminService;
+	private ActorService	actorService;
 
 
 	//Simple CRUD methods
 	public Box create() {
 		final Box box = new Box();
-		box.setParentBoxes(new ArrayList<Box>());
-		box.setChildBoxes(new ArrayList<Box>());
 		box.setMessages(new ArrayList<Message>());
 		box.setIsSystem(false);
 		return box;
@@ -89,7 +84,7 @@ public class BoxService {
 		final int index = boxes.indexOf(this.findOne(result.getId()));
 		if (result.getIsSystem()) {
 			final Box systemBox = boxes.get(index);
-			Assert.isTrue(systemBox.getName().equals(result.getName()) && result.getParentBoxes().isEmpty());
+			Assert.isTrue(systemBox.getName().equals(result.getName()));
 		}
 		boxes.remove(this.findOne(result.getId()));
 		boxes.add(index, result);
@@ -133,17 +128,6 @@ public class BoxService {
 		res.add(this.boxRepository.save(spamBox));
 		//result
 		return res;
-	}
-
-	public void makeParentChildBoxes(final Box parents, final Box child) {
-		final List<Box> childSParents = (List<Box>) child.getParentBoxes();
-		childSParents.add(parents);
-		child.setParentBoxes(childSParents);
-		this.boxRepository.save(child);
-		final List<Box> parentsSChilds = (List<Box>) parents.getChildBoxes();
-		parentsSChilds.add(child);
-		parents.setChildBoxes(parentsSChilds);
-		this.boxRepository.save(parents);
 	}
 
 }
