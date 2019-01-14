@@ -499,6 +499,7 @@
 		</property>
 		<property name="sender" ref="admin1" />
 		<property name="subject" value="subject1"/>
+		<property name="tags" value=""/>
 		<property name="body" value="body1"/>
 		<property name="priority" value="1"/>
 	</bean>
@@ -512,6 +513,7 @@
 		</property>
 		<property name="sender" ref="handyWorker1" />
 		<property name="subject" value="subject1"/>
+		<property name="tags" value="tag"/>
 		<property name="body" value="body1"/>
 		<property name="priority" value="1"/>
 	</bean>

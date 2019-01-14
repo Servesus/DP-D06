@@ -29,6 +29,7 @@ public class Message extends DomainEntity {
 	private String				subject;
 	private String				body;
 	private int					priority;
+	private String				tags;
 
 
 	//Getters and Setters
@@ -84,6 +85,14 @@ public class Message extends DomainEntity {
 
 	public void setPriority(final int priority) {
 		this.priority = priority;
+	}
+
+	public String getTags() {
+		return this.tags;
+	}
+
+	public void setTags(final String tags) {
+		this.tags = tags;
 	}
 
 }
