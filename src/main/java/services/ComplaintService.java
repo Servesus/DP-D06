@@ -61,6 +61,7 @@ public class ComplaintService {
 
 		final Collection<Report> reports = complaint.getReports();
 		final Report report = this.reportService.create(complaint.getId());
+		this.reportService.save(report);
 		reports.add(report);
 
 		complaint.setReports(reports);
