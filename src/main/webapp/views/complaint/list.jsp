@@ -38,9 +38,9 @@
 	
 	<security:authorize access="hasRole('REFEREE')">
 	<display:column> 
-	<input type="button" name="createReport"
-		value="<spring:message code="complaint.report.create" />"
-		onclick="javascript: relativeRedir('report/referee/create.do?complaintId=${row.id}');" />
+	<input type="button" name="selfAssign"
+		value="<spring:message code="complaint.selfAssign" />"
+		onclick="javascript: relativeRedir('complaint/referee/selfAssign.do?complaintId=${row.id}');" />
 	</display:column>
 	
 	<spring:message code="complaint.moment" var="moment" />
@@ -54,7 +54,7 @@
 	
 	<spring:message code="complaint.customer" var="customer" />
 	<display:column property="customer.name" title="${customer}"/>
-
+	
 	</security:authorize>
 	
 	<security:authorize access="hasRole('HANDYWORKER')">	
