@@ -16,6 +16,7 @@
 	<display:column title="${username }"> ${row.userAccount.username}
 	</display:column>
 	
+	<jstl:if test="${row.isBanned == false }">
 	<display:column>
 		<form action="actor/administrator/ban.do" method="post">
 		<input type="hidden" id="actor" name="actor" value="${row.id}" /> 
@@ -23,6 +24,7 @@
 		value="<spring:message code="actor.ban" />" /> 
   	 	</form>
 	</display:column>	
+	</jstl:if>
 
 </display:table>
 </security:authorize>
