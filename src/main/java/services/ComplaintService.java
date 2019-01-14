@@ -55,17 +55,18 @@ public class ComplaintService {
 		return result;
 	}
 
-	public Complaint autoAssignate(final Integer complaintId) {
-		final Integer refereeId = this.actorService.getActorLogged().getId();
-		final Complaint complaint = this.findOne(complaintId);
+	public Complaint selfAssign(final Complaint complaint) {
+		Assert.notNull(complaint);
+		final Complaint res;
 
 		final Collection<Report> reports = complaint.getReports();
-		final Report report = this.reportService.create(complaintId);
+		final Report report = this.reportService.create(complaint.getId());
 		reports.add(report);
 
 		complaint.setReports(reports);
+		res = this.save(complaint);
 
-		return complaint;
+		return res;
 	}
 
 	public Collection<Complaint> findAll() {
@@ -90,7 +91,7 @@ public class ComplaintService {
 
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER"));
+		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER") || userAccount.getAuthorities().iterator().next().getAuthority().equals("REFEREE"));
 		Assert.notNull(complaint);
 		if (complaint.getId() == 0) {
 			result = this.complaintRepository.save(complaint);

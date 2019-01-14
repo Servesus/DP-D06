@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,6 @@ import services.ComplaintService;
 import services.CustomerService;
 import services.HandyWorkerService;
 import services.RefereeService;
-import services.ReportService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Application;
@@ -27,7 +27,6 @@ import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
 import domain.HandyWorker;
-import domain.Report;
 
 @Controller
 @RequestMapping("complaint")
@@ -47,9 +46,6 @@ public class ComplaintController extends AbstractController {
 
 	@Autowired
 	private RefereeService		refereeService;
-
-	@Autowired
-	private ReportService		reportService;
 
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
@@ -117,20 +113,16 @@ public class ComplaintController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/referee/autoAssignate", method = RequestMethod.GET)
-	public ModelAndView autoAssignate(@RequestParam final int complaintId) {
+	@RequestMapping(value = "/referee/selfAssign", method = RequestMethod.GET)
+	public ModelAndView selfAssign(@RequestParam final int complaintId) {
 		final ModelAndView result;
-		Report report;
-		final Collection<Report> reports = new ArrayList<>();
+		final Complaint res = this.complaintService.findOne(complaintId);
 
-		final Complaint complaint = this.complaintService.findOne(complaintId);
+		final Complaint complaint = this.complaintService.selfAssign(res);
+		Assert.notNull(complaint);
+		result = this.createEditModelAndViewReferee(complaint);
 
-		report = this.reportService.create(complaintId);
-		reports.addAll(complaint.getReports());
-		reports.add(report);
-
-		complaint.setReports(reports);
-
+		return result;
 	}
 
 	@RequestMapping(value = "/customer/show", method = RequestMethod.GET)
@@ -185,6 +177,24 @@ public class ComplaintController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("complaint/customer/edit");
+		result.addObject("complaint", complaint);
+		result.addObject("message", messageCode);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewReferee(final Complaint complaint) {
+		ModelAndView result;
+
+		result = this.createEditModelAndView(complaint, null);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndViewReferee(final Complaint complaint, final String messageCode) {
+		ModelAndView result;
+
+		result = new ModelAndView("complaint/referee/selfAssign");
 		result.addObject("complaint", complaint);
 		result.addObject("message", messageCode);
 
