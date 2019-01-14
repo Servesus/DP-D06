@@ -21,6 +21,10 @@
 </p>
 
 <p>
+	<b><spring:message code="mesage.tags"/>:</b> ${tags} <br />
+</p>
+
+<p>
 	<b><spring:message code="mesage.subject"/>:</b> ${subject} <br />
 </p>
 

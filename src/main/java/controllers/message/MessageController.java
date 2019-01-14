@@ -153,6 +153,7 @@ public class MessageController extends AbstractController {
 		result.addObject("subject", mesage.getSubject());
 		result.addObject("body", mesage.getBody());
 		result.addObject("priority", mesage.getPriority());
+		result.addObject("tags", mesage.getTags());
 
 		return result;
 	}

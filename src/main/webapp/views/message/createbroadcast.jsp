@@ -40,6 +40,13 @@
 	<form:errors cssClass="error" path="subject" />
 	<br />
 	
+	<form:label path="tags">
+		<spring:message code="mesage.tags" />:
+	</form:label>
+	<form:input path="tags" />
+	<form:errors cssClass="error" path="tags" />
+	<br />
+	
 	<form:label path="body">
 		<spring:message code="mesage.body" />:
 	</form:label>
