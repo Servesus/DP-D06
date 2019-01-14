@@ -55,8 +55,8 @@
 			<li><a class="fNiv"><spring:message	code="master.page.referee" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="complaint/referee/listSelfAssigned.do"><spring:message code="master.page.referee.listAll" /></a></li>
-					<li><a href="complaint/referee/listAll.do"><spring:message code="master.page.referee.listSelfAssigned" /></a></li>
+					<li><a href="complaint/referee/listSelfAssigned.do"><spring:message code="master.page.referee.listSelfAssigned" /></a></li>
+					<li><a href="complaint/referee/listAll.do"><spring:message code="master.page.referee.listAll" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

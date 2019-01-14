@@ -18,6 +18,8 @@ import services.ActorService;
 import services.ComplaintService;
 import services.CustomerService;
 import services.HandyWorkerService;
+import services.RefereeService;
+import services.ReportService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Application;
@@ -25,6 +27,7 @@ import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
 import domain.HandyWorker;
+import domain.Report;
 
 @Controller
 @RequestMapping("complaint")
@@ -41,6 +44,12 @@ public class ComplaintController extends AbstractController {
 
 	@Autowired
 	private HandyWorkerService	handyWorkerService;
+
+	@Autowired
+	private RefereeService		refereeService;
+
+	@Autowired
+	private ReportService		reportService;
 
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
@@ -98,19 +107,30 @@ public class ComplaintController extends AbstractController {
 	@RequestMapping(value = "/referee/listAll", method = RequestMethod.GET)
 	public ModelAndView listAll() {
 		ModelAndView result;
-		Collection<Complaint> complaints;
-		final Collection<Complaint> res = new ArrayList<Complaint>();
+		Collection<Complaint> res = new ArrayList<Complaint>();
 
-		complaints = this.complaintService.findAll();
-		res.addAll(complaints);
+		res = this.refereeService.getComplaintNoSelfAssigned();
 
-		for (final Complaint c : complaints)
-			if (!c.getReports().isEmpty())
-				res.remove(c);
 		result = new ModelAndView("complaint/referee/listAll");
 		result.addObject("complaints", res);
 		result.addObject("requestURI", "complaint/referee/listAll.do");
 		return result;
+	}
+
+	@RequestMapping(value = "/referee/autoAssignate", method = RequestMethod.GET)
+	public ModelAndView autoAssignate(@RequestParam final int complaintId) {
+		final ModelAndView result;
+		Report report;
+		final Collection<Report> reports = new ArrayList<>();
+
+		final Complaint complaint = this.complaintService.findOne(complaintId);
+
+		report = this.reportService.create(complaintId);
+		reports.addAll(complaint.getReports());
+		reports.add(report);
+
+		complaint.setReports(reports);
+
 	}
 
 	@RequestMapping(value = "/customer/show", method = RequestMethod.GET)

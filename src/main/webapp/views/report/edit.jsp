@@ -31,20 +31,14 @@
 	<form:errors cssClass="error" path="attachment"/>
 	<br />
 	
-	<form:label path="isFinal">
-		<spring:message code="report.isFinal"/>
-	</form:label>
-	<form:input path="isFinal"/>
-	<form:errors cssClass="error" path="isFinal"/>
-	<br />
-	
-	<input type="submit" name="save"
-		value="<spring:message code="complaint.save" />" 
-		onclick="return confirm('<spring:message code="complaint.confirm" />')" />
+	<input type="submit" name="draft"
+		value="<spring:message code="report.draft" />" />&nbsp; 
+	<input type="submit" name="final"
+		value="<spring:message code="report.final" />" />&nbsp; 
 	
 	<input type="button" name="cancel"
-		value="<spring:message code="complaint.cancel" />"
-		onclick="javascript: relativeRedir('fixUpTask/customer/findOne.do?fixUpTaskId=${complaint.fixUpTasks.id}');" />
+		value="<spring:message code="report.cancel" />"
+		onclick="javascript: relativeRedir('complaint/referee/listSelfAssigned.do');" />
 	<br />
 	
 	</jstl:if>

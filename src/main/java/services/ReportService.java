@@ -11,8 +11,6 @@ import org.springframework.util.Assert;
 
 import repositories.ReportRepository;
 import security.UserAccount;
-import domain.Actor;
-import domain.Referee;
 import domain.Report;
 
 @Service
@@ -28,32 +26,23 @@ public class ReportService {
 	private ActorService		actorService;
 	@Autowired
 	private RefereeService		refereeService;
+	@Autowired
+	private ComplaintService	complaintService;
 
 
 	//Simple CRUD methods
-	public Report create() {
-		UserAccount userAccount;
+	public Report create(final Integer complaintId) {
+		final Report result = new Report();
+		final Date moment = new Date();
+		final Integer refereeId = this.actorService.getActorLogged().getId();
 
-		userAccount = this.actorService.getActorLogged().getUserAccount();
-
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("REFEREE"));
-		Actor a;
-		a = this.actorService.getActorLogged();
-		Referee r;
-		r = this.refereeService.findOne(a.getId());
-
-		Collection<Report> reports;
-		reports = r.getReports();
-		Report result;
-
-		result = new Report();
-		result.setIsFinal(true);
-		reports.add(result);
-		r.setReports(reports);
-		this.refereeService.save(r);
-
+		result.setMoment(moment);
+		result.setReferee(this.refereeService.findOne(refereeId));
+		result.setIsFinal(false);
+		result.setComplaint(this.complaintService.findOne(complaintId));
 		return result;
 	}
+
 	public Collection<Report> findAll() {
 		Collection<Report> result;
 
