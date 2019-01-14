@@ -28,6 +28,7 @@
 	<br />
 	<form:input path="maxTime"/>
 	<form:errors cssClass="error" path="maxTime" />
+	<br/>
 	
 	<form:label path="pageName">
 		<spring:message code="configuration.edit.pageName" />

@@ -31,6 +31,8 @@ public class ConfigurationAdministratorController extends AbstractController {
 	private ConfigurationService	configurationService;
 
 
+	//private final String			pageName	= this.configurationService.findAll().get(0).getPageName();
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit() {
 		ModelAndView result;
@@ -56,6 +58,17 @@ public class ConfigurationAdministratorController extends AbstractController {
 			} catch (final Throwable oops) {
 				result = this.editModelAndView(config, "configuration.edit.error"); //"Administrator.commit.error"
 			}
+		return result;
+	}
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show() {
+		ModelAndView result;
+
+		final Configuration config = this.configurationService.findAll().get(0);
+
+		result = new ModelAndView("configuration/administrator/show");
+		result.addObject("configuration", config);
+
 		return result;
 	}
 

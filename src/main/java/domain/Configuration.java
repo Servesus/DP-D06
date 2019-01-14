@@ -14,7 +14,7 @@ public class Configuration extends DomainEntity {
 	//Attributes
 	private int		maxResults	= 10;
 	private int		maxTime		= 1;
-	private String	pageName	= "Acme-Handy-Worker";
+	private String	pageName;
 
 
 	@Range(min = 10, max = 100)
