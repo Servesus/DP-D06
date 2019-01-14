@@ -34,6 +34,8 @@ public class ComplaintService {
 	private ActorService		actorService;
 	@Autowired
 	private RefereeService		refereeService;
+	@Autowired
+	private ReportService		reportService;
 
 
 	public Complaint create(final Integer idFixUpTask) {
@@ -51,6 +53,19 @@ public class ComplaintService {
 		result.setCustomer(this.customerService.findOne(idCustomer));
 
 		return result;
+	}
+
+	public Complaint autoAssignate(final Integer complaintId) {
+		final Integer refereeId = this.actorService.getActorLogged().getId();
+		final Complaint complaint = this.findOne(complaintId);
+
+		final Collection<Report> reports = complaint.getReports();
+		final Report report = this.reportService.create(complaintId);
+		reports.add(report);
+
+		complaint.setReports(reports);
+
+		return complaint;
 	}
 
 	public Collection<Complaint> findAll() {
