@@ -1,12 +1,10 @@
 
 package domain;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,12 +19,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class EducationalRecord extends DomainEntity {
 
-	private String				diplomasTitle;
-	private Date				studiesBeggining;
-	private Date				studiesEnding;
-	private String				institution;
-	private String				attachment;
-	private Collection<String>	comments;
+	private String	diplomasTitle;
+	private Date	studiesBeggining;
+	private Date	studiesEnding;
+	private String	institution;
+	private String	attachment;
+	private String	comments;
 
 
 	@NotBlank
@@ -68,11 +66,10 @@ public class EducationalRecord extends DomainEntity {
 	public void setAttachment(final String attachment) {
 		this.attachment = attachment;
 	}
-	@ElementCollection
-	public Collection<String> getComments() {
+	public String getComments() {
 		return this.comments;
 	}
-	public void setComments(final Collection<String> comment) {
+	public void setComments(final String comment) {
 		this.comments = comment;
 	}
 }

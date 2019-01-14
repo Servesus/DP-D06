@@ -1,6 +1,7 @@
 
 package controllers.application;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -18,11 +19,13 @@ import services.ActorService;
 import services.ApplicationService;
 import services.FixUpTaskService;
 import services.HandyWorkerService;
+import services.MessageService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Application;
 import domain.FixUpTask;
 import domain.HandyWorker;
+import domain.Message;
 
 @Controller
 @RequestMapping("application")
@@ -39,6 +42,9 @@ public class ApplicationController extends AbstractController {
 
 	@Autowired
 	private HandyWorkerService	handyWorkerService;
+
+	@Autowired
+	private MessageService		messageService;
 
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
@@ -75,6 +81,15 @@ public class ApplicationController extends AbstractController {
 		else
 			try {
 				this.applicationService.acceptApplication(application);
+				final Message message = this.messageService.create();
+				final Collection<Actor> actors = new ArrayList<Actor>();
+				actors.add(application.getHandyWorker());
+				actors.add(application.getFixUpTask().getCustomer());
+				message.setRecipient(actors);
+				message.setPriority(0);
+				message.setSubject("Applcation changed \n Una solicitud ha cambiado");
+				message.setBody("An application status has been changed \n El estado de una solicitud ha cambiado");
+				this.messageService.save(message);
 				result = new ModelAndView("redirect:/application/customer/show.do?applicationId=" + application.getId());
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(application);
@@ -101,6 +116,15 @@ public class ApplicationController extends AbstractController {
 		else
 			try {
 				this.applicationService.rejectApplication(application);
+				final Message message = this.messageService.create();
+				final Collection<Actor> actors = new ArrayList<Actor>();
+				actors.add(application.getHandyWorker());
+				actors.add(application.getFixUpTask().getCustomer());
+				message.setRecipient(actors);
+				message.setPriority(0);
+				message.setSubject("Applcation changed \n Una solicitud ha cambiado");
+				message.setBody("An application status has been changed \n El estado de una solicitud ha cambiado");
+				this.messageService.save(message);
 				result = new ModelAndView("redirect:/application/customer/show.do?applicationId=" + application.getId());
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(application);

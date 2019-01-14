@@ -9,44 +9,44 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('HANDYWORKER')">
-<form:form action="miscRecord/handyWorker/edit.do" modelAttribute="miscRecord">
+<security:authorize access="hasRole('REFEREE')">
+<form:form action="report/referee/edit.do" modelAttribute="referee">
+<jstl:if test="${report.id == 0 }">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="moment"/>
+
 	
-	<form:label path="title">
-		<spring:message code="miscRecord.title"/>
+	<form:label path="description">
+		<spring:message code="report.description"/>
 	</form:label>
-	<form:input path="title"/>
-	<form:errors cssClass="error" path="title"/>
-	<br />
+	<form:textarea path="description"/>
+	<form:errors cssClass="error" path="description"/>
+	<br/>
 	
 	<form:label path="attachment">
-		<spring:message code="miscRecord.attachment"/>
+		<spring:message code="report.attachment"/>
 	</form:label>
 	<form:input path="attachment"/>
 	<form:errors cssClass="error" path="attachment"/>
 	<br />
 	
-	<form:label path="comments">
-		<spring:message code="miscRecord.comments"/>
+	<form:label path="isFinal">
+		<spring:message code="report.isFinal"/>
 	</form:label>
-	<form:textarea path="comments"/>
-	<form:errors cssClass="errors" path="comments"/>
+	<form:input path="isFinal"/>
+	<form:errors cssClass="error" path="isFinal"/>
 	<br />
-	
 	
 	<input type="submit" name="save"
-		value="<spring:message code="miscRecord.save" />" />&nbsp; 
-	<jstl:if test="${miscRecord.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="miscRecord.delete" />" />
-	</jstl:if>
+		value="<spring:message code="complaint.save" />" 
+		onclick="return confirm('<spring:message code="complaint.confirm" />')" />
+	
 	<input type="button" name="cancel"
-		value="<spring:message code="miscRecord.cancel" />"
-		onclick="javascript: relativeRedir('miscRecord/handyWorker/list.do');" />
+		value="<spring:message code="complaint.cancel" />"
+		onclick="javascript: relativeRedir('fixUpTask/customer/findOne.do?fixUpTaskId=${complaint.fixUpTasks.id}');" />
 	<br />
 	
-	
+	</jstl:if>
 </form:form>
 </security:authorize>
