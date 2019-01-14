@@ -105,4 +105,16 @@ public class ActorService {
 		return result;
 	}
 
+	public Collection<Actor> findSuspiciousActors() {
+		Collection<Actor> result;
+		result = this.actorRepository.findSuspiciousActors();
+		return result;
+	}
+
+	public Collection<Actor> findBannedActors() {
+		Collection<Actor> result;
+		result = this.actorRepository.findBannedActors();
+		return result;
+	}
+
 }
