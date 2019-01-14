@@ -10,15 +10,26 @@
 
 <p>
 	<spring:message code="configuration.edit.maxResults"/>:
-	<jstl:out value="${configuration.edit.maxResult}"></jstl:out> 
+	<br />
+	<jstl:out value="${configuration.maxResults}"></jstl:out>
+	<br />
 </p>
 
 <p>
 	<spring:message code="configuration.edit.maxTime"/>:
-	<jstl:out value="${configuration.edit.maxTime}"></jstl:out> 
+	<br />
+	<jstl:out value="${configuration.maxTime}"></jstl:out> 
+	<br />
 </p>
 
 <p>
 	<spring:message code="configuration.edit.pageName"/>:
-	<jstl:out value="${configuration.edit.pageName}"></jstl:out> 
+	<br />
+	<jstl:out value="${configuration.pageName}"></jstl:out> 
+	<br />
 </p>
+
+<input type="button" name="edit PD"
+		value="<spring:message code="configuration.edit" />"
+		onclick="javascript: relativeRedir('/configuration/administrator/edit.do');" />
+	<br />

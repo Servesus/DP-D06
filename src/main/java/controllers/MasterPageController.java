@@ -35,7 +35,7 @@ public class MasterPageController extends AbstractController {
 	protected ModelAndView editModelAndView(final Configuration config, final String messageCode) {
 		ModelAndView result;
 
-		result = new ModelAndView();
+		result = new ModelAndView("/");
 		result.addObject("configuration", config);
 		result.addObject("messageCode", messageCode);
 

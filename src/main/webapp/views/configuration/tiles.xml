@@ -21,5 +21,10 @@
 		<put-attribute name="title" value="Edit webpage's configuration" />
 		<put-attribute name="body" value="/views/configuration/edit.jsp" />
 	</definition>
+	
+	<definition name="configuration/administrator/show" extends="master.page">	
+		<put-attribute name="title" value="Configuration" />
+		<put-attribute name="body" value="/views/configuration/show.jsp" />
+	</definition>
 
 </tiles-definitions>
