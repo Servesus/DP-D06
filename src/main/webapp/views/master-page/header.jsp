@@ -39,7 +39,7 @@
 					<li><a href="actor/administrator/bannedlist.do"><spring:message code="master.page.actor.banned" /></a></li>				
 				</ul>
 			</li>
-			<li><a class="fNiv" href="configuration/administrator/edit.do"><spring:message code="master.page.administrator.configuration" /></a></li>
+			<li><a class="fNiv" href="configuration/administrator/show.do"><spring:message code="master.page.administrator.configuration" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">

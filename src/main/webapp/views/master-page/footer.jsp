@@ -21,6 +21,5 @@
 
 <jsp:useBean id="date" class="java.util.Date" />
 
-
 <hr />
-<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> ${configuration.pageName}, Inc.</b>
+<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> ${pageName}, Inc.</b>
