@@ -40,16 +40,22 @@ public class MessageController extends AbstractController {
 	public ModelAndView list(@RequestParam final int boxId) {
 		ModelAndView result;
 		Box box;
+		Actor user;
 
+		user = this.actorService.getActorLogged();
 		box = this.boxService.findOne(boxId);
 
-		result = new ModelAndView("message/customer,handyWorker,referee,administrator/list");
+		if (!(user.getBoxes().contains(box)))
+			result = new ModelAndView("redirect:/misc/403");
+		else {
 
-		result.addObject("messages", box.getMessages());
-		result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/list.do");
-		result.addObject("boxId", boxId);
-		result.addObject("boxes", this.actorService.getActorLogged().getBoxes());
+			result = new ModelAndView("message/customer,handyWorker,referee,administrator/list");
 
+			result.addObject("messages", box.getMessages());
+			result.addObject("requestURI", "message/customer,handyWorker,referee,administrator/list.do");
+			result.addObject("boxId", boxId);
+			result.addObject("boxes", this.actorService.getActorLogged().getBoxes());
+		}
 		return result;
 	}
 
@@ -145,16 +151,21 @@ public class MessageController extends AbstractController {
 
 		mesage = this.messageService.findOne(messageId);
 
-		result = new ModelAndView("message/customer,handyWorker,referee,administrator/show");
+		if (mesage == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else {
 
-		result.addObject("sendDate", mesage.getSendDate());
-		result.addObject("recipient", mesage.getRecipient());
-		result.addObject("sender", mesage.getSender().getUserAccount().getUsername());
-		result.addObject("subject", mesage.getSubject());
-		result.addObject("body", mesage.getBody());
-		result.addObject("priority", mesage.getPriority());
-		result.addObject("tags", mesage.getTags());
+			result = new ModelAndView("message/customer,handyWorker,referee,administrator/show");
 
+			result.addObject("sendDate", mesage.getSendDate());
+			result.addObject("recipient", mesage.getRecipient());
+			result.addObject("sender", mesage.getSender().getUserAccount().getUsername());
+			result.addObject("subject", mesage.getSubject());
+			result.addObject("body", mesage.getBody());
+			result.addObject("priority", mesage.getPriority());
+			result.addObject("tags", mesage.getTags());
+
+		}
 		return result;
 	}
 
