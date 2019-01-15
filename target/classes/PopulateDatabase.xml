@@ -211,18 +211,6 @@
 				<ref bean="box1"/>
 			</list>
 		</property>
-		<property name="complaints">
-			<list>
-			<ref bean="complaint1"/>
-			<ref bean="complaint2"/>
-			</list>
-		</property>
-		<property name="fixUpTasks">
-			<list>
-			<ref bean="fixUpTask1"/>
-			<ref bean="fixUpTask2"/>
-			</list>
-		</property>
 	</bean>
 	<bean id="customer2" class="domain.Customer">
 		<property name="name" value="customer2"/>
@@ -242,18 +230,6 @@
 		<property name="boxes">
 			<list>
 			<ref bean="box2"/>
-			</list>
-		</property>
-		<property name="complaints">
-			<list>
-			<ref bean="complaint3"/>
-			<ref bean="complaint4"/>
-			</list>
-		</property>
-		<property name="fixUpTasks">
-			<list>
-			<ref bean="fixUpTask3"/>
-			<ref bean="fixUpTask4"/>
 			</list>
 		</property>
 	</bean>
@@ -277,16 +253,6 @@
 			<list>
 			</list>
 		</property>
-		<property name="complaints">
-			<list>
-			<ref bean="complaint5"/>
-			</list>
-		</property>
-		<property name="fixUpTasks">
-			<list>
-			<ref bean="fixUpTask5"/>
-			</list>
-		</property>
 	</bean>
 	
 	<bean id="customer4" class="domain.Customer">
@@ -305,14 +271,6 @@
 			</list>
 		</property>
 		<property name="boxes">
-			<list>
-			</list>
-		</property>
-		<property name="complaints">
-			<list>
-			</list>
-		</property>
-		<property name="fixUpTasks">
 			<list>
 			</list>
 		</property>
@@ -336,14 +294,6 @@
 			</list>
 		</property>
 		<property name="boxes">
-			<list>
-			</list>
-		</property>
-		<property name="complaints">
-			<list>
-			</list>
-		</property>
-		<property name="fixUpTasks">
 			<list>
 			</list>
 		</property>
@@ -701,6 +651,34 @@
 		<property name="maxResults" value="10"/>
 		<property name="maxTime" value="1"/>
 		<property name="pageName" value="Acme-Handy-Worker"/>
+		<property name="bannerURL" value="https://tinyurl.com/acme-handy-worker-logo"/>
+		<property name="welcomeES" value="¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio"/>
+		<property name="welcomeEN" value="Welcome to Acme Handy Worker! Price, quality, and trust in a single place"/>
+		<property name="VATPercent" value="21"/>
+		<property name="phoneCCode" value="34"/>
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one million</value>
+				<value>you've been selected</value>
+				<value>Nigeria</value>
+				<value>sexo</value>
+				<value>un millon</value>
+				<value>has sido seleccionado</value>
+			</list>
+		</property>
+		<property name="cCardsMakes">
+			<list>
+				<value>VISA</value>
+				<value>MASTER</value>
+				<value>DINNERS</value>
+				<value>AMEX</value>
+			</list>
+		</property>
+		
+		
 	</bean>
 	<!-- Finder --> 
 	<bean id="finder1" class="domain.Finder">

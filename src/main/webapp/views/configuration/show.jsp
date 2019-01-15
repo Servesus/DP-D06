@@ -12,22 +12,59 @@
 	<spring:message code="configuration.edit.maxResults"/>:
 	<br />
 	<jstl:out value="${configuration.maxResults}"></jstl:out>
-	<br />
 </p>
 
 <p>
 	<spring:message code="configuration.edit.maxTime"/>:
 	<br />
 	<jstl:out value="${configuration.maxTime}"></jstl:out> 
-	<br />
 </p>
 
 <p>
 	<spring:message code="configuration.edit.pageName"/>:
 	<br />
 	<jstl:out value="${configuration.pageName}"></jstl:out> 
-	<br />
 </p>
+
+<p>
+	<spring:message code="configuration.edit.bannerURL"/>:
+	<br />
+	<jstl:out value="${configuration.bannerURL}"></jstl:out> 
+</p>
+
+<p>
+	<spring:message code="configuration.edit.welcomeES"/>:
+	<br />
+	<jstl:out value="${configuration.welcomeES}"></jstl:out> 
+</p>
+
+<p>
+	<spring:message code="configuration.edit.welcomeEN"/>:
+	<br />
+	<jstl:out value="${configuration.welcomeEN}"></jstl:out> 
+</p>
+
+<p>
+	<spring:message code="configuration.edit.VATPercent"/>:
+	<br />
+	<jstl:out value="${configuration.VATPercent}"></jstl:out> 
+</p>
+
+<p>
+	<spring:message code="configuration.edit.phoneCCode"/>:
+	<br />
+	<jstl:out value="${configuration.phoneCCode}"></jstl:out> 
+</p>
+
+<spring:message code="configuration.edit.spamWords" />
+<br/>
+<display:table name="${configuration.spamWords}" id="row">
+</display:table>
+
+<spring:message code="configuration.edit.cCardsMakes" />
+<br/>
+<display:table name="${configuration.cCardsMakes}" id="row">
+</display:table>
 
 <input type="button" name="edit PD"
 		value="<spring:message code="configuration.edit" />"
