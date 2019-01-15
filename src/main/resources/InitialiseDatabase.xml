@@ -53,7 +53,45 @@
 				<ref bean="outBox"/>
 				<ref bean="spamBox"/>
 				<ref bean="trashBox"/>
-				<ref bean="box7"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="profile3" class="domain.Profile">
+		<property name="nick" value="Sergii"/>
+		<property name="socialNetName" value="sergii1998"/>
+		<property name="socialNetProfLink" value="https://www.twitch.tv/"/>
+		<property name="name" value="Sergio Perez"/>
+	</bean>
+	<bean id="inBox" class="domain.Box">
+		<property name="name" value="INBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
+			<null></null>
+			</list>
+		</property>
+	</bean>
+	<bean id="outBox" class="domain.Box">
+		<property name="name" value="OUTBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="spamBox" class="domain.Box">
+		<property name="name" value="SPAMBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="trashBox" class="domain.Box">
+		<property name="name" value="TRASHBOX"/>
+		<property name="isSystem" value="true"/>
+		<property name="messages">
+			<list>
 			</list>
 		</property>
 	</bean>

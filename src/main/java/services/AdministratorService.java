@@ -309,9 +309,14 @@ public class AdministratorService {
 		userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 
-		List<Complaint> result;
-		result = this.administratorRepository.getTop3CustomersOfComplaints().subList(0, 2);
-
+		final List<Complaint> result = new ArrayList<Complaint>();
+		List<Complaint> a;
+		a = this.administratorRepository.getTop3CustomersOfComplaints();
+		if (a != null && a.size() >= 3) {
+			result.add(a.get(0));
+			result.add(a.get(1));
+			result.add(a.get(2));
+		}
 		return result;
 	}
 
@@ -321,9 +326,14 @@ public class AdministratorService {
 		userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 
-		List<HandyWorker> result;
-		result = this.administratorRepository.getTop3HandyWorkerOfComplaints().subList(0, 2);
-
+		final List<HandyWorker> result = new ArrayList<HandyWorker>();
+		List<HandyWorker> a;
+		a = this.administratorRepository.getTop3HandyWorkerOfComplaints();
+		if (a != null && a.size() >= 3) {
+			result.add(a.get(0));
+			result.add(a.get(1));
+			result.add(a.get(2));
+		}
 		return result;
 	}
 	//Q16
