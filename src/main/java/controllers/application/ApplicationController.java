@@ -55,15 +55,10 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView listCustomer(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
 		Collection<Application> applications;
-		int customerId;
-		Customer customer;
-
-		customerId = this.actorService.getActorLogged().getId();
-		customer = this.customerService.findOne(customerId);
 
 		final FixUpTask fixUpTask = this.fixUpTaskService.findOne(fixUpTaskId);
 
-		if (customer.getFixUpTasks().contains(fixUpTask)) {
+		if (this.fixUpTaskService.getCustomerFixUpTasks().contains(fixUpTask)) {
 			applications = fixUpTask.getApplications();
 			result = new ModelAndView("application/customer/list");
 			result.addObject("applications", applications);
