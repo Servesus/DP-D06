@@ -21,7 +21,6 @@ import domain.Complaint;
 import domain.Curricula;
 import domain.FixUpTask;
 import domain.HandyWorker;
-import domain.Phase;
 import domain.Profile;
 
 @Service
@@ -57,7 +56,6 @@ public class HandyWorkerService {
 		Collection<Authority> auts;
 		final Curricula curricula;
 		final Collection<Application> apps = new ArrayList<Application>();
-		final Collection<Phase> phases = new ArrayList<Phase>();
 		final Collection<Profile> profiles = new ArrayList<Profile>();
 
 		auts = new ArrayList<Authority>();
@@ -74,7 +72,6 @@ public class HandyWorkerService {
 		result.setIsBanned(false);
 		result.setIsSuspicious(false);
 		result.setApplications(apps);
-		result.setPhases(phases);
 		result.setCurricula(curricula);
 		result.setProfiles(profiles);
 		return result;
