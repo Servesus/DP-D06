@@ -1,8 +1,7 @@
 
 package controllers.report;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import javax.validation.Valid;
 
@@ -17,12 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ComplaintService;
 import services.ReportService;
+import controllers.AbstractController;
 import domain.Complaint;
 import domain.Report;
 
 @Controller
 @RequestMapping("report")
-public class ReportController {
+public class ReportController extends AbstractController {
 
 	@Autowired
 	private ReportService		reportService;
@@ -33,27 +33,29 @@ public class ReportController {
 
 	@RequestMapping(value = "/referee/list", method = RequestMethod.POST, params = "list")
 	public ModelAndView list(@RequestParam final int complaintId) {
-		List<Report> reports = new ArrayList<>();
+		//List<Report> reports = new ArrayList<>();
+		Collection<Report> reports;
 		Complaint complaint;
 		ModelAndView result;
 
 		complaint = this.complaintService.findOne(complaintId);
-		reports = (List<Report>) complaint.getReports();
-		final List<Report> sublist = reports.subList(1, reports.size() - 1);
+		//		reports = (List<Report>) complaint.getReports();
+		//		final List<Report> sublist = reports.subList(1, reports.size() - 1);
+		reports = complaint.getReports();
 
 		result = new ModelAndView("report/referee/list");
-		result.addObject("reports", sublist);
+		result.addObject("reports", reports);
 		result.addObject("requestURI", "report/referee/list.do");
 
 		return result;
 	}
 
-	@RequestMapping(value = "/referee/create", method = RequestMethod.POST, params = "create")
-	public ModelAndView create(@RequestParam final int complaintId) {
+	@RequestMapping(value = "/referee/create", method = RequestMethod.GET)
+	public ModelAndView create() {
 		ModelAndView result;
 		Report report;
 
-		report = this.reportService.create(complaintId);
+		report = this.reportService.create();
 
 		result = this.createEditModelAndView(report);
 
@@ -71,12 +73,30 @@ public class ReportController {
 		return result;
 	}
 
-	@RequestMapping(value = "/referee/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Report report, final BindingResult binding) {
+	@RequestMapping(value = "/referee/edit", method = RequestMethod.POST, params = "draft")
+	public ModelAndView saveDraft(@Valid final Report report, final BindingResult binding, final int complaintId) {
 		ModelAndView result;
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(report);
 		try {
+			report.setIsFinal(false);
+			report.setComplaint(this.complaintService.findOne(complaintId));
+			this.reportService.save(report);
+			result = new ModelAndView("complaint/referee/listSelfAssign.do");
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(report, "report.commit.error");
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/referee/edit", method = RequestMethod.POST, params = "final")
+	public ModelAndView saveFinal(@Valid final Report report, final BindingResult binding, final int complaintId) {
+		ModelAndView result;
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(report);
+		try {
+			report.setIsFinal(true);
+			report.setComplaint(this.complaintService.findOne(complaintId));
 			this.reportService.save(report);
 			result = new ModelAndView("complaint/referee/listSelfAssign.do");
 		} catch (final Throwable oops) {

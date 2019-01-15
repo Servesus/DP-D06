@@ -35,6 +35,8 @@ public class AdministratorService {
 	private BoxService				boxService;
 	@Autowired
 	private ActorService			actorService;
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	//Simple CRUD methods
@@ -97,6 +99,13 @@ public class AdministratorService {
 		user1.setPassword(res);
 
 		Administrator result;
+
+		final char[] c = a.getPhoneNumber().toCharArray();
+		if (c[0] != '+') {
+			final Integer i = this.configurationService.findAll().get(0).getPhoneCCode();
+			final String s = i.toString();
+			a.setPhoneNumber("+" + s + " " + a.getPhoneNumber());
+		}
 
 		if (a.getId() == 0) {
 			Collection<Box> boxSystem;

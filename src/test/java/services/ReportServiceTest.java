@@ -30,14 +30,16 @@ public class ReportServiceTest extends AbstractTest {
 		Assert.notNull(r);
 		super.authenticate(null);
 	}
-	@Test
-	public void testSaveReport() {
-		super.authenticate("referee1");
-		final Report a = this.reportService.create();
-		final Report b = this.reportService.save(a);
-		Assert.notNull(b);
-		super.authenticate(null);
-	}
+	/*
+	 * @Test
+	 * public void testSaveReport() {
+	 * super.authenticate("referee1");
+	 * final Report a = this.reportService.create();
+	 * final Report b = this.reportService.save(a);
+	 * Assert.notNull(b);
+	 * super.authenticate(null);
+	 * }
+	 */
 	@Test
 	public void testDeleteReport() {
 		super.authenticate("referee1");

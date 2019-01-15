@@ -22,10 +22,12 @@
 	
 	<security:authorize access="hasRole('REFEREE')">
 	<display:column> 
-	<input type= button name="report.create"
-	value="<spring:message code="report.view" />"
-	onclick="javascript: relativeRedir('report/referee/list.do?complaintId=${row.id}');"/>
-	</display:column>
+		<form action="report/referee/list.do" method="post">
+		<input type="hidden" id="complaintId" name="complaintId" value="${row.id}" /> 
+		<input type="submit" name="list"
+		value="<spring:message code="report.view" />" /> 
+  	 	</form>
+	</display:column>		
 	
 	<spring:message code="complaint.moment" var="moment" />
 	<display:column property="moment" title="${moment}" format="{0,date,dd/MM/yyyy HH:mm}"/>

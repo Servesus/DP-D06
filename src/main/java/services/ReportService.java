@@ -31,7 +31,7 @@ public class ReportService {
 
 
 	//Simple CRUD methods
-	public Report create(final Integer complaintId) {
+	public Report create() {
 		final Report result = new Report();
 		final Date moment = new Date();
 		final Integer refereeId = this.actorService.getActorLogged().getId();
@@ -39,7 +39,6 @@ public class ReportService {
 		result.setMoment(moment);
 		result.setReferee(this.refereeService.findOne(refereeId));
 		result.setIsFinal(false);
-		result.setComplaint(this.complaintService.findOne(complaintId));
 		return result;
 	}
 
