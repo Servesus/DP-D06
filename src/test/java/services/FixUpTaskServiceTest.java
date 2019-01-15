@@ -1,8 +1,6 @@
 
 package services;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,15 +46,6 @@ public class FixUpTaskServiceTest extends AbstractTest {
 		final FixUpTask a = this.fixUpTaskService.findOne(id);
 		this.fixUpTaskService.delete(a);
 		Assert.isNull(this.fixUpTaskService.findOne(id));
-		super.authenticate(null);
-
-	}
-	@Test
-	public void testFindAllCustomer() {
-		super.authenticate("customer1");
-		final int id = this.getEntityId("customer1");
-		final List<FixUpTask> res = this.fixUpTaskService.findAllCustomer(id);
-		Assert.notNull(res);
 		super.authenticate(null);
 
 	}

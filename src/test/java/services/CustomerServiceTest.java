@@ -1,8 +1,6 @@
 
 package services;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -50,14 +48,6 @@ public class CustomerServiceTest extends AbstractTest {
 		final Customer test = this.customerService.save(c);
 
 		Assert.isTrue(this.customerService.findAll().contains(test));
-	}
-	@Test
-	public void testCustomerPorFixUpTask() {
-		super.authenticate("handyWorker1");
-		final List<String> res = this.customerService.CustomerPorFixUpTask();
-		Assert.notNull(res);
-		super.authenticate(null);
-
 	}
 
 }

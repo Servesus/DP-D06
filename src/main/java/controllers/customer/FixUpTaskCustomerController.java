@@ -54,7 +54,7 @@ public class FixUpTaskCustomerController extends AbstractController {
 
 		customer = this.customerService.findOne(user.getId());
 		Assert.notNull(customer);
-		fixUpTaskCollection = customer.getFixUpTasks();
+		fixUpTaskCollection = this.fixUpTaskService.getCustomerFixUpTasks();
 		Assert.notNull(fixUpTaskCollection);
 
 		result = new ModelAndView("fixUpTask/customer/findAll");

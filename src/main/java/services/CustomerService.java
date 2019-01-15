@@ -52,8 +52,6 @@ public class CustomerService {
 		Collection<Authority> authorities;
 		Collection<Profile> profiles;
 		Collection<Box> boxes;
-		Collection<Complaint> complaints;
-		Collection<FixUpTask> fixUpTasks;
 
 		result = new Customer();
 		userAccount = new UserAccount();
@@ -62,8 +60,6 @@ public class CustomerService {
 
 		profiles = new ArrayList<Profile>();
 		boxes = new ArrayList<Box>();
-		complaints = new ArrayList<Complaint>();
-		fixUpTasks = new ArrayList<FixUpTask>();
 
 		auth.setAuthority(Authority.CUSTOMER);
 		authorities.add(auth);
@@ -74,8 +70,6 @@ public class CustomerService {
 		result.setIsSuspicious(false);
 		result.setProfiles(profiles);
 		result.setBoxes(boxes);
-		result.setComplaints(complaints);
-		result.setFixUpTasks(fixUpTasks);
 
 		return result;
 	}
@@ -198,24 +192,6 @@ public class CustomerService {
 		result = this.complaintService.findOne(complaintId);
 
 		return result;
-	}
-
-	public List<String> CustomerPorFixUpTask() {
-		UserAccount userAccount;
-		userAccount = this.actorService.getActorLogged().getUserAccount();
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
-		final List<String> res = new ArrayList<>();
-		Collection<FixUpTask> a = new ArrayList<FixUpTask>();
-		a = this.fixUpTaskService.findAll();
-		Collection<Customer> b = new ArrayList<Customer>();
-		b = this.customerRepository.findAll();
-		for (final FixUpTask f : a)
-			for (final Customer c : b)
-				if (c.getFixUpTasks().contains(f)) {
-					res.add("FixUpTask with id:" + f.getId() + " is assigned to " + c.getName());
-					break;
-				}
-		return res;
 	}
 
 }

@@ -17,19 +17,19 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	/* Q1 */
 
 	//The average of the number of fix-up tasks per user
-	@Query("select avg(c.fixUpTasks.size) from Customer c")
+	@Query("select avg(1.0*(select count(f) from FixUpTask f where f.customer.id = c.id)) from Customer c")
 	Double getAvgOfFixUpTasksPerUser();
 
 	//The minimum of the number of fix-up tasks per user
-	@Query("select min(c.fixUpTasks.size) from Customer c")
+	@Query("select min(1.0*(select count(f) from FixUpTask f where f.customer.id = c.id)) from Customer c")
 	Double getMinOfFixUpTasksPerUser();
 
 	//The maximum of the number of fix-up tasks per user
-	@Query("select max(c.fixUpTasks.size) from Customer c")
+	@Query("select max(1.0*(select count(f) from FixUpTask f where f.customer.id = c.id)) from Customer c")
 	Double getMaxOfFixUpTasksPerUser();
 
 	//The standard deviation of the number of fix-up tasks per user
-	@Query("select stddev(c.fixUpTasks.size) from Customer c")
+	@Query("select stddev(1.0*(select count(f) from FixUpTask f where f.customer.id = c.id)) from Customer c")
 	Double getStddevOfFixUpTasksPerUser();
 
 	/* Q2 */
@@ -113,32 +113,31 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	/* Q9 */
 
 	//The listing of customers who have published at least 10% more fix-up tasks than the average, ordered by number of applications.
-	@Query("select c from Customer c join c.fixUpTasks f where(c.fixUpTasks.size >= 1.1*(select avg(c.fixUpTasks.size) from Customer c))group by c.id order by f.applications.size DESC")
+	@Query("select c from Customer c where((select count(f) from FixUpTask f)*1.0 >= 1.1*(select avg(1.0*(select count(f) from FixUpTask f where f.customer.id = c.id)) from Customer c)) group by c.id order by 1.0*(select count(a) from Application a) DESC")
 	List<Customer> getCustomerMoreAcceptedThanAvg();
 
 	/* Q10 */
 
 	//Listing of handy workers who have got accepted at least 10% more ap-plications than the average, ordered by number of applications
-	@Query("select h from HandyWorker h join h.applications a where" + "((select count(a) from HandyWorker h where a.status=1 and a.handyWorker=h)/" + "(h.applications.size)>=(select 1.1*(select count(h2) "
-		+ "from HandyWorker h2 join h2.applications a2 where (a2.status=1))" + "/count(a) from HandyWorker a)) order by a.size desc")
+	@Query("select h from HandyWorker h join h.applications a where ((select count(a) from HandyWorker h where a.status=1 and a.handyWorker=h)/(h.applications.size)>=(select 1.1*(select count(h2) from HandyWorker h2 join h2.applications a2 where (a2.status=1))/count(a) from HandyWorker a)) order by a.size desc")
 	List<HandyWorker> getHwMoreAcceptedThanAvg();
 
 	/* Q11 */
 
 	//The average of the complaints per fix-up task.
-	@Query("select avg(f.complaints.size) from FixUpTask f")
+	@Query("select avg(1.0*(select count(c) from Complaint c where c.fixUpTasks = f.id))from FixUpTask f")
 	Double getAvgComplaintsPerFixUpTask();
 
 	//The maximum of complaints per fix-up task.
-	@Query("select max(f.complaints.size) from FixUpTask f")
+	@Query("select max(1.0*(select count(c) from Complaint c where c.fixUpTasks = f.id))from FixUpTask f")
 	Double getMaxComplaintsPerFixUpTask();
 
 	//The minimum of the complaints per fix-up task.
-	@Query("select min(f.complaints.size) from FixUpTask f")
+	@Query("select min(1.0*(select count(c) from Complaint c where c.fixUpTasks = f.id))from FixUpTask f")
 	Double getMinComplaintsPerFixUpTask();
 
 	//The standard deviation of the complaints per fix-up task.
-	@Query("select stddev(f.complaints.size) from FixUpTask f")
+	@Query("select stddev(1.0*(select count(c) from Complaint c where c.fixUpTasks = f.id))from FixUpTask f")
 	Double getStddevComplaintsPerFixUpTask();
 
 	/* Q12 */
@@ -168,7 +167,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	/* Q14 */
 
 	//The top-three customers in terms of complaints.
-	@Query("select c from Customer c join c.complaints com group by c.id order by com.size DESC")
+	@Query("select c from Complaint c group by c.customer.id order by count(c) DESC")
 	List<Customer> getTop3CustomersOfComplaints();
 
 	/* Q15 */
