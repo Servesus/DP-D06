@@ -39,6 +39,7 @@ public class FixUpTask extends DomainEntity {
 	private Customer				customer;
 
 
+	@NotNull
 	@ManyToOne(optional = false)
 	public Customer getCustomer() {
 		return this.customer;

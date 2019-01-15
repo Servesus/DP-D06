@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import domain.Administrator;
+import domain.Complaint;
 import domain.Customer;
 import domain.HandyWorker;
 
@@ -168,7 +169,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
 	//The top-three customers in terms of complaints.
 	@Query("select c from Complaint c group by c.customer.id order by count(c) DESC")
-	List<Customer> getTop3CustomersOfComplaints();
+	List<Complaint> getTop3CustomersOfComplaints();
 
 	/* Q15 */
 

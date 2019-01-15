@@ -18,6 +18,7 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Administrator;
 import domain.Box;
+import domain.Complaint;
 import domain.Customer;
 import domain.HandyWorker;
 import domain.Profile;
@@ -303,12 +304,12 @@ public class AdministratorService {
 	}
 
 	/* Q14 */
-	public List<Customer> getTop3CustomersOfComplaints() {
+	public List<Complaint> getTop3CustomersOfComplaints() {
 		UserAccount userAccount;
 		userAccount = LoginService.getPrincipal();
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("ADMIN"));
 
-		List<Customer> result;
+		List<Complaint> result;
 		result = this.administratorRepository.getTop3CustomersOfComplaints().subList(0, 2);
 
 		return result;

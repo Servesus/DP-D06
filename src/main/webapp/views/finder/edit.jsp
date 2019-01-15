@@ -76,9 +76,6 @@
 	<input type="submit" name="save"
 		value="<spring:message code="finder.update.update" />" />&nbsp; 
 	
-	<input type="button" name="cancel"
-		value="<spring:message code="finder.update.cancel" />"
-		onclick="javascript: relativeRedir('master.page');" />
 	<br />
 	
 </form:form>

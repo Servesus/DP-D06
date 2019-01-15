@@ -24,6 +24,7 @@
 	<form:hidden path="phases" />
 	<form:hidden path="applications" />
 	<form:hidden path="complaints" />
+	<form:hidden path="customer" />
  
  	<form:label path="startDate">
 		<spring:message code="fixUpTask.startDate" />:

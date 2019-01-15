@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
 import controllers.AbstractController;
+import domain.Complaint;
 import domain.Customer;
 import domain.HandyWorker;
 
@@ -59,7 +60,7 @@ public class DashboardAdministratorController extends AbstractController {
 		final Double RatioFixUpTaskWithComplaint = this.administratorService.getRatioFixUpTaskWithComplaint();
 		final List<Customer> CustomerMoreAcceptedThanAvg = this.administratorService.customerMoreAcceptedThanAvg();
 		final List<HandyWorker> HwMoreAcceptedThanAvg = this.administratorService.getHwMoreAcceptedThanAvg();
-		final List<Customer> Top3CustomersOfComplaints = this.administratorService.getTop3CustomersOfComplaints();
+		final List<Complaint> Top3CustomersOfComplaints = this.administratorService.getTop3CustomersOfComplaints();
 		final List<HandyWorker> Top3HandyWorkerOfComplaints = this.administratorService.getTop3HandyWorkerOfComplaints();
 
 		result = new ModelAndView("administrator/administrator/dashboard");

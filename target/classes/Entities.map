@@ -1,47 +1,5 @@
 #./src/main/resources/Entities.map
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Mon Jan 14 21:31:51 CET 2019
-InsulationInstallation=40
-SprinklerRepair=50
-PestControl=44
-SolarPanels=48
-HomeSecuritySystems=39
-Doors=35
-Electronic=54
-Roofing=46
-FenceFixing=38
-Cleaning=33
-ShelfInstallation=47
-WindowRepair=51
-Repairments=52
-Painting=43
-PlumbingRepair=45
-userAccount1=28
-Carpentry=31
-Moving=42
-category=30
-FanInstallation=37
-configuration1=29
-CeilingRepair=32
-LampRepair=41
-Installations=53
-ElectricalWiring=36
-Soundproofing=49
-ConcreteWork=34
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Tue Jan 15 02:16:19 CET 2019
-=======
-#Tue Jan 15 04:45:19 CET 2019
->>>>>>> fa0572b5b67f693478ebbde187290708306a32bf
-=======
-#Tue Jan 15 04:42:04 CET 2019
->>>>>>> origin/miguel
+#Tue Jan 15 17:05:54 CET 2019
 message2=3388
 message1=3370
 FanInstallation=3327
@@ -189,4 +147,3 @@ complaint4=3379
 complaint3=3378
 complaint2=3377
 complaint1=3376
->>>>>>> f365ccb51f850492fb0ab9468ee957c965c400b2

@@ -27,18 +27,6 @@
 <spring:message code="customer.phoneNumber" /> ${customer.phoneNumber} <br/>
 <spring:message code="customer.id" /> ${customer.id} <br/>
 
-<spring:message code="customer.complaints" />
-<display:table name="${customer.complaints}" id="row">
-<display:column property="moment" titleKey="customer.complaints.moment" />
-<display:column property="description" titleKey="customer.complaints.description" />
-</display:table>
-
-<spring:message code="customer.fixUpTasks" />
-<display:table name="${customer.fixUpTasks}" id="row">
-<display:column property="startDate" titleKey="customer.fixUpTasks.startDate" />
-<display:column property="description" titleKey="customer.fixUpTasks.description" />
-<display:column property="maxPrice" titleKey="customer.fixUpTasks.maxPrice" />
-</display:table>
 
 <input type="button" name="socialProfiles" value="<spring:message code="customer.socialProfiles" />"
 			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />
@@ -71,7 +59,6 @@
 <spring:message code="handyWorker.surname" />: ${handyWorker.surname} <br/>
 <spring:message code="handyWorker.email" />: ${handyWorker.email} <br/>
 <spring:message code="handyWorker.phoneNumber" />: ${handyWorker.phoneNumber} <br/>
-<spring:message code="handyWorker.id" />: ${handyWorker.id} <br/>
 <spring:message code="handyWorker.make" />: ${handyWorker.make} <br/>
 
 
@@ -82,12 +69,6 @@
 <display:column property="price" titleKey="handyWorker.applications.price" />
 </display:table>
 
-<spring:message code="handyWorker.phases" />:
-<display:table name="${handyWorker.phases}" id="row">
-<display:column property="title" titleKey="handyWorker.phases.title" />
-<display:column property="description" titleKey="handyWorker.phases.description" />
-<display:column property="number" titleKey="handyWorker.phases.number" />
-</display:table>
 
 <input type="button" name="socialProfiles" value="<spring:message code="handyWorker.socialProfiles" />"
 			onclick="javascript: relativeRedir('/socialProfile/handyWorker,customer,admin,referee/list.do');" />

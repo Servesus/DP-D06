@@ -23,7 +23,6 @@
 	<form:hidden path="profiles" />
 	<form:hidden path="boxes" />
 	<form:hidden path="applications" />
-	<form:hidden path="phases" />
 	<form:hidden path="curricula" />
 	<form:hidden path="finder" />
 	<form:hidden path="isSuspicious" />

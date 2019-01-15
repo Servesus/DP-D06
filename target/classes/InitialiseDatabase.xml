@@ -31,12 +31,67 @@
 	</bean>
 	<!-- Other domain beans come here -->	
 	
+	<bean id="admin1" class = "domain.Administrator">
+		<property name="name" value="admin1"/>
+		<property name="middleName" value="admin1"/>
+		<property name="surname" value="admin1"/>
+		<property name="photo" value="http://www.tumblr.com/photo"/>
+		<property name="email" value="admin1@gmail.com"/>
+		<property name="phoneNumber" value="684143460"/>
+		<property name="address" value = "Torreperojil 4"/>
+		<property name="isSuspicious" value= "false"/>
+		<property name="isBanned" value = "false"/>
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="profiles">
+			<list>
+			<ref bean="profile3"/>
+			</list>
+		</property>	
+		<property name="boxes">
+			<list>
+				<ref bean="inBox"/>
+				<ref bean="outBox"/>
+				<ref bean="spamBox"/>
+				<ref bean="trashBox"/>
+				<ref bean="box7"/>
+			</list>
+		</property>
+	</bean>
 	<bean id="configuration1" class="domain.Configuration">
 		<property name="maxResults" value="10"/>
 		<property name="maxTime" value="1"/>
 		<property name="pageName" value="Acme-Handy-Worker"/>
+		<property name="bannerURL" value="https://tinyurl.com/acme-handy-worker-logo"/>
+		<property name="welcomeES" value="¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio"/>
+		<property name="welcomeEN" value="Welcome to Acme Handy Worker! Price, quality, and trust in a single place"/>
+		<property name="VATPercent" value="21"/>
+		<property name="phoneCCode" value="34"/>
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one million</value>
+				<value>you've been selected</value>
+				<value>Nigeria</value>
+				<value>sexo</value>
+				<value>un millon</value>
+				<value>has sido seleccionado</value>
+			</list>
+		</property>
+		<property name="cCardsMakes">
+			<list>
+				<value>AMEX</value>
+				<value>VISA</value>
+				<value>MASTER</value>
+				<value>DINNERS</value>
+			</list>
+		</property>
+		
+		
 	</bean>
-<bean id="category" class = "domain.Category">
+	
+	<bean id="category" class = "domain.Category">
 		<property name="nameEN" value="CATEGORY"/>
 		<property name="nameES" value="CATEGORÍA"/>
 		<property name="parents"><null/></property>

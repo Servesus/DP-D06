@@ -26,9 +26,5 @@
 <spring:message code="customer.email" /> ${customer.email} <br/>
 <spring:message code="customer.phoneNumber" /> ${customer.phoneNumber} <br/>
 
-
-<input type="button" name="cancel"
-		value="<spring:message code="fixUpTask.back" />"
-		onclick="javascript: relativeRedir('fixUpTask/handyWorker/customersHandyWorker.do');" />
 </security:authorize>
 
