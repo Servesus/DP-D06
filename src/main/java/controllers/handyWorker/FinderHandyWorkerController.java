@@ -2,6 +2,7 @@
 package controllers.handyWorker;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.CategoryService;
+import services.ConfigurationService;
 import services.FinderService;
 import services.HandyWorkerService;
 import services.WarrantyService;
@@ -35,15 +37,17 @@ import domain.Warranty;
 public class FinderHandyWorkerController extends AbstractController {
 
 	@Autowired
-	private FinderService		finderService;
+	private FinderService			finderService;
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 	@Autowired
-	private HandyWorkerService	handyWorkerService;
+	private HandyWorkerService		handyWorkerService;
 	@Autowired
-	private CategoryService		categoryService;
+	private CategoryService			categoryService;
 	@Autowired
-	private WarrantyService		warrantyService;
+	private WarrantyService			warrantyService;
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -55,6 +59,20 @@ public class FinderHandyWorkerController extends AbstractController {
 		final HandyWorker hw = this.handyWorkerService.findOne(user.getId());
 		Finder finder;
 		finder = hw.getFinder();
+		//borrar si ha pasado x tiempo;
+		final Date fechaActual = new Date();
+		final Date lastUpdate = finder.getLastUpdate();
+		final int horasDeGuardado = this.configurationService.findAll().get(0).getMaxTime();
+		final Calendar calendar = Calendar.getInstance();
+		calendar.setTime(lastUpdate);
+		calendar.add(Calendar.HOUR, horasDeGuardado);
+		final Date fechaLimite = calendar.getTime();
+
+		if (fechaLimite.after(fechaActual)) {
+			finder.setFixUpTask(new ArrayList<FixUpTask>());
+			this.finderService.save(finder);
+		}
+
 		fixUpTasks = finder.getFixUpTask();
 		//meterlo en result
 		result = new ModelAndView("finder/handyWorker/list");
