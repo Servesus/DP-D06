@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -113,14 +112,14 @@ public class ComplaintController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/referee/selfAssign", method = RequestMethod.GET)
+	@RequestMapping(value = "/referee/selfAssign", method = RequestMethod.POST, params = "selfAssign")
 	public ModelAndView selfAssign(@RequestParam final int complaintId) {
 		final ModelAndView result;
 		final Complaint res = this.complaintService.findOne(complaintId);
 
-		final Complaint complaint = this.complaintService.selfAssign(res);
-		Assert.notNull(complaint);
-		result = this.createEditModelAndViewReferee(complaint);
+		this.complaintService.selfAssign(res);
+
+		result = new ModelAndView("redirect:/complaint/referee/listSelfAssigned.do");
 
 		return result;
 	}
@@ -183,21 +182,4 @@ public class ComplaintController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndViewReferee(final Complaint complaint) {
-		ModelAndView result;
-
-		result = this.createEditModelAndView(complaint, null);
-
-		return result;
-	}
-
-	protected ModelAndView createEditModelAndViewReferee(final Complaint complaint, final String messageCode) {
-		ModelAndView result;
-
-		result = new ModelAndView("complaint/referee/selfAssign");
-		result.addObject("complaint", complaint);
-		result.addObject("message", messageCode);
-
-		return result;
-	}
 }
