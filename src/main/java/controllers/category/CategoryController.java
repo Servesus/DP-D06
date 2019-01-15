@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,9 +59,11 @@ public class CategoryController extends AbstractController {
 		Category category;
 
 		category = this.categoryService.findOne(categoryId);
-		Assert.notNull(category);
-		result = this.createEditModelAndView(category);
 
+		if (category == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndView(category);
 		return result;
 	}
 
@@ -102,20 +103,22 @@ public class CategoryController extends AbstractController {
 	public ModelAndView show(@RequestParam final int categoryId) {
 		ModelAndView result;
 		final Category category = this.categoryService.findOne(categoryId);
-		final List<Category> childs = (List<Category>) category.getChilds();
+		final List<Category> childs;
 
-		final String language = LocaleContextHolder.getLocale().getLanguage();
-
-		result = new ModelAndView("category/administrator/show");
-		result.addObject("nameEN", category.getNameEN());
-		result.addObject("nameES", category.getNameES());
-		result.addObject("parent", category.getParents());
-		result.addObject("childs", childs);
-		result.addObject("lang", language);
-
+		if (category == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else {
+			childs = (List<Category>) category.getChilds();
+			final String language = LocaleContextHolder.getLocale().getLanguage();
+			result = new ModelAndView("category/administrator/show");
+			result.addObject("nameEN", category.getNameEN());
+			result.addObject("nameES", category.getNameES());
+			result.addObject("parent", category.getParents());
+			result.addObject("childs", childs);
+			result.addObject("lang", language);
+		}
 		return result;
 	}
-
 	protected ModelAndView createEditModelAndView(final Category category) {
 		ModelAndView result;
 		result = this.createEditModelAndView(category, null);

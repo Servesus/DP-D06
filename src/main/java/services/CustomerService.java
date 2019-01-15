@@ -16,9 +16,7 @@ import repositories.CustomerRepository;
 import security.Authority;
 import security.UserAccount;
 import domain.Actor;
-import domain.Application;
 import domain.Box;
-import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
 import domain.Profile;
@@ -52,8 +50,6 @@ public class CustomerService {
 		Collection<Authority> authorities;
 		Collection<Profile> profiles;
 		Collection<Box> boxes;
-		Collection<Complaint> complaints;
-		Collection<FixUpTask> fixUpTasks;
 
 		result = new Customer();
 		userAccount = new UserAccount();
@@ -62,8 +58,6 @@ public class CustomerService {
 
 		profiles = new ArrayList<Profile>();
 		boxes = new ArrayList<Box>();
-		complaints = new ArrayList<Complaint>();
-		fixUpTasks = new ArrayList<FixUpTask>();
 
 		auth.setAuthority(Authority.CUSTOMER);
 		authorities.add(auth);
@@ -74,8 +68,6 @@ public class CustomerService {
 		result.setIsSuspicious(false);
 		result.setProfiles(profiles);
 		result.setBoxes(boxes);
-		result.setComplaints(complaints);
-		result.setFixUpTasks(fixUpTasks);
 
 		return result;
 	}
@@ -116,13 +108,8 @@ public class CustomerService {
 	}
 
 	public List<FixUpTask> showFixUpTasks() {
-		Actor actor;
 		List<FixUpTask> result;
-
-		actor = this.actorService.getActorLogged();
-		final int userAccountId = actor.getUserAccount().getId();
-
-		result = this.customerRepository.getFixUpTasks(userAccountId);
+		result = (List<FixUpTask>) this.fixUpTaskService.getCustomerFixUpTasks();
 
 		return result;
 	}
@@ -156,66 +143,6 @@ public class CustomerService {
 		result = this.findOne(actor.getId());
 
 		return result;
-	}
-
-	public List<Application> showApplications() {
-		List<Application> result;
-		Customer customer;
-
-		customer = this.getCustomerLogged();
-
-		result = this.customerRepository.getApplications(customer.getUserAccount().getId());
-
-		return result;
-	}
-
-	public List<Complaint> showComplaints() {
-		List<Complaint> result;
-		Customer customer;
-
-		customer = this.getCustomerLogged();
-
-		result = this.customerRepository.getComplaints(customer.getUserAccount().getId());
-
-		return result;
-	}
-
-	public Complaint getComplaint(final int complaintId) {
-		Complaint result;
-		List<Complaint> complaints;
-		final List<Integer> ids = new ArrayList<Integer>();
-		int i = 0;
-
-		complaints = this.showComplaints();
-
-		while (i < complaints.size()) {
-			ids.add(complaints.get(i).getId());
-			i++;
-		}
-
-		Assert.isTrue(ids.contains(complaintId));
-
-		result = this.complaintService.findOne(complaintId);
-
-		return result;
-	}
-
-	public List<String> CustomerPorFixUpTask() {
-		UserAccount userAccount;
-		userAccount = this.actorService.getActorLogged().getUserAccount();
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
-		final List<String> res = new ArrayList<>();
-		Collection<FixUpTask> a = new ArrayList<FixUpTask>();
-		a = this.fixUpTaskService.findAll();
-		Collection<Customer> b = new ArrayList<Customer>();
-		b = this.customerRepository.findAll();
-		for (final FixUpTask f : a)
-			for (final Customer c : b)
-				if (c.getFixUpTasks().contains(f)) {
-					res.add("FixUpTask with id:" + f.getId() + " is assigned to " + c.getName());
-					break;
-				}
-		return res;
 	}
 
 }

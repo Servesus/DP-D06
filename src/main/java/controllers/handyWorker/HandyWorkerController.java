@@ -21,11 +21,10 @@ import domain.Actor;
 import domain.Application;
 import domain.Curricula;
 import domain.HandyWorker;
-import domain.Phase;
 import domain.Profile;
 
 @Controller
-@RequestMapping("handyWorker/handyWorker")
+@RequestMapping("/handyWorker")
 public class HandyWorkerController extends AbstractController {
 
 	@Autowired
@@ -66,7 +65,7 @@ public class HandyWorkerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/handyWorker/edit", method = RequestMethod.GET)
 	public ModelAndView edit() {
 
 		ModelAndView result;
@@ -79,7 +78,7 @@ public class HandyWorkerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "update")
+	@RequestMapping(value = "/handyWorker/edit", method = RequestMethod.POST, params = "update")
 	public ModelAndView update(@Valid final HandyWorker handyWorker, final BindingResult binding) {
 		ModelAndView result;
 
@@ -121,16 +120,13 @@ public class HandyWorkerController extends AbstractController {
 		ModelAndView result;
 		Collection<Profile> profiles;
 		Collection<Application> applications;
-		Collection<Phase> phases;
 
 		profiles = handyWorker.getProfiles();
 		applications = handyWorker.getApplications();
-		phases = handyWorker.getPhases();
 
 		result = new ModelAndView("handyWorker/create");
 		result.addObject("handyWorker", handyWorker);
 		result.addObject("applications", applications);
-		result.addObject("phases", phases);
 		result.addObject("profiles", profiles);
 		result.addObject("message", messageCode);
 

@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <div>
-	<a href="#"><img src="images/logo.png" alt="Acme Handy Worker Co., Inc." /></a>
+	<a href="#"><img src="${configuration.bannerURL}" alt="${configuration.pageName}, Inc." height="150" width="400" /></a>
 </div>
 
 <div>
@@ -34,10 +34,12 @@
 					<li><a href="administrator/administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 					<li><a href="administrator/create.do"><spring:message code="master.page.administrator.registerAdmin" /></a></li>
 					<li><a href="referee/administrator/create.do"><spring:message code="master.page.administrator.registerReferee" /></a></li>
-								
+					<li><a href="message/administrator/createbroadcast.do"><spring:message code="master.page.administrator.broadcast" /></a></li>	
+					<li><a href="actor/administrator/suspiciouslist.do"><spring:message code="master.page.actor.suspicious" /></a></li>
+					<li><a href="actor/administrator/bannedlist.do"><spring:message code="master.page.actor.banned" /></a></li>				
 				</ul>
 			</li>
-			<li><a class="fNiv" href="configuration/administrator/edit.do"><spring:message code="master.page.administrator.configuration" /></a></li>
+			<li><a class="fNiv" href="configuration/administrator/show.do"><spring:message code="master.page.administrator.configuration" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
@@ -53,8 +55,8 @@
 			<li><a class="fNiv"><spring:message	code="master.page.referee" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="complaint/referee/listSelfAssigned.do"><spring:message code="master.page.referee.listAll" /></a></li>
-					<li><a href="complaint/referee/listAll.do"><spring:message code="master.page.referee.listSelfAssigned" /></a></li>
+					<li><a href="complaint/referee/listSelfAssigned.do"><spring:message code="master.page.referee.listSelfAssigned" /></a></li>
+					<li><a href="complaint/referee/listAll.do"><spring:message code="master.page.referee.listAll" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -64,13 +66,15 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="fixUpTask/handyWorker/findAll.do"><spring:message code="master.page.handyWorker.findAll" /></a></li>
-					<li><a href="educationalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.list" /></a></li>
+					<li><a href="application/handyWorker/list.do"><spring:message code="master.page.application.list" /></a></li>
+					<li><a href="educationalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listEducationalRecord" /></a></li>
 					<li><a href="endorserRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listEndorser" /></a></li>
 					<li><a href="professionalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listProfessional" /></a></li>
 					<li><a href="miscRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listMisc" /></a></li>
 					<li><a href="personalRecord/handyWorker/edit.do"><spring:message code="master.page.handyWorker.edit" /></a></li>
 					<li><a href="finder/handyWorker/list.do"><spring:message code="master.page.handyWorker.listFinder" /></a></li>
 					<li><a href="finder/handyWorker/edit.do"><spring:message code="master.page.handyWorker.editFinder" /></a></li>
+					<li><a href="complaint/handyWorker/list.do"><spring:message code="master.page.handyWorker.list" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

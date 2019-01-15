@@ -83,6 +83,7 @@
 		
 		<security:intercept-url pattern="/box/customer,handyWorker,referee,administrator/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/message/customer,handyWorker,referee,administrator/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/message/administrator/**" access="hasRole('ADMIN')" />
 		
 		<security:intercept-url pattern="/socialProfile/handyWorker,customer,admin,referee/**" access="isAuthenticated()" />
 		
@@ -90,6 +91,7 @@
 		<security:intercept-url pattern="/warranty/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/category/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/configuration/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/actor/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 		
 		

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import services.ActorService;
 import services.ComplaintService;
 import services.CustomerService;
 import services.HandyWorkerService;
+import services.RefereeService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Application;
@@ -42,6 +44,9 @@ public class ComplaintController extends AbstractController {
 	@Autowired
 	private HandyWorkerService	handyWorkerService;
 
+	@Autowired
+	private RefereeService		refereeService;
+
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
 	public ModelAndView listCustomer() {
@@ -51,7 +56,8 @@ public class ComplaintController extends AbstractController {
 		final Actor user = this.actorService.getActorLogged();
 		final Customer customer = this.customerService.findOne(user.getId());
 
-		complaints = customer.getComplaints();
+		complaints = this.complaintService.getCustomerComplaints();
+		Assert.notNull(customer);
 
 		result = new ModelAndView("complaint/customer/list");
 		result.addObject("complaints", complaints);
@@ -98,18 +104,25 @@ public class ComplaintController extends AbstractController {
 	@RequestMapping(value = "/referee/listAll", method = RequestMethod.GET)
 	public ModelAndView listAll() {
 		ModelAndView result;
-		Collection<Complaint> complaints;
-		final Collection<Complaint> res = new ArrayList<Complaint>();
+		Collection<Complaint> res = new ArrayList<Complaint>();
 
-		complaints = this.complaintService.findAll();
-		res.addAll(complaints);
+		res = this.refereeService.getComplaintNoSelfAssigned();
 
-		for (final Complaint c : complaints)
-			if (!c.getReports().isEmpty())
-				res.remove(c);
 		result = new ModelAndView("complaint/referee/listAll");
 		result.addObject("complaints", res);
 		result.addObject("requestURI", "complaint/referee/listAll.do");
+		return result;
+	}
+
+	@RequestMapping(value = "/referee/selfAssign", method = RequestMethod.POST, params = "selfAssign")
+	public ModelAndView selfAssign(@RequestParam final int complaintId) {
+		final ModelAndView result;
+		final Complaint res = this.complaintService.findOne(complaintId);
+
+		this.complaintService.selfAssign(res);
+
+		result = new ModelAndView("redirect:/complaint/referee/listSelfAssigned.do");
+
 		return result;
 	}
 
@@ -170,4 +183,5 @@ public class ComplaintController extends AbstractController {
 
 		return result;
 	}
+
 }

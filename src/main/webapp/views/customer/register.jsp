@@ -22,8 +22,6 @@
 	<form:hidden path="version" />
 	<form:hidden path="profiles" />
 	<form:hidden path="boxes" />
-	<form:hidden path="complaints" />
-	<form:hidden path="fixUpTasks" />
 	<form:hidden path="isSuspicious" />
 	<form:hidden path="isBanned"/>
 	<form:hidden path="userAccount.authorities"/>
@@ -82,7 +80,7 @@
 	<form:label path="phoneNumber">
 		<spring:message code="customer.phoneNumber" />:
 	</form:label>
-	<form:input path="phoneNumber" />
+	<form:input path="phoneNumber" id="phoneNumber" name="phoneNumber"/>
 	<form:errors cssClass="error" path="phoneNumber" />
 	<br />
 	
@@ -93,8 +91,29 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
+	<script type="text/javascript">
+	function phoneValidation(){
+		var phoneNumber = document.getElementById("phoneNumber").value;
+		var regexPN = /^(\d\d\d\d+)$/;
+		var regex1 = /^((\+[1-9][0-9]{0,2}) \(([1-9][0-9]{0,2})\) (\d\d\d\d+))$/;
+		var regex2 = /^(\+[1-9][0-9]{0,2}) (\d\d\d\d+)$/;
+		
+		if (regexPN.test(phoneNumber)) {
+			return true;
+		} else if(regex1.test(phoneNumber)) {
+			return true;
+		}else if(regex2.test(phoneNumber)){
+			return true;
+		}else{
+			return confirm('<spring:message code = "customer.confirm"/>');
+		}
+	}
+	</script>
+	
 	<input type="submit" name="save"
-		value="<spring:message code="customer.save" />" />&nbsp; 
+		value="<spring:message code="customer.save" />" 
+		onclick="javascript: return phoneValidation();"
+		/> 
 	
 		<input type="button" name="cancel"
 		value="<spring:message code="customer.cancel" />"

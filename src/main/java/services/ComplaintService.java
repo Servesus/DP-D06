@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import repositories.ComplaintRepository;
 import security.UserAccount;
 import domain.Complaint;
+import domain.Customer;
 import domain.FixUpTask;
 import domain.Referee;
 import domain.Report;
@@ -34,6 +35,8 @@ public class ComplaintService {
 	private ActorService		actorService;
 	@Autowired
 	private RefereeService		refereeService;
+	@Autowired
+	private ReportService		reportService;
 
 
 	public Complaint create(final Integer idFixUpTask) {
@@ -51,6 +54,16 @@ public class ComplaintService {
 		result.setCustomer(this.customerService.findOne(idCustomer));
 
 		return result;
+	}
+
+	public void selfAssign(final Complaint complaint) {
+		Assert.notNull(complaint);
+
+		final Collection<Report> reports = complaint.getReports();
+		final Report report = this.reportService.create(complaint.getId());
+		report.setDescription("Description");
+		final Report reportSaved = this.reportService.save(report);
+		reports.add(reportSaved);
 	}
 
 	public Collection<Complaint> findAll() {
@@ -75,7 +88,7 @@ public class ComplaintService {
 
 		userAccount = this.actorService.getActorLogged().getUserAccount();
 
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER"));
+		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER") || userAccount.getAuthorities().iterator().next().getAuthority().equals("REFEREE"));
 		Assert.notNull(complaint);
 		if (complaint.getId() == 0) {
 			result = this.complaintRepository.save(complaint);
@@ -116,5 +129,11 @@ public class ComplaintService {
 		for (final Report r : result1)
 			result.add(r.getComplaint());
 		return result;
+	}
+
+	public Collection<Complaint> getCustomerComplaints() {
+		final Customer c = this.customerService.findOne(this.actorService.getActorLogged().getId());
+		Assert.notNull(c);
+		return this.complaintRepository.getCustomerComplaints(c.getId());
 	}
 }

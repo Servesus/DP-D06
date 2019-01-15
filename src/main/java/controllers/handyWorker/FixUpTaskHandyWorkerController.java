@@ -40,18 +40,6 @@ public class FixUpTaskHandyWorkerController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/relationships", method = RequestMethod.GET)
-	public ModelAndView findAllRelationships() {
-		ModelAndView result;
-
-		Collection<String> collection = new ArrayList<String>();
-		collection = this.customerService.CustomerPorFixUpTask();
-		Assert.notNull(collection);
-		result = new ModelAndView("fixUpTask/handyWorker/relationships");
-		result.addObject("fixCustomers", collection);
-		return result;
-	}
-
 	@RequestMapping(value = "/customersHandyWorker", method = RequestMethod.GET)
 	public ModelAndView findAllCustomers() {
 		ModelAndView result;

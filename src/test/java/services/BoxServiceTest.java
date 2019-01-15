@@ -32,7 +32,7 @@ public class BoxServiceTest extends AbstractTest {
 	public void testCreateBox() {
 		super.authenticate("handyWorker1");
 		final Box box = this.boxService.create();
-		Assert.isTrue(box.getIsSystem() == null && box.getName() == null && box.getChildBoxes().isEmpty() && box.getParentBoxes().isEmpty() && box.getMessages().isEmpty());
+		Assert.isTrue(box.getIsSystem() == null && box.getName() == null && box.getMessages().isEmpty());
 	}
 
 	@Test

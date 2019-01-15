@@ -28,7 +28,6 @@ public class HandyWorker extends Actor {
 
 	//Relationships
 	private Collection<Application>	applications;
-	private Collection<Phase>		phases;
 	private Curricula				curricula;
 	private Finder					finder;
 
@@ -49,15 +48,6 @@ public class HandyWorker extends Actor {
 
 	public void setApplications(final Collection<Application> applications) {
 		this.applications = applications;
-	}
-
-	@OneToMany
-	public Collection<Phase> getPhases() {
-		return this.phases;
-	}
-
-	public void setPhases(final Collection<Phase> phases) {
-		this.phases = phases;
 	}
 
 	@Valid

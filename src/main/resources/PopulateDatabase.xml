@@ -211,18 +211,6 @@
 				<ref bean="box1"/>
 			</list>
 		</property>
-		<property name="complaints">
-			<list>
-			<ref bean="complaint1"/>
-			<ref bean="complaint2"/>
-			</list>
-		</property>
-		<property name="fixUpTasks">
-			<list>
-			<ref bean="fixUpTask1"/>
-			<ref bean="fixUpTask2"/>
-			</list>
-		</property>
 	</bean>
 	<bean id="customer2" class="domain.Customer">
 		<property name="name" value="customer2"/>
@@ -242,18 +230,6 @@
 		<property name="boxes">
 			<list>
 			<ref bean="box2"/>
-			</list>
-		</property>
-		<property name="complaints">
-			<list>
-			<ref bean="complaint3"/>
-			<ref bean="complaint4"/>
-			</list>
-		</property>
-		<property name="fixUpTasks">
-			<list>
-			<ref bean="fixUpTask3"/>
-			<ref bean="fixUpTask4"/>
 			</list>
 		</property>
 	</bean>
@@ -277,16 +253,6 @@
 			<list>
 			</list>
 		</property>
-		<property name="complaints">
-			<list>
-			<ref bean="complaint5"/>
-			</list>
-		</property>
-		<property name="fixUpTasks">
-			<list>
-			<ref bean="fixUpTask5"/>
-			</list>
-		</property>
 	</bean>
 	
 	<bean id="customer4" class="domain.Customer">
@@ -305,14 +271,6 @@
 			</list>
 		</property>
 		<property name="boxes">
-			<list>
-			</list>
-		</property>
-		<property name="complaints">
-			<list>
-			</list>
-		</property>
-		<property name="fixUpTasks">
 			<list>
 			</list>
 		</property>
@@ -336,14 +294,6 @@
 			</list>
 		</property>
 		<property name="boxes">
-			<list>
-			</list>
-		</property>
-		<property name="complaints">
-			<list>
-			</list>
-		</property>
-		<property name="fixUpTasks">
 			<list>
 			</list>
 		</property>
@@ -499,6 +449,7 @@
 		</property>
 		<property name="sender" ref="admin1" />
 		<property name="subject" value="subject1"/>
+		<property name="tags" value=""/>
 		<property name="body" value="body1"/>
 		<property name="priority" value="1"/>
 	</bean>
@@ -512,6 +463,7 @@
 		</property>
 		<property name="sender" ref="handyWorker1" />
 		<property name="subject" value="subject1"/>
+		<property name="tags" value="tag"/>
 		<property name="body" value="body1"/>
 		<property name="priority" value="1"/>
 	</bean>
@@ -545,14 +497,6 @@
 			<ref bean="application1"/>
 		</list>
 		</property>
-		<property name="phases">
-		<list>
-			<ref bean="phase1"/>
-			<ref bean="phase2"/>
-			<ref bean="phase3"/>
-			<ref bean="phase4"/>
-		</list>
-		</property>
 		<property name="curricula" ref="curricula1"/>
 		<property name="finder" ref="finder1"/>
 	</bean>
@@ -580,14 +524,6 @@
 		<property name="applications">
 		<list>
 			<ref bean="application2"/>
-		</list>
-		</property>
-		<property name="phases">
-		<list>
-			<ref bean="phase5"/>
-			<ref bean="phase6"/>
-			<ref bean="phase7"/>
-			<ref bean="phase8"/>
 		</list>
 		</property>
 		<property name="curricula" ref="curricula2"/>
@@ -620,10 +556,6 @@
 			<ref bean="application4"/>
 		</list>
 		</property>
-		<property name="phases">
-		<list>
-		</list>
-		</property>
 		<property name="curricula" ref="curricula3"/>
 		<property name="finder" ref="finder3"/>
 	</bean>
@@ -654,10 +586,6 @@
 			<ref bean="application6"/>
 		</list>
 		</property>
-		<property name="phases">
-		<list>
-		</list>
-		</property>
 		<property name="curricula" ref="curricula4"/>
 		<property name="finder" ref="finder4"/>
 	</bean>
@@ -686,10 +614,6 @@
 			<ref bean="application7"/>
 		</list>
 		</property>
-		<property name="phases">
-		<list>
-		</list>
-		</property>
 		<property name="curricula" ref="curricula5"/>
 		<property name="finder" ref="finder5"/>
 	</bean>
@@ -699,6 +623,34 @@
 		<property name="maxResults" value="10"/>
 		<property name="maxTime" value="1"/>
 		<property name="pageName" value="Acme-Handy-Worker"/>
+		<property name="bannerURL" value="https://tinyurl.com/acme-handy-worker-logo"/>
+		<property name="welcomeES" value="¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio"/>
+		<property name="welcomeEN" value="Welcome to Acme Handy Worker! Price, quality, and trust in a single place"/>
+		<property name="VATPercent" value="21"/>
+		<property name="phoneCCode" value="34"/>
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one million</value>
+				<value>you've been selected</value>
+				<value>Nigeria</value>
+				<value>sexo</value>
+				<value>un millon</value>
+				<value>has sido seleccionado</value>
+			</list>
+		</property>
+		<property name="cCardsMakes">
+			<list>
+				<value>VISA</value>
+				<value>MASTER</value>
+				<value>DINNERS</value>
+				<value>AMEX</value>
+			</list>
+		</property>
+		
+		
 	</bean>
 	<!-- Finder --> 
 	<bean id="finder1" class="domain.Finder">
@@ -776,14 +728,6 @@
 	<bean id="box1" class="domain.Box">
 		<property name="name" value="Box1"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -793,14 +737,6 @@
 	<bean id="box2" class="domain.Box">
 		<property name="name" value="Box2"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -810,14 +746,6 @@
 	<bean id="box3" class="domain.Box">
 		<property name="name" value="Box3"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -827,14 +755,6 @@
 	<bean id="box4" class="domain.Box">
 		<property name="name" value="Box4"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -843,14 +763,6 @@
 	<bean id="box5" class="domain.Box">
 		<property name="name" value="Box5"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -859,14 +771,6 @@
 	<bean id="box6" class="domain.Box">
 		<property name="name" value="Box6"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -875,14 +779,6 @@
 	<bean id="box7" class="domain.Box">
 		<property name="name" value="Box7"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -891,14 +787,6 @@
 	<bean id="box8" class="domain.Box">
 		<property name="name" value="Box8"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -908,15 +796,6 @@
 	<bean id="parentBox" class="domain.Box">
 		<property name="name" value="parentBox"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-				<ref bean="childBox"/>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -926,15 +805,6 @@
 	<bean id="childBox" class="domain.Box">
 		<property name="name" value="childBox"/>
 		<property name="isSystem" value="false"/>
-		<property name="parentBoxes">
-			<list>
-				<ref bean="parentBox"/>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -944,14 +814,6 @@
 	<bean id="inBox" class="domain.Box">
 		<property name="name" value="INBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			<ref bean="message2"/>
@@ -962,14 +824,6 @@
 	<bean id="outBox" class="domain.Box">
 		<property name="name" value="OUTBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -979,14 +833,6 @@
 	<bean id="spamBox" class="domain.Box">
 		<property name="name" value="SPAMBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -996,14 +842,6 @@
 	<bean id="trashBox" class="domain.Box">
 		<property name="name" value="TRASHBOX"/>
 		<property name="isSystem" value="true"/>
-		<property name="parentBoxes">
-			<list>
-			</list>
-		</property>
-		<property name="childBoxes">
-			<list>
-			</list>
-		</property>
 		<property name="messages">
 			<list>
 			</list>
@@ -1209,10 +1047,7 @@
 		<property name="studiesEnding" value="06/20/2018"/>
 		<property name="institution" value="Sevilla University"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/3/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	
 	<bean id="educationalRecord2" class="domain.EducationalRecord">
@@ -1221,10 +1056,7 @@
 		<property name="studiesEnding"><null/></property>
 		<property name="institution" value="Sevilla University"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/4/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	<!-- ENDORSER RECORDS -->
 	<bean id="endorserRecord1" class="domain.EndorserRecord">
@@ -1232,10 +1064,7 @@
 		<property name="email" value="pepemartin@gmail.com"/>
 		<property name="phone" value="666445566"/>
 		<property name="linkedInProfile" value="https://www.linkedin.com/jobs/view/3/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	
 	<bean id="endorserRecord2" class="domain.EndorserRecord">
@@ -1243,10 +1072,7 @@
 		<property name="email" value="javiermartin@gmail.com"/>
 		<property name="phone" value="666555566"/>
 		<property name="linkedInProfile" value="https://www.linkedin.com/jobs/view/4/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	<!-- PROFESSIONAL RECORDS -->
 	<bean id="professionalRecord1" class="domain.ProfessionalRecord">
@@ -1255,10 +1081,7 @@
 		<property name="jobEnding" value="05/05/2006"/>
 		<property name="rol" value="Worker"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/5/"/>
-		<property name="comment">
-			<list>
-			</list>
-		</property>
+		<property name="comment" value=""/>
 	</bean>
 	
 	<bean id="professionalRecord2" class="domain.ProfessionalRecord">
@@ -1267,28 +1090,19 @@
 		<property name="jobEnding" value="05/05/2010"/>
 		<property name="rol" value="Worker"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/6/"/>
-		<property name="comment">
-			<list>
-			</list>
-		</property>
+		<property name="comment" value=""/>
 	</bean>
 	<!-- MISC RECORDS -->
 	<bean id="miscRecord1" class="domain.MiscRecord">
 		<property name="title" value="Titulo generico 1"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/7/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	
 	<bean id="miscRecord2" class="domain.MiscRecord">
 		<property name="title" value="Titulo generico 2"/>
 		<property name="attachment" value="https://www.pinterest.es/pin/8/"/>
-		<property name="comments">
-			<list>
-			</list>
-		</property>
+		<property name="comments" value=""/>
 	</bean>
 	<!-- Administrator -->
 	<bean id="admin1" class = "domain.Administrator">
@@ -1770,61 +1584,22 @@
 	<!-- Note -->
 	<bean id="note1" class="domain.Note">
 		<property name="moment" value="11/11/2018 20:46"/>
-		<property name="authorComment" value="authorComment"/>
-		<property name="hwComments">
-		<list>
-			<value>Handyworker comment 1</value>
-		</list>
-		</property>
-		<property name="customerComments">
-		<list>
-			<value>Customer comment 1</value>
-		</list>
-		</property>
-		<property name="refereeComments">
-		<list>
-			<value>Referee comment 1</value>
-		</list>
-		</property>
+		<property name="hwComments" value="Handyworker comment 1"/>
+		<property name="customerComments" value="Customer comment 1"/>
+		<property name="refereeComments" value="referee comment 1"/>
 	</bean>
 	<bean id="note2" class="domain.Note">
 		<property name="moment" value="11/11/2018 20:46"/>
-		<property name="authorComment" value="authorComment"/>
-		<property name="hwComments">
-		<list>
-			<value>Handyworker comment 1</value>
-		</list>
-		</property>
-		<property name="customerComments">
-		<list>
-			<value>Customer comment 1</value>
-		</list>
-		</property>
-		<property name="refereeComments">
-		<list>
-			<value>Referee comment 1</value>
-		</list>
-		</property>
+		<property name="hwComments" value="Handyworker comment 1"/>
+		<property name="customerComments" value="Customer comment 1"/>
+		<property name="refereeComments" value="referee comment 1"/>
 	</bean>
 	
 	<bean id="note3" class="domain.Note">
 		<property name="moment" value="11/11/2018 20:46"/>
-		<property name="authorComment" value="authorComment"/>
-		<property name="hwComments">
-		<list>
-			<value>Handyworker comment 1</value>
-		</list>
-		</property>
-		<property name="customerComments">
-		<list>
-			<value>Customer comment 1</value>
-		</list>
-		</property>
-		<property name="refereeComments">
-		<list>
-			<value>Referee comment 1</value>
-		</list>
-		</property>
+		<property name="hwComments" value="Handyworker comment 1"/>
+		<property name="customerComments" value="Customer comment 1"/>
+		<property name="refereeComments" value="referee comment 1"/>
 	</bean>
 	<!-- COMPLAINT -->
 	<bean id="complaint1" class="domain.Complaint">

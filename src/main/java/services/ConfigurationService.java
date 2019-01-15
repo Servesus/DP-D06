@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,28 @@ public class ConfigurationService {
 		result.setMaxResults(10);
 		result.setMaxTime(1);
 		result.setPageName("Acme-Handy-Worker");
+		result.setBannerURL("https://tinyurl.com/acme-handy-worker-logo");
+		result.setWelcomeEN("Welcome to Acme Handy Worker! Price, quality, and trust in a single place");
+		result.setWelcomeES("¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio");
+		result.setVATPercent(21);
+		result.setPhoneCCode(34);
+		final Collection<String> spamWords = Collections.emptyList();
+		spamWords.add("sex");
+		spamWords.add("viagra");
+		spamWords.add("cialis");
+		spamWords.add("one million");
+		spamWords.add("you've been selected");
+		spamWords.add("Nigeria");
+		spamWords.add("sexo");
+		spamWords.add("un millon");
+		spamWords.add("has sido seleccionado");
+		result.setSpamWords(spamWords);
+		final Collection<String> cCardsMakes = Collections.emptyList();
+		cCardsMakes.add("VISA");
+		cCardsMakes.add("MASTER");
+		cCardsMakes.add("DINNERS");
+		cCardsMakes.add("AMEX");
+		result.setcCardsMakes(cCardsMakes);
 		return result;
 	}
 

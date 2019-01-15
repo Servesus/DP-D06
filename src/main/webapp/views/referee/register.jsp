@@ -92,8 +92,29 @@
 	<form:errors cssClass="error" path="address" />
 	<br />
 	
+	<script type="text/javascript">
+	function phoneValidation(){
+		var phoneNumber = document.getElementById("phoneNumber").value;
+		var regexPN = /^(\d\d\d\d+)$/;
+		var regex1 = /^((\+[1-9][0-9]{0,2}) \(([1-9][0-9]{0,2})\) (\d\d\d\d+))$/;
+		var regex2 = /^(\+[1-9][0-9]{0,2}) (\d\d\d\d+)$/;
+		
+		if (regexPN.test(phoneNumber)) {
+			return true;
+		} else if(regex1.test(phoneNumber)) {
+			return true;
+		}else if(regex2.test(phoneNumber)){
+			return true;
+		}else{
+			return confirm('<spring:message code = "customer.confirm"/>');
+		}
+	}
+	</script>
+	
 	<input type="submit" name="save"
-		value="<spring:message code="referee.save" />" />&nbsp; 
+		value="<spring:message code="referee.save" />" 
+		onclick="javascript: return phoneValidation();"
+		/>&nbsp; 
 	
 		<input type="button" name="cancel"
 		value="<spring:message code="referee.back" />"
