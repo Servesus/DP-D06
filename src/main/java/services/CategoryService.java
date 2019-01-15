@@ -48,14 +48,15 @@ public class CategoryService {
 		Collection<Category> result;
 
 		result = this.categoryRepository.findAll();
-		Assert.notNull(result);
 
 		return result;
 	}
 
 	public Category findOne(final Integer categoryId) {
 		Assert.isTrue(categoryId != 0);
-		return this.categoryRepository.findOne(categoryId);
+		Category category;
+		category = this.categoryRepository.findOne(categoryId);
+		return category;
 	}
 
 	public Category save(final Category c) {

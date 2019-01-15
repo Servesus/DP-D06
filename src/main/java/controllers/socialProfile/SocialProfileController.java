@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,15 +61,18 @@ public class SocialProfileController extends AbstractController {
 	public ModelAndView edit(@RequestParam final int socialProfileId) {
 		ModelAndView result;
 		Profile profile;
+		Actor user;
 
+		user = this.actorService.getActorLogged();
 		profile = this.profileService.findOne(socialProfileId);
-		Assert.notNull(profile);
-		result = this.createEditModelAndView(profile);
 
+		if (user.getProfiles().contains(profile))
+			result = this.createEditModelAndView(profile);
+		else
+			result = new ModelAndView("redirect:/misc/403");
 		return result;
 
 	}
-
 	@RequestMapping(value = "handyWorker,customer,admin,referee/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid final Profile profile, final BindingResult binding) {
 		ModelAndView result;
