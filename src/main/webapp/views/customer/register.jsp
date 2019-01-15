@@ -22,8 +22,6 @@
 	<form:hidden path="version" />
 	<form:hidden path="profiles" />
 	<form:hidden path="boxes" />
-	<form:hidden path="complaints" />
-	<form:hidden path="fixUpTasks" />
 	<form:hidden path="isSuspicious" />
 	<form:hidden path="isBanned"/>
 	<form:hidden path="userAccount.authorities"/>

@@ -17,9 +17,7 @@ import services.ActorService;
 import services.CustomerService;
 import controllers.AbstractController;
 import domain.Actor;
-import domain.Complaint;
 import domain.Customer;
-import domain.FixUpTask;
 import domain.Profile;
 
 @Controller
@@ -97,18 +95,12 @@ public class RegisterCustomerController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Customer customer, final String messageCode) {
 		ModelAndView result;
-		Collection<Complaint> complaints;
-		Collection<FixUpTask> fixUpTasks;
 		Collection<Profile> profiles;
 
-		complaints = customer.getComplaints();
-		fixUpTasks = customer.getFixUpTasks();
 		profiles = customer.getProfiles();
 
 		result = new ModelAndView("customer/create");
 		result.addObject("customer", customer);
-		result.addObject("complaints", complaints);
-		result.addObject("fixUpTasks", fixUpTasks);
 		result.addObject("profiles", profiles);
 		result.addObject("message", messageCode);
 
@@ -121,18 +113,12 @@ public class RegisterCustomerController extends AbstractController {
 	}
 	protected ModelAndView createEditModelAndView2(final Customer customer, final String messageCode) {
 		ModelAndView result;
-		Collection<Complaint> complaints;
-		Collection<FixUpTask> fixUpTasks;
 		Collection<Profile> profiles;
 
-		complaints = customer.getComplaints();
-		fixUpTasks = customer.getFixUpTasks();
 		profiles = customer.getProfiles();
 
 		result = new ModelAndView("customer/customer/editPersonalData");
 		result.addObject("customer", customer);
-		result.addObject("complaints", complaints);
-		result.addObject("fixUpTasks", fixUpTasks);
 		result.addObject("profiles", profiles);
 		result.addObject("message", messageCode);
 

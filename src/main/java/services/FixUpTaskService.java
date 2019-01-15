@@ -3,7 +3,6 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import org.springframework.util.Assert;
 
 import repositories.FixUpTaskRepository;
 import security.UserAccount;
-import domain.Actor;
 import domain.Application;
 import domain.Complaint;
 import domain.Customer;
@@ -53,15 +51,6 @@ public class FixUpTaskService {
 		result = this.fixUpTaskRepository.findAll();
 		return result;
 	}
-	public List<FixUpTask> findAllCustomer(final int customerId) {
-		UserAccount userAccount;
-		userAccount = this.actorService.getActorLogged().getUserAccount();
-		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER"));
-		final List<FixUpTask> res = new ArrayList<FixUpTask>();
-		final Customer customer = this.customerService.findOne(customerId);
-		res.addAll(customer.getFixUpTasks());
-		return res;
-	}
 	public FixUpTask findOne(final int fixUpTaskId) {
 		FixUpTask result;
 		Assert.notNull(this.fixUpTaskRepository);
@@ -80,18 +69,7 @@ public class FixUpTaskService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("CUSTOMER") || userAccount.getAuthorities().iterator().next().getAuthority().equals("HANDYWORKER"));
 
 		Assert.notNull(fixUpTask);
-		final Actor a = this.actorService.getActorLogged();
-		final Customer customer = this.customerService.findOne(a.getId());
-		final Collection<FixUpTask> f = customer.getFixUpTasks();
-
-		if (fixUpTask.getId() == 0) {
-			fixUpTask.setCustomer(customer);
-			result = this.fixUpTaskRepository.save(fixUpTask);
-			f.add(result);
-
-			//this.customerService.save(customer);
-		} else
-			result = this.fixUpTaskRepository.save(fixUpTask);
+		result = this.fixUpTaskRepository.save(fixUpTask);
 		return result;
 	}
 	public void delete(final FixUpTask fixUpTask) {
@@ -102,12 +80,12 @@ public class FixUpTaskService {
 		Assert.notNull(fixUpTask);
 		assert fixUpTask.getId() != 0;
 		Assert.isTrue(this.fixUpTaskRepository.exists(fixUpTask.getId()));
-		final Integer idCustomer = this.actorService.getActorLogged().getId();
-		final Customer customer = this.customerService.findOne(idCustomer);
-		final Collection<FixUpTask> f = customer.getFixUpTasks();
-		f.remove(fixUpTask);
-		customer.setFixUpTasks(f);
-		this.customerService.save(customer);
 		this.fixUpTaskRepository.delete(fixUpTask);
+	}
+
+	public Collection<FixUpTask> getCustomerFixUpTasks() {
+		final Customer c = this.customerService.findOne(this.actorService.getActorLogged().getId());
+		Assert.notNull(c);
+		return this.fixUpTaskRepository.getCustomerFixUpTasks(c.getId());
 	}
 }
