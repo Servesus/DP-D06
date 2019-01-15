@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <div>
-	<a href="#"><img src="images/logo.png" alt="Acme Handy Worker Co., Inc." /></a>
+	<a href="#"><img src="${configuration.bannerURL}" alt="${configuration.pageName}, Inc." height="150" width="400" /></a>
 </div>
 
 <div>

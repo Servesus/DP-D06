@@ -81,12 +81,14 @@
 	<br />
 	
 	<spring:message code="configuration.edit.spamWords" />:
-	<input id="sW" name="sW" /> 
+	<br/>
+	<input id="sW" name="sW" value="${spam}"/> 
 	<jstl:set var="sW" value="sW"/>
 	<br />
 	
 	<spring:message code="configuration.edit.cCardsMakes" />:
-	<input id="cCM" name="cCM" /> 
+	<br/>
+	<input id="cCM" name="cCM" value="${cards}"/> 
 	<jstl:set var="cCM" value="cCM"/>
 	<br />
 	
