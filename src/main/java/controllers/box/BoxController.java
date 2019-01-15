@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,9 +62,15 @@ public class BoxController extends AbstractController {
 		ModelAndView result;
 		Box box;
 
+		Actor user;
+		user = this.actorService.getActorLogged();
+
 		box = this.boxService.findOne(boxId);
-		Assert.notNull(box);
-		result = this.createEditModelAndView(box);
+
+		if (user.getBoxes().contains(box) && box != null)
+			result = this.createEditModelAndView(box);
+		else
+			result = new ModelAndView("redirect:/misc/403");
 
 		return result;
 	}

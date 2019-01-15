@@ -1,5 +1,9 @@
 #./src/main/resources/Entities.map
+<<<<<<< HEAD
 #Tue Jan 15 02:16:19 CET 2019
+=======
+#Tue Jan 15 02:17:33 CET 2019
+>>>>>>> origin/juanma
 message2=3388
 message1=3370
 FanInstallation=3327
