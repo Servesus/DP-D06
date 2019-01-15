@@ -497,14 +497,6 @@
 			<ref bean="application1"/>
 		</list>
 		</property>
-		<property name="phases">
-		<list>
-			<ref bean="phase1"/>
-			<ref bean="phase2"/>
-			<ref bean="phase3"/>
-			<ref bean="phase4"/>
-		</list>
-		</property>
 		<property name="curricula" ref="curricula1"/>
 		<property name="finder" ref="finder1"/>
 	</bean>
@@ -532,14 +524,6 @@
 		<property name="applications">
 		<list>
 			<ref bean="application2"/>
-		</list>
-		</property>
-		<property name="phases">
-		<list>
-			<ref bean="phase5"/>
-			<ref bean="phase6"/>
-			<ref bean="phase7"/>
-			<ref bean="phase8"/>
 		</list>
 		</property>
 		<property name="curricula" ref="curricula2"/>
@@ -572,10 +556,6 @@
 			<ref bean="application4"/>
 		</list>
 		</property>
-		<property name="phases">
-		<list>
-		</list>
-		</property>
 		<property name="curricula" ref="curricula3"/>
 		<property name="finder" ref="finder3"/>
 	</bean>
@@ -606,10 +586,6 @@
 			<ref bean="application6"/>
 		</list>
 		</property>
-		<property name="phases">
-		<list>
-		</list>
-		</property>
 		<property name="curricula" ref="curricula4"/>
 		<property name="finder" ref="finder4"/>
 	</bean>
@@ -636,10 +612,6 @@
 		<property name="applications">
 		<list>
 			<ref bean="application7"/>
-		</list>
-		</property>
-		<property name="phases">
-		<list>
 		</list>
 		</property>
 		<property name="curricula" ref="curricula5"/>
@@ -1612,61 +1584,22 @@
 	<!-- Note -->
 	<bean id="note1" class="domain.Note">
 		<property name="moment" value="11/11/2018 20:46"/>
-		<property name="authorComment" value="authorComment"/>
-		<property name="hwComments">
-		<list>
-			<value>Handyworker comment 1</value>
-		</list>
-		</property>
-		<property name="customerComments">
-		<list>
-			<value>Customer comment 1</value>
-		</list>
-		</property>
-		<property name="refereeComments">
-		<list>
-			<value>Referee comment 1</value>
-		</list>
-		</property>
+		<property name="hwComments" value="Handyworker comment 1"/>
+		<property name="customerComments" value="Customer comment 1"/>
+		<property name="refereeComments" value="referee comment 1"/>
 	</bean>
 	<bean id="note2" class="domain.Note">
 		<property name="moment" value="11/11/2018 20:46"/>
-		<property name="authorComment" value="authorComment"/>
-		<property name="hwComments">
-		<list>
-			<value>Handyworker comment 1</value>
-		</list>
-		</property>
-		<property name="customerComments">
-		<list>
-			<value>Customer comment 1</value>
-		</list>
-		</property>
-		<property name="refereeComments">
-		<list>
-			<value>Referee comment 1</value>
-		</list>
-		</property>
+		<property name="hwComments" value="Handyworker comment 1"/>
+		<property name="customerComments" value="Customer comment 1"/>
+		<property name="refereeComments" value="referee comment 1"/>
 	</bean>
 	
 	<bean id="note3" class="domain.Note">
 		<property name="moment" value="11/11/2018 20:46"/>
-		<property name="authorComment" value="authorComment"/>
-		<property name="hwComments">
-		<list>
-			<value>Handyworker comment 1</value>
-		</list>
-		</property>
-		<property name="customerComments">
-		<list>
-			<value>Customer comment 1</value>
-		</list>
-		</property>
-		<property name="refereeComments">
-		<list>
-			<value>Referee comment 1</value>
-		</list>
-		</property>
+		<property name="hwComments" value="Handyworker comment 1"/>
+		<property name="customerComments" value="Customer comment 1"/>
+		<property name="refereeComments" value="referee comment 1"/>
 	</bean>
 	<!-- COMPLAINT -->
 	<bean id="complaint1" class="domain.Complaint">

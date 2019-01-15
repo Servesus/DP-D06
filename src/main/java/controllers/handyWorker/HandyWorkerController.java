@@ -21,7 +21,6 @@ import domain.Actor;
 import domain.Application;
 import domain.Curricula;
 import domain.HandyWorker;
-import domain.Phase;
 import domain.Profile;
 
 @Controller
@@ -121,16 +120,13 @@ public class HandyWorkerController extends AbstractController {
 		ModelAndView result;
 		Collection<Profile> profiles;
 		Collection<Application> applications;
-		Collection<Phase> phases;
 
 		profiles = handyWorker.getProfiles();
 		applications = handyWorker.getApplications();
-		phases = handyWorker.getPhases();
 
 		result = new ModelAndView("handyWorker/create");
 		result.addObject("handyWorker", handyWorker);
 		result.addObject("applications", applications);
-		result.addObject("phases", phases);
 		result.addObject("profiles", profiles);
 		result.addObject("message", messageCode);
 

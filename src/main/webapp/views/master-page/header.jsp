@@ -67,7 +67,7 @@
 					<li class="arrow"></li>
 					<li><a href="fixUpTask/handyWorker/findAll.do"><spring:message code="master.page.handyWorker.findAll" /></a></li>
 					<li><a href="application/handyWorker/list.do"><spring:message code="master.page.application.list" /></a></li>
-					<li><a href="educationalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.list" /></a></li>
+					<li><a href="educationalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listEducationalRecord" /></a></li>
 					<li><a href="endorserRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listEndorser" /></a></li>
 					<li><a href="professionalRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listProfessional" /></a></li>
 					<li><a href="miscRecord/handyWorker/list.do"><spring:message code="master.page.handyWorker.listMisc" /></a></li>
