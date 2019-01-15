@@ -28,7 +28,7 @@
 	
 	<p>
 	<spring:message code="application.price"/>:
-	<jstl:out value="${application.price}"></jstl:out> &nbsp; (${application.price*1.21})
+	<jstl:out value="${application.price}"></jstl:out> &nbsp; (${application.price * (1+(priceVAT)/100)})
 	</p>
 	
 	<p>
@@ -96,7 +96,7 @@
 	
 	<p>
 	<spring:message code="application.price"/>:
-	<jstl:out value="${application.price}"></jstl:out> &nbsp; (${application.price*1.21})
+	<jstl:out value="${application.price}"></jstl:out> &nbsp; (${application.price * (1+(priceVAT)/100)})
 	</p>
 	
 	<p>

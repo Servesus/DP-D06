@@ -56,8 +56,8 @@
 	class="${css}"/>
 
 	<spring:message code="application.price" var="price"/>
-	<display:column property="price" title="${price}"
-	class="${css}"/>
+	<display:column class="${css}" title="${price}"><jstl:out value="${row.price}"></jstl:out>
+	&nbsp; (${row.price * (1+(priceVAT)/100)})</display:column>
 	
 	<spring:message code="application.handyWorker.make" var="make"/>
 	<display:column title="${make}" class="${css}">
@@ -78,7 +78,7 @@
 
 	<spring:message code="application.price" var="price"/>
 	<display:column class="${css}" title="${price}"><jstl:out value="${row.price}"></jstl:out>
-	&nbsp; (${row.price*1.21})</display:column>
+	&nbsp; (${row.price * (1+(priceVAT)/100)})</display:column>
 	
 	<spring:message code="application.status" var="status"/>
 	<display:column title="${status}" class="${css}">

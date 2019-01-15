@@ -643,10 +643,10 @@
 		</property>
 		<property name="cCardsMakes">
 			<list>
+				<value>AMEX</value>
 				<value>VISA</value>
 				<value>MASTER</value>
 				<value>DINNERS</value>
-				<value>AMEX</value>
 			</list>
 		</property>
 		
