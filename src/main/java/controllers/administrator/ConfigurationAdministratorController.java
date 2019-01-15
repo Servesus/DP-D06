@@ -1,6 +1,9 @@
 
 package controllers.administrator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
@@ -46,13 +50,34 @@ public class ConfigurationAdministratorController extends AbstractController {
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView update(@Valid final Configuration config, final BindingResult binding) {
+	public ModelAndView update(@Valid final Configuration config, @RequestParam final String sW, @RequestParam final String cCM, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
 			result = this.editModelAndView(config);
 		else
 			try {
+
+				String[] sw;
+				final List<String> spamWords = new ArrayList<String>();
+				if (sW.contains(",")) {
+					sw = sW.split("\\s*,\\s*");
+					for (int i = 0; i < sw.length; i++)
+						spamWords.add(sw[i]);
+				} else
+					spamWords.add(sW);
+
+				String[] ccm;
+				final List<String> cCardsMakes = new ArrayList<String>();
+				if (cCM.contains(",")) {
+					ccm = cCM.split("\\s*,\\s*");
+					for (int i = 0; i < ccm.length; i++)
+						cCardsMakes.add(ccm[i]);
+				} else
+					cCardsMakes.add(cCM);
+
+				config.setSpamWords(spamWords);
+				config.setcCardsMakes(cCardsMakes);
 				this.configurationService.save(config);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
