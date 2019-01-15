@@ -64,14 +64,7 @@ public class ReportService {
 	public Report save(final Report r) {
 		Assert.notNull(r);
 		Report result;
-		Date currentMoment;
 
-		if (r.getId() == 0) {
-			Assert.isTrue(r.getIsFinal() == true);
-			currentMoment = new Date();
-			r.setMoment(currentMoment);
-			result = this.reportRepository.save(r);
-		}
 		result = this.reportRepository.save(r);
 
 		return result;

@@ -55,19 +55,14 @@ public class ComplaintService {
 		return result;
 	}
 
-	public Complaint selfAssign(final Complaint complaint) {
+	public void selfAssign(final Complaint complaint) {
 		Assert.notNull(complaint);
-		final Complaint res;
 
 		final Collection<Report> reports = complaint.getReports();
 		final Report report = this.reportService.create(complaint.getId());
-		this.reportService.save(report);
-		reports.add(report);
-
-		complaint.setReports(reports);
-		res = this.save(complaint);
-
-		return res;
+		report.setDescription("Description");
+		final Report reportSaved = this.reportService.save(report);
+		reports.add(reportSaved);
 	}
 
 	public Collection<Complaint> findAll() {
