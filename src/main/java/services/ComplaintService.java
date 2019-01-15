@@ -60,7 +60,7 @@ public class ComplaintService {
 		Assert.notNull(complaint);
 
 		final Collection<Report> reports = complaint.getReports();
-		final Report report = this.reportService.create(complaint.getId());
+		final Report report = this.reportService.create();
 		report.setDescription("Description");
 		final Report reportSaved = this.reportService.save(report);
 		reports.add(reportSaved);

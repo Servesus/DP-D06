@@ -27,20 +27,23 @@ public class CustomerService {
 
 	//Managed repositories
 	@Autowired
-	private CustomerRepository	customerRepository;
+	private CustomerRepository		customerRepository;
 
 	//Supporting services
 	@Autowired
-	private FixUpTaskService	fixUpTaskService;
+	private FixUpTaskService		fixUpTaskService;
 
 	@Autowired
-	private BoxService			boxService;
+	private BoxService				boxService;
 
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private ComplaintService	complaintService;
+	private ComplaintService		complaintService;
+
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	public Customer create() {
@@ -93,7 +96,12 @@ public class CustomerService {
 	public Customer save(final Customer customer) {
 		Assert.notNull(customer);
 		Customer result;
-
+		final char[] c = customer.getPhoneNumber().toCharArray();
+		if (c[0] != '+') {
+			final Integer i = this.configurationService.findAll().get(0).getPhoneCCode();
+			final String s = i.toString();
+			customer.setPhoneNumber("+" + s + " " + customer.getPhoneNumber());
+		}
 		if (customer.getId() == 0) {
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String res = encoder.encodePassword(customer.getUserAccount().getPassword(), null);

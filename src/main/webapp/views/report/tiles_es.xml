@@ -17,34 +17,14 @@
        
 <tiles-definitions>
 
-<definition name="complaint/customer/list" extends="master.page">	
-		<put-attribute name="title" value="Lista de Quejas" />
-		<put-attribute name="body" value="/views/complaint/list.jsp" />
+<definition name="report/refeeree/list" extends="master.page">
+		<put-attribute name="title" value="Lista de Informes" />
+		<put-attribute name="body" value="/views/report/list.jsp" />
 	</definition>
 	
-	<definition name="complaint/customer/show" extends="master.page">	
-		<put-attribute name="title" value="Queja" />
-		<put-attribute name="body" value="/views/complaint/show.jsp" />
-	</definition>
-	
-	<definition name="complaint/customer/edit" extends="master.page">
-		<put-attribute name="title" value="Queja" />
-		<put-attribute name="body" value="/views/complaint/edit.jsp" />
-	</definition>
-	
-	<definition name="complaint/customer/confirm" extends="master.page">
-		<put-attribute name="title" value="¿De verdad desea crear esta queja?" />
-		<put-attribute name="body" value="/views/complaint/confirm.jsp" />
-	</definition>
-	
-	<definition name="application/handyWorker/show" extends="master.page">
-		<put-attribute name="title" value="Mostrando Aplicación" />
-		<put-attribute name="body" value="/views/application/show.jsp" />
-	</definition>
-	
-	<definition name="application/customer/show" extends="master.page">
-		<put-attribute name="title" value="Mostrando Aplicación" />
-		<put-attribute name="body" value="/views/application/show.jsp" />
+	<definition name="report/referee/edit" extends="master.page">
+		<put-attribute name="title" value="Informe" />
+		<put-attribute name="body" value="/views/report/edit.jsp" />
 	</definition>
 	
 </tiles-definitions>

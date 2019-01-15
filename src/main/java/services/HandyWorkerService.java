@@ -41,6 +41,8 @@ public class HandyWorkerService {
 	private CurriculaService		curriculaService;
 	@Autowired
 	private UserAccountService		userAccountService;
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -102,6 +104,13 @@ public class HandyWorkerService {
 		final String res = encoder.encodePassword(handyWorker.getUserAccount().getPassword(), null);
 		handyWorker.getUserAccount().setPassword(res);
 		final HandyWorker result;
+
+		final char[] c = handyWorker.getPhoneNumber().toCharArray();
+		if (c[0] != '+') {
+			final Integer i = this.configurationService.findAll().get(0).getPhoneCCode();
+			final String s = i.toString();
+			handyWorker.setPhoneNumber("+" + s + " " + handyWorker.getPhoneNumber());
+		}
 
 		if (handyWorker.getId() == 0) {
 			final UserAccount userAccount = this.userAccountService.save(handyWorker.getUserAccount());

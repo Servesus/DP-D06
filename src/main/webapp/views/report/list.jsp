@@ -31,26 +31,21 @@
 	
 	<spring:message code="report.attachment" var="attachment" />
 	<display:column property="attachment" title="${attachment}"/>
-
+	
+	<jstl:if test="${row.isFinal==false}">
 	<display:column>
-		<form action="note/referee/edit" method="post">
-		<input type="hidden" id="boxId" name="boxId" value="${boxId}" /> 
-		<input type="hidden" id="mesage" name="mesage" value="${row.id}" /> 
-		<select name="box" >
-		<jstl:forEach var="item" items="${boxes}">
-		<option value="${item.id}"> ${item.name }</option>
-		</jstl:forEach>
-		</select>
-		<input type="submit" name="move"
-		value="<spring:message code="mesage.move" />" />&nbsp; 
+		<form action="report/referee/edit" method="post"> 
+		<input type="hidden" id="complaintId" name="complaintId" value="${row.id}" /> 
+		<input type="submit" name="edit"
+		value="<spring:message code="report.edit" />" /> 
   	 	</form>
-	</display:column>		
+	</display:column>
+	</jstl:if>		
 	<display:column>
-		<form action="message/customer,handyWorker,referee,administrator/edit.do" method="post">
-		<input type="hidden" id="boxId" name="boxId" value="${boxId}" /> 
-		<input type="hidden" id="mesage" name="mesage" value="${row.id}" /> 
-		<input type="submit" name="delete"
-		value="<spring:message code="mesage.delete" />" />&nbsp; 
+		<form action="note/customer,handyWorker,referee/create.do" method="post">
+		<input type="hidden" id="reportId" name="reportId" value="${reportId}" /> 
+		<input type="submit" name="create"
+		value="<spring:message code="note.create" />" /> 
   	 	</form>
 	</display:column>	
 	
@@ -58,11 +53,12 @@
 
 </display:table>
 
-<input type="button" name="Back" value="<spring:message code="mesage.back" />"
-			onclick="javascript: relativeRedir('box/customer,handyWorker,referee,administrator/list.do');" />
-			
-<input type="button" name="New Message" value="<spring:message code="mesage.create" />"
-			onclick="javascript: relativeRedir('message/customer,handyWorker,referee,administrator/create.do');" />
+<input type="button" name="Back" value="<spring:message code="report.back" />"
+			onclick="javascript: relativeRedir('complaint/referee/listSelfAssigned.do');" />&nbsp;
+ 
+		<input type="button" name="create"
+		value="<spring:message code="report.create" />"
+		onclick="javascript: relativeRedit('report/referee/create.do');"/>
 </body>
 
 
