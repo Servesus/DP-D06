@@ -63,8 +63,9 @@ public class ConfigurationAdministratorController extends AbstractController {
 				if (sW.contains(",")) {
 					sw = sW.split("\\s*,\\s*");
 					for (int i = 0; i < sw.length; i++)
-						spamWords.add(sw[i]);
-				} else
+						if (!sw[i].isEmpty())
+							spamWords.add(sw[i]);
+				} else if (!sW.isEmpty())
 					spamWords.add(sW);
 
 				String[] ccm;
@@ -72,8 +73,9 @@ public class ConfigurationAdministratorController extends AbstractController {
 				if (cCM.contains(",")) {
 					ccm = cCM.split("\\s*,\\s*");
 					for (int i = 0; i < ccm.length; i++)
-						cCardsMakes.add(ccm[i]);
-				} else
+						if (!ccm[i].isEmpty())
+							cCardsMakes.add(ccm[i]);
+				} else if (!cCM.isEmpty())
 					cCardsMakes.add(cCM);
 
 				config.setSpamWords(spamWords);
@@ -106,9 +108,29 @@ public class ConfigurationAdministratorController extends AbstractController {
 	protected ModelAndView editModelAndView(final Configuration config, final String messageCode) {
 		ModelAndView result;
 
+		String sWS = "";
+		String cCMS = "";
+
+		final List<String> spam = (List<String>) config.getSpamWords();
+		final List<String> cards = (List<String>) config.getcCardsMakes();
+
+		for (int i = 0; i < config.getSpamWords().size(); i++)
+			if (i == spam.size() - 1)
+				sWS += spam.get(i);
+			else
+				sWS += spam.get(i) + ", ";
+
+		for (int i = 0; i < config.getcCardsMakes().size(); i++)
+			if (i == cards.size() - 1)
+				sWS += cards.get(i);
+			else
+				cCMS += cards.get(i) + ", ";
+
 		result = new ModelAndView("configuration/administrator/edit");
 		result.addObject("configuration", config);
 		result.addObject("messageCode", messageCode);
+		result.addObject("spam", sWS);
+		result.addObject("cards", cCMS);
 
 		return result;
 	}

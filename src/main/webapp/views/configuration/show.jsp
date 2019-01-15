@@ -56,15 +56,17 @@
 	<jstl:out value="${configuration.phoneCCode}"></jstl:out> 
 </p>
 
-<spring:message code="configuration.edit.spamWords" />
+<spring:message code="configuration.edit.spamWords" />:
 <br/>
 <display:table name="${configuration.spamWords}" id="row">
 </display:table>
+<br/>
 
-<spring:message code="configuration.edit.cCardsMakes" />
+<spring:message code="configuration.edit.cCardsMakes" />:
 <br/>
 <display:table name="${configuration.cCardsMakes}" id="row">
 </display:table>
+<br/>
 
 <input type="button" name="edit PD"
 		value="<spring:message code="configuration.edit" />"

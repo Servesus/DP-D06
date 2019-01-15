@@ -21,6 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ConfigurationService;
+import domain.Configuration;
 
 @Controller
 public class AbstractController {
@@ -34,9 +35,9 @@ public class AbstractController {
 	@ModelAttribute
 	public void everyRequest(final WebRequest request, final Model model) {
 
-		final String pageName = this.configurationService.findAll().get(0).getPageName();
+		final Configuration conf = this.configurationService.findAll().get(0);
 
-		model.addAttribute("pageName", pageName);
+		model.addAttribute("configuration", conf);
 	}
 
 	@ExceptionHandler(Throwable.class)
