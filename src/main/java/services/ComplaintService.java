@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import repositories.ComplaintRepository;
 import security.UserAccount;
 import domain.Complaint;
+import domain.Customer;
 import domain.FixUpTask;
 import domain.Referee;
 import domain.Report;
@@ -128,5 +129,11 @@ public class ComplaintService {
 		for (final Report r : result1)
 			result.add(r.getComplaint());
 		return result;
+	}
+
+	public Collection<Complaint> getCustomerComplaints() {
+		final Customer c = this.customerService.findOne(this.actorService.getActorLogged().getId());
+		Assert.notNull(c);
+		return this.complaintRepository.getCustomerComplaints(c.getId());
 	}
 }

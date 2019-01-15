@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,7 +56,8 @@ public class ComplaintController extends AbstractController {
 		final Actor user = this.actorService.getActorLogged();
 		final Customer customer = this.customerService.findOne(user.getId());
 
-		complaints = customer.getComplaints();
+		complaints = this.complaintService.getCustomerComplaints();
+		Assert.notNull(customer);
 
 		result = new ModelAndView("complaint/customer/list");
 		result.addObject("complaints", complaints);
