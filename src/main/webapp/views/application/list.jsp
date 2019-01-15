@@ -32,20 +32,19 @@
 <display:table pagesize="5" class="application" name="applications" 
 	requestURI="${requestURI}" id="row">
 	
-	<jstl:choose>
-		<jstl:when test="${row.status == 1}">
-		<jstl:set var="css" value="ACCEPTED"></jstl:set>
-		</jstl:when>
 		<jsp:useBean id="now" class="java.util.Date"/>
-		
-		<jstl:when test="${row.status == 0}">
-			<jstl:set var="css" value="PENDING"></jstl:set>
-		</jstl:when>
-
-		<jstl:when test="${row.status == -1}">
+			<jstl:if test="${row.status == 0}">
+				<jstl:set var="css" value=""></jstl:set>
+			</jstl:if>
+			<jstl:if test="${row.fixUpTask.estimatedDate < now}">
+				<jstl:set var="css" value="PENDING"></jstl:set>
+			</jstl:if>
+		<jstl:if test="${row.status == 1}">
+		<jstl:set var="css" value="ACCEPTED"></jstl:set>
+		</jstl:if>
+		<jstl:if test="${row.status == -1}">
 			<jstl:set var="css" value="REJECTED"></jstl:set>
-		</jstl:when>
-	</jstl:choose>
+		</jstl:if>
 	
 	<security:authorize access="hasRole('CUSTOMER')">
 	<display:column> <a href="application/customer/show.do?applicationId=${row.id}">
