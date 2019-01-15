@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,18 +36,21 @@ public class PhaseController extends AbstractController {
 		Collection<Phase> phases;
 
 		final FixUpTask fixUpTask = this.fixUpTaskService.findOne(fixUpTaskId);
-		phases = fixUpTask.getPhases();
 
-		result = new ModelAndView("phase/handyWorker/list");
-		result.addObject("phases", phases);
-		result.addObject("phase.fixUpTask.id", fixUpTaskId);
-		result.addObject("requestURI", "phase/handyWorker/list.do");
+		if (fixUpTask == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else {
+			phases = fixUpTask.getPhases();
+			result = new ModelAndView("phase/handyWorker/list");
+			result.addObject("phases", phases);
+			result.addObject("phase.fixUpTask.id", fixUpTaskId);
+			result.addObject("requestURI", "phase/handyWorker/list.do");
+		}
 		return result;
 	}
-
 	@RequestMapping(value = "/handyWorker/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int phaseId) {
-		ModelAndView result;
+		final ModelAndView result;
 		Phase phase;
 
 		phase = this.phaseService.findOne(phaseId);
@@ -58,7 +60,6 @@ public class PhaseController extends AbstractController {
 		result.addObject("requestURI", "phase/handyWorker/show.do");
 		return result;
 	}
-
 	@RequestMapping(value = "/handyWorker/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
@@ -66,7 +67,10 @@ public class PhaseController extends AbstractController {
 
 		phase = this.phaseService.create(fixUpTaskId);
 
-		result = this.createEditModelAndView(phase);
+		if (phase == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndView(phase);
 		return result;
 	}
 
@@ -90,9 +94,10 @@ public class PhaseController extends AbstractController {
 		Phase phase;
 
 		phase = this.phaseService.findOne(phaseId);
-		Assert.notNull(phase);
-		result = this.createEditModelAndView(phase);
-
+		if (phase == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndView(phase);
 		return result;
 	}
 
