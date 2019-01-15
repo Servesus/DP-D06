@@ -37,11 +37,11 @@
 		<jstl:set var="css" value="ACCEPTED"></jstl:set>
 		</jstl:when>
 		<jsp:useBean id="now" class="java.util.Date"/>
-		<jstl:if test="${row.fixUpTask.startDate > now}">
+		
 		<jstl:when test="${row.status == 0}">
 			<jstl:set var="css" value="PENDING"></jstl:set>
 		</jstl:when>
-		</jstl:if>
+
 		<jstl:when test="${row.status == -1}">
 			<jstl:set var="css" value="REJECTED"></jstl:set>
 		</jstl:when>
