@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,12 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ApplicationService;
+import services.CustomerService;
 import services.FixUpTaskService;
 import services.HandyWorkerService;
 import services.MessageService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Application;
+import domain.Customer;
 import domain.FixUpTask;
 import domain.HandyWorker;
 import domain.Message;
@@ -46,31 +47,47 @@ public class ApplicationController extends AbstractController {
 	@Autowired
 	private MessageService		messageService;
 
+	@Autowired
+	private CustomerService		customerService;
+
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
 	public ModelAndView listCustomer(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
 		Collection<Application> applications;
+		int customerId;
+		Customer customer;
+
+		customerId = this.actorService.getActorLogged().getId();
+		customer = this.customerService.findOne(customerId);
 
 		final FixUpTask fixUpTask = this.fixUpTaskService.findOne(fixUpTaskId);
 
-		applications = fixUpTask.getApplications();
-		result = new ModelAndView("application/customer/list");
-		result.addObject("applications", applications);
-		result.addObject("requestURI", "application/customer/list.do");
-
+		if (customer.getFixUpTasks().contains(fixUpTask)) {
+			applications = fixUpTask.getApplications();
+			result = new ModelAndView("application/customer/list");
+			result.addObject("applications", applications);
+			result.addObject("requestURI", "application/customer/list.do");
+		} else
+			result = new ModelAndView("redirect:/misc/403");
 		return result;
 	}
-
 	@RequestMapping(value = "/customer/accept", method = RequestMethod.GET)
 	public ModelAndView accept(@RequestParam final int applicationId) {
 		ModelAndView result;
 		Application application;
+		int customerId;
+		Customer customer;
+
+		customerId = this.actorService.getActorLogged().getId();
+		customer = this.customerService.findOne(customerId);
 
 		application = this.applicationService.findOne(applicationId);
-		Assert.notNull(application);
-		result = this.createEditModelAndView(application);
 
+		if (application == null || !(application.getFixUpTask().getCustomer().equals(customer)))
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndView(application);
 		return result;
 	}
 	@RequestMapping(value = "/customer/accept", method = RequestMethod.POST, params = "save")
@@ -101,10 +118,17 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView reject(@RequestParam final int applicationId) {
 		ModelAndView result;
 		Application application;
+		int customerId;
+		Customer customer;
 
+		customerId = this.actorService.getActorLogged().getId();
+		customer = this.customerService.findOne(customerId);
 		application = this.applicationService.findOne(applicationId);
-		Assert.notNull(application);
-		result = this.createEditModelAndView2(application);
+
+		if (application == null || !(application.getFixUpTask().getCustomer().equals(customer)))
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndView2(application);
 
 		return result;
 	}
@@ -136,13 +160,22 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView showCustomer(@RequestParam final int applicationId) {
 		ModelAndView result;
 		Application application;
+		int customerId;
+		Customer customer;
+
+		customerId = this.actorService.getActorLogged().getId();
+		customer = this.customerService.findOne(customerId);
 
 		application = this.applicationService.findOne(applicationId);
 
-		result = new ModelAndView("application/customer/show");
-		result.addObject("application", application);
-		result.addObject("requestURI", "application/customer/show.do");
+		if (application == null || !(application.getFixUpTask().getCustomer().equals(customer)))
+			result = new ModelAndView("redirect:/misc/403");
 
+		else {
+			result = new ModelAndView("application/customer/show");
+			result.addObject("application", application);
+			result.addObject("requestURI", "application/customer/show.do");
+		}
 		return result;
 	}
 
@@ -198,11 +231,15 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView create(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
 		Application application;
+		FixUpTask fixUpTask;
 
 		application = this.applicationService.create(fixUpTaskId);
+		fixUpTask = this.fixUpTaskService.findOne(fixUpTaskId);
 
-		result = this.createEditModelAndViewHandyWorker(application);
-
+		if (fixUpTask == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndViewHandyWorker(application);
 		return result;
 	}
 
@@ -226,12 +263,20 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView showHandyWorker(@RequestParam final int applicationId) {
 		ModelAndView result;
 		Application application;
+		int handyWorkerId;
+		HandyWorker handyWorker;
 
+		handyWorkerId = this.actorService.getActorLogged().getId();
+		handyWorker = this.handyWorkerService.findOne(handyWorkerId);
 		application = this.applicationService.findOne(applicationId);
 
-		result = new ModelAndView("application/handyWorker/show");
-		result.addObject("application", application);
-		result.addObject("requestURI", "application/handyWorker/show.do");
+		if (application == null || !(application.getHandyWorker().equals(handyWorker)))
+			result = new ModelAndView("redirect:/misc/403");
+		else {
+			result = new ModelAndView("application/handyWorker/show");
+			result.addObject("application", application);
+			result.addObject("requestURI", "application/handyWorker/show.do");
+		}
 
 		return result;
 	}
