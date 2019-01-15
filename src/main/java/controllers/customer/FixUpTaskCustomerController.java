@@ -67,14 +67,21 @@ public class FixUpTaskCustomerController extends AbstractController {
 		ModelAndView result;
 		final String language = LocaleContextHolder.getLocale().getLanguage();
 		final FixUpTask fix = this.fixUpTaskService.findOne(fixUpTaskId);
-		Assert.notNull(fix);
+		Customer customer;
+		Actor user;
 
-		result = new ModelAndView("fixUpTask/customer/findOne");
-		result.addObject("fixUpTask", fix);
-		result.addObject("lang", language);
+		user = this.actorService.getActorLogged();
+		customer = this.customerService.findOne(user.getId());
+
+		if (fix == null || !(fix.getCustomer().equals(customer)))
+			result = new ModelAndView("redirect:/misc/403");
+		else {
+			result = new ModelAndView("fixUpTask/customer/findOne");
+			result.addObject("fixUpTask", fix);
+			result.addObject("lang", language);
+		}
 		return result;
 	}
-
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
@@ -85,9 +92,17 @@ public class FixUpTaskCustomerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
+		Customer customer;
+		Actor user;
+
+		user = this.actorService.getActorLogged();
+		customer = this.customerService.findOne(user.getId());
 		final FixUpTask fix = this.fixUpTaskService.findOne(fixUpTaskId);
-		Assert.notNull(fix);
-		result = this.createEditModelAndView(fix);
+
+		if (fix == null || !(fix.getCustomer().equals(customer)))
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndView(fix);
 		return result;
 	}
 

@@ -30,6 +30,8 @@ public class MessageService {
 	private BoxService				boxService;
 	@Autowired
 	private AdministratorService	administratorService;
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	//Simple CRUD Methods
@@ -72,13 +74,12 @@ public class MessageService {
 			if (b.getName().equals("OUTBOX"))
 				b.getMessages().add(result);
 		//lista de palabras spam
-		final String[] spam = {
-			"sex", "viagra", "cialis", "one million", "you've been selected", "Nigeria", "sexo", "un millón", "ha sido seleccionado"
-		};
+		final List<String> spam = (List<String>) this.configurationService.findAll().get(0).getSpamWords();
+
 		//meter message inbox/spambox recipient
 		boolean msgIsSpam = false;
-		for (int i = 0; i < spam.length; i++)
-			if (result.getSubject().contains(spam[i]) || result.getBody().contains(spam[i]))
+		for (int i = 0; i < spam.size(); i++)
+			if (result.getSubject().contains(spam.get(i)) || result.getBody().contains(spam.get(i)))
 				msgIsSpam = true;
 		if (msgIsSpam)
 			for (int i = 0; i < recipients.size(); i++) {

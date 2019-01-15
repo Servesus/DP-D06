@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ApplicationService;
+import services.ConfigurationService;
 import services.CustomerService;
 import services.FixUpTaskService;
 import services.HandyWorkerService;
@@ -23,6 +24,7 @@ import services.MessageService;
 import controllers.AbstractController;
 import domain.Actor;
 import domain.Application;
+import domain.Configuration;
 import domain.Customer;
 import domain.FixUpTask;
 import domain.HandyWorker;
@@ -33,28 +35,32 @@ import domain.Message;
 public class ApplicationController extends AbstractController {
 
 	@Autowired
-	private ApplicationService	applicationService;
+	private ApplicationService		applicationService;
 
 	@Autowired
-	private FixUpTaskService	fixUpTaskService;
+	private FixUpTaskService		fixUpTaskService;
 
 	@Autowired
-	private ActorService		actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private HandyWorkerService	handyWorkerService;
+	private HandyWorkerService		handyWorkerService;
 
 	@Autowired
-	private MessageService		messageService;
+	private MessageService			messageService;
 
 	@Autowired
-	private CustomerService		customerService;
+	private CustomerService			customerService;
+
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	@RequestMapping(value = "/customer/list", method = RequestMethod.GET)
 	public ModelAndView listCustomer(@RequestParam final int fixUpTaskId) {
 		ModelAndView result;
 		Collection<Application> applications;
+		final Configuration configuration = this.configurationService.findAll().get(0);
 
 		final FixUpTask fixUpTask = this.fixUpTaskService.findOne(fixUpTaskId);
 
@@ -62,6 +68,7 @@ public class ApplicationController extends AbstractController {
 			applications = fixUpTask.getApplications();
 			result = new ModelAndView("application/customer/list");
 			result.addObject("applications", applications);
+			result.addObject("priceVAT", configuration.getVATPercent());
 			result.addObject("requestURI", "application/customer/list.do");
 		} else
 			result = new ModelAndView("redirect:/misc/403");
@@ -157,6 +164,7 @@ public class ApplicationController extends AbstractController {
 		Application application;
 		int customerId;
 		Customer customer;
+		final Configuration configuration = this.configurationService.findAll().get(0);
 
 		customerId = this.actorService.getActorLogged().getId();
 		customer = this.customerService.findOne(customerId);
@@ -169,6 +177,7 @@ public class ApplicationController extends AbstractController {
 		else {
 			result = new ModelAndView("application/customer/show");
 			result.addObject("application", application);
+			result.addObject("priceVAT", configuration.getVATPercent());
 			result.addObject("requestURI", "application/customer/show.do");
 		}
 		return result;
@@ -183,8 +192,10 @@ public class ApplicationController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Application application, final String messageCode) {
 		ModelAndView result;
+		final Collection<String> cards = this.configurationService.findAll().get(0).getcCardsMakes();
 		result = new ModelAndView("application/customer/accept");
 		result.addObject("application", application);
+		result.addObject("creditCards", cards);
 		result.addObject("message", messageCode);
 		return result;
 	}
@@ -209,6 +220,7 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView listHandyWorker() {
 		ModelAndView result;
 		Collection<Application> applications;
+		final Configuration configuration = this.configurationService.findAll().get(0);
 
 		final Actor user = this.actorService.getActorLogged();
 		final HandyWorker handyWorker = this.handyWorkerService.findOne(user.getId());
@@ -217,6 +229,7 @@ public class ApplicationController extends AbstractController {
 
 		result = new ModelAndView("application/handyWorker/list");
 		result.addObject("applications", applications);
+		result.addObject("priceVAT", configuration.getVATPercent());
 		result.addObject("requestURI", "application/handyWorker/list.do");
 
 		return result;
@@ -260,6 +273,7 @@ public class ApplicationController extends AbstractController {
 		Application application;
 		int handyWorkerId;
 		HandyWorker handyWorker;
+		final Configuration configuration = this.configurationService.findAll().get(0);
 
 		handyWorkerId = this.actorService.getActorLogged().getId();
 		handyWorker = this.handyWorkerService.findOne(handyWorkerId);
@@ -270,6 +284,7 @@ public class ApplicationController extends AbstractController {
 		else {
 			result = new ModelAndView("application/handyWorker/show");
 			result.addObject("application", application);
+			result.addObject("priceVAT", configuration.getVATPercent());
 			result.addObject("requestURI", "application/handyWorker/show.do");
 		}
 

@@ -10,6 +10,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('REFEREE')">
+
 <form:form action="report/referee/edit.do" modelAttribute="referee">
 <jstl:if test="${report.id == 0 }">
 	<form:hidden path="id" />

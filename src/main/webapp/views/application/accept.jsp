@@ -39,11 +39,10 @@
 		<spring:message code="application.brandName" />:
 	</form:label>
 	<form:select id="creditCard.brandName" path="creditCard.brandName">	
-		<option value="AMEX" selected="selected">AMEX</option>
-		<option value="VISA">VISA</option>
-		<option value="MASTER">MASTER</option>
-		<option value="DINNERS">DINERS</option>
+		<form:options items="${creditCards}"
+			/>
 	</form:select>
+	<br />
 	
 	<form:label path="creditCard.number">
 	<spring:message code="application.number"/>

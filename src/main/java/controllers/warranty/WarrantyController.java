@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,9 +57,11 @@ public class WarrantyController extends AbstractController {
 		Warranty warranty;
 
 		warranty = this.warrantyService.findOne(warrantyId);
-		Assert.notNull(warranty);
-		result = this.createEditModelAndView(warranty);
 
+		if (warranty == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else
+			result = this.createEditModelAndView(warranty);
 		return result;
 	}
 
@@ -116,11 +117,14 @@ public class WarrantyController extends AbstractController {
 		ModelAndView result;
 		final Warranty warranty = this.warrantyService.findOne(warrantyId);
 
-		result = new ModelAndView("warranty/administrator/show");
-		result.addObject("title", warranty.getTitle());
-		result.addObject("terms", warranty.getTerms());
-		result.addObject("applicableLaws", warranty.getApplicableLaws());
-
+		if (warranty == null)
+			result = new ModelAndView("redirect:/misc/403");
+		else {
+			result = new ModelAndView("warranty/administrator/show");
+			result.addObject("title", warranty.getTitle());
+			result.addObject("terms", warranty.getTerms());
+			result.addObject("applicableLaws", warranty.getApplicableLaws());
+		}
 		return result;
 
 	}
