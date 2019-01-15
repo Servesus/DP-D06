@@ -12,7 +12,7 @@ import domain.FixUpTask;
 @Repository
 public interface FixUpTaskRepository extends JpaRepository<FixUpTask, Integer> {
 
-	@Query("select f from FixUpTask where f.customer.id=?1")
+	@Query("select f from FixUpTask f where f.customer.id=?1")
 	public Collection<FixUpTask> getCustomerFixUpTasks(int customerId);
 
 }
